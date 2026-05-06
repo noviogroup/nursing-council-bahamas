@@ -110,7 +110,7 @@ export default function HomePage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section
-          className="relative text-white overflow-hidden h-[500px]"
+          className="relative text-white overflow-hidden h-[450px]"
           role="banner"
           aria-label="Hero section with image carousel and registration search"
         >
