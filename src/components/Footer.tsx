@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { portalPath } from '@/lib/portal';
 
 export default function Footer() {
   const quickLinks = [
-    { name: 'Register', href: '/education-registration' },
-    { name: 'Renew Licence', href: '/education-registration#renewal' },
-    { name: 'Confirm Registration', href: '/#search' },
+    { name: 'Register', href: portalPath('/register?type=registration') },
+    { name: 'Renew Licence', href: portalPath('/register?type=renewal') },
+    { name: 'Confirm Registration', href: portalPath('/verify') },
     { name: 'Committees', href: '/committees' },
     { name: 'News & Updates', href: '/news' },
     { name: 'Contact', href: '/contact' },

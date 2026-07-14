@@ -3,6 +3,7 @@ import { CheckCircle, Users, Target, Award, Shield, Star, Zap, Building } from '
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { portalPath } from '@/lib/portal';
 
 export default function AboutPage() {
   const timelineEvents = [
@@ -285,7 +286,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/education-registration"
+                href={portalPath('/register?type=registration')}
                 className="bg-council-alert text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
               >
                 Start Registration Process

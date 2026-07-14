@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { portalPath } from '@/lib/portal';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -98,6 +99,15 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href={portalPath('/verify')}
+                className="font-medium text-council-primary hover:text-council-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 rounded-md px-2 py-1"
+              >
+                Verify Licence
+              </Link>
+              <Button asChild className="bg-council-primary hover:bg-council-secondary">
+                <Link href={portalPath('/login')}>Portal Access</Link>
+              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -141,6 +151,22 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
+                <Link
+                  href={portalPath('/verify')}
+                  className="font-medium text-gray-700 hover:text-council-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 rounded-md px-2 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  role="menuitem"
+                >
+                  Verify Licence
+                </Link>
+                <Link
+                  href={portalPath('/login')}
+                  className="font-medium text-council-primary hover:text-council-secondary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 rounded-md px-2 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  role="menuitem"
+                >
+                  Portal Access
+                </Link>
               </div>
             </div>
           )}

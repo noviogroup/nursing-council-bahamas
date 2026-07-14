@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { portalPath } from '@/lib/portal';
 
 export default function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -64,14 +65,14 @@ export default function HomePage() {
       icon: <UserPlus className="h-6 w-6" aria-hidden="true" />,
       title: "Register",
       description: "Begin your nursing registration process",
-      href: "/education-registration"
+      href: portalPath('/register?type=registration')
     },
     {
       image: '/assets/renew-license-card.png',
       icon: <RotateCcw className="h-6 w-6" aria-hidden="true" />,
       title: "Renew Licence",
       description: "Renew your annual nursing licence",
-      href: "/education-registration#renewal"
+      href: portalPath('/register?type=renewal')
     },
     {
       image: '/assets/education-training-card.png',
@@ -208,7 +209,7 @@ export default function HomePage() {
                       className="inline-flex items-center bg-council-primary text-white px-4 py-2 rounded-md hover:bg-council-secondary transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                       aria-label={`Learn more about ${card.title}`}
                     >
-                      Learn More
+                      {card.title === 'Education & Training' ? 'Learn More' : 'Start Online'}
                       <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                     </Link>
                   </CardContent>

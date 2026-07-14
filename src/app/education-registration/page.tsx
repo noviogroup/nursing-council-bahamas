@@ -1,11 +1,13 @@
 'use client';
 
-import { Download, CheckCircle, DollarSign, Clock, FileText, Users, GraduationCap, Shield } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, CheckCircle, DollarSign, Clock, Download, FileText, Users, GraduationCap, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { portalPath } from '@/lib/portal';
 
 export default function EducationRegistrationPage() {
   const registrationRequirements = [
@@ -154,21 +156,27 @@ export default function EducationRegistrationPage() {
                       <CardHeader>
                         <CardTitle className="font-heading text-xl flex items-center">
                           <FileText className="h-6 w-6 text-council-primary mr-3" />
-                          Download Forms
+                          Apply Online
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Nursing Registration Application Form
+                        <Button asChild className="w-full justify-start bg-council-primary hover:bg-council-secondary">
+                          <Link href={portalPath('/register?type=registration')}>
+                            <ArrowRight className="h-4 w-4 mr-2" />
+                            Start registration application
+                          </Link>
                         </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Medical Fitness Certificate Form
+                        <Button asChild className="w-full justify-start" variant="outline">
+                          <Link href={portalPath('/register?type=indexing')}>
+                            <ArrowRight className="h-4 w-4 mr-2" />
+                            Apply for student indexing
+                          </Link>
                         </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Professional Reference Form
+                        <Button asChild className="w-full justify-start" variant="outline">
+                          <Link href={portalPath('/register?type=exam')}>
+                            <ArrowRight className="h-4 w-4 mr-2" />
+                            Apply for registration exam
+                          </Link>
                         </Button>
                       </CardContent>
                     </Card>
@@ -240,21 +248,27 @@ export default function EducationRegistrationPage() {
                       <CardHeader>
                         <CardTitle className="font-heading text-xl flex items-center">
                           <FileText className="h-6 w-6 text-council-primary mr-3" />
-                          Renewal Forms
+                          Renewal Portal
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Licence Renewal Application
+                        <Button asChild className="w-full justify-start bg-council-primary hover:bg-council-secondary">
+                          <Link href={portalPath('/register?type=renewal')}>
+                            <ArrowRight className="h-4 w-4 mr-2" />
+                            Start licence renewal
+                          </Link>
                         </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Continuing Education Record Form
+                        <Button asChild className="w-full justify-start" variant="outline">
+                          <Link href={portalPath('/login?next=%2Fnursing%2Feducation')}>
+                            <ArrowRight className="h-4 w-4 mr-2" />
+                            Submit CE records
+                          </Link>
                         </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Employment Verification Form
+                        <Button asChild className="w-full justify-start" variant="outline">
+                          <Link href={portalPath('/verify')}>
+                            <ArrowRight className="h-4 w-4 mr-2" />
+                            Verify licence status
+                          </Link>
                         </Button>
                       </CardContent>
                     </Card>
