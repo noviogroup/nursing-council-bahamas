@@ -1,285 +1,54 @@
+import type { LucideIcon } from 'lucide-react';
 import Link from 'next/link';
-import { GraduationCap, FileCheck, DollarSign, Users, Shield, Gavel, ArrowRight, Calendar, Mail, Phone } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { ArrowRight, Calendar, DollarSign, FileCheck, Gavel, GraduationCap, Mail, Phone, Shield, Users } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default function CommitteesPage() {
-  const committees = [
-    {
-      id: 'education',
-      name: 'Education Committee',
-      icon: <GraduationCap className="h-8 w-8" />,
-      description: 'Oversees nursing education standards, curriculum approval, and educational institution accreditation throughout the Bahamas.',
-      responsibilities: [
-        'Review and approve nursing education programs',
-        'Establish educational standards and competencies',
-        'Monitor compliance with accreditation requirements',
-        'Evaluate continuing education providers and programs'
-      ],
-      meetingSchedule: 'Quarterly',
-      contactEmail: 'education@nursingcouncilbahamas.com',
-      chairperson: 'Dr. Patricia Williams, RN, PhD'
-    },
-    {
-      id: 'examination',
-      name: 'Examination Committee',
-      icon: <FileCheck className="h-8 w-8" />,
-      description: 'Develops and oversees nursing competency examinations, ensures fair testing practices, and maintains examination standards.',
-      responsibilities: [
-        'Develop nursing licensing examination content',
-        'Review examination results and pass rates',
-        'Ensure examination security and integrity',
-        'Establish testing accommodations and policies'
-      ],
-      meetingSchedule: 'Bi-monthly',
-      contactEmail: 'examination@nursingcouncilbahamas.com',
-      chairperson: 'Prof. Michael Thompson, RN, MSN'
-    },
-    {
-      id: 'finance',
-      name: 'Finance Committee',
-      icon: <DollarSign className="h-8 w-8" />,
-      description: 'Manages Council finances, oversees budgeting, and ensures responsible fiscal management of Council resources.',
-      responsibilities: [
-        'Prepare annual budgets and financial forecasts',
-        'Monitor Council expenditures and revenue',
-        'Review fee structures and payment policies',
-        'Oversee audit processes and financial reporting'
-      ],
-      meetingSchedule: 'Monthly',
-      contactEmail: 'finance@nursingcouncilbahamas.com',
-      chairperson: 'Ms. Sandra Johnson, CPA, RN'
-    },
-    {
-      id: 'registration',
-      name: 'Registration Committee',
-      icon: <Users className="h-8 w-8" />,
-      description: 'Reviews registration applications, maintains the nursing register, and processes licensing matters.',
-      responsibilities: [
-        'Review nursing registration applications',
-        'Maintain accurate nursing register database',
-        'Process license renewals and verifications',
-        'Handle registration appeals and special cases'
-      ],
-      meetingSchedule: 'Bi-weekly',
-      contactEmail: 'registration@nursingcouncilbahamas.com',
-      chairperson: 'Mrs. Jennifer Davis, RN, BSN'
-    },
-    {
-      id: 'standards-practice',
-      name: 'Standards & Practice Committee',
-      icon: <Shield className="h-8 w-8" />,
-      description: 'Establishes nursing practice standards, develops professional guidelines, and ensures quality of nursing care.',
-      responsibilities: [
-        'Develop nursing practice standards and guidelines',
-        'Review scope of practice for nursing specialties',
-        'Address practice-related inquiries and concerns',
-        'Monitor healthcare trends and practice evolution'
-      ],
-      meetingSchedule: 'Quarterly',
-      contactEmail: 'standards@nursingcouncilbahamas.com',
-      chairperson: 'Dr. Robert Clarke, RN, DNP'
-    },
-    {
-      id: 'disciplinary',
-      name: 'Disciplinary Committee',
-      icon: <Gavel className="h-8 w-8" />,
-      description: 'Investigates complaints against registered nurses and conducts disciplinary proceedings to protect public safety.',
-      responsibilities: [
-        'Investigate complaints against registered nurses',
-        'Conduct disciplinary hearings and proceedings',
-        'Determine appropriate sanctions and remedial actions',
-        'Ensure due process and fair treatment for all parties'
-      ],
-      meetingSchedule: 'As needed',
-      contactEmail: 'disciplinary@nursingcouncilbahamas.com',
-      chairperson: 'Hon. Margaret Brown, JD, RN'
-    }
-  ];
+type Committee = {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  description: string;
+  responsibilities: string[];
+  meetingSchedule: string;
+  contactEmail: string;
+  chairperson: string;
+};
 
+const committees: Committee[] = [
+  { id: 'education', name: 'Education Committee', icon: GraduationCap, description: 'Oversees nursing education standards, curriculum approval, and educational institution accreditation throughout The Bahamas.', responsibilities: ['Review and approve nursing education programs', 'Establish educational standards and competencies', 'Monitor compliance with accreditation requirements', 'Evaluate continuing education providers and programs'], meetingSchedule: 'Quarterly', contactEmail: 'education@nursingcouncilbahamas.com', chairperson: 'Dr. Patricia Williams, RN, PhD' },
+  { id: 'examination', name: 'Examination Committee', icon: FileCheck, description: 'Develops and oversees nursing competency examinations, ensures fair testing practices, and maintains examination standards.', responsibilities: ['Develop nursing licensing examination content', 'Review examination results and pass rates', 'Ensure examination security and integrity', 'Establish testing accommodations and policies'], meetingSchedule: 'Bi-monthly', contactEmail: 'examination@nursingcouncilbahamas.com', chairperson: 'Prof. Michael Thompson, RN, MSN' },
+  { id: 'finance', name: 'Finance Committee', icon: DollarSign, description: 'Manages Council finances, oversees budgeting, and ensures responsible fiscal management of Council resources.', responsibilities: ['Prepare annual budgets and financial forecasts', 'Monitor Council expenditures and revenue', 'Review fee structures and payment policies', 'Oversee audit processes and financial reporting'], meetingSchedule: 'Monthly', contactEmail: 'finance@nursingcouncilbahamas.com', chairperson: 'Ms. Sandra Johnson, CPA, RN' },
+  { id: 'registration', name: 'Registration Committee', icon: Users, description: 'Reviews registration applications, maintains the nursing register, and processes licensing matters.', responsibilities: ['Review nursing registration applications', 'Maintain accurate nursing register database', 'Process licence renewals and verifications', 'Handle registration appeals and special cases'], meetingSchedule: 'Bi-weekly', contactEmail: 'registration@nursingcouncilbahamas.com', chairperson: 'Mrs. Jennifer Davis, RN, BSN' },
+  { id: 'standards-practice', name: 'Standards & Practice Committee', icon: Shield, description: 'Establishes nursing practice standards, develops professional guidelines, and ensures quality of nursing care.', responsibilities: ['Develop nursing practice standards and guidelines', 'Review scope of practice for nursing specialties', 'Address practice-related inquiries and concerns', 'Monitor healthcare trends and practice evolution'], meetingSchedule: 'Quarterly', contactEmail: 'standards@nursingcouncilbahamas.com', chairperson: 'Dr. Robert Clarke, RN, DNP' },
+  { id: 'disciplinary', name: 'Disciplinary Committee', icon: Gavel, description: 'Investigates complaints against registered nurses and conducts disciplinary proceedings to protect public safety.', responsibilities: ['Investigate complaints against registered nurses', 'Conduct disciplinary hearings and proceedings', 'Determine appropriate sanctions and remedial actions', 'Ensure due process and fair treatment for all parties'], meetingSchedule: 'As needed', contactEmail: 'disciplinary@nursingcouncilbahamas.com', chairperson: 'Hon. Margaret Brown, JD, RN' },
+];
+
+export default function CommitteesPage() {
   return (
     <>
       <Header />
       <main className="flex-1">
-        {/* Page Header */}
-        <section className="bg-council-primary text-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-                Our Committees
-              </h1>
-              <p className="text-xl opacity-90">
-                Six specialized committees work together to ensure comprehensive oversight
-                of nursing practice, education, and professional standards in the Bahamas.
-              </p>
-            </div>
+        <section className="bg-council-primary py-20 text-white lg:py-28">
+          <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div><p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-10 bg-council-accent" />Governance & oversight</p><h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Guiding the profession together.</h1><p className="max-w-2xl text-xl leading-relaxed text-white/85">Six specialized committees bring the expertise, accountability, and care that support nursing practice in The Bahamas.</p></div>
+            <div className="border-l-4 border-council-accent bg-white/10 p-8"><p className="font-heading text-6xl font-bold text-council-accent">6</p><p className="mt-2 text-xl font-semibold">Specialized committees</p><p className="mt-3 leading-relaxed text-white/75">Working across education, registration, standards, finance, examinations, and professional conduct.</p></div>
           </div>
         </section>
 
-        {/* Committees Overview */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl font-bold text-council-dark mb-4">
-                Committee Structure
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Each committee brings specialized expertise to guide the Council's decisions
-                and ensure the highest standards of nursing practice and regulation.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {committees.map((committee) => (
-                <Card key={committee.id} className="hover:shadow-lg transition-shadow h-full">
-                  <CardHeader>
-                    <div className="w-16 h-16 bg-council-primary rounded-full flex items-center justify-center text-white mb-4 mx-auto">
-                      {committee.icon}
-                    </div>
-                    <CardTitle className="font-heading text-xl text-center">
-                      {committee.name}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <p className="text-gray-600 mb-6 text-center flex-1">
-                      {committee.description}
-                    </p>
-                    <Link href={`/committees/${committee.id}`}>
-                      <Button className="w-full bg-council-primary hover:bg-council-secondary">
-                        Learn More
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        <section className="bg-white py-20 lg:py-28">
+          <div className="container mx-auto px-4"><div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"><div><p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Committee structure</p><h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Six areas of focused expertise.</h2></div><p className="max-w-2xl text-lg leading-relaxed text-gray-600">Each committee guides Council decisions and helps maintain the highest standards of nursing practice, education, and regulation.</p></div>
+            <nav className="grid gap-px border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-3" aria-label="Committee quick links">{committees.map((committee, index) => { const Icon = committee.icon; return <Link key={committee.id} href={`#${committee.id}`} className="group bg-white p-7 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-council-primary"><div className="mb-9 flex items-start justify-between"><Icon className="h-8 w-8 text-council-primary" aria-hidden="true" /><span className="font-heading text-xl font-bold text-council-accent">0{index + 1}</span></div><h3 className="font-heading mb-2 text-xl font-bold text-council-dark">{committee.name}</h3><p className="mb-5 text-sm leading-relaxed text-gray-600">{committee.description}</p><span className="inline-flex items-center gap-2 text-sm font-semibold text-council-primary">Explore committee <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span></Link>; })}</nav>
           </div>
         </section>
 
-        {/* Committee Details */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl font-bold text-council-dark mb-4">
-                Committee Details
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Detailed information about each committee's responsibilities, meeting schedules, and leadership.
-              </p>
-            </div>
-
-            <div className="space-y-8 max-w-4xl mx-auto">
-              {committees.map((committee, index) => (
-                <Card key={committee.id} className="overflow-hidden">
-                  <CardHeader className="bg-gray-50">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-council-primary rounded-full flex items-center justify-center text-white">
-                        {committee.icon}
-                      </div>
-                      <div className="flex-1">
-                        <CardTitle className="font-heading text-2xl text-council-dark">
-                          {committee.name}
-                        </CardTitle>
-                        <p className="text-gray-600 mt-1">{committee.description}</p>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="font-heading text-lg font-semibold mb-3">Key Responsibilities</h4>
-                        <ul className="space-y-2">
-                          {committee.responsibilities.map((responsibility, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <div className="w-2 h-2 bg-council-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                              <span className="text-gray-700 text-sm">{responsibility}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="space-y-4">
-                        <div className="flex items-center space-x-3">
-                          <Calendar className="h-5 w-5 text-council-primary" />
-                          <div>
-                            <span className="font-semibold">Meeting Schedule:</span>
-                            <div className="text-gray-600">{committee.meetingSchedule}</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <Users className="h-5 w-5 text-council-primary" />
-                          <div>
-                            <span className="font-semibold">Chairperson:</span>
-                            <div className="text-gray-600">{committee.chairperson}</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <Mail className="h-5 w-5 text-council-primary" />
-                          <div>
-                            <span className="font-semibold">Contact:</span>
-                            <div className="text-gray-600">{committee.contactEmail}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        <section className="bg-gray-50 py-20 lg:py-28">
+          <div className="container mx-auto px-4"><div className="mb-14 text-center"><p className="mb-4 flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Committee details</p><h2 className="font-heading mb-4 text-4xl font-bold text-council-dark md:text-5xl">Meet the work behind the standards.</h2><p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">Responsibilities, leadership, and meeting information for every Council committee.</p></div>
+            <div className="mx-auto max-w-6xl space-y-6">{committees.map((committee, index) => { const Icon = committee.icon; return <article id={committee.id} key={committee.id} className="scroll-mt-8 bg-white shadow-sm"><div className="grid lg:grid-cols-[0.35fr_0.65fr]"><div className="bg-council-primary p-8 text-white lg:p-10"><div className="mb-12 flex items-start justify-between"><Icon className="h-10 w-10 text-council-accent" aria-hidden="true" /><span className="font-heading text-3xl font-bold text-council-accent">0{index + 1}</span></div><h3 className="font-heading mb-4 text-3xl font-bold leading-tight">{committee.name}</h3><p className="leading-relaxed text-white/80">{committee.description}</p></div><div className="p-8 lg:p-10"><div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]"><div><h4 className="font-heading mb-5 text-xl font-bold text-council-dark">Key responsibilities</h4><ul className="space-y-3">{committee.responsibilities.map((responsibility) => <li key={responsibility} className="flex gap-3 text-gray-700"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-council-accent" />{responsibility}</li>)}</ul></div><dl className="space-y-5 border-l-2 border-council-accent pl-5"><div><dt className="mb-1 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-council-primary"><Calendar className="h-4 w-4" aria-hidden="true" />Meeting schedule</dt><dd className="text-gray-700">{committee.meetingSchedule}</dd></div><div><dt className="mb-1 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-council-primary"><Users className="h-4 w-4" aria-hidden="true" />Chairperson</dt><dd className="text-gray-700">{committee.chairperson}</dd></div><div><dt className="mb-1 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-council-primary"><Mail className="h-4 w-4" aria-hidden="true" />Contact</dt><dd><a href={`mailto:${committee.contactEmail}`} className="break-all text-council-primary hover:underline">{committee.contactEmail}</a></dd></div></dl></div></div></div></article>; })}</div>
           </div>
         </section>
 
-        {/* Committee Meetings Information */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="bg-council-primary text-white">
-                <CardHeader>
-                  <CardTitle className="font-heading text-2xl text-center">
-                    Committee Meeting Information
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-lg opacity-90 mb-6">
-                    Committee meetings are generally open to the public, with some exceptions for
-                    confidential matters such as disciplinary proceedings.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div>
-                      <Calendar className="h-8 w-8 mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2">Meeting Notices</h4>
-                      <p className="text-sm opacity-90">
-                        Public meetings are announced at least 7 days in advance
-                      </p>
-                    </div>
-                    <div>
-                      <Mail className="h-8 w-8 mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2">Meeting Minutes</h4>
-                      <p className="text-sm opacity-90">
-                        Minutes are published within 2 weeks of each meeting
-                      </p>
-                    </div>
-                    <div>
-                      <Phone className="h-8 w-8 mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2">Public Input</h4>
-                      <p className="text-sm opacity-90">
-                        Public comment periods are included in regular meetings
-                      </p>
-                    </div>
-                  </div>
-                  <Link href="/contact">
-                    <Button variant="secondary" size="lg" className="bg-white text-council-primary hover:bg-gray-100">
-                      Contact Committee Services
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
+        <section className="bg-council-primary py-20 text-white"><div className="container mx-auto px-4"><div className="mx-auto max-w-5xl text-center"><p className="mb-4 flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-9 bg-council-accent" />Public participation</p><h2 className="font-heading mb-5 text-4xl font-bold">Committee meeting information</h2><p className="mx-auto mb-12 max-w-3xl text-lg leading-relaxed text-white/85">Committee meetings are generally open to the public, with exceptions for confidential matters such as disciplinary proceedings.</p><div className="grid gap-px bg-white/20 md:grid-cols-3"><div className="bg-council-primary p-7"><Calendar className="mx-auto mb-4 h-8 w-8 text-council-accent" /><h3 className="font-heading mb-2 text-xl font-bold">Meeting Notices</h3><p className="text-white/75">Public meetings are announced at least 7 days in advance.</p></div><div className="bg-council-primary p-7"><Mail className="mx-auto mb-4 h-8 w-8 text-council-accent" /><h3 className="font-heading mb-2 text-xl font-bold">Meeting Minutes</h3><p className="text-white/75">Minutes are published within 2 weeks of each meeting.</p></div><div className="bg-council-primary p-7"><Phone className="mx-auto mb-4 h-8 w-8 text-council-accent" /><h3 className="font-heading mb-2 text-xl font-bold">Public Input</h3><p className="text-white/75">Public comment periods are included in regular meetings.</p></div></div><Link href="/contact" className="mt-10 inline-flex items-center gap-2 bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-council-accent focus:ring-offset-2 focus:ring-offset-council-primary">Contact Committee Services <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div></div></section>
       </main>
       <Footer />
     </>

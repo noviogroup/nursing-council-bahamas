@@ -1,388 +1,60 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock, User, Tag, ArrowRight, Search, Filter } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Filter, Search, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+const newsItems = [
+  { id: 1, title: 'New Continuing Education Requirements for 2025', excerpt: 'The Nursing Council announces updated continuing education requirements effective January 2025, including new mandatory modules on patient safety and infection control.', category: 'standards', categoryName: 'Standards', author: 'Dr. Patricia Williams', date: '2025-01-15', readTime: '5 min read', featured: true, image: '/assets/nursing-ceremony-1.jpg' },
+  { id: 2, title: 'Annual Bahamas Nursing Conference 2025 Registration Open', excerpt: 'Join us for the premier nursing education event in the Caribbean, featuring international speakers, hands-on workshops, and networking opportunities.', category: 'events', categoryName: 'Events', author: 'Conference Committee', date: '2025-01-10', readTime: '3 min read', featured: true, image: '/assets/nurse-pinning-ceremony.webp' },
+  { id: 3, title: 'Updated Standards of Practice for Nursing Professionals', excerpt: 'Review the latest updates to nursing practice standards, including new guidelines for telehealth nursing and expanded scope of practice.', category: 'standards', categoryName: 'Standards', author: 'Standards Committee', date: '2024-12-20', readTime: '7 min read', featured: false, image: '/assets/nursing-ceremony-2.jpg' },
+  { id: 4, title: 'Online Registration Portal Improvements', excerpt: 'We have enhanced our online registration system with new features including document upload, status tracking, and automated notifications.', category: 'registration', categoryName: 'Registration', author: 'IT Department', date: '2024-12-15', readTime: '4 min read', featured: false, image: '/assets/register-card.png' },
+  { id: 5, title: 'Nursing Scholarship Program 2025 Applications', excerpt: 'The Council is pleased to announce the opening of applications for our annual nursing education scholarship program for Bahamian students.', category: 'education', categoryName: 'Education', author: 'Education Committee', date: '2024-12-10', readTime: '6 min read', featured: false, image: '/assets/education-training-card.png' },
+  { id: 6, title: 'Professional Development Workshop Series', excerpt: 'Join our monthly professional development workshops covering leadership, communication, and advanced clinical skills for nursing professionals.', category: 'education', categoryName: 'Education', author: 'Prof. Michael Thompson', date: '2024-12-05', readTime: '3 min read', featured: false, image: '/assets/nursing-ceremony-3.jpg' },
+  { id: 7, title: 'New Council Member Appointments', excerpt: 'We welcome three new members to the Nursing Council, bringing expertise in community health, pediatric nursing, and healthcare administration.', category: 'announcements', categoryName: 'Announcements', author: 'Council Secretary', date: '2024-11-28', readTime: '4 min read', featured: false, image: '/assets/hero-2.jpg' },
+  { id: 8, title: 'Infection Control Best Practices Update', excerpt: 'Updated guidelines for infection prevention and control in healthcare settings, incorporating lessons learned from recent global health challenges.', category: 'standards', categoryName: 'Standards', author: 'Dr. Robert Clarke', date: '2024-11-22', readTime: '8 min read', featured: false, image: '/assets/hero-3.jpg' },
+];
+
+const categoryDefinitions = [
+  { id: 'all', name: 'All updates' },
+  { id: 'standards', name: 'Standards' },
+  { id: 'registration', name: 'Registration' },
+  { id: 'education', name: 'Education' },
+  { id: 'announcements', name: 'Announcements' },
+  { id: 'events', name: 'Events' },
+];
+
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-
-  const categories = [
-    { id: 'all', name: 'All Posts', count: 24 },
-    { id: 'blogs', name: 'Blogs', count: 8 },
-    { id: 'standards', name: 'Standards', count: 6 },
-    { id: 'registration', name: 'Registration', count: 5 },
-    { id: 'education', name: 'Education', count: 4 },
-    { id: 'announcements', name: 'Announcements', count: 3 },
-    { id: 'events', name: 'Events', count: 2 }
-  ];
-
-  const newsItems = [
-    {
-      id: 1,
-      title: 'New Continuing Education Requirements for 2025',
-      excerpt: 'The Nursing Council announces updated continuing education requirements effective January 2025, including new mandatory modules on patient safety and infection control.',
-      content: 'Full details about the new CE requirements...',
-      category: 'standards',
-      categoryName: 'Standards',
-      author: 'Dr. Patricia Williams',
-      date: '2025-01-15',
-      readTime: '5 min read',
-      featured: true,
-      image: 'https://www.paho.org/sites/default/files/styles/max_1500x1500/public/2025-07/profesionalesdelcaribeencursodesimulacion.jpg?itok=cRoMPF0m'
-    },
-    {
-      id: 2,
-      title: 'Annual Bahamas Nursing Conference 2025 Registration Open',
-      excerpt: 'Join us for the premier nursing education event in the Caribbean, featuring international speakers, hands-on workshops, and networking opportunities.',
-      content: 'Conference details and registration information...',
-      category: 'events',
-      categoryName: 'Events',
-      author: 'Conference Committee',
-      date: '2025-01-10',
-      readTime: '3 min read',
-      featured: true,
-      image: 'https://www.amnhealthcare.com/contentassets/4fdd4139374545b884c7ffc199698eed/top-5-medical-careers-in-demand-for-physicians-2024.jpg'
-    },
-    {
-      id: 3,
-      title: 'Updated Standards of Practice for Nursing Professionals',
-      excerpt: 'Review the latest updates to nursing practice standards, including new guidelines for telehealth nursing and expanded scope of practice.',
-      content: 'Standards update details...',
-      category: 'standards',
-      categoryName: 'Standards',
-      author: 'Standards Committee',
-      date: '2024-12-20',
-      readTime: '7 min read',
-      featured: false
-    },
-    {
-      id: 4,
-      title: 'Online Registration Portal Improvements',
-      excerpt: 'We have enhanced our online registration system with new features including document upload, status tracking, and automated notifications.',
-      content: 'Portal improvement details...',
-      category: 'registration',
-      categoryName: 'Registration',
-      author: 'IT Department',
-      date: '2024-12-15',
-      readTime: '4 min read',
-      featured: false
-    },
-    {
-      id: 5,
-      title: 'Nursing Scholarship Program 2025 Applications',
-      excerpt: 'The Council is pleased to announce the opening of applications for our annual nursing education scholarship program for Bahamian students.',
-      content: 'Scholarship application information...',
-      category: 'education',
-      categoryName: 'Education',
-      author: 'Education Committee',
-      date: '2024-12-10',
-      readTime: '6 min read',
-      featured: false
-    },
-    {
-      id: 6,
-      title: 'Professional Development Workshop Series',
-      excerpt: 'Join our monthly professional development workshops covering leadership, communication, and advanced clinical skills for nursing professionals.',
-      content: 'Workshop series details...',
-      category: 'education',
-      categoryName: 'Education',
-      author: 'Prof. Michael Thompson',
-      date: '2024-12-05',
-      readTime: '3 min read',
-      featured: false
-    },
-    {
-      id: 7,
-      title: 'New Council Member Appointments',
-      excerpt: 'We welcome three new members to the Nursing Council, bringing expertise in community health, pediatric nursing, and healthcare administration.',
-      content: 'New member announcements...',
-      category: 'announcements',
-      categoryName: 'Announcements',
-      author: 'Council Secretary',
-      date: '2024-11-28',
-      readTime: '4 min read',
-      featured: false
-    },
-    {
-      id: 8,
-      title: 'Infection Control Best Practices Update',
-      excerpt: 'Updated guidelines for infection prevention and control in healthcare settings, incorporating lessons learned from recent global health challenges.',
-      content: 'Infection control guidelines...',
-      category: 'standards',
-      categoryName: 'Standards',
-      author: 'Dr. Robert Clarke',
-      date: '2024-11-22',
-      readTime: '8 min read',
-      featured: false
-    }
-  ];
-
-  const filteredNews = newsItems.filter(item => {
-    const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-    const matchesSearch = searchQuery === '' ||
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  const featuredNews = newsItems.filter(item => item.featured);
-  const regularNews = filteredNews.filter(item => !item.featured);
+  const normalisedSearch = searchQuery.trim().toLowerCase();
+  const categories = categoryDefinitions.map((category) => ({ ...category, count: category.id === 'all' ? newsItems.length : newsItems.filter((item) => item.category === category.id).length }));
+  const filteredNews = newsItems.filter((item) => (selectedCategory === 'all' || item.category === selectedCategory) && (normalisedSearch === '' || item.title.toLowerCase().includes(normalisedSearch) || item.excerpt.toLowerCase().includes(normalisedSearch)));
+  const featuredNews = newsItems.filter((item) => item.featured);
+  const showFeatured = selectedCategory === 'all' && normalisedSearch === '';
+  const displayedNews = showFeatured ? filteredNews.filter((item) => !item.featured) : filteredNews;
+  const currentCategory = categories.find((category) => category.id === selectedCategory)?.name ?? 'News';
 
   return (
     <>
       <Header />
       <main className="flex-1">
-        {/* Page Header */}
-        <section className="bg-council-primary text-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-                News & Updates
-              </h1>
-              <p className="text-xl opacity-90">
-                Stay informed with the latest news, announcements, and updates from the
-                Nursing Council of the Bahamas.
-              </p>
-            </div>
-          </div>
-        </section>
+        <section className="bg-council-primary py-20 text-white lg:py-28"><div className="container mx-auto px-4"><div className="max-w-3xl"><p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-10 bg-council-accent" />From the Council</p><h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">News & Updates</h1><p className="text-xl leading-relaxed text-white/85">The latest announcements, professional updates, and opportunities from the Nursing Council of The Bahamas.</p></div></div></section>
 
-        {/* Search and Filter */}
-        <section className="py-8 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  type="text"
-                  placeholder="Search news and updates..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <Filter className="h-4 w-4 text-gray-500" />
-                <span className="text-sm text-gray-600">Filter by category</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <section className="border-b border-slate-200 bg-white"><div className="container mx-auto px-4 py-6"><div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between"><div className="relative w-full max-w-xl"><Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-council-primary" aria-hidden="true" /><Input type="search" placeholder="Search news and updates..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="min-h-14 rounded-none border-slate-300 pl-12 focus-visible:ring-council-primary" /></div><div className="flex items-center gap-2 text-sm font-semibold text-gray-600"><Filter className="h-4 w-4 text-council-primary" />{filteredNews.length} updates found</div></div><div className="mt-6 flex gap-1 overflow-x-auto border-b border-slate-200" role="tablist" aria-label="News categories">{categories.map((category) => <button key={category.id} type="button" onClick={() => setSelectedCategory(category.id)} className={`shrink-0 border-b-2 px-4 py-3 text-sm font-semibold transition-colors ${selectedCategory === category.id ? 'border-council-primary text-council-primary' : 'border-transparent text-gray-600 hover:border-council-accent hover:text-council-primary'}`} role="tab" aria-selected={selectedCategory === category.id}>{category.name} <span className="ml-1 text-xs opacity-70">{category.count}</span></button>)}</div></div></section>
 
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Sidebar - Categories */}
-            <aside className="lg:col-span-1">
-              <Card className="sticky top-4">
-                <CardHeader>
-                  <CardTitle className="font-heading text-lg">Categories</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {categories.map((category) => (
-                      <button
-                        key={category.id}
-                        onClick={() => setSelectedCategory(category.id)}
-                        className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                          selectedCategory === category.id
-                            ? 'bg-council-primary text-white'
-                            : 'hover:bg-gray-100'
-                        }`}
-                      >
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">{category.name}</span>
-                          <span className={`text-sm ${
-                            selectedCategory === category.id
-                              ? 'text-white opacity-75'
-                              : 'text-gray-500'
-                          }`}>
-                            {category.count}
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </aside>
+        <section className="bg-gray-50 py-16 lg:py-20"><div className="container mx-auto px-4">
+          {showFeatured && <section className="mb-16"><div className="mb-8 flex items-end justify-between"><div><p className="mb-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Highlights</p><h2 className="font-heading text-4xl font-bold text-council-dark">Featured updates</h2></div><span className="hidden text-sm text-gray-500 md:block">Important news from the Council</span></div><div className="grid gap-6 lg:grid-cols-2">{featuredNews.map((item) => <article key={item.id} className="group overflow-hidden bg-council-primary text-white shadow-sm"><Link href={`/news/${item.id}`} className="grid h-full md:grid-cols-[0.92fr_1.08fr] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-council-accent"><div className="relative min-h-64 overflow-hidden"><Image src={item.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-council-primary/30 to-transparent" /></div><div className="flex flex-col p-7"><span className="mb-6 w-fit bg-council-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-council-dark">{item.categoryName}</span><h3 className="font-heading mb-4 text-2xl font-bold leading-tight">{item.title}</h3><p className="mb-6 line-clamp-3 leading-relaxed text-white/80">{item.excerpt}</p><div className="mt-auto flex items-center justify-between text-sm text-white/70"><span className="flex items-center gap-2"><Calendar className="h-4 w-4" />{new Date(item.date).toLocaleDateString('en-BS')}</span><span className="inline-flex items-center gap-2 font-semibold text-council-accent">Read update <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></div></Link></article>)}</div></section>}
 
-            {/* Main Content */}
-            <main className="lg:col-span-3">
-              {/* Featured News */}
-              {selectedCategory === 'all' && searchQuery === '' && (
-                <section className="mb-12">
-                  <h2 className="font-heading text-2xl font-bold text-council-dark mb-6">
-                    Featured News
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {featuredNews.map((item) => (
-                      <Card key={item.id} className="hover:shadow-lg transition-shadow overflow-hidden">
-                        <div className="relative h-48 bg-gray-200">
-                          {item.image && (
-                            <img
-                              src={item.image}
-                              alt={item.title}
-                              className="w-full h-full object-cover"
-                            />
-                          )}
-                          <div className="absolute top-3 left-3">
-                            <span className="bg-council-accent text-council-dark px-2 py-1 rounded-full text-xs font-semibold">
-                              {item.categoryName}
-                            </span>
-                          </div>
-                        </div>
-                        <CardHeader>
-                          <CardTitle className="font-heading text-xl line-clamp-2">
-                            {item.title}
-                          </CardTitle>
-                          <div className="flex items-center space-x-4 text-sm text-gray-500">
-                            <div className="flex items-center">
-                              <Calendar className="h-4 w-4 mr-1" />
-                              {new Date(item.date).toLocaleDateString()}
-                            </div>
-                            <div className="flex items-center">
-                              <Clock className="h-4 w-4 mr-1" />
-                              {item.readTime}
-                            </div>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-gray-600 mb-4 line-clamp-3">{item.excerpt}</p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center text-sm text-gray-500">
-                              <User className="h-4 w-4 mr-1" />
-                              {item.author}
-                            </div>
-                            <Link href={`/news/${item.id}`}>
-                              <Button variant="outline" size="sm">
-                                Read More
-                                <ArrowRight className="h-3 w-3 ml-2" />
-                              </Button>
-                            </Link>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </section>
-              )}
+          <section><div className="mb-8 flex items-end justify-between"><div><p className="mb-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Latest</p><h2 className="font-heading text-4xl font-bold text-council-dark">{showFeatured ? 'More news' : currentCategory}</h2></div><span className="text-sm text-gray-500">{displayedNews.length} articles</span></div>{displayedNews.length > 0 ? <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{displayedNews.map((item) => <article key={item.id} className="group overflow-hidden bg-white shadow-sm transition-shadow hover:shadow-xl"><Link href={`/news/${item.id}`} className="block h-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-council-primary"><div className="relative h-56 overflow-hidden"><Image src={item.image} alt="" fill sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" /><span className="absolute left-4 top-4 bg-council-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">{item.categoryName}</span></div><div className="p-6"><div className="mb-4 flex items-center gap-4 text-sm text-gray-500"><span className="flex items-center gap-1"><Calendar className="h-4 w-4 text-council-primary" />{new Date(item.date).toLocaleDateString('en-BS')}</span><span className="flex items-center gap-1"><Clock className="h-4 w-4 text-council-primary" />{item.readTime}</span></div><h3 className="font-heading mb-3 text-2xl font-bold leading-tight text-council-dark">{item.title}</h3><p className="mb-6 line-clamp-3 leading-relaxed text-gray-600">{item.excerpt}</p><div className="flex items-center justify-between border-t border-slate-200 pt-4 text-sm"><span className="flex items-center gap-2 text-gray-500"><User className="h-4 w-4 text-council-primary" />{item.author}</span><span className="inline-flex items-center gap-2 font-semibold text-council-primary">Read more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></div></Link></article>)}</div> : <div className="bg-white py-20 text-center"><Search className="mx-auto mb-4 h-10 w-10 text-council-primary" /><h3 className="font-heading mb-2 text-2xl font-bold text-council-dark">No updates found</h3><p className="text-gray-600">Try adjusting your search or category filter.</p></div>}</section>
+        </div></section>
 
-              {/* Regular News */}
-              <section>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="font-heading text-2xl font-bold text-council-dark">
-                    {selectedCategory === 'all' ? 'All News' :
-                     categories.find(c => c.id === selectedCategory)?.name || 'News'}
-                  </h2>
-                  <div className="text-sm text-gray-500">
-                    {filteredNews.length} articles
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  {regularNews.length > 0 ? (
-                    regularNews.map((item) => (
-                      <Card key={item.id} className="hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6">
-                          <div className="flex flex-col md:flex-row gap-4">
-                            <div className="flex-1">
-                              <div className="flex items-center space-x-3 mb-3">
-                                <span className="bg-council-primary/10 text-council-primary px-2 py-1 rounded-full text-xs font-semibold">
-                                  <Tag className="h-3 w-3 inline mr-1" />
-                                  {item.categoryName}
-                                </span>
-                                <div className="flex items-center text-sm text-gray-500">
-                                  <Calendar className="h-4 w-4 mr-1" />
-                                  {new Date(item.date).toLocaleDateString()}
-                                </div>
-                                <div className="flex items-center text-sm text-gray-500">
-                                  <Clock className="h-4 w-4 mr-1" />
-                                  {item.readTime}
-                                </div>
-                              </div>
-                              <h3 className="font-heading text-xl font-semibold text-council-dark mb-3">
-                                {item.title}
-                              </h3>
-                              <p className="text-gray-600 mb-4 line-clamp-2">{item.excerpt}</p>
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center text-sm text-gray-500">
-                                  <User className="h-4 w-4 mr-1" />
-                                  {item.author}
-                                </div>
-                                <Link href={`/news/${item.id}`}>
-                                  <Button variant="outline" size="sm">
-                                    Read More
-                                    <ArrowRight className="h-3 w-3 ml-2" />
-                                  </Button>
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))
-                  ) : (
-                    <div className="text-center py-12">
-                      <div className="text-gray-400 mb-4">
-                        <Search className="h-12 w-12 mx-auto" />
-                      </div>
-                      <h3 className="font-heading text-xl text-gray-600 mb-2">No articles found</h3>
-                      <p className="text-gray-500">
-                        Try adjusting your search or filter criteria.
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Pagination */}
-                {regularNews.length > 0 && (
-                  <div className="flex justify-center mt-12">
-                    <div className="flex space-x-2">
-                      <Button variant="outline" disabled>Previous</Button>
-                      <Button className="bg-council-primary hover:bg-council-secondary">1</Button>
-                      <Button variant="outline">2</Button>
-                      <Button variant="outline">3</Button>
-                      <Button variant="outline">Next</Button>
-                    </div>
-                  </div>
-                )}
-              </section>
-            </main>
-          </div>
-        </div>
-
-        {/* Newsletter Signup */}
-        <section className="py-16 bg-council-primary text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-heading text-3xl font-bold mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter to receive the latest news, updates, and
-              announcements directly in your inbox.
-            </p>
-            <div className="max-w-md mx-auto flex gap-3">
-              <Input
-                type="email"
-                placeholder="Enter your email address"
-                className="bg-white text-gray-900"
-              />
-              <Button className="bg-council-accent text-white hover:bg-yellow-500">
-                Subscribe
-              </Button>
-            </div>
-            <p className="text-sm opacity-75 mt-4">
-              Unsubscribe at any time. We respect your privacy.
-            </p>
-          </div>
-        </section>
+        <section className="bg-council-primary py-20 text-white"><div className="container mx-auto px-4 text-center"><p className="mb-4 flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-9 bg-council-accent" />Stay informed</p><h2 className="font-heading mb-4 text-4xl font-bold">Receive Council updates</h2><p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/85">Subscribe to receive the latest news, announcements, and professional updates directly in your inbox.</p><div className="mx-auto flex max-w-md gap-3"><Input type="email" placeholder="Enter your email address" className="min-h-14 rounded-none border-0 bg-white text-gray-900" /><Button className="min-h-14 rounded-none bg-council-accent px-6 font-semibold text-council-dark hover:bg-[#e7b820]">Subscribe</Button></div><p className="mt-4 text-sm text-white/65">Unsubscribe at any time. We respect your privacy.</p></div></section>
       </main>
       <Footer />
     </>
