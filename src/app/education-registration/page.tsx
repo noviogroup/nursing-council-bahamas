@@ -1,45 +1,128 @@
 'use client';
 
+import type { LucideIcon } from 'lucide-react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, DollarSign, Clock, Download, FileText, Users, GraduationCap, Shield } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  ArrowRight,
+  CheckCircle,
+  ClipboardCheck,
+  DollarSign,
+  FileCheck2,
+  GraduationCap,
+  ShieldCheck,
+  Users,
+  WalletCards,
+} from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { portalPath } from '@/lib/portal';
 
+type ServicePanelProps = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  steps: string[];
+  requirements: string[];
+  fee: string;
+  feeDescription: string;
+  primaryAction: { label: string; href: string };
+  secondaryActions: { label: string; href: string }[];
+};
+
+function ServicePanel({
+  title,
+  description,
+  icon: Icon,
+  steps,
+  requirements,
+  fee,
+  feeDescription,
+  primaryAction,
+  secondaryActions,
+}: ServicePanelProps) {
+  return (
+    <div className="overflow-hidden rounded-tl-[3.5rem] bg-council-primary shadow-xl lg:grid lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="p-7 text-white md:p-10 lg:p-12">
+        <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
+          <span className="h-px w-8 bg-council-accent" />
+          Education & registration
+        </p>
+        <h2 className="font-heading mb-4 text-4xl font-bold leading-tight">{title}</h2>
+        <p className="max-w-xl text-lg leading-relaxed text-white/85">{description}</p>
+
+        <div className="mt-10 space-y-10">
+          <div className="flex gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white text-council-primary">
+              <ClipboardCheck className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <div>
+              <h3 className="font-heading mb-3 text-2xl font-bold">How it works</h3>
+              <ol className="space-y-2 text-white/90">
+                {steps.map((step, index) => <li key={step} className="flex gap-3"><span className="font-semibold text-council-accent">0{index + 1}</span><span>{step}</span></li>)}
+              </ol>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white text-council-primary">
+              <FileCheck2 className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <div>
+              <h3 className="font-heading mb-3 text-2xl font-bold">What you will need</h3>
+              <ul className="space-y-2 text-white/90">
+                {requirements.map((requirement) => <li key={requirement} className="flex gap-3"><CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-council-accent" aria-hidden="true" /><span>{requirement}</span></li>)}
+              </ul>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white text-council-primary">
+              <WalletCards className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <div><h3 className="font-heading text-2xl font-bold">Fees</h3><p className="mt-2 text-lg text-white/90"><span className="font-bold text-council-accent">{fee}</span> — {feeDescription}</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center bg-white p-5 md:p-8 lg:p-10">
+        <div className="w-full rounded-2xl bg-gray-50 p-6 shadow-sm md:p-8">
+          <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-full bg-council-primary text-white"><Icon className="h-7 w-7" aria-hidden="true" /></div>
+          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Online portal</p>
+          <h3 className="font-heading mb-3 text-3xl font-bold text-council-dark">Ready to get started?</h3>
+          <p className="mb-7 leading-relaxed text-gray-600">Use the secure Nursing Council portal to submit your application and manage your next steps.</p>
+          <Link href={primaryAction.href} className="mb-3 flex min-h-14 w-full items-center justify-between rounded-md bg-council-primary px-5 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">
+            {primaryAction.label}<ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </Link>
+          <div className="mt-5 space-y-2 border-t border-slate-200 pt-5">
+            {secondaryActions.map((action) => <Link key={action.label} href={action.href} className="flex items-center justify-between rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-council-primary transition-colors hover:border-council-primary hover:bg-council-primary/5 focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">{action.label}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function EducationRegistrationPage() {
   const registrationRequirements = [
-    'Completion of approved nursing education program',
-    'Successful completion of nursing licensing examination',
-    'Good standing with previous nursing regulatory bodies (if applicable)',
-    'Criminal background check clearance',
-    'Medical fitness certificate from licensed physician',
-    'Professional references from nursing supervisors or educators',
-    'Payment of registration fee (BS$300)',
-    'Completed application form with required documentation'
+    'Approved nursing education programme',
+    'Successful completion of the licensing examination',
+    'Professional references and required documentation',
+    'Registration fee of BS$300',
   ];
 
   const renewalRequirements = [
     'Current nursing registration in good standing',
-    'Completion of required continuing education units (24 CEUs annually)',
-    'Payment of annual renewal fee (BS$150)',
-    'Declaration of fitness to practice',
-    'Professional liability insurance (if in active practice)',
+    '24 continuing education units annually',
     'Updated contact and employment information',
-    'Submission of renewal application by deadline (December 31st)'
+    'Annual renewal fee of BS$150',
   ];
 
   const agencyRequirements = [
-    'Valid business registration in the Bahamas',
-    'Designated nursing supervisor with current registration',
-    'Comprehensive policies and procedures manual',
-    'Professional liability insurance coverage',
-    'Quality assurance and infection control protocols',
-    'Staff credentialing and verification processes',
-    'Payment of agency licensing fee (BS$500 annually)',
-    'Annual inspection and compliance review'
+    'Valid business registration in The Bahamas',
+    'A designated nursing supervisor with current registration',
+    'Policies, procedures, and insurance coverage',
+    'Annual inspection and compliance review',
   ];
 
   const feeStructure = [
@@ -50,378 +133,89 @@ export default function EducationRegistrationPage() {
     { service: 'Verification Letter', fee: 'BS$25', description: 'Official verification of registration status' },
     { service: 'Nursing Agency Licence', fee: 'BS$500', description: 'Annual nursing agency licensing' },
     { service: 'Examination Fee', fee: 'BS$200', description: 'Nursing competency examination' },
-    { service: 'Reinstatement', fee: 'BS$400', description: 'Restoration of lapsed registration' }
+    { service: 'Reinstatement', fee: 'BS$400', description: 'Restoration of lapsed registration' },
   ];
 
   return (
     <>
       <Header />
       <main className="flex-1">
-        {/* Page Header */}
-        <section className="bg-council-primary text-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-                Education & Registration
-              </h1>
-              <p className="text-xl opacity-90">
-                Your pathway to nursing practice in the Bahamas. Find information about registration
-                requirements, licence renewal, and nursing agency licensing.
-              </p>
-            </div>
-          </div>
+        <section className="bg-council-primary py-16 text-white">
+          <div className="container mx-auto px-4"><div className="max-w-3xl"><p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-9 bg-council-accent" />Professional services</p><h1 className="font-heading mb-6 text-4xl font-bold md:text-5xl">Education & Registration</h1><p className="text-xl text-white/90">Your pathway to nursing practice in The Bahamas. Find information about registration, licence renewal, and nursing agency licensing.</p></div></div>
         </section>
 
-        {/* Main Content Tabs */}
-        <section className="py-16">
+        <section className="bg-gray-50 py-16 lg:py-20">
           <div className="container mx-auto px-4">
-            <Tabs defaultValue="register" className="max-w-6xl mx-auto">
-              <TabsList className="grid w-full grid-cols-3 mb-8">
-                <TabsTrigger value="register" className="text-sm md:text-base">
-                  Become / Register
-                </TabsTrigger>
-                <TabsTrigger value="renewal" className="text-sm md:text-base">
-                  Annual Renewal
-                </TabsTrigger>
-                <TabsTrigger value="agencies" className="text-sm md:text-base">
-                  Nursing Agencies
-                </TabsTrigger>
+            <Tabs defaultValue="register" className="mx-auto max-w-7xl">
+              <TabsList className="mb-0 grid h-auto w-full grid-cols-3 gap-2 rounded-none bg-transparent p-0 md:mx-auto md:max-w-3xl">
+                <TabsTrigger value="register" className="min-h-14 rounded-t-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-council-primary shadow-none data-[state=active]:border-council-primary data-[state=active]:bg-council-primary data-[state=active]:text-white data-[state=active]:shadow-none sm:text-base">First-Time Registration</TabsTrigger>
+                <TabsTrigger value="renewal" className="min-h-14 rounded-t-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-council-primary shadow-none data-[state=active]:border-council-secondary data-[state=active]:bg-council-secondary data-[state=active]:text-white data-[state=active]:shadow-none sm:text-base">Renew Your Licence</TabsTrigger>
+                <TabsTrigger value="agencies" className="min-h-14 rounded-t-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-council-primary shadow-none data-[state=active]:border-council-primary data-[state=active]:bg-council-primary data-[state=active]:text-white data-[state=active]:shadow-none sm:text-base">Nursing Agencies</TabsTrigger>
               </TabsList>
 
-              {/* Registration Tab */}
-              <TabsContent value="register" className="space-y-8">
-                <div className="text-center mb-8">
-                  <h2 className="font-heading text-3xl font-bold text-council-dark mb-4">
-                    Nursing Registration Process
-                  </h2>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
-                    Begin your nursing career in the Bahamas by completing the registration process
-                    and meeting all professional requirements.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="font-heading text-xl flex items-center">
-                        <CheckCircle className="h-6 w-6 text-council-primary mr-3" />
-                        Registration Requirements
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3">
-                        {registrationRequirements.map((req, index) => (
-                          <li key={index} className="flex items-start">
-                            <div className="w-2 h-2 bg-council-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                            <span className="text-gray-700">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <div className="space-y-6">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="font-heading text-xl flex items-center">
-                          <Clock className="h-6 w-6 text-council-primary mr-3" />
-                          Processing Timeline
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          <div className="flex justify-between">
-                            <span className="font-medium">Application Review</span>
-                            <span className="text-council-primary">2-3 weeks</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="font-medium">Document Verification</span>
-                            <span className="text-council-primary">1-2 weeks</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="font-medium">Final Approval</span>
-                            <span className="text-council-primary">1 week</span>
-                          </div>
-                          <div className="border-t pt-3 mt-3">
-                            <div className="flex justify-between font-bold">
-                              <span>Total Processing Time</span>
-                              <span className="text-council-primary">4-6 weeks</span>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="font-heading text-xl flex items-center">
-                          <FileText className="h-6 w-6 text-council-primary mr-3" />
-                          Apply Online
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <Button asChild className="w-full justify-start bg-council-primary hover:bg-council-secondary">
-                          <Link href={portalPath('/register?type=registration')}>
-                            <ArrowRight className="h-4 w-4 mr-2" />
-                            Start registration application
-                          </Link>
-                        </Button>
-                        <Button asChild className="w-full justify-start" variant="outline">
-                          <Link href={portalPath('/register?type=indexing')}>
-                            <ArrowRight className="h-4 w-4 mr-2" />
-                            Apply for student indexing
-                          </Link>
-                        </Button>
-                        <Button asChild className="w-full justify-start" variant="outline">
-                          <Link href={portalPath('/register?type=exam')}>
-                            <ArrowRight className="h-4 w-4 mr-2" />
-                            Apply for registration exam
-                          </Link>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
+              <TabsContent value="register" className="mt-0">
+                <ServicePanel
+                  title="Start your nursing registration"
+                  description="Take the first step toward nursing practice in The Bahamas with a clear, supported online application process."
+                  icon={GraduationCap}
+                  steps={['Review the registration requirements', 'Prepare your supporting documents', 'Submit your online application']}
+                  requirements={registrationRequirements}
+                  fee="BS$300"
+                  feeDescription="initial nursing registration"
+                  primaryAction={{ label: 'Start registration application', href: portalPath('/register?type=registration') }}
+                  secondaryActions={[{ label: 'Apply for student indexing', href: portalPath('/register?type=indexing') }, { label: 'Apply for registration exam', href: portalPath('/register?type=exam') }]}
+                />
               </TabsContent>
 
-              {/* Renewal Tab */}
-              <TabsContent value="renewal" className="space-y-8">
-                <div className="text-center mb-8">
-                  <h2 className="font-heading text-3xl font-bold text-council-dark mb-4">
-                    Annual Licence Renewal
-                  </h2>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
-                    Maintain your nursing registration by completing annual renewal requirements
-                    and continuing education obligations.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="font-heading text-xl flex items-center">
-                        <CheckCircle className="h-6 w-6 text-council-primary mr-3" />
-                        Renewal Requirements
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3">
-                        {renewalRequirements.map((req, index) => (
-                          <li key={index} className="flex items-start">
-                            <div className="w-2 h-2 bg-council-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                            <span className="text-gray-700">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <div className="space-y-6">
-                    <Card className="bg-council-accent/10 border-council-accent">
-                      <CardHeader>
-                        <CardTitle className="font-heading text-xl flex items-center text-council-dark">
-                          <GraduationCap className="h-6 w-6 text-council-accent mr-3" />
-                          Continuing Education
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-3">
-                          <div className="flex justify-between">
-                            <span className="font-medium">Required CEUs Annually</span>
-                            <span className="text-council-accent font-bold">24 Units</span>
-                          </div>
-                          <div className="text-sm text-gray-600">
-                            <p className="mb-2">Approved categories include:</p>
-                            <ul className="space-y-1 ml-4">
-                              <li>• Clinical practice updates</li>
-                              <li>• Patient safety and quality improvement</li>
-                              <li>• Professional development</li>
-                              <li>• Healthcare technology</li>
-                              <li>• Ethics and legal issues</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="font-heading text-xl flex items-center">
-                          <FileText className="h-6 w-6 text-council-primary mr-3" />
-                          Renewal Portal
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <Button asChild className="w-full justify-start bg-council-primary hover:bg-council-secondary">
-                          <Link href={portalPath('/register?type=renewal')}>
-                            <ArrowRight className="h-4 w-4 mr-2" />
-                            Start licence renewal
-                          </Link>
-                        </Button>
-                        <Button asChild className="w-full justify-start" variant="outline">
-                          <Link href={portalPath('/login?next=%2Fnursing%2Feducation')}>
-                            <ArrowRight className="h-4 w-4 mr-2" />
-                            Submit CE records
-                          </Link>
-                        </Button>
-                        <Button asChild className="w-full justify-start" variant="outline">
-                          <Link href={portalPath('/verify')}>
-                            <ArrowRight className="h-4 w-4 mr-2" />
-                            Verify licence status
-                          </Link>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
+              <TabsContent value="renewal" className="mt-0">
+                <ServicePanel
+                  title="Renew your licence today"
+                  description="Maintain your registration by completing your annual renewal requirements and continuing education obligations."
+                  icon={ShieldCheck}
+                  steps={['Confirm your registration details are current', 'Prepare your continuing education records', 'Submit your renewal before the deadline']}
+                  requirements={renewalRequirements}
+                  fee="BS$150"
+                  feeDescription="annual nursing licence renewal"
+                  primaryAction={{ label: 'Start licence renewal', href: portalPath('/register?type=renewal') }}
+                  secondaryActions={[{ label: 'Submit continuing education records', href: portalPath('/login?next=%2Fnursing%2Feducation') }, { label: 'Verify your licence status', href: portalPath('/verify') }]}
+                />
               </TabsContent>
 
-              {/* Nursing Agencies Tab */}
-              <TabsContent value="agencies" className="space-y-8">
-                <div className="text-center mb-8">
-                  <h2 className="font-heading text-3xl font-bold text-council-dark mb-4">
-                    Nursing Agency Licensing
-                  </h2>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
-                    Operate a nursing agency in the Bahamas by meeting regulatory requirements
-                    and maintaining professional standards.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="font-heading text-xl flex items-center">
-                        <Shield className="h-6 w-6 text-council-primary mr-3" />
-                        Agency Requirements
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3">
-                        {agencyRequirements.map((req, index) => (
-                          <li key={index} className="flex items-start">
-                            <div className="w-2 h-2 bg-council-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                            <span className="text-gray-700">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <div className="space-y-6">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="font-heading text-xl flex items-center">
-                          <Users className="h-6 w-6 text-council-primary mr-3" />
-                          Compliance Standards
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <h4 className="font-semibold mb-2">Staffing Requirements</h4>
-                            <p className="text-sm text-gray-600">
-                              Minimum supervisor-to-staff ratios and qualification standards
-                            </p>
-                          </div>
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <h4 className="font-semibold mb-2">Quality Assurance</h4>
-                            <p className="text-sm text-gray-600">
-                              Regular audits, client satisfaction monitoring, and outcome tracking
-                            </p>
-                          </div>
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <h4 className="font-semibold mb-2">Documentation</h4>
-                            <p className="text-sm text-gray-600">
-                              Comprehensive record keeping and reporting requirements
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="font-heading text-xl flex items-center">
-                          <FileText className="h-6 w-6 text-council-primary mr-3" />
-                          Agency Forms
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Nursing Agency Licensing Form
-                        </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Policies and Procedures Template
-                        </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                          <Download className="h-4 w-4 mr-2" />
-                          Staff Credentialing Checklist
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
+              <TabsContent value="agencies" className="mt-0">
+                <ServicePanel
+                  title="License your nursing agency"
+                  description="Operate a nursing agency in The Bahamas by meeting regulatory requirements and maintaining professional standards."
+                  icon={Users}
+                  steps={['Review agency licensing requirements', 'Prepare policy and staff documents', 'Apply and complete the compliance review']}
+                  requirements={agencyRequirements}
+                  fee="BS$500"
+                  feeDescription="annual nursing agency licence"
+                  primaryAction={{ label: 'Begin agency licence application', href: '/contact' }}
+                  secondaryActions={[{ label: 'Request licensing guidance', href: '/contact' }, { label: 'View compliance standards', href: '/committees' }]}
+                />
               </TabsContent>
             </Tabs>
           </div>
         </section>
 
-        {/* Fee Structure */}
-        <section className="py-16 bg-gray-50">
+        <section className="bg-white py-20 lg:py-28">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl font-bold text-council-dark mb-4">
-                Fee Structure
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Transparent pricing for all nursing registration and licensing services.
-              </p>
+            <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div><p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Fees</p><h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">Clear, transparent fees.</h2></div>
+              <p className="max-w-2xl text-lg leading-relaxed text-gray-600">Review the current costs for registration, renewal, verification, and licensing services before you begin.</p>
             </div>
-
-            <div className="max-w-4xl mx-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="font-heading text-2xl flex items-center justify-center">
-                    <DollarSign className="h-8 w-8 text-council-primary mr-3" />
-                    Current Fees (2025)
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="border-b border-gray-200">
-                          <th className="text-left py-3 px-4 font-semibold">Service</th>
-                          <th className="text-center py-3 px-4 font-semibold">Fee</th>
-                          <th className="text-left py-3 px-4 font-semibold">Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {feeStructure.map((item, index) => (
-                          <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
-                            <td className="py-3 px-4 font-medium">{item.service}</td>
-                            <td className="py-3 px-4 text-center text-council-primary font-bold">
-                              {item.fee}
-                            </td>
-                            <td className="py-3 px-4 text-gray-600">{item.description}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="mt-6 p-4 bg-council-primary/10 rounded-lg">
-                    <p className="text-sm text-gray-700">
-                      <strong>Note:</strong> All fees are payable in Bahamian dollars. Payment methods include
-                      cash, certified cheque, or money order. Credit card payments may be accepted with
-                      additional processing fees.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="mb-8 grid gap-px bg-slate-200 lg:grid-cols-4">
+              {feeStructure.map((item, index) => (
+                <article key={item.service} className={`p-6 ${item.service === 'Nursing Agency Licence' ? 'bg-council-primary text-white' : 'bg-gray-50 text-council-dark'}`}>
+                  <span className={`mb-8 flex h-10 w-10 items-center justify-center rounded-full ${item.service === 'Nursing Agency Licence' ? 'bg-council-accent text-council-dark' : 'bg-white text-council-primary'}`}><DollarSign className="h-5 w-5" aria-hidden="true" /></span>
+                  <p className={`mb-3 text-sm font-semibold uppercase tracking-wide ${item.service === 'Nursing Agency Licence' ? 'text-council-accent' : 'text-council-primary'}`}>0{index + 1}</p>
+                  <h3 className="font-heading mb-5 text-xl font-bold">{item.service}</h3>
+                  <p className={`mb-2 text-3xl font-bold ${item.service === 'Nursing Agency Licence' ? 'text-council-accent' : 'text-council-primary'}`}>{item.fee}</p>
+                  <p className={item.service === 'Nursing Agency Licence' ? 'text-white/75' : 'text-gray-600'}>{item.description}</p>
+                </article>
+              ))}
             </div>
+            <div className="grid gap-6 border-l-4 border-council-accent bg-gray-50 p-7 md:grid-cols-[auto_1fr] md:items-start"><DollarSign className="h-9 w-9 text-council-primary" aria-hidden="true" /><p className="leading-relaxed text-gray-700"><strong>Payment information:</strong> All fees are payable in Bahamian dollars. Payment methods include cash, certified cheque, or money order. Credit card payments may be accepted with additional processing fees.</p></div>
           </div>
         </section>
       </main>
