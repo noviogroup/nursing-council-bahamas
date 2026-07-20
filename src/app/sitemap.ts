@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { newsItems } from '@/lib/news'
 
 export const dynamic = 'force-static'
 
@@ -43,5 +44,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/accessibility`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+    ...newsItems.map((item) => ({
+      url: `${baseUrl}/news/${item.slug}`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
   ]
 }

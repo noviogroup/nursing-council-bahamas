@@ -160,7 +160,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/nursing-council-logo.png" />
         <meta name="theme-color" content="#000080" />
         <meta name="msapplication-TileColor" content="#000080" />

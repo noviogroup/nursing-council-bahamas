@@ -2,19 +2,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowRight,
-  Building,
-  Calendar,
+  Buildings as Building,
+  CalendarBlank as Calendar,
   CheckCircle,
   GraduationCap,
-  Mail,
+  EnvelopeSimple as Mail,
   MapPin,
   Phone,
-  RotateCcw,
-  Search,
+  ArrowsClockwise as RotateCcw,
   ShieldCheck,
   UserPlus,
   Users,
-} from 'lucide-react';
+} from '@phosphor-icons/react/dist/ssr';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -101,39 +100,6 @@ export default function HomePage() {
                 Guide and promote excellence in the practice of nursing.
               </p>
             </div>
-          </div>
-        </section>
-
-        <section className="bg-council-secondary py-9" aria-label="Search the nursing register">
-          <div className="container mx-auto px-4">
-            <form action={portalPath('/verify')} className="mx-auto flex max-w-3xl flex-col overflow-hidden rounded-lg bg-white shadow-lg sm:flex-row">
-              <label htmlFor="register-search" className="sr-only">Search nurses and midwives</label>
-              <input
-                id="register-search"
-                name="search"
-                type="search"
-                placeholder="Search Nurses & Midwives..."
-                className="min-h-14 flex-1 px-5 text-base text-council-dark outline-none placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-council-accent"
-              />
-              <label htmlFor="register-profession" className="sr-only">Profession</label>
-              <select
-                id="register-profession"
-                name="profession"
-                defaultValue=""
-                className="min-h-14 border-t border-slate-200 bg-white px-5 text-base text-slate-600 outline-none focus:ring-2 focus:ring-inset focus:ring-council-accent sm:w-48 sm:border-l sm:border-t-0"
-              >
-                <option value="">All professions</option>
-                <option value="nurse">Nurse</option>
-                <option value="midwife">Midwife</option>
-              </select>
-              <button
-                type="submit"
-                className="flex min-h-14 items-center justify-center bg-council-accent px-6 text-council-dark transition-colors hover:bg-[#e7b820] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                aria-label="Search the nursing register"
-              >
-                <Search className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </form>
           </div>
         </section>
 

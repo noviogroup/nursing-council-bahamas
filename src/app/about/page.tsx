@@ -2,16 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
-  Award,
-  Building,
+  Medal as Award,
+  Buildings as Building,
   CheckCircle,
   Shield,
   ShieldCheck,
   Star,
   Target,
   Users,
-  Zap,
-} from 'lucide-react';
+  Lightning as Zap,
+} from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { portalPath } from '@/lib/portal';

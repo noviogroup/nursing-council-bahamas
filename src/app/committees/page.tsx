@@ -1,13 +1,24 @@
-import type { LucideIcon } from 'lucide-react';
+import type { Icon as PhosphorIcon } from '@phosphor-icons/react';
 import Link from 'next/link';
-import { ArrowRight, Calendar, DollarSign, FileCheck, Gavel, GraduationCap, Mail, Phone, Shield, Users } from 'lucide-react';
+import {
+  ArrowRight,
+  CalendarBlank as Calendar,
+  CurrencyDollar as DollarSign,
+  FileText as FileCheck,
+  Gavel,
+  GraduationCap,
+  EnvelopeSimple as Mail,
+  Phone,
+  Shield,
+  Users,
+} from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 type Committee = {
   id: string;
   name: string;
-  icon: LucideIcon;
+  icon: PhosphorIcon;
   description: string;
   responsibilities: string[];
   meetingSchedule: string;

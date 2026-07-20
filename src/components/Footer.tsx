@@ -1,5 +1,12 @@
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import {
+  EnvelopeSimple as Mail,
+  FacebookLogo as Facebook,
+  LinkedinLogo as Linkedin,
+  MapPin,
+  Phone,
+  TwitterLogo as Twitter,
+} from '@phosphor-icons/react/dist/ssr';
 import { portalPath } from '@/lib/portal';
 
 export default function Footer() {
@@ -42,13 +49,13 @@ export default function Footer() {
               Guide and promote excellence in the practice of nursing throughout the Commonwealth of The Bahamas since 1971.
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="text-gray-300 hover:text-council-accent transition-colors">
+              <a href="https://www.facebook.com/nursingcouncilbahamas" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council on Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-council-accent transition-colors">
+              <a href="https://twitter.com/nursingcouncilbs" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council on X">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-council-accent transition-colors">
+              <a href="https://www.linkedin.com/company/nursing-council-bahamas" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council on LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
