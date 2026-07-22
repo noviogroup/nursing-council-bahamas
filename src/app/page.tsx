@@ -26,6 +26,9 @@ const services = [
     description: 'Begin your nursing registration process and submit your application online.',
     action: 'Start registration',
     href: portalPath('/register?type=registration'),
+    image: '/assets/services/registration-welcome.png',
+    imageAlt: 'Nurse assisting an applicant at a registration desk',
+    imagePosition: 'object-center',
   },
   {
     icon: RotateCcw,
@@ -33,6 +36,9 @@ const services = [
     description: 'Keep your annual nursing licence current with a simple online renewal.',
     action: 'Renew online',
     href: portalPath('/register?type=renewal'),
+    image: '/assets/services/registration-review.webp',
+    imageAlt: 'Nursing licence documents being reviewed at an office desk',
+    imagePosition: 'object-center',
   },
   {
     icon: GraduationCap,
@@ -40,6 +46,9 @@ const services = [
     description: 'Explore registration requirements, continuing education, and nursing agencies.',
     action: 'View requirements',
     href: '/education-registration',
+    image: '/assets/services/agency-compliance.webp',
+    imageAlt: 'Nursing professionals reviewing agency compliance paperwork',
+    imagePosition: 'object-center',
   },
 ];
 
@@ -74,18 +83,18 @@ export default function HomePage() {
       <Header />
       <main className="flex-1">
         <section
-          className="relative isolate min-h-[530px] overflow-hidden text-white md:min-h-[565px]"
+          className="relative isolate min-h-[530px] overflow-hidden bg-council-primary text-white md:min-h-[565px]"
           aria-label="Nursing Council of the Bahamas"
         >
           <Image
-            src="/assets/nurse-pinning-ceremony.webp"
-            alt="Nurses at a pinning ceremony in The Bahamas"
+            src="/assets/homepage-hero-nurses.png"
+            alt="Registered nurses in The Bahamas"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-[72%_center]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-council-primary/80 via-council-primary/52 to-council-primary/12" />
+          <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/15 to-transparent" />
           <div className="relative container mx-auto flex min-h-[530px] items-center px-4 py-20 md:min-h-[565px]">
             <div className="max-w-3xl">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-council-accent">
@@ -119,16 +128,28 @@ export default function HomePage() {
               {services.map((service) => {
                 const Icon = service.icon;
                 return (
-                  <article key={service.title} className="group border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-council-primary hover:shadow-xl">
-                    <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-full bg-council-primary text-white">
-                      <Icon className="h-7 w-7" aria-hidden="true" />
+                  <article key={service.title} className="group overflow-hidden border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-council-primary hover:shadow-xl">
+                    <div className="relative h-56 overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={service.imageAlt}
+                        fill
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        className={`object-cover transition-transform duration-500 group-hover:scale-105 ${service.imagePosition}`}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-council-primary/35 to-transparent" />
+                      <div className="absolute bottom-5 left-5 flex h-14 w-14 items-center justify-center rounded-full bg-council-primary text-white shadow-lg">
+                        <Icon className="h-7 w-7" aria-hidden="true" />
+                      </div>
                     </div>
-                    <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{service.title}</h3>
-                    <p className="mb-7 leading-relaxed text-gray-600">{service.description}</p>
-                    <Link href={service.href} className="inline-flex items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                      {service.action}
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                    </Link>
+                    <div className="p-7">
+                      <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{service.title}</h3>
+                      <p className="mb-7 leading-relaxed text-gray-600">{service.description}</p>
+                      <Link href={service.href} className="inline-flex items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+                        {service.action}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                      </Link>
+                    </div>
                   </article>
                 );
               })}
