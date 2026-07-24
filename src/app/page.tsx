@@ -102,8 +102,8 @@ export default function HomePage() {
                 Official regulatory authority
               </p>
               <h1 className="font-heading mb-6 text-4xl font-bold leading-tight md:text-6xl">
-                Nursing Council,<br />
-                Commonwealth of The Bahamas
+                Nursing Council of the<br />
+                Commonwealth of the Bahamas.
               </h1>
               <p className="max-w-2xl text-xl font-light leading-relaxed text-white/95 md:text-2xl">
                 Guide and promote excellence in the practice of nursing.

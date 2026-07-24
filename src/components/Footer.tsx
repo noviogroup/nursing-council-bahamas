@@ -25,7 +25,7 @@ export default function Footer() {
     'Finance Committee',
     'Registration Committee',
     'Standards & Practice',
-    'Disciplinary Committee',
+    'Disciplinary and Penal Cases Committee',
   ];
 
   return (
