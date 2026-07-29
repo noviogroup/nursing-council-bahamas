@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   allowedDevOrigins: ["*.preview.same-app.com"],
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL:
+      process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY,
+    NEXT_PUBLIC_COMPLAINTS_STORAGE_BUCKET:
+      process.env.NEXT_PUBLIC_COMPLAINTS_STORAGE_BUCKET ||
+      process.env.SUPABASE_STORAGE_BUCKET ||
+      "complaint-attachments",
+  },
   images: {
     unoptimized: true,
     domains: [

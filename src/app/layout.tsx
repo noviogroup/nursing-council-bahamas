@@ -17,8 +17,8 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://nursingcouncilbahamas.com'),
   title: {
-    default: "Nursing Council of the Bahamas | Official Website",
-    template: "%s | Nursing Council of the Bahamas"
+    default: "The Nursing Council of The Commonwealth of The Bahamas | Official Website",
+    template: "%s | The Nursing Council of The Commonwealth of The Bahamas"
   },
   description: "Official website of the Nursing Council of the Commonwealth of The Bahamas. Guide and promote excellence in the practice of nursing through regulation, education, and professional standards since 1971.",
   keywords: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "nursing practice standards",
     "bahamas healthcare regulation"
   ],
-  authors: [{ name: "Nursing Council of the Bahamas" }],
+  authors: [{ name: "The Nursing Council of The Commonwealth of The Bahamas" }],
   creator: "Nursing Council of the Commonwealth of The Bahamas",
   publisher: "Nursing Council of the Commonwealth of The Bahamas",
   applicationName: "Nursing Council Bahamas",
@@ -54,21 +54,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_BS",
     url: "https://nursingcouncilbahamas.com",
-    siteName: "Nursing Council of the Bahamas",
-    title: "Nursing Council of the Bahamas | Official Website",
+    siteName: "The Nursing Council of The Commonwealth of The Bahamas",
+    title: "The Nursing Council of The Commonwealth of The Bahamas | Official Website",
     description: "Official website of the Nursing Council of the Commonwealth of The Bahamas. Guide and promote excellence in the practice of nursing through regulation, education, and professional standards since 1971.",
     images: [
       {
         url: "/nursing-council-logo.png",
         width: 400,
         height: 400,
-        alt: "Nursing Council of the Bahamas Official Logo",
+        alt: "The Nursing Council of The Commonwealth of The Bahamas Official Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nursing Council of the Bahamas | Official Website",
+    title: "The Nursing Council of The Commonwealth of The Bahamas | Official Website",
     description: "Official website of the Nursing Council of the Commonwealth of The Bahamas. Guide and promote excellence in the practice of nursing.",
     images: ["/nursing-council-logo.png"],
   },
@@ -103,7 +103,7 @@ const structuredData = {
   "foundingDate": "1971",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Virginia & Augusta Streets",
+    "streetAddress": "#23 Capitol House, Virginia & Augusta Street",
     "addressLocality": "Nassau",
     "addressCountry": "BS",
     "postalCode": "N-3509"

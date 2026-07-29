@@ -39,6 +39,9 @@ yarn-error.log*
 # netlify
 .netlify
 
+# supabase local cache
+supabase/.temp/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
