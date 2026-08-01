@@ -15,9 +15,7 @@ export default function Header() {
     { href: '/education-training', label: 'Education' },
     { href: '/nursing-agencies', label: 'Agencies' },
     { href: '/legal-ethics', label: 'Legal' },
-    { href: '/indexing', label: 'Indexing' },
     { href: '/forms', label: 'Forms' },
-    { href: '/verification', label: 'Verification' },
     { href: '/complaints', label: 'Complaints' },
     { href: '/uaps', label: 'UAPs' },
   ];
@@ -74,11 +72,11 @@ export default function Header() {
             <Link
               href="/"
               className="flex shrink-0 items-center gap-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
-              aria-label="The Nursing Council of The Commonwealth of The Bahamas - Go to homepage"
+              aria-label="The Nursing Council of the Commonwealth of The Bahamas - Go to homepage"
             >
               <Image
                 src="/nursing-council-logo.png"
-                alt="The Nursing Council of The Commonwealth of The Bahamas Official Logo"
+                alt="The Nursing Council of the Commonwealth of The Bahamas Official Logo"
                 width={60}
                 height={60}
                 priority
@@ -86,9 +84,9 @@ export default function Header() {
               />
               <div className="min-w-0">
                 <div className="whitespace-nowrap font-heading text-base font-bold text-council-dark sm:text-lg md:text-xl">
-                  Nursing Council
+                  The Nursing Council
                 </div>
-                <p className="hidden text-sm text-gray-600 sm:block">Commonwealth of The Bahamas</p>
+                <p className="hidden text-sm text-gray-600 sm:block">of the Commonwealth of The Bahamas</p>
               </div>
             </Link>
 

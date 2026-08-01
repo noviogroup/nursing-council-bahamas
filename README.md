@@ -1,157 +1,121 @@
-# Nursing Council of the Bahamas - Official Website
+# The Nursing Council of the Commonwealth of The Bahamas
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://same-bdnr1eob2as-latest.netlify.app)
+Official public website and digital services platform for The Nursing Council of the Commonwealth of The Bahamas.
 
-Official website for the Nursing Council of the Commonwealth of the Bahamas. A comprehensive platform for nursing registration, licensing, education, and professional development.
+Live site: [https://nursingcouncilbahamas.netlify.app](https://nursingcouncilbahamas.netlify.app)
 
-🌐 **Live Website:** [https://same-bdnr1eob2as-latest.netlify.app](https://same-bdnr1eob2as-latest.netlify.app)
+## Current Scope
 
-## 📋 About
+The project provides:
 
-The Nursing Council of the Bahamas website serves as the primary digital platform for:
-- Nursing professional registration and licensing
-- Educational requirements and training programs
-- Committee information and governance
-- News, updates, and announcements
-- Contact and support services
+- Public information about the Council, its history, mandate, governance, and committees
+- Registration, licence renewal, indexing, and verification entry points
+- Education, training, nursing agency, UAP, legal, and forms pages
+- Public complaint submission and complaint-status tracking
+- A role-aware staff complaints portal backed by Supabase
+- Responsive navigation, accessible page structures, and search-engine metadata
 
-Established in 1971, the Nursing Council serves as the regulatory body for nursing practice throughout the Commonwealth of The Bahamas.
+The News page is intentionally excluded from public navigation and the sitemap until approved news content is available.
 
-## 🚀 Features
+## Technology
 
-- **Multi-Page Application:** Home, About, Education & Registration, Committees, News & Updates, Contact
-- **Mobile-Responsive Design:** Optimized for all devices
-- **Hero Carousel:** Showcasing nursing graduation ceremonies
-- **Service Cards:** Quick access to registration, license renewal, and education
-- **News Section:** Latest announcements and updates with urgent tags
-- **Contact Forms:** Professional contact management system
-- **SEO Optimized:** Meta tags, Open Graph, and structured data
-- **Accessibility:** ARIA labels, keyboard navigation, screen reader support
-- **Brand Consistency:** Navy blue (#000080) and gold (#ffc72c) color scheme
+- Next.js 15.5
+- React 18
+- TypeScript
+- Tailwind CSS
+- Supabase
+- Netlify with `@netlify/plugin-nextjs`
+- npm
 
-## 🛠️ Tech Stack
+## Local Setup
 
-- **Framework:** Next.js 15.3.2 (React 19)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
-- **Icons:** Lucide React
-- **Deployment:** Netlify (Dynamic Site)
-- **Package Manager:** Bun
-
-## 📦 Installation
+Use Node.js 20 or newer.
 
 ```bash
-# Clone the repository
 git clone https://github.com/noviogroup/nursing-council-bahamas.git
-
-# Navigate to project directory
 cd nursing-council-bahamas
-
-# Install dependencies
-bun install
-
-# Run development server
-bun run dev
+npm install
+cp .env.example .env.local
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000](http://localhost:3000).
 
-## 🏗️ Build
+## Environment Variables
+
+The public informational pages can render without database credentials. Complaint submission, tracking, and staff portal features require the Supabase values documented in `.env.example`.
+
+Important variables include:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_PORTAL_URL`
+- `NEXT_PUBLIC_COMPLAINTS_STORAGE_BUCKET`
+
+Email delivery remains disabled until an email provider and approved templates are configured.
+
+Never commit `.env.local` or private credentials.
+
+## Validation
 
 ```bash
-# Create production build
-bun run build
-
-# Start production server
-bun run start
+npx tsc --noEmit
+npm run build
 ```
 
-## 📁 Project Structure
+## Public Pages
 
+- `/` - Homepage and key service entry points
+- `/about` - History, mandate, ethics, founding members, and statutory governance
+- `/education-training` - Education and registration guidance
+- `/education-registration` - Approved-provider and clinical-site lists
+- `/nursing-agencies` - Agency licensing and compliance
+- `/legal-ethics` - Nurses and Midwives Act, 2023
+- `/indexing` - Indexing guidance and portal entry
+- `/verification` - Registration verification and good-standing guidance
+- `/forms` - Public forms library
+- `/committees` - Council committees and responsibilities
+- `/complaints` - Complaint information, submission, and tracking
+- `/uaps` - Unregulated assistive personnel information
+- `/contact` - Council contact details and enquiry form
+
+Several public lists and form downloads remain marked as placeholders until the Council supplies approved source documents and data. See [CHANGELOG.md](CHANGELOG.md) for the current release and outstanding content dependencies.
+
+## Assets and Documents
+
+- Approved public imagery: `public/assets/approved/`
+- Historical imagery: `public/assets/history/`
+- Published Council documents: `public/documents/`
+- Digital operations SOP: `docs/Nursing_Council_Digital_Operations_SOP.pdf`
+
+The SOP remains a draft for Council review and is not a substitute for legal or Council approval.
+
+## Deployment
+
+The repository is linked to the Netlify project `nursingcouncilbahamas`.
+
+```bash
+npx netlify status
+npx netlify deploy
+npx netlify deploy --prod
 ```
-nursing-council-bahamas/
-├── src/
-│   ├── app/                    # Next.js app directory
-│   │   ├── about/             # About page
-│   │   ├── committees/        # Committees page
-│   │   ├── contact/           # Contact page
-│   │   ├── education-registration/  # Education & Registration page
-│   │   ├── news/              # News & Updates page
-│   │   ├── layout.tsx         # Root layout with SEO
-│   │   ├── page.tsx           # Home page
-│   │   ├── robots.ts          # Robots.txt configuration
-│   │   └── sitemap.ts         # Sitemap configuration
-│   ├── components/            # Reusable components
-│   │   ├── ui/               # shadcn/ui components
-│   │   ├── Header.tsx        # Navigation header
-│   │   └── Footer.tsx        # Footer component
-│   └── lib/                  # Utilities
-├── public/
-│   ├── assets/               # Images and media files
-│   └── nursing-council-logo.png
-├── netlify.toml              # Netlify configuration
-└── package.json
-```
 
-## 🎨 Design System
+Netlify uses `npm run build` and publishes the generated Next.js application from `.next`.
 
-### Colors
-- **Primary (Navy):** `#000080`
-- **Secondary (Teal):** `#0093d0`
-- **Accent (Gold):** `#ffc72c`
-- **Alert (Red):** `#d9182a`
-- **Dark Gray:** `#1e293b`
-- **Light Background:** `#f8fafc`
+## Brand System
 
-### Typography
-- **Heading Font:** Montserrat
-- **Body Font:** Open Sans
+- Primary blue: `#000080`
+- Secondary blue: `#003A70`
+- Accent gold: `#FFC72C`
+- Typeface: Urbanist
+- Standard interface radius: 4px where framing is useful
 
-## 🔧 Configuration
+## Contact
 
-### Environment Variables
-No environment variables required for basic deployment.
+The Nursing Council of the Commonwealth of The Bahamas<br />
+#23 Capitol House, Virginia & Augusta Street, Nassau, The Bahamas<br />
+(242) 604-6015 / 6017<br />
+info@nursingcouncilbahamas.com
 
-### Netlify Configuration
-The site is configured for dynamic deployment with Next.js plugin enabled. See `netlify.toml` for details.
-
-## 📄 Pages
-
-1. **Home (`/`)** - Hero carousel, service cards, about snippet, news, contact CTA
-2. **About (`/about`)** - History, mission, council members
-3. **Education & Registration (`/education-registration`)** - Requirements, registration process, renewals
-4. **Committees (`/committees`)** - Committee information and structure
-5. **News & Updates (`/news`)** - Latest announcements and news
-6. **Contact (`/contact`)** - Contact form and information
-
-## 🚀 Deployment
-
-Deployed on Netlify as a dynamic Next.js application.
-
-**Live URL:** [https://same-bdnr1eob2as-latest.netlify.app](https://same-bdnr1eob2as-latest.netlify.app)
-
-## 🤝 Contributing
-
-This is an official government website. For contributions or issues, please contact the Nursing Council of the Bahamas directly.
-
-## 📧 Contact
-
-**Nursing Council of the Bahamas**
-- **Address:** Virginia & Augusta Streets, Nassau, Bahamas
-- **Phone:** (242) 604-6015 / 6017
-- **Email:** info@nursingcouncilbahamas.com
-- **Hours:** Monday - Friday: 9:00am - 5:00pm
-
-## 📝 License
-
-© 2025 Nursing Council of the Bahamas. All rights reserved.
-
-## 🔗 Links
-
-- [Live Website](https://same-bdnr1eob2as-latest.netlify.app)
-- [GitHub Repository](https://github.com/noviogroup/nursing-council-bahamas)
-
----
-
-**Built with ❤️ for the Nursing Community of The Bahamas**
+Copyright 2026 The Nursing Council of the Commonwealth of The Bahamas.

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingRoot: __dirname,
   allowedDevOrigins: ["*.preview.same-app.com"],
   env: {
     NEXT_PUBLIC_SUPABASE_URL:

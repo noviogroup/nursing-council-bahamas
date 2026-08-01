@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Medal as Award,
-  Buildings as Building,
   CheckCircle,
   FileText,
   Shield,
@@ -15,7 +14,6 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { portalPath } from '@/lib/portal';
 
 const timelineEvents = [
   {
@@ -37,37 +35,75 @@ const timelineEvents = [
       'The first regulations formulated by the Council were approved by the Minister of Health and passed as law in the House of Parliament.',
   },
   {
-    year: '2023',
-    title: 'Modern Act Awaiting Full Force',
+    year: '1993',
+    title: 'Agency Regulations Added',
     description:
-      'The Nurses and Midwives Act, 2023 repealed the 1971 Act, but the Council continues to be guided by the 1971 Act until all components of the 2023 Act are brought fully into force.',
+      'Agency regulations strengthened the Council framework for nursing agency oversight and regulatory requirements.',
+  },
+  {
+    year: '2023',
+    title: 'Modern Act Passed',
+    description:
+      'The Nurses and Midwives Act, 2023 repealed the 1971 Act. The Council is guided by the 2023 Act and continues to apply the 1971 Regulations until new regulations are passed.',
   },
 ];
 
 const foundingMembers = [
-  'Ms. Hilda Bowen, Chairperson',
-  'Mrs. Ironaca Morris, Secretary elect',
-  'Mrs. Dorothy Philips, Treasurer elect',
-  'Mrs. Ophelia Munnings',
-  'Mrs. Brendel Cox',
-  'Mr. T. G. Glover',
-  'Dr. Kirkland Culmer',
-  'Mrs. Eloise Penn',
-  'Ms. Sylvia Davis',
-  'Mrs. Ruby Nottage',
-  'Mrs. Beverly Ford, Registrar',
+  { name: 'Ms. Hilda Bowen', role: 'Chairperson' },
+  { name: 'Mrs. Ironaca Morris', role: 'Secretary elect' },
+  { name: 'Mrs. Dorothy Philips', role: 'Treasurer elect' },
+  { name: 'Mrs. Ophelia Munnings', role: 'Member' },
+  { name: 'Mrs. Brendel Cox', role: 'Member' },
+  { name: 'Mr. T. G. Glover', role: 'Member' },
+  { name: 'Dr. Kirkland Culmer', role: 'Member' },
+  { name: 'Mrs. Eloise Penn', role: 'Member' },
+  { name: 'Ms. Sylvia Davis', role: 'Member' },
+  { name: 'Mrs. Ruby Nottage', role: 'Member' },
+  { name: 'Mrs. Beverly Ford', role: 'Registrar' },
 ];
 
-const councilRoles = [
-  'Chairperson',
-  'Deputy Chairperson',
-  'Registrar',
-  'Deputy Registrar',
-  'Representative from Nursing Association',
-  'Representative from Medical Association',
-  'Representative from Midwives Association',
-  'Representative from Ministry of Education',
-  'Member',
+const governanceStats = [
+  { value: '11', label: 'Members appointed by the Minister' },
+  { value: '6', label: 'Members required for quorum' },
+  { value: 'Monthly', label: 'Minimum Council meeting rhythm' },
+];
+
+const councilComposition = [
+  {
+    seats: '1',
+    title: 'Director of Nursing',
+    description: 'Serves on the Council ex officio.',
+  },
+  {
+    seats: '4',
+    title: 'Nursing representatives',
+    description: 'Nurses from different categories, including an educator from an approved nursing programme and an advanced practice nurse.',
+  },
+  {
+    seats: '2',
+    title: "Nurses' Association nominees",
+    description: "Nurses nominated by the Nurses Association of The Commonwealth of The Bahamas.",
+  },
+  {
+    seats: '1',
+    title: 'Midwives Association nominee',
+    description: 'A midwife nominated by the Midwives Association.',
+  },
+  {
+    seats: '1',
+    title: 'Medical Association nominee',
+    description: 'A registered medical practitioner nominated by the Medical Association.',
+  },
+  {
+    seats: '1',
+    title: 'Counsel and attorney',
+    description: 'A counsel and attorney of at least ten years standing at The Bahamas Bar, nominated by the Minister.',
+  },
+  {
+    seats: '1',
+    title: 'Education nominee',
+    description: 'A person nominated by the Minister of Education.',
+  },
 ];
 
 const values = [
@@ -139,8 +175,8 @@ export default function AboutPage() {
         <section className="relative isolate min-h-[560px] bg-council-primary text-white lg:min-h-[620px]">
           <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block">
             <Image
-              src="/assets/nursing-ceremony-2.jpg"
-              alt="Nurses gathered at a ceremony in The Bahamas"
+              src="/assets/approved/nursing-image-card-1.webp"
+              alt="Nurses gathered at a formal ceremony in The Bahamas"
               fill
               priority
               sizes="48vw"
@@ -180,19 +216,19 @@ export default function AboutPage() {
                 Our mandate
               </p>
               <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                The legal framework for nursing and midwifery practice.
+                Mandate and guiding statements.
               </h2>
             </div>
             <div className="space-y-8">
               <p className="text-xl leading-relaxed text-gray-700">
-                Develop and execute regulations and byelaws to govern the education and practice of nurses and midwives in accordance with the Nurses and Midwives Act and Subsidiary Regulations.
+                The Council's mandate is to develop and execute regulations and byelaws that govern the education and practice of nurses and midwives in accordance with the Nurses and Midwives Act and subsidiary regulations.
               </p>
               <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 sm:grid-cols-2">
                 <div className="bg-white p-7">
                   <Target className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                   <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Mission</h3>
                   <p className="leading-relaxed text-gray-600">
-                    Provide the legal framework to control education, training, and practice of nurses and midwives in the Commonwealth of The Bahamas.
+                    Protect the public through the enforcement of quality nursing education, training, and practice across the Commonwealth of The Bahamas.
                   </p>
                 </div>
                 <div className="bg-white p-7">
@@ -314,32 +350,99 @@ export default function AboutPage() {
             </ol>
           </div>
 
-          <div className="container mx-auto mt-16 grid gap-10 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div className="overflow-hidden rounded-sm border border-slate-200 bg-white shadow-sm">
-              <div className="relative aspect-[4/5] bg-gray-100">
-                <Image
-                  src="/assets/history/first-council-members.png"
-                  alt="Historical page showing the first Nursing Council members"
-                  fill
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  className="object-contain p-4"
-                />
-              </div>
-              <p className="border-t border-slate-200 p-4 text-sm text-gray-600">
-                Founding Council members from Bird's Eye View of Nurses: Footprint by Hilda V. Bowen, M.B.E.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-heading mb-5 text-3xl font-bold text-council-dark">Founding members</h3>
-              <p className="mb-6 text-lg leading-relaxed text-gray-600">
-                The first appointed Council brought together leaders across nursing, medicine, and public service to regulate education, registration, practice, and discipline.
-              </p>
-              <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 sm:grid-cols-2">
-                {foundingMembers.map((member) => (
-                  <div key={member} className="bg-white p-4 text-sm font-medium text-council-dark">
-                    {member}
+          <div className="container mx-auto mt-16 px-4">
+            <div className="overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm">
+              <div className="grid lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                <div className="bg-council-primary p-4 md:p-6">
+                  <figure className="overflow-hidden rounded-[4px] bg-white">
+                    <div className="relative aspect-[16/10] bg-gray-100">
+                      <Image
+                        src="/assets/history/council-seal-presentation-group.jpg"
+                        alt="Council representatives gathered with a historical Nursing Council seal presentation"
+                        fill
+                        sizes="(min-width: 1024px) 42vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="border-t border-slate-200 p-4 text-sm text-gray-600">
+                      Council representatives pictured with historical Council imagery and the Nursing Council seal.
+                    </figcaption>
+                  </figure>
+
+                  <div className="mt-4 grid gap-4 sm:grid-cols-[0.78fr_1fr]">
+                    <figure className="rounded-[4px] bg-white p-4">
+                      <div className="relative aspect-[4/5]">
+                        <Image
+                          src="/assets/history/seal-presentation.png"
+                          alt="Historical photo of the Council seal presentation"
+                          fill
+                          sizes="(min-width: 1024px) 16vw, 50vw"
+                          className="object-contain"
+                        />
+                      </div>
+                    </figure>
+                    <div className="rounded-[4px] bg-white p-5">
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Founding Council</p>
+                      <p className="mt-5 font-heading text-5xl font-bold text-council-primary">11</p>
+                      <p className="mt-2 text-sm font-medium text-gray-600">appointed founding members</p>
+                      <div className="mt-5 border-t border-slate-200 pt-5">
+                        <p className="font-heading text-2xl font-bold text-council-dark">1972</p>
+                        <p className="mt-1 text-sm text-gray-600">Council established with a public-protection mandate.</p>
+                      </div>
+                    </div>
                   </div>
-                ))}
+                </div>
+
+                <div className="p-6 md:p-10">
+                  <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
+                    <span className="h-px w-9 bg-council-accent" />
+                    Founding members
+                  </p>
+                  <h3 className="font-heading mb-5 text-3xl font-bold text-council-dark md:text-4xl">
+                    The first Council leadership.
+                  </h3>
+                  <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
+                    The first appointed Council brought together leaders across nursing, medicine, and public service to regulate education, registration, practice, and discipline.
+                  </p>
+
+                  <div className="mt-8 space-y-3 md:hidden">
+                    {foundingMembers.map((member, index) => (
+                      <div key={member.name} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[4px] border border-slate-200 bg-white p-4">
+                        <span className="font-heading text-sm font-bold text-council-primary">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-council-dark">{member.name}</p>
+                          <p className="mt-1 text-sm text-gray-600">{member.role}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 hidden overflow-hidden rounded-[4px] border border-slate-200 md:block">
+                    <table className="w-full text-left">
+                      <caption className="sr-only">Founding members of the Nursing Council</caption>
+                      <thead className="bg-council-primary text-white">
+                        <tr>
+                          <th scope="col" className="w-16 px-4 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-council-accent">No.</th>
+                          <th scope="col" className="px-4 py-4 text-xs font-semibold uppercase tracking-[0.14em]">Name</th>
+                          <th scope="col" className="px-4 py-4 text-xs font-semibold uppercase tracking-[0.14em]">Role</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200 bg-white">
+                        {foundingMembers.map((member, index) => (
+                          <tr key={member.name} className="transition-colors hover:bg-gray-50">
+                            <td className="px-4 py-4 align-top font-heading text-sm font-bold text-council-primary">
+                              {String(index + 1).padStart(2, '0')}
+                            </td>
+                            <td className="px-4 py-4 align-top font-semibold text-council-dark">{member.name}</td>
+                            <td className="px-4 py-4 align-top text-sm text-gray-600">{member.role}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -373,35 +476,66 @@ export default function AboutPage() {
 
         <section className="bg-gray-50 py-20 lg:py-28">
           <div className="container mx-auto px-4">
-            <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div className="max-w-2xl">
+            <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
                 <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                   <span className="h-px w-9 bg-council-accent" />
                   Governance
                 </p>
-                <h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">
-                  A Council representing the profession.
+                <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
+                  Council composition under the 2023 Act.
                 </h2>
               </div>
-              <Link href="/committees" className="inline-flex items-center gap-2 font-semibold text-council-primary hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                Explore committees
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="mb-10 grid gap-6 rounded-sm border border-slate-200 bg-white p-7 md:grid-cols-[auto_1fr] md:items-start">
-              <Building className="h-11 w-11 text-council-primary" aria-hidden="true" />
-              <div>
-                <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Council members</h3>
-                <p className="leading-relaxed text-gray-600">
-                  The Council consists of 10 appointed members: five selected by the Minister, three nominated by the Nurses' Association, one nominated by the Minister of Education, and one registered medical practitioner selected by the Minister in association with the Medical Association.
+              <div className="max-w-3xl">
+                <p className="text-lg leading-relaxed text-gray-600">
+                  The First Schedule of the Nurses and Midwives Act, 2023 establishes an eleven-member Council appointed by the Minister, with representation across nursing, midwifery, medicine, legal counsel, and education.
                 </p>
+                <Link href="/committees" className="mt-6 inline-flex items-center gap-2 rounded-[4px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+                  Explore committees
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
               </div>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
-              {councilRoles.map((role, index) => (
-                <article key={role} className="min-h-44 bg-white p-6 transition-colors hover:bg-gray-50">
-                  <span className="mb-8 block text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
-                  <h3 className="font-heading text-lg font-bold text-council-dark">{role}</h3>
+
+            <div className="mb-8 grid overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm md:grid-cols-3">
+              {governanceStats.map((stat) => (
+                <div key={stat.label} className="border-b border-slate-200 p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+                  <p className="font-heading text-4xl font-bold text-council-primary">{stat.value}</p>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-gray-600">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">
+              <article className="rounded-[4px] bg-council-primary p-8 text-white shadow-sm lg:row-span-2">
+                <div className="mb-10 flex items-start justify-between gap-6">
+                  <Users className="h-11 w-11 text-council-accent" aria-hidden="true" />
+                  <span className="font-heading text-6xl font-bold text-council-accent">11</span>
+                </div>
+                <h3 className="font-heading mb-4 text-3xl font-bold">Statutory representation</h3>
+                <p className="leading-relaxed text-white/80">
+                  The Council is structured to bring together public nursing leadership, practising nurses, midwives, medical practice, legal counsel, and education representation.
+                </p>
+                <div className="mt-8 border-t border-white/20 pt-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Source</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">
+                    Nurses and Midwives Act, 2023, First Schedule, Constitution and Procedure of the Council.
+                  </p>
+                </div>
+              </article>
+
+              {councilComposition.map((item) => (
+                <article key={item.title} className="grid grid-cols-[4.5rem_1fr] gap-5 rounded-[4px] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-[4px] bg-council-primary text-white">
+                    <span className="font-heading text-2xl font-bold">{item.seats}</span>
+                  </div>
+                  <div>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-council-primary">
+                      {item.seats === '1' ? 'Seat' : 'Seats'}
+                    </p>
+                    <h3 className="font-heading text-xl font-bold text-council-dark">{item.title}</h3>
+                    <p className="mt-2 leading-relaxed text-gray-600">{item.description}</p>
+                  </div>
                 </article>
               ))}
             </div>
@@ -439,24 +573,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-gray-50 py-20">
-          <div className="container mx-auto px-4 text-center">
-            <ShieldCheck className="mx-auto mb-5 h-11 w-11 text-council-primary" aria-hidden="true" />
-            <h2 className="font-heading mb-4 text-4xl font-bold text-council-dark">Ready to begin your nursing journey?</h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-gray-600">
-              Whether you are starting your nursing career or maintaining your professional licence, the Council provides the regulatory pathway.
-            </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href={portalPath('/register?type=registration')} className="inline-flex items-center justify-center gap-2 rounded-sm bg-council-primary px-7 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                Start registration
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center rounded-sm border border-council-primary px-7 py-3 font-semibold text-council-primary transition-colors hover:bg-council-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                Contact us
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

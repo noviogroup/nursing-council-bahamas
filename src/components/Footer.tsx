@@ -15,7 +15,7 @@ export default function Footer() {
     { name: 'Renew Licence', href: portalPath('/register?type=renewal') },
     { name: 'Education', href: '/education-training' },
     { name: 'Forms & Documents', href: '/forms' },
-    { name: 'Legal & Ethics', href: '/legal-ethics' },
+    { name: 'Legal', href: '/legal-ethics' },
     { name: 'Verification', href: '/verification' },
     { name: 'Submit Complaint', href: '/complaints/new' },
     { name: 'Track Complaint', href: '/complaints/track' },
@@ -41,16 +41,16 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <img
                 src="/nursing-council-logo.png"
-                alt="The Nursing Council of The Commonwealth of The Bahamas Logo"
+                alt="The Nursing Council of the Commonwealth of The Bahamas Logo"
                 className="h-10 w-auto"
               />
               <div>
-                <h3 className="font-heading text-lg font-bold">Nursing Council</h3>
-                <p className="text-sm text-gray-300">Commonwealth of The Bahamas</p>
+                <h3 className="font-heading text-lg font-bold">The Nursing Council</h3>
+                <p className="text-sm text-gray-300">of the Commonwealth of The Bahamas</p>
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              Guide and promote excellence in the practice of nursing throughout the Commonwealth of The Bahamas.
+              Guiding and promoting excellence in the practice of nursing throughout the Commonwealth of The Bahamas.
             </p>
             <div className="flex space-x-3">
               <a href="https://www.facebook.com/nursingcouncilbahamas" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council on Facebook">
@@ -135,7 +135,7 @@ export default function Footer() {
         <div className="border-t border-gray-700 mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-400 mb-4 md:mb-0">
-              © 2025 The Nursing Council of The Commonwealth of The Bahamas. All rights reserved.
+              © 2026 The Nursing Council of the Commonwealth of The Bahamas. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-400">
               <Link href="/privacy" className="hover:text-council-accent transition-colors">

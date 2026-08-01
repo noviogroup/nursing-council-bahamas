@@ -11,7 +11,6 @@ import {
   ArrowsClockwise as RotateCcw,
   ShieldCheck,
   UserPlus,
-  Users,
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -24,8 +23,8 @@ const services = [
     description: 'Begin your nursing registration process and submit your application online.',
     action: 'Start registration',
     href: portalPath('/register?type=registration'),
-    image: '/assets/services/registration-welcome.png',
-    imageAlt: 'Nurse assisting an applicant at a registration desk',
+    image: '/assets/approved/nurses-graduates-ub.jpg',
+    imageAlt: 'University of The Bahamas nursing graduates at a recognition ceremony',
     imagePosition: 'object-center',
   },
   {
@@ -34,7 +33,7 @@ const services = [
     description: 'Keep your annual nursing licence current with a simple online renewal.',
     action: 'Renew online',
     href: portalPath('/register?type=renewal'),
-    image: '/assets/services/nursing-allied-health2.png',
+    image: '/assets/approved/nursing-allied-health-2.png',
     imageAlt: 'Nurses seated together during a formal nursing ceremony',
     imagePosition: 'object-center',
   },
@@ -44,10 +43,33 @@ const services = [
     description: 'Review approved training institutions, clinical sites, CPD providers, and CPD requirements.',
     action: 'View education standards',
     href: '/education-training',
-    image: '/assets/services/agency-compliance.webp',
-    imageAlt: 'Nursing professionals reviewing agency compliance paperwork',
+    image: '/assets/approved/tcn-nurses-1.jpg',
+    imageAlt: 'Trained Clinical Nurses at a formal nursing ceremony',
     imagePosition: 'object-center',
   },
+];
+
+const councilHighlights = [
+  {
+    icon: ShieldCheck,
+    title: 'Public Protection',
+    description: 'Protect the public through accountable regulation of nursing and midwifery practice.',
+  },
+  {
+    icon: CheckCircle,
+    title: 'Professional Standards',
+    description: 'Set standards for nursing education, registration, conduct, and continuing professional practice.',
+  },
+  {
+    icon: Building,
+    title: 'Education & Registration',
+    description: 'Maintain the nursing register and support high-quality nursing care across The Bahamas.',
+  },
+];
+
+const councilFacts = [
+  { value: '1972', label: 'Established' },
+  { value: '11', label: 'Council Members' },
 ];
 
 export default function HomePage() {
@@ -57,15 +79,15 @@ export default function HomePage() {
       <main className="flex-1">
         <section
           className="relative isolate min-h-[530px] overflow-hidden bg-council-primary text-white md:min-h-[565px]"
-          aria-label="The Nursing Council of The Commonwealth of The Bahamas"
+          aria-label="The Nursing Council of the Commonwealth of The Bahamas"
         >
           <Image
-            src="/assets/nurse-pinning-ceremony.webp"
-            alt="Nursing students during a pinning ceremony in The Bahamas"
+            src="/assets/approved/hero-image-nursing.jpg"
+            alt="Nursing students seated during a formal nursing ceremony in The Bahamas"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-[center_40%]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/45 to-transparent" />
           <div className="relative container mx-auto flex min-h-[530px] items-center px-4 py-20 md:min-h-[565px]">
@@ -75,12 +97,28 @@ export default function HomePage() {
                 Official regulatory authority
               </p>
               <h1 className="font-heading mb-6 text-4xl font-bold leading-tight md:text-6xl">
-                The Nursing Council of&nbsp;The<br />
+                The Nursing Council of&nbsp;the<br />
                 Commonwealth of The Bahamas.
               </h1>
               <p className="max-w-2xl text-xl font-light leading-relaxed text-white/95 md:text-2xl">
-                Guide and promote excellence in the practice of nursing.
+                Guiding and promoting excellence in the practice of nursing.
               </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/indexing"
+                  className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
+                >
+                  Indexing
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/verification"
+                  className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
+                >
+                  Verification
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -129,69 +167,67 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="overflow-hidden bg-white pb-16" aria-label="About the Nursing Council">
-          <div className="grid lg:grid-cols-2">
-            <div className="relative min-h-[380px] lg:min-h-[570px]">
+        <section className="bg-white py-20 lg:py-28" aria-label="About the Nursing Council">
+          <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
+            <div className="relative min-h-[520px] overflow-hidden rounded-[4px] bg-slate-100 shadow-sm">
               <Image
-                src="/assets/nursing-ceremony-1.jpg"
-                alt="A nurse taking part in a nursing ceremony in The Bahamas"
+                src="/assets/approved/nurses-bahamas.png"
+                alt="Nurses seated together during a ceremony in The Bahamas"
                 fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
+                sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"
               />
-            </div>
-            <div className="flex items-center px-6 py-16 lg:px-16 xl:px-24">
-              <div className="max-w-xl">
-                <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-8 bg-council-accent" />
-                  Get to know us
-                  <span className="h-px w-8 bg-council-accent" />
-                </p>
-                <h2 className="font-heading mb-6 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Guiding the future of nursing in The Bahamas
-                </h2>
-                <p className="text-lg leading-relaxed text-gray-600">
-                  The Nursing Council safeguards the public through the regulation of nursing education, registration, and professional standards practice across the Commonwealth of The Bahamas.
+              <div className="absolute inset-0 bg-gradient-to-t from-council-primary/70 via-council-primary/10 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 rounded-[4px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm md:left-auto md:w-[68%]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
+                <p className="mt-3 text-lg font-semibold leading-relaxed">
+                  Safeguarding the public through nursing regulation, education standards, and professional accountability.
                 </p>
               </div>
             </div>
-          </div>
 
-          <div className="container relative z-10 mx-auto px-4 lg:-mt-32">
-            <div className="ml-auto grid max-w-5xl gap-8 bg-gray-100 p-7 shadow-lg lg:grid-cols-[1.45fr_0.8fr] lg:p-12">
-              <div>
-                <ul className="space-y-4 text-council-dark">
-                  {[
-                    'Maintain the nursing register and licence qualified professionals',
-                    'Set standards for nursing education and professional practice',
-                    'Support continuing education and high-quality nursing care',
-                    'Protect the public through accountable professional regulation',
-                  ].map((item) => (
-                    <li key={item} className="flex gap-3 leading-relaxed">
-                      <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-council-primary" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/about" className="mt-8 inline-flex items-center gap-2 bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                  Learn about the Council
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+            <div>
+              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
+                <span className="h-[2px] w-8 bg-council-accent" />
+                Get to know us
+              </p>
+              <h2 className="font-heading mb-6 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
+                Guiding the future of nursing in The Bahamas
+              </h2>
+              <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
+                The Nursing Council safeguards the public through the regulation of nursing education, registration, and professional standards practice across the Commonwealth of The Bahamas.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                {councilHighlights.map((highlight) => {
+                  const Icon = highlight.icon;
+                  return (
+                    <article key={highlight.title} className="grid grid-cols-[3.5rem_1fr] gap-5 rounded-[4px] bg-gray-50 p-6 transition-all duration-300 hover:bg-white hover:shadow-lg">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-[4px] bg-council-primary text-white">
+                        <Icon className="h-6 w-6" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-xl font-bold text-council-dark">{highlight.title}</h3>
+                        <p className="mt-2 leading-relaxed text-gray-600">{highlight.description}</p>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
-              <div className="divide-y divide-slate-200 rounded-sm bg-white shadow-sm">
-                <div className="flex items-center gap-5 p-6">
-                  <Building className="h-10 w-10 shrink-0 text-council-primary" aria-hidden="true" />
-                  <div><p className="text-3xl font-bold text-council-dark">1971</p><p className="text-sm text-gray-600">Established</p></div>
-                </div>
-                <div className="flex items-center gap-5 p-6">
-                  <Users className="h-10 w-10 shrink-0 text-council-primary" aria-hidden="true" />
-                  <div><p className="text-3xl font-bold text-council-dark">10</p><p className="text-sm text-gray-600">Council Members</p></div>
-                </div>
-                <div className="flex items-center gap-5 p-6">
-                  <ShieldCheck className="h-10 w-10 shrink-0 text-council-primary" aria-hidden="true" />
-                  <div><p className="text-3xl font-bold text-council-dark">7,000+</p><p className="text-sm text-gray-600">Active Registrants</p></div>
-                </div>
+
+              <div className="mt-8 grid overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm sm:grid-cols-2">
+                {councilFacts.map((fact) => (
+                  <div key={fact.label} className="border-b border-slate-200 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+                    <p className="font-heading text-3xl font-bold text-council-primary">{fact.value}</p>
+                    <p className="mt-1 text-sm font-medium text-gray-600">{fact.label}</p>
+                  </div>
+                ))}
               </div>
+
+              <Link href="/about" className="mt-8 inline-flex items-center gap-2 rounded-[4px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+                Learn about the Council
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>

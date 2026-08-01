@@ -1,7 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {
-  ArrowRight,
   CheckCircle,
   ClipboardText,
   GraduationCap,
@@ -10,7 +8,6 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { portalPath } from '@/lib/portal';
 
 const educationSections = [
   {
@@ -66,8 +63,8 @@ export default function EducationRegistrationPage() {
             </div>
             <div className="relative min-h-[340px] overflow-hidden rounded-sm border border-white/20">
               <Image
-                src="/assets/nursing-ceremony-2.jpg"
-                alt="Nursing students at a formal ceremony"
+                src="/assets/approved/nurses-graduates.webp"
+                alt="Nursing graduates seated at a formal ceremony"
                 fill
                 priority
                 sizes="(min-width: 1024px) 42vw, 100vw"
@@ -147,24 +144,6 @@ export default function EducationRegistrationPage() {
           </div>
         </section>
 
-        <section className="bg-council-primary py-20 text-white">
-          <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need to submit records?</p>
-              <h2 className="font-heading text-4xl font-bold">Use the Council portal for registration and renewal actions.</h2>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Link href={portalPath('/register?type=registration')} className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
-                Start registration
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-sm border border-white/40 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10">
-                View forms
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

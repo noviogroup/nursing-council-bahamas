@@ -13,10 +13,10 @@ import Footer from '@/components/Footer';
 
 const agencyHighlights = [
   {
-    title: 'Approved Nursing Agencies',
-    description: 'Public list placeholder for agencies approved to operate under Council requirements.',
+    title: 'Licensed Nursing Agencies',
+    description: 'Public list placeholder for agencies with current Council licensure.',
     icon: ShieldCheck,
-    items: ['Agency name placeholder', 'Approval status placeholder', 'Renewal date placeholder'],
+    items: ['Agency name placeholder', 'Licence status placeholder', 'Renewal date placeholder'],
   },
   {
     title: 'Current Forms & Documents',
@@ -28,7 +28,7 @@ const agencyHighlights = [
     title: 'Agency Process',
     description: 'Overview of the review pathway for operating a nursing agency in The Bahamas.',
     icon: ClipboardText,
-    items: ['Submit application documents', 'Council compliance review', 'Approval, renewal, or follow-up decision'],
+    items: ['Submit application documents', 'Council compliance review', 'Licensure, renewal, or follow-up decision'],
   },
 ];
 
@@ -55,13 +55,13 @@ export default function NursingAgenciesPage() {
                 Agency licensing and compliance.
               </h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Review approved nursing agencies, required documents, and the Council process for agency licensing and renewal.
+                Review licensed nursing agencies, required documents, and the Council process for agency licensing and renewal.
               </p>
             </div>
             <div className="relative min-h-[340px] overflow-hidden rounded-sm border border-white/20">
               <Image
-                src="/assets/services/agency-compliance.webp"
-                alt="Nursing agency professionals reviewing compliance documents"
+                src="/assets/approved/nurses-ub-1.png"
+                alt="University of The Bahamas nursing pinning ceremony"
                 fill
                 priority
                 sizes="(min-width: 1024px) 42vw, 100vw"
@@ -80,11 +80,11 @@ export default function NursingAgenciesPage() {
                   Public agency information
                 </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Approved agencies and documents.
+                  Licensed agencies and documents.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                These entries are placeholders until the Council provides the official agency list and PDF documents.
+                These entries are placeholders until the Council provides the official list of currently licensed agencies and PDF documents.
               </p>
             </div>
 
@@ -122,7 +122,7 @@ export default function NursingAgenciesPage() {
                 Requirements
               </p>
               <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                Core requirements for agency approval.
+                Core requirements for agency licensure.
               </h2>
               <p className="max-w-md leading-relaxed text-gray-600">
                 Final requirements should be confirmed by the Council before documents are published for public download.

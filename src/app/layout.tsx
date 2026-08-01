@@ -1,26 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Open_Sans } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 
-const montserrat = Montserrat({
+const urbanist = Urbanist({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  variable: "--font-open-sans",
+  variable: "--font-urbanist",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nursingcouncilbahamas.com'),
   title: {
-    default: "The Nursing Council of The Commonwealth of The Bahamas | Official Website",
-    template: "%s | The Nursing Council of The Commonwealth of The Bahamas"
+    default: "The Nursing Council of the Commonwealth of The Bahamas | Official Website",
+    template: "%s | The Nursing Council of the Commonwealth of The Bahamas"
   },
-  description: "Official website of the Nursing Council of the Commonwealth of The Bahamas. Guide and promote excellence in the practice of nursing through regulation, education, and professional standards since 1971.",
+  description: "Official website of The Nursing Council of the Commonwealth of The Bahamas. Guiding and promoting excellence in the practice of nursing through regulation, education, and professional standards since 1972.",
   keywords: [
     "nursing council bahamas",
     "nursing registration bahamas",
@@ -33,10 +27,14 @@ export const metadata: Metadata = {
     "nursing practice standards",
     "bahamas healthcare regulation"
   ],
-  authors: [{ name: "The Nursing Council of The Commonwealth of The Bahamas" }],
-  creator: "Nursing Council of the Commonwealth of The Bahamas",
-  publisher: "Nursing Council of the Commonwealth of The Bahamas",
+  authors: [{ name: "The Nursing Council of the Commonwealth of The Bahamas" }],
+  creator: "The Nursing Council of the Commonwealth of The Bahamas",
+  publisher: "The Nursing Council of the Commonwealth of The Bahamas",
   applicationName: "Nursing Council Bahamas",
+  icons: {
+    icon: [{ url: "/nursing-council-logo.png", type: "image/png" }],
+    apple: "/nursing-council-logo.png",
+  },
   category: "Healthcare",
   classification: "Government",
   robots: {
@@ -54,22 +52,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_BS",
     url: "https://nursingcouncilbahamas.com",
-    siteName: "The Nursing Council of The Commonwealth of The Bahamas",
-    title: "The Nursing Council of The Commonwealth of The Bahamas | Official Website",
-    description: "Official website of the Nursing Council of the Commonwealth of The Bahamas. Guide and promote excellence in the practice of nursing through regulation, education, and professional standards since 1971.",
+    siteName: "The Nursing Council of the Commonwealth of The Bahamas",
+    title: "The Nursing Council of the Commonwealth of The Bahamas | Official Website",
+    description: "Official website of The Nursing Council of the Commonwealth of The Bahamas. Guiding and promoting excellence in the practice of nursing through regulation, education, and professional standards since 1972.",
     images: [
       {
         url: "/nursing-council-logo.png",
         width: 400,
         height: 400,
-        alt: "The Nursing Council of The Commonwealth of The Bahamas Official Logo",
+        alt: "The Nursing Council of the Commonwealth of The Bahamas Official Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Nursing Council of The Commonwealth of The Bahamas | Official Website",
-    description: "Official website of the Nursing Council of the Commonwealth of The Bahamas. Guide and promote excellence in the practice of nursing.",
+    title: "The Nursing Council of the Commonwealth of The Bahamas | Official Website",
+    description: "Official website of The Nursing Council of the Commonwealth of The Bahamas. Guiding and promoting excellence in the practice of nursing.",
     images: ["/nursing-council-logo.png"],
   },
   alternates: {
@@ -95,12 +93,12 @@ export const viewport: Viewport = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "GovernmentOrganization",
-  "name": "Nursing Council of the Commonwealth of The Bahamas",
+  "name": "The Nursing Council of the Commonwealth of The Bahamas",
   "alternateName": "Nursing Council of the Bahamas",
   "description": "Official regulatory body for nursing practice throughout the Commonwealth of The Bahamas. We are committed to safeguarding the public through the regulation of nursing education, registration, and professional standards.",
   "url": "https://nursingcouncilbahamas.com",
   "logo": "https://nursingcouncilbahamas.com/nursing-council-logo.png",
-  "foundingDate": "1971",
+  "foundingDate": "1972",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "#23 Capitol House, Virginia & Augusta Street",
@@ -139,7 +137,7 @@ const structuredData = {
     "Nursing Licence Renewal",
     "Nursing Education Standards",
     "Professional Standards Regulation",
-    "Nursing Agency Registration"
+    "Nursing Agency Licensure"
   ],
   "sameAs": [
     "https://www.facebook.com/nursingcouncilbahamas",
@@ -154,13 +152,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-BS" className={`${montserrat.variable} ${openSans.variable}`}>
+    <html lang="en-BS" className={urbanist.variable}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/nursing-council-logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/nursing-council-logo.png" />
         <meta name="theme-color" content="#000080" />
         <meta name="msapplication-TileColor" content="#000080" />
