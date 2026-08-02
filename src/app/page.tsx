@@ -297,7 +297,7 @@ export default function HomePage() {
           aria-label="Need assistance contact section"
         >
           <Image
-            src="/assets/brand/nursing-council-healthcare-pattern-landscape-16x9.png"
+            src="/assets/brand/nursing-council-healthcare-pattern-landscape-16x9.webp"
             alt=""
             fill
             sizes="100vw"
