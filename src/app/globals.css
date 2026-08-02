@@ -29,6 +29,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --ease-council-out: cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .dark {
@@ -111,5 +112,81 @@
   }
   .bg-council-dark {
     background-color: #212121;
+  }
+}
+
+@layer components {
+  .council-action {
+    transition-property: transform, background-color, color, border-color, box-shadow;
+    transition-duration: 160ms;
+    transition-timing-function: var(--ease-council-out);
+  }
+
+  .council-action:active {
+    transform: scale(0.97);
+  }
+
+  .council-text-link {
+    text-underline-offset: 0.22em;
+    transition-property: color, text-decoration-color, transform;
+    transition-duration: 160ms;
+    transition-timing-function: var(--ease-council-out);
+  }
+
+  .council-card {
+    transition-property: transform, border-color, background-color;
+    transition-duration: 200ms;
+    transition-timing-function: var(--ease-council-out);
+  }
+
+  .council-card-image,
+  .council-arrow {
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: var(--ease-council-out);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .council-action:hover {
+    transform: translateY(-1px);
+  }
+
+  .council-action:hover .council-arrow,
+  .council-text-link:hover .council-arrow {
+    transform: translateX(3px);
+  }
+
+  .council-text-link:hover {
+    color: #003a70;
+    text-decoration-line: underline;
+  }
+
+  .council-card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(0 0 128 / 0.32);
+  }
+
+  .council-card:hover .council-card-image {
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .council-action,
+  .council-text-link,
+  .council-card,
+  .council-card-image,
+  .council-arrow {
+    transition-duration: 1ms;
+  }
+
+  .council-action:active,
+  .council-action:hover,
+  .council-card:hover,
+  .council-card:hover .council-card-image,
+  .council-action:hover .council-arrow,
+  .council-text-link:hover .council-arrow {
+    transform: none;
   }
 }

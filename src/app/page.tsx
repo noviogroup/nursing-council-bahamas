@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Buildings as Building,
@@ -11,65 +11,72 @@ import {
   ArrowsClockwise as RotateCcw,
   ShieldCheck,
   UserPlus,
-} from '@phosphor-icons/react/dist/ssr';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { portalPath } from '@/lib/portal';
+} from "@phosphor-icons/react/dist/ssr";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { portalPath } from "@/lib/portal";
 
 const services = [
   {
     icon: UserPlus,
-    title: 'Register',
-    description: 'Begin your nursing registration process and submit your application online.',
-    action: 'Start registration',
-    href: portalPath('/register?type=registration'),
-    image: '/assets/approved/nurses-graduates-ub.jpg',
-    imageAlt: 'University of The Bahamas nursing graduates at a recognition ceremony',
-    imagePosition: 'object-center',
+    title: "Register",
+    description:
+      "Begin your nursing registration process and submit your application online.",
+    action: "Start registration",
+    href: portalPath("/register?type=registration"),
+    image: "/assets/approved/nurses-graduates-ub.jpg",
+    imageAlt:
+      "University of The Bahamas nursing graduates at a recognition ceremony",
+    imagePosition: "object-center",
   },
   {
     icon: RotateCcw,
-    title: 'Renew Licence',
-    description: 'Keep your annual nursing licence current with a simple online renewal.',
-    action: 'Renew online',
-    href: portalPath('/register?type=renewal'),
-    image: '/assets/approved/nursing-allied-health-2.png',
-    imageAlt: 'Nurses seated together during a formal nursing ceremony',
-    imagePosition: 'object-center',
+    title: "Renew Licence",
+    description:
+      "Keep your annual nursing licence current with a simple online renewal.",
+    action: "Renew online",
+    href: portalPath("/register?type=renewal"),
+    image: "/assets/approved/nursing-allied-health-2.png",
+    imageAlt: "Nurses seated together during a formal nursing ceremony",
+    imagePosition: "object-center",
   },
   {
     icon: GraduationCap,
-    title: 'Education & Training',
-    description: 'Review approved training institutions, clinical sites, CPD providers, and CPD requirements.',
-    action: 'View education standards',
-    href: '/education-training',
-    image: '/assets/approved/tcn-nurses-1.jpg',
-    imageAlt: 'Trained Clinical Nurses at a formal nursing ceremony',
-    imagePosition: 'object-center',
+    title: "Education & Training",
+    description:
+      "Review approved training institutions, clinical sites, CPD providers, and CPD requirements.",
+    action: "View education standards",
+    href: "/education-training",
+    image: "/assets/approved/tcn-nurses-1.jpg",
+    imageAlt: "Trained Clinical Nurses at a formal nursing ceremony",
+    imagePosition: "object-center",
   },
 ];
 
 const councilHighlights = [
   {
     icon: ShieldCheck,
-    title: 'Public Protection',
-    description: 'Protect the public through accountable regulation of nursing and midwifery practice.',
+    title: "Public Protection",
+    description:
+      "Protect the public through accountable regulation of nursing and midwifery practice.",
   },
   {
     icon: CheckCircle,
-    title: 'Professional Standards',
-    description: 'Set standards for nursing education, registration, conduct, and continuing professional practice.',
+    title: "Professional Standards",
+    description:
+      "Set standards for nursing education, registration, conduct, and continuing professional practice.",
   },
   {
     icon: Building,
-    title: 'Education & Registration',
-    description: 'Maintain the nursing register and support high-quality nursing care across The Bahamas.',
+    title: "Education & Registration",
+    description:
+      "Maintain the nursing register and support high-quality nursing care across The Bahamas.",
   },
 ];
 
 const councilFacts = [
-  { value: '1972', label: 'Established' },
-  { value: '11', label: 'Council Members' },
+  { value: "1972", label: "Established" },
+  { value: "11", label: "Council Members" },
 ];
 
 export default function HomePage() {
@@ -78,7 +85,7 @@ export default function HomePage() {
       <Header />
       <main className="flex-1">
         <section
-          className="relative isolate min-h-[530px] overflow-hidden bg-council-primary text-white md:min-h-[565px]"
+          className="relative isolate min-h-[560px] overflow-hidden bg-council-primary text-white md:min-h-[570px]"
           aria-label="The Nursing Council of the Commonwealth of The Bahamas"
         >
           <Image
@@ -89,75 +96,104 @@ export default function HomePage() {
             sizes="100vw"
             className="object-cover object-[center_40%]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/45 to-transparent" />
-          <div className="relative container mx-auto flex min-h-[530px] items-center px-4 py-20 md:min-h-[565px]">
-            <div className="max-w-3xl">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Official regulatory authority
-              </p>
-              <h1 className="font-heading mb-6 text-4xl font-bold leading-tight md:text-6xl">
-                The Nursing Council of&nbsp;the<br />
-                Commonwealth of The Bahamas.
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,90,0.98)_0%,rgba(0,0,100,0.88)_38%,rgba(0,0,100,0.28)_72%,rgba(0,0,100,0.08)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-council-primary/25 to-transparent" />
+          <div className="relative container mx-auto flex min-h-[560px] items-center px-4 py-14 md:min-h-[570px] md:py-16">
+            <div className="max-w-4xl">
+              <h1 className="font-heading max-w-[15ch] text-balance text-4xl font-bold leading-[1.06] tracking-[-0.03em] sm:text-5xl lg:max-w-[28ch] lg:text-[3.25rem] xl:text-[3.5rem]">
+                The Nursing Council of the Commonwealth of The Bahamas.
               </h1>
-              <p className="max-w-2xl text-xl font-light leading-relaxed text-white/95 md:text-2xl">
+              <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-white/90 md:text-xl">
                 Guiding and promoting excellence in the practice of nursing.
               </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/indexing"
-                  className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
+                  className="council-action inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] bg-council-accent px-6 py-3 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
                 >
                   Indexing
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  <ArrowRight
+                    className="council-arrow h-4 w-4"
+                    aria-hidden="true"
+                  />
                 </Link>
                 <Link
                   href="/verification"
-                  className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
+                  className="council-action inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] border border-white/75 bg-white px-6 py-3 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
                 >
                   Verification
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  <ArrowRight
+                    className="council-arrow h-4 w-4"
+                    aria-hidden="true"
+                  />
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-white py-16" aria-label="Online services">
+        <section
+          className="bg-slate-50 py-16 lg:py-20"
+          aria-label="Online services"
+        >
           <div className="container mx-auto px-4">
-            <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <div>
-                <p className="mb-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-10 bg-council-accent" />
-                  Online services
-                </p>
-                <h2 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Get started online</h2>
-              </div>
+            <div className="mb-9 max-w-2xl">
+              <h2 className="font-heading text-3xl font-bold tracking-[-0.025em] text-council-dark md:text-4xl">
+                Get started online
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-slate-600 md:text-lg">
+                Access the Council services used most often by nurses,
+                applicants, and education providers.
+              </p>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {services.map((service) => {
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:grid-rows-2">
+              {services.map((service, index) => {
                 const Icon = service.icon;
+                const isFeatured = index === 0;
                 return (
-                  <article key={service.title} className="group overflow-hidden border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-council-primary hover:shadow-xl">
-                    <div className="relative h-56 overflow-hidden">
+                  <article
+                    key={service.title}
+                    className={`council-card group overflow-hidden rounded-[4px] border border-slate-200 bg-white ${isFeatured ? "lg:col-span-7 lg:row-span-2 lg:grid lg:grid-cols-[1.05fr_0.95fr]" : "lg:col-span-5 lg:grid lg:grid-cols-[minmax(180px,0.85fr)_1.15fr]"}`}
+                  >
+                    <div
+                      className={`relative overflow-hidden ${isFeatured ? "h-64 lg:h-full lg:min-h-[520px]" : "h-56 lg:h-full lg:min-h-[250px]"}`}
+                    >
                       <Image
                         src={service.image}
                         alt={service.imageAlt}
                         fill
-                        sizes="(min-width: 768px) 33vw, 100vw"
-                        className={`object-cover transition-transform duration-500 group-hover:scale-105 ${service.imagePosition}`}
+                        sizes={
+                          isFeatured
+                            ? "(min-width: 1024px) 38vw, 100vw"
+                            : "(min-width: 1024px) 18vw, 100vw"
+                        }
+                        className={`council-card-image object-cover ${service.imagePosition}`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-council-primary/35 to-transparent" />
-                      <div className="absolute bottom-5 left-5 flex h-14 w-14 items-center justify-center rounded-full bg-council-primary text-white shadow-lg">
-                        <Icon className="h-7 w-7" aria-hidden="true" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-council-primary/45 via-transparent to-transparent" />
+                      <div className="absolute bottom-5 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-council-primary text-white shadow-[0_8px_24px_rgba(0,0,70,0.22)]">
+                        <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
                     </div>
-                    <div className="p-7">
-                      <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{service.title}</h3>
-                      <p className="mb-7 leading-relaxed text-gray-600">{service.description}</p>
-                      <Link href={service.href} className="inline-flex items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+                    <div
+                      className={`flex flex-col p-6 ${isFeatured ? "justify-center lg:p-8" : "justify-center lg:p-6"}`}
+                    >
+                      <h3
+                        className={`font-heading font-bold tracking-[-0.02em] text-council-dark ${isFeatured ? "text-2xl lg:text-3xl" : "text-2xl"}`}
+                      >
+                        {service.title}
+                      </h3>
+                      <p className="mt-3 leading-relaxed text-slate-600">
+                        {service.description}
+                      </p>
+                      <Link
+                        href={service.href}
+                        className="council-text-link mt-5 inline-flex min-h-11 w-fit items-center gap-2 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+                      >
                         {service.action}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                        <ArrowRight
+                          className="council-arrow h-4 w-4"
+                          aria-hidden="true"
+                        />
                       </Link>
                     </div>
                   </article>
@@ -167,9 +203,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-white py-20 lg:py-28" aria-label="About the Nursing Council">
+        <section
+          className="bg-white py-20 lg:py-24"
+          aria-label="About the Nursing Council"
+        >
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
-            <div className="relative min-h-[520px] overflow-hidden rounded-[4px] bg-slate-100 shadow-sm">
+            <div className="relative min-h-[500px] overflow-hidden rounded-[4px] bg-slate-100 lg:min-h-[620px]">
               <Image
                 src="/assets/approved/nurses-bahamas.png"
                 alt="Nurses seated together during a ceremony in The Bahamas"
@@ -178,70 +217,171 @@ export default function HomePage() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-council-primary/70 via-council-primary/10 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 rounded-[4px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm md:left-auto md:w-[68%]">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
+              <div className="absolute bottom-5 left-5 right-5 rounded-[4px] bg-council-primary p-6 text-white shadow-[0_18px_50px_rgba(0,0,70,0.26)] md:bottom-6 md:left-auto md:right-6 md:w-[68%]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
+                  Since 1972
+                </p>
                 <p className="mt-3 text-lg font-semibold leading-relaxed">
-                  Safeguarding the public through nursing regulation, education standards, and professional accountability.
+                  Safeguarding the public through nursing regulation, education
+                  standards, and professional accountability.
                 </p>
               </div>
             </div>
 
             <div>
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-[2px] w-8 bg-council-accent" />
-                Get to know us
-              </p>
-              <h2 className="font-heading mb-6 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
+              <h2 className="font-heading text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-council-dark md:text-5xl">
                 Guiding the future of nursing in The Bahamas
               </h2>
-              <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                The Nursing Council safeguards the public through the regulation of nursing education, registration, and professional standards practice across the Commonwealth of The Bahamas.
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
+                The Nursing Council safeguards the public through the regulation
+                of nursing education, registration, and professional standards
+                practice across the Commonwealth of The Bahamas.
               </p>
 
-              <div className="mt-8 space-y-5">
+              <div className="mt-9 divide-y divide-slate-200 border-y border-slate-200">
                 {councilHighlights.map((highlight) => {
                   const Icon = highlight.icon;
                   return (
-                    <article key={highlight.title} className="grid grid-cols-[3.5rem_1fr] gap-5 rounded-[4px] bg-gray-50 p-6 transition-all duration-300 hover:bg-white hover:shadow-lg">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-[4px] bg-council-primary text-white">
+                    <article
+                      key={highlight.title}
+                      className="grid grid-cols-[3.5rem_1fr] gap-4 py-6"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-[4px] bg-slate-100 text-council-primary">
                         <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
                       <div>
-                        <h3 className="font-heading text-xl font-bold text-council-dark">{highlight.title}</h3>
-                        <p className="mt-2 leading-relaxed text-gray-600">{highlight.description}</p>
+                        <h3 className="font-heading text-xl font-bold tracking-[-0.015em] text-council-dark">
+                          {highlight.title}
+                        </h3>
+                        <p className="mt-2 leading-relaxed text-slate-600">
+                          {highlight.description}
+                        </p>
                       </div>
                     </article>
                   );
                 })}
               </div>
 
-              <div className="mt-8 grid overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm sm:grid-cols-2">
+              <div className="mt-8 grid overflow-hidden rounded-[4px] border border-slate-200 bg-white sm:grid-cols-2">
                 {councilFacts.map((fact) => (
-                  <div key={fact.label} className="border-b border-slate-200 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
-                    <p className="font-heading text-3xl font-bold text-council-primary">{fact.value}</p>
-                    <p className="mt-1 text-sm font-medium text-gray-600">{fact.label}</p>
+                  <div
+                    key={fact.label}
+                    className="border-b border-slate-200 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+                  >
+                    <p className="font-heading text-3xl font-bold text-council-primary">
+                      {fact.value}
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-gray-600">
+                      {fact.label}
+                    </p>
                   </div>
                 ))}
               </div>
 
-              <Link href="/about" className="mt-8 inline-flex items-center gap-2 rounded-[4px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+              <Link
+                href="/about"
+                className="council-action mt-8 inline-flex min-h-11 items-center gap-2 rounded-[4px] bg-council-primary px-6 py-3 font-semibold text-white focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+              >
                 Learn about the Council
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <ArrowRight
+                  className="council-arrow h-4 w-4"
+                  aria-hidden="true"
+                />
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="bg-white py-16" aria-label="Need assistance contact section">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-heading mb-4 text-3xl font-bold text-council-primary">Need Assistance?</h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-600">Our team is here to help with your nursing registration, licensing, and professional development needs.</p>
-            <div className="mx-auto mb-8 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
-              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Phone className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Call Us</h3><a href="tel:+12426046015" className="text-gray-600 hover:underline">(242) 604-6015 / 6017</a><p className="mt-1 text-sm text-gray-500">Mon-Fri: 9:00am - 5:00pm</p></div>
-              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Mail className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Email Us</h3><a href="mailto:info@nursingcouncilbahamas.com" className="text-gray-600 hover:underline">info@nursingcouncilbahamas.com</a></div>
-              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><MapPin className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Visit Us</h3><address className="not-italic text-gray-600">#23 Capitol House<br />Virginia & Augusta Street<br />Nassau, Bahamas</address></div>
+        <section
+          className="relative isolate overflow-hidden bg-slate-50 py-16 lg:py-20"
+          aria-label="Need assistance contact section"
+        >
+          <Image
+            src="/assets/brand/nursing-council-healthcare-pattern-landscape-16x9.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="-z-10 object-cover opacity-[0.055]"
+            aria-hidden="true"
+          />
+          <div className="container mx-auto px-4">
+            <div className="overflow-hidden rounded-[4px] border border-slate-200 bg-white">
+              <div className="px-6 py-9 text-center md:px-10">
+                <h2 className="font-heading text-3xl font-bold tracking-[-0.025em] text-council-primary">
+                  Need Assistance?
+                </h2>
+                <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-slate-600">
+                  Our team is here to help with your nursing registration,
+                  licensing, and professional development needs.
+                </p>
+              </div>
+              <div className="grid border-t border-slate-200 md:grid-cols-3 md:divide-x md:divide-slate-200">
+                <article className="flex gap-4 border-b border-slate-200 p-6 md:border-b-0 lg:p-8">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-council-primary text-white">
+                    <Phone className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-council-dark">
+                      Call Us
+                    </h3>
+                    <a
+                      href="tel:+12426046015"
+                      className="council-text-link mt-2 inline-flex min-h-11 items-center text-slate-700"
+                    >
+                      (242) 604-6015 / 6017
+                    </a>
+                    <p className="text-sm text-slate-500">
+                      Mon-Fri: 9:00am - 5:00pm
+                    </p>
+                  </div>
+                </article>
+                <article className="flex gap-4 border-b border-slate-200 p-6 md:border-b-0 lg:p-8">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-council-primary text-white">
+                    <Mail className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-heading text-lg font-bold text-council-dark">
+                      Email Us
+                    </h3>
+                    <a
+                      href="mailto:info@nursingcouncilbahamas.com"
+                      className="council-text-link mt-2 inline-flex min-h-11 max-w-full items-center break-all text-slate-700"
+                    >
+                      info@nursingcouncilbahamas.com
+                    </a>
+                  </div>
+                </article>
+                <article className="flex gap-4 p-6 lg:p-8">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-council-primary text-white">
+                    <MapPin className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-council-dark">
+                      Visit Us
+                    </h3>
+                    <address className="mt-2 not-italic leading-relaxed text-slate-700">
+                      #23 Capitol House
+                      <br />
+                      Virginia & Augusta Street
+                      <br />
+                      Nassau, Bahamas
+                    </address>
+                  </div>
+                </article>
+              </div>
+              <div className="border-t border-slate-200 px-6 py-6 text-center">
+                <Link
+                  href="/contact"
+                  className="council-action inline-flex min-h-11 items-center rounded-[4px] bg-council-primary px-8 py-3 font-semibold text-white focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                >
+                  Get in Touch
+                  <ArrowRight
+                    className="council-arrow ml-2 h-5 w-5"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </div>
             </div>
-            <Link href="/contact" className="inline-flex items-center rounded-sm bg-council-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">Get in Touch <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>
