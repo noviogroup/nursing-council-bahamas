@@ -1,175 +1,160 @@
-export type NewsItem = {
-  id: number;
-  slug: string;
+export type NewsArticle = {
   title: string;
-  excerpt: string;
-  category: string;
-  categoryName: string;
-  author: string;
-  date: string;
-  readTime: string;
-  featured: boolean;
+  summary: string;
+  publisher: string;
+  publishedAt?: string;
+  dateLabel?: string;
+  href: string;
   image: string;
-  body: string[];
+  imageAlt: string;
 };
 
-export const newsItems: NewsItem[] = [
+export const newsArticles: NewsArticle[] = [
   {
-    id: 1,
-    slug: 'continuing-education-2025',
-    title: 'New Continuing Education Requirements for 2025',
-    excerpt: 'The Nursing Council announces updated continuing education requirements effective January 2025, including new mandatory modules on patient safety and infection control.',
-    category: 'standards',
-    categoryName: 'Standards',
-    author: 'Dr. Patricia Williams',
-    date: '2025-01-15',
-    readTime: '5 min read',
-    featured: true,
-    image: '/assets/nursing-ceremony-1.jpg',
-    body: [
-      'The Nursing Council has updated continuing education requirements for the 2025 renewal cycle. The updated requirements support current practice standards and strengthen patient safety across care settings.',
-      'Registrants should review the updated modules before submitting renewal materials. Council staff will continue to publish reminders through the website and portal as renewal deadlines approach.',
-      'Nurses who have questions about approved courses or documentation should contact the Education and Continuing Education team before submitting their renewal application.',
-    ],
+    title: 'Nurses Union: “It’s Not Enough but It’s a Start”',
+    summary: 'The Bahamas Nurses Union president comments on healthcare upgrades, clinic repair needs, and the nursing workforce.',
+    publisher: 'Our News',
+    publishedAt: '2026-05-28',
+    href: 'https://ournews.bs/nurses-union-president-its-not-enough-but-its-a-start/',
+    image: '/assets/news/nurses-union-start-our-news.jpg',
+    imageAlt: 'Nursing-related photograph published with the Our News article',
   },
   {
-    id: 2,
-    slug: 'whatsapp-channel-coming-soon',
-    title: 'Nursing Council WhatsApp Channel Link Coming Soon',
-    excerpt: 'The Council will publish the official WhatsApp channel link once it has been confirmed for public use.',
-    category: 'announcements',
-    categoryName: 'Announcements',
-    author: 'Council Office',
-    date: '2025-01-10',
-    readTime: '2 min read',
-    featured: true,
-    image: '/assets/nurse-pinning-ceremony.webp',
-    body: [
-      'The Nursing Council will publish its official WhatsApp channel link once the channel URL is confirmed for public use.',
-      'Members of the public and registrants should continue to rely on the website for official notices, forms, and Council contact details.',
-      'The Council will update this notice when the channel is ready.',
-    ],
+    title: 'Darville: Ministry Will Call Up 47 Retired Nurses as They Look to Recruit 50 More from Ghana',
+    summary: 'Coverage of plans to bring retired nurses back into the public healthcare system alongside recruitment efforts.',
+    publisher: 'The Tribune',
+    publishedAt: '2026-02-05',
+    href: 'https://www.tribune242.com/news/2026/feb/05/darville-ministry-will-call-up-47-retired-nurses-as-they-look-to-recruit-50-more-from-ghana/',
+    image: '/assets/news/retired-nurses-tribune.png',
+    imageAlt: 'Princess Margaret Hospital sign published with The Tribune article',
   },
   {
-    id: 3,
-    slug: 'code-of-ethics-for-nurses-2025',
-    title: 'Code of Ethics for Nurses 2025 Available',
-    excerpt: 'The Council Code of Ethics for Nurses 2025 is available through the Legal and Ethics page.',
-    category: 'legal',
-    categoryName: 'Legal & Ethics',
-    author: 'Council Office',
-    date: '2025-02-01',
-    readTime: '4 min read',
-    featured: false,
-    image: '/assets/history/nursing-council-seal.png',
-    body: [
-      'The Nursing Council Code of Ethics for Nurses 2025 provides guidance for ethical decision-making, accountability, professionalism, and safe care.',
-      'The Code applies across care, education, administration, research, and professional practice.',
-      'The full PDF is linked from the Legal and Ethics page.',
-    ],
+    title: 'Ministry of Health Taps Retired Nurses',
+    summary: 'The Ministry of Health and Wellness discusses re-engaging retired nurses and expanding training pathways.',
+    publisher: 'ZNS Bahamas',
+    publishedAt: '2026-02-04',
+    href: 'https://znsbahamas.com/ministry-of-health-taps-retired-nurses/',
+    image: '/assets/news/retired-nurses-zns.jpg',
+    imageAlt: 'Minister of Health and Wellness photograph published with the ZNS article',
   },
   {
-    id: 4,
-    slug: 'online-registration-portal-improvements',
-    title: 'Online Registration Portal Improvements',
-    excerpt: 'We have enhanced our online registration system with new features including document upload, status tracking, and automated notifications.',
-    category: 'registration',
-    categoryName: 'Registration',
-    author: 'IT Department',
-    date: '2024-12-15',
-    readTime: '4 min read',
-    featured: false,
-    image: '/assets/register-card.png',
-    body: [
-      'The Council continues to improve its online registration portal to make application and renewal workflows clearer for nurses, applicants, and staff.',
-      'New portal capabilities include document upload support, application status tracking, and improved notifications for key review steps.',
-      'Applicants should continue to keep their contact information current so Council staff can communicate status updates quickly.',
-    ],
+    title: 'Prime Minister Davis: PHA Academy Graduation Ceremony ‘A Proud Moment for Our Nation’',
+    summary: 'The Prime Minister addresses the PHA Academy graduation and the role of training in the national healthcare workforce.',
+    publisher: 'ZNS Bahamas',
+    publishedAt: '2025-12-01',
+    href: 'https://znsbahamas.com/prime-minister-davis-pha-academy-graduation-ceremony-a-proud-moment-for-our-nation/',
+    image: '/assets/news/pha-academy-graduation.jpg',
+    imageAlt: 'PHA Academy graduation photograph published with the ZNS article',
   },
   {
-    id: 5,
-    slug: 'nursing-scholarship-program-2025',
-    title: 'Nursing Scholarship Program 2025 Applications',
-    excerpt: 'The Council is pleased to announce the opening of applications for our annual nursing education scholarship program for Bahamian students.',
-    category: 'education',
-    categoryName: 'Education',
-    author: 'Education Committee',
-    date: '2024-12-10',
-    readTime: '6 min read',
-    featured: false,
-    image: '/assets/education-training-card.png',
-    body: [
-      'Applications are open for the 2025 nursing education scholarship program. The programme supports Bahamian students pursuing nursing education and professional development.',
-      'Applicants should prepare academic records, references, and any required supporting documentation before submitting.',
-      'The Education Committee will publish additional eligibility and deadline information through Council channels.',
-    ],
+    title: 'Pinning Ceremony Held for More Than 180 UB Nursing and Allied Health Professions Graduates',
+    summary: 'University of The Bahamas nursing and allied health graduates are recognized during the Spring 2025 pinning ceremony.',
+    publisher: 'Government of The Bahamas',
+    publishedAt: '2025-05-30',
+    href: 'https://bahamas.gov.bs/news-press-release/pinning-ceremony-held-for-more-than-180-ub-nursing-and-allied-health-professions-graduates/',
+    image: '/assets/news/ub-pinning-ceremony.jpg',
+    imageAlt: 'University of The Bahamas nursing pinning ceremony photograph',
   },
   {
-    id: 6,
-    slug: 'professional-development-workshop-series',
-    title: 'Professional Development Workshop Series',
-    excerpt: 'Join our monthly professional development workshops covering leadership, communication, and advanced clinical skills for nursing professionals.',
-    category: 'education',
-    categoryName: 'Education',
-    author: 'Prof. Michael Thompson',
-    date: '2024-12-05',
-    readTime: '3 min read',
-    featured: false,
-    image: '/assets/nursing-ceremony-3.jpg',
-    body: [
-      'The Council will host a professional development workshop series for nurses seeking current training in leadership, communication, and clinical practice.',
-      'Workshop topics are selected to support professional competence and continued excellence in nursing practice.',
-      'Registration details and approved continuing education information will be shared as sessions are scheduled.',
-    ],
+    title: 'Honoring Our Everyday Heroes: ALIV Celebrates Nurses Across Nassau',
+    summary: 'ALIV marks Nurses Month by recognizing nurses at healthcare facilities across Nassau.',
+    publisher: 'Cable Bahamas',
+    publishedAt: '2025-05-19',
+    href: 'https://cablebahamas.com/article/honoring-our-everyday-heroes-aliv-celebrates-nurses-across-nassau/',
+    image: '/assets/news/aliv-nurses-day.jpg',
+    imageAlt: 'Nurses Day photograph published with the Cable Bahamas article',
   },
   {
-    id: 7,
-    slug: 'new-council-member-appointments',
-    title: 'New Council Member Appointments',
-    excerpt: 'We welcome three new members to the Nursing Council, bringing expertise in community health, pediatric nursing, and healthcare administration.',
-    category: 'announcements',
-    categoryName: 'Announcements',
-    author: 'Council Secretary',
-    date: '2024-11-28',
-    readTime: '4 min read',
-    featured: false,
-    image: '/assets/hero-2.jpg',
-    body: [
-      'The Nursing Council welcomes newly appointed members who bring experience across community health, pediatric nursing, and healthcare administration.',
-      'Council members support the governance, regulatory oversight, and professional standards that guide nursing practice in The Bahamas.',
-      'The Council thanks outgoing members for their service and continued support of the nursing profession.',
-    ],
+    title: 'New Nursing Council Board Meets with Minister',
+    summary: 'The new Council Board meets with the Minister of Health and Wellness to discuss implementation of the Nurses and Midwives Act, 2023.',
+    publisher: 'Bahamas Local',
+    publishedAt: '2023-09-01',
+    href: 'https://www.bahamaslocal.com/newsitem/303306/New_Nursing_Council_Board_meets_with_Minister.html',
+    image: '/assets/news/nursing-council-board-minister.jpg',
+    imageAlt: 'Nursing Council Board meeting photograph published by Bahamas Local',
   },
   {
-    id: 8,
-    slug: 'infection-control-best-practices-update',
-    title: 'Infection Control Best Practices Update',
-    excerpt: 'Updated guidelines for infection prevention and control in healthcare settings, incorporating lessons learned from recent global health challenges.',
-    category: 'standards',
-    categoryName: 'Standards',
-    author: 'Dr. Robert Clarke',
-    date: '2024-11-22',
-    readTime: '8 min read',
-    featured: false,
-    image: '/assets/hero-3.jpg',
-    body: [
-      'Updated infection prevention and control guidance is available for nursing professionals working across healthcare settings.',
-      'The guidance reinforces practical measures that reduce risk for patients, staff, and the wider community.',
-      'Nurses should review the guidance alongside employer protocols and any current Ministry of Health requirements.',
-    ],
+    title: 'Minister of Health and Wellness Opens Debate on New Nurses and Midwives Bill',
+    summary: 'The Minister opens debate on legislation intended to modernize the statutory framework for nursing and midwifery.',
+    publisher: 'Bahamas Local',
+    publishedAt: '2023-02-02',
+    href: 'https://www.bahamaslocal.com/newsitem/289803/Minister_of_Health_and_Wellness_opens_debate_on_new_Nurses_and_Midwives_Bill.html',
+    image: '/assets/news/nurses-midwives-bill-debate.jpg',
+    imageAlt: 'Nurses and Midwives Bill debate photograph published by Bahamas Local',
+  },
+  {
+    title: 'Nurses Celebrate as New Agreement Signed',
+    summary: 'Nurses respond to the signing of a new industrial agreement with the Government.',
+    publisher: 'The Tribune',
+    publishedAt: '2022-08-25',
+    href: 'https://www.tribune242.com/news/2022/aug/25/nurses-celebrate-new-agreement-signed/',
+    image: '/assets/news/nurses-celebrate-agreement-tribune.jpeg',
+    imageAlt: 'Nurses Union agreement photograph published with The Tribune article',
+  },
+  {
+    title: 'Nurses Union Sign Industrial Agreement',
+    summary: 'ZNS reports on a new industrial agreement covering salary increases, allowances, and career pathways.',
+    publisher: 'ZNS Bahamas',
+    publishedAt: '2022-08-25',
+    href: 'https://znsbahamas.com/nurses-union-sign-industrial-agreement/',
+    image: '/assets/news/nurses-union-industrial-agreement-zns.jpg',
+    imageAlt: 'Industrial agreement image published with the ZNS article',
+  },
+  {
+    title: 'PHA Signs Transformative Contract with Bahamas Nurses Union',
+    summary: 'The Public Hospitals Authority and Bahamas Nurses Union sign an agreement focused on retention and compensation.',
+    publisher: 'Bahamas Chronicle',
+    publishedAt: '2022-08-26',
+    href: 'https://bahamaschronicle.com/pha-signs-transformative-contract-with-bahamas-nurses-union/',
+    image: '/assets/news/pha-transformative-contract.jpg',
+    imageAlt: 'PHA contract signing photograph published by Bahamas Chronicle',
+  },
+  {
+    title: 'Nurses Union Signs Industrial Agreement',
+    summary: 'The Department of Public Health and Bahamas Nurses Union sign an agreement addressing retention, salary, and benefits.',
+    publisher: 'The Tribune',
+    publishedAt: '2022-08-12',
+    href: 'https://www.tribune242.com/news/2022/aug/12/nurses-union-signs-industrial-agreement/',
+    image: '/assets/news/nurses-union-industrial-agreement-tribune.jpg',
+    imageAlt: 'Nursing photograph published with The Tribune article',
+  },
+  {
+    title: 'Government and Nurses Union Sign New Industrial Agreement',
+    summary: 'Government and the Bahamas Nurses Union sign a new industrial agreement for public-health nurses.',
+    publisher: 'ZNS Bahamas',
+    publishedAt: '2022-08-12',
+    href: 'https://znsbahamas.com/government-and-nurses-union-sign-new-industrial-agreement/',
+    image: '/assets/news/government-bnu-agreement.jpg',
+    imageAlt: 'Government and Bahamas Nurses Union agreement signing photograph',
+  },
+  {
+    title: 'Bill Aims to Expand Nursing and Midwifery',
+    summary: 'Coverage of the Nurses and Midwives Bill 2022 and its proposed expansion of nursing and midwifery practice.',
+    publisher: 'Bahamas Local',
+    publishedAt: '2022-05-19',
+    href: 'https://www.bahamaslocal.com/newsitem/277046/Bill_aims_to_expand_nursing_and_midwifery.html',
+    image: '/assets/news/bill-expand-nursing-midwifery.jpg',
+    imageAlt: 'Nursing and midwifery legislation photograph published by Bahamas Local',
+  },
+  {
+    title: 'Bahamas Nurses Union Achievements and History',
+    summary: 'Background on the Bahamas Nurses Union, its advocacy work, leadership history, and professional achievements.',
+    publisher: 'Bahamas Nurses Union',
+    dateLabel: 'Background',
+    href: 'https://bnutogether.com/about',
+    image: '/assets/news/bnu-achievements-history.webp',
+    imageAlt: 'Bahamas Nurses Union graphic published on its history page',
   },
 ];
 
-export const categoryDefinitions = [
-  { id: 'all', name: 'All updates' },
-  { id: 'standards', name: 'Standards' },
-  { id: 'legal', name: 'Legal & Ethics' },
-  { id: 'registration', name: 'Registration' },
-  { id: 'education', name: 'Education' },
-  { id: 'announcements', name: 'Announcements' },
-  { id: 'events', name: 'Events' },
-];
+export const featuredNewsArticles = newsArticles.slice(0, 4);
 
-export function getNewsItem(slugOrId: string) {
-  return newsItems.find((item) => item.slug === slugOrId || String(item.id) === slugOrId);
+export function formatNewsDate(article: NewsArticle) {
+  if (!article.publishedAt) return article.dateLabel ?? 'Reference';
+
+  return new Intl.DateTimeFormat('en-BS', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${article.publishedAt}T12:00:00`));
 }

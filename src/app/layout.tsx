@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Urbanist } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const urbanist = Urbanist({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-urbanist",
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -152,7 +152,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-BS" className={urbanist.variable}>
+    <html lang="en-BS" className={manrope.variable}>
       <head>
         <script
           type="application/ld+json"

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -35,9 +36,23 @@ export default function LegalEthicsPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-council-primary py-20 text-white lg:py-28">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
+        <section
+          className="relative isolate min-h-[520px] overflow-hidden bg-council-primary text-white lg:min-h-[580px]"
+          data-page-hero="legal"
+        >
+          <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[72%] lg:w-[52%]">
+            <Image
+              src="/assets/history/council-seal-presentation-group.jpg"
+              alt="Council representatives at the Nursing Council seal presentation"
+              fill
+              priority
+              sizes="(min-width: 1024px) 52vw, (min-width: 640px) 72vw, 88vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/15 to-transparent" />
+          </div>
+          <div className="container relative mx-auto flex min-h-[520px] items-center px-4 py-20 lg:min-h-[580px] lg:py-28">
+            <div className="max-w-[88%] sm:max-w-2xl lg:max-w-[58%]">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
                 <span className="h-px w-10 bg-council-accent" />
                 Legal framework

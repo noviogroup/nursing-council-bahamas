@@ -2,6 +2,22 @@
 
 This file records material website and platform releases. Council-supplied legal documents, lists, photographs, and forms should be noted here when published.
 
+## 2026-08-04 - Public Hero and Typography Update
+
+### Presentation
+
+- Changed the global public-site and staff-portal typeface from Urbanist to Manrope, including headings, navigation, forms, and printable complaint output.
+- Updated the Education, Nursing Agencies, and Legal page heroes to use the About-page Council-blue-to-transparent image gradient.
+- Added responsive hero imagery to all three updated pages and retained the approved page-specific photographs on mobile and desktop.
+- Reworked the About-page mandate section so Mission, Standards, Vision, and Code of Ethics display in a full-width four-card row on desktop.
+- Redesigned the About-page governance section as a statutory hierarchy, grouping all eleven Council seats into four readable representation areas.
+- Separated Council-member governance from Administration, moved Registrar information out of Council membership, and recorded the need for confirmed appointments and professional portraits.
+- Removed the governance summary metrics from the statutory-body panel to keep the hierarchy focused on representation.
+- Published the Council-supplied list of five approved nursing training institutions and their programmes on the Education and Registration page.
+- Redesigned the approved nursing-training directory for clearer programme scanning without changing the Council-supplied institution or programme information.
+- Restored public News navigation, a homepage news panel, and the News page with fifteen source-linked nursing and statutory-work articles.
+- Added the associated source images to the public news library, including the matching ZNS/BIS photograph for the government&apos;s blocked pinning-ceremony page.
+
 ## 2026-08-01 - Public Website Content and Design Refresh
 
 ### Homepage
@@ -42,7 +58,7 @@ This file records material website and platform releases. Council-supplied legal
 - Standardized the official Council name in the header, footer, metadata, and accessibility labels.
 - Set the official Council logo as the browser favicon and Apple touch icon.
 - Applied the Council navy and gold palette with restrained 4px interface radii.
-- Standardized the public-site typeface to Urbanist.
+- Standardized the public-site typeface to Urbanist; superseded by the Manrope update recorded above.
 - Updated footer contact wording and removed the 24-hour response promise.
 
 ### Project and Deployment Documentation
@@ -59,9 +75,9 @@ This file records material website and platform releases. Council-supplied legal
 
 ### Content Still Required From the Council
 
-- Names, titles, and approved photographs for the current 11 appointed Council members.
+- Confirmed names, titles, appointment terms, and matching professional photographs for the current 11 appointed Council members.
 - Official licensed-agency list and agency application documents.
-- Approved training institutions, programmes, clinical sites, CPD providers, and CPD requirements.
+- Approved clinical sites, CPD providers, and CPD requirements.
 - Approved replacement forms for the public forms library.
 - Approved Agency Regulations and proposed 2026 Regulations content.
 - Additional school photographs, historical captions, and archive records.
