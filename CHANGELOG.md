@@ -17,6 +17,7 @@ This file records material website and platform releases. Council-supplied legal
 - Redesigned the approved nursing-training directory for clearer programme scanning without changing the Council-supplied institution or programme information.
 - Restored public News navigation, a homepage news panel, and the News page with fifteen source-linked nursing and statutory-work articles.
 - Added the associated source images to the public news library, including the matching ZNS/BIS photograph for the government&apos;s blocked pinning-ceremony page.
+- Redesigned the Forms page as a searchable, category-filtered directory with clear PDF-pending states until Council-approved documents are supplied for publication.
 
 ## 2026-08-01 - Public Website Content and Design Refresh
 

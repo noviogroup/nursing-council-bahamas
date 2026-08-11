@@ -128,11 +128,97 @@ const values = [
   },
 ];
 
-const councilFunctions = [
-  'Maintain the nursing register and licence qualified professionals',
-  'Set standards for nursing education and professional practice',
-  'Control education, training, and practice of nurses and midwives',
-  'Enforce quality nursing education, training, and practice',
+const councilFunctionGroups = [
+  {
+    title: 'Standards, education and practice',
+    meaning: 'Sets the foundation for safe, consistent nursing and midwifery practice in The Bahamas.',
+    functions: [
+      'Establish qualifications and standards for the education, training and practice of nursing personnel.',
+      'Control education, training, practice, registration or enrollment, and licensing of nursing personnel.',
+      'Monitor education, training and practice in nursing and midwifery.',
+    ],
+    statutoryFunctions: [
+      { reference: '8(a)', text: 'Establish the qualifications, standards of education, training and practice for nursing personnel.' },
+      { reference: '8(b)', text: 'Control the education, training, practice, registration or enrollment, and licensing of nursing personnel.' },
+      { reference: '8(c)', text: 'Monitor education, training and practice in nursing and midwifery.' },
+    ],
+  },
+  {
+    title: 'Public interest and professional conduct',
+    meaning: 'Places people receiving care first while safeguarding public confidence in the profession.',
+    functions: [
+      'Treat the health and well-being of persons who require nursing or midwifery services as paramount.',
+      'Consider the interests of nursing personnel and other professions referred to under the Act.',
+      'Ensure that standards of professional conduct are followed by nursing personnel.',
+    ],
+    statutoryFunctions: [
+      { reference: '8(d)', text: 'Consider the health and well-being of persons who require nursing or midwifery services as paramount.' },
+      { reference: '8(e)', text: 'Consider the interests of licensed practical nurses, registered nurses, student midwives, midwives and advanced practice nurses, and any other profession referred to under the Act.' },
+      { reference: '8(f)', text: 'Ensure that standards of professional conduct are adhered to by nurse interns, licensed practical nurses, registered nurses, student midwives, midwives and advanced practice nurses.' },
+    ],
+  },
+  {
+    title: 'Competence and professional development',
+    meaning: 'Keeps nursing personnel competent and current throughout their professional practice.',
+    functions: [
+      'Ensure continuing professional development and competency in nursing and midwifery practice.',
+      'Determine continuing professional development credits and requirements for nursing personnel.',
+      'Prescribe codes of conduct for nursing personnel.',
+    ],
+    statutoryFunctions: [
+      { reference: '8(g)', text: 'Ensure continuing professional development of nursing personnel in the practice of nursing, and competency in the practice of nursing and midwifery.' },
+      { reference: '8(h)', text: 'Determine continuing professional development credits and requirements for nursing personnel.' },
+      { reference: '8(i)', text: 'Prescribe codes of conduct for nursing personnel.' },
+    ],
+  },
+  {
+    title: 'Partnerships and assistive personnel',
+    meaning: 'Connects the Council with the organisations and people that support safe nursing care.',
+    functions: [
+      'Collaborate with employers, training institutions, and national, regional and international professional and regulatory bodies.',
+      'Control the training and practice of Unlicensed Assistive Personnel and determine their continuing education requirements.',
+      'Consider the interests of Unlicensed Assistive Personnel, nursing students and nurse interns.',
+    ],
+    statutoryFunctions: [
+      { reference: '8(j)', text: 'Collaborate with employers of nursing personnel, educational institutions that provide training for nursing personnel, and national, regional and international professional and regulatory bodies.' },
+      { reference: '8(k)', text: 'Control the training and practice of Unlicensed Assistive Personnel.' },
+      { reference: '8(l)', text: 'Determine continuing education requirements for Unlicensed Assistive Personnel.' },
+      { reference: '8(m)', text: 'Consider the interests of Unlicensed Assistive Personnel, nursing students and nurse interns.' },
+    ],
+  },
+  {
+    title: 'Agencies, registration and authorisation',
+    meaning: 'Provides the formal routes for recognition, licensing, authorisation and agency oversight.',
+    functions: [
+      'Set standards for, regulate and monitor nursing agencies.',
+      'Grant certificates of enrollment or registration and licences to nursing personnel, and issue authorisation letters to nurse interns.',
+      'Record Unlicensed Assistive Personnel and grant registration certificates and licences to nursing agencies.',
+    ],
+    statutoryFunctions: [
+      { reference: '8(n)', text: 'Establish the standards, and regulate and monitor the operations, of nursing agencies.' },
+      { reference: '8(o)', text: 'Grant certificates of enrollment or registration, and licences to nursing personnel.' },
+      { reference: '8(p)', text: 'Issue letters of authorisation to nurse interns.' },
+      { reference: '8(q)', text: 'Record Unlicensed Assistive Personnel.' },
+      { reference: '8(r)', text: 'Grant certificates of registration, and licences to nursing agencies.' },
+    ],
+  },
+  {
+    title: 'Records, oversight and advice',
+    meaning: 'Maintains accountable records, investigates concerns and supports national health policy.',
+    functions: [
+      'Maintain an electronic database of enrollment or registration, licensure, location and professional activities of nursing personnel.',
+      'Investigate professional conduct or competence, the conduct of Unlicensed Assistive Personnel, and the operations of nursing agencies.',
+      'Advise the Minister on matters under the Act and carry out any other function conferred by it.',
+    ],
+    statutoryFunctions: [
+      { reference: '8(s)', text: 'Maintain an electronic database on the enrollment or registration, licence, location, professional activities of nursing personnel and any other information as determined by the Council.' },
+      { reference: '8(t)', text: 'Investigate professional conduct, or the competency, of nursing personnel to practise nursing and midwifery.' },
+      { reference: '8(u)', text: 'Investigate the conduct of Unlicensed Assistive Personnel.' },
+      { reference: '8(v)', text: 'Investigate the operations of nursing agencies.' },
+      { reference: '8(w)', text: 'Advise the Minister on matters pertaining to the Act.' },
+      { reference: '8(x)', text: 'Carry out any other function conferred on the Council under the Act.' },
+    ],
+  },
 ];
 
 const ethicsElements = [
@@ -258,23 +344,67 @@ export default function AboutPage() {
               <div>
                 <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                   <span className="h-px w-9 bg-council-accent" />
-                  The Council works to
+                  Section 8 of the Act
                 </p>
                 <h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">
-                  Maintain standards that protect the public.
+                  Functions of the Council.
                 </h2>
+                <p className="mt-4 inline-flex border border-council-primary/20 bg-white px-3 py-2 text-sm font-semibold text-council-primary">
+                  24 statutory functions
+                </p>
               </div>
-              <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                The Council regulates nursing and midwifery education, registration, licensure, and professional standards practice across the Commonwealth of The Bahamas.
-              </p>
+              <div className="max-w-2xl">
+                <p className="text-lg leading-relaxed text-gray-600">
+                  The Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
+                </p>
+                <Link
+                  href="/documents/nurses-and-midwives-act-2023.pdf"
+                  className="mt-5 inline-flex items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+                >
+                  Read the Nurses and Midwives Act, 2023
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2">
-              {councilFunctions.map((item, index) => (
-                <div key={item} className="flex gap-5 bg-white p-8 transition-colors hover:bg-council-primary hover:text-white">
-                  <span className="font-heading text-4xl font-bold text-council-accent">0{index + 1}</span>
-                  <p className="max-w-md pt-2 text-lg leading-relaxed">{item}</p>
-                </div>
+            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2 xl:grid-cols-3">
+              {councilFunctionGroups.map((group, index) => (
+                <article key={group.title} className="bg-white p-7 md:p-8">
+                  <span className="font-heading text-2xl font-bold text-council-accent">0{index + 1}</span>
+                  <h3 className="font-heading mt-5 min-h-16 text-2xl font-bold leading-snug text-council-dark">{group.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-500">{group.meaning}</p>
+                  <ul className="mt-6 space-y-4 border-t border-slate-200 pt-6">
+                    {group.functions.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-relaxed text-gray-600">
+                        <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-council-primary" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <details className="group mt-7 border-t border-slate-200 pt-5">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4 [&::-webkit-details-marker]:hidden">
+                      <span>View exact statutory wording</span>
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-council-primary/25 text-lg leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                    </summary>
+                    <ol className="mt-5 space-y-4 border-l-2 border-council-accent pl-4">
+                      {group.statutoryFunctions.map((item) => (
+                        <li key={item.reference} className="text-sm leading-relaxed text-gray-600">
+                          <span className="mr-2 font-semibold text-council-primary">{item.reference}</span>
+                          {item.text}
+                        </li>
+                      ))}
+                    </ol>
+                  </details>
+                </article>
               ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Link
+                href="/documents/nurses-and-midwives-act-2023.pdf"
+                className="inline-flex items-center gap-2 rounded-sm bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+              >
+                Read the full Act (PDF)
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>
