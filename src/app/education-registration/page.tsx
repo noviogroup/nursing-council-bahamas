@@ -61,12 +61,6 @@ const otherTrainingInstitutions = [
   },
 ];
 
-const processSteps = [
-  'Submit education, clinical site, or CPD provider request documentation.',
-  'Council reviews the application against education and professional standards.',
-  'Applicants receive approval status, conditions, or requests for additional information.',
-];
-
 export default function EducationRegistrationPage() {
   return (
     <>
@@ -237,33 +231,6 @@ export default function EducationRegistrationPage() {
                 );
               })}
             </div>
-          </div>
-        </section>
-
-        <section className="bg-white py-20 lg:py-28">
-          <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-px w-9 bg-council-accent" />
-                Approval process
-              </p>
-              <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                Clear review for education and CPD approvals.
-              </h2>
-              <p className="max-w-md leading-relaxed text-gray-600">
-                The Council reviews education, clinical training, and CPD submissions against approved standards before listing providers publicly.
-              </p>
-            </div>
-            <ol className="space-y-4">
-              {processSteps.map((step, index) => (
-                <li key={step} className="grid grid-cols-[3rem_1fr] gap-4 rounded-sm bg-white p-5 shadow-sm">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-sm bg-council-primary font-heading text-lg font-bold text-white">
-                    {index + 1}
-                  </span>
-                  <p className="pt-2 leading-relaxed text-gray-700">{step}</p>
-                </li>
-              ))}
-            </ol>
           </div>
         </section>
 

@@ -61,6 +61,22 @@ const foundingMembers = [
   { name: 'Mrs. Ruby Nottage', role: 'Member' },
 ];
 
+const pastChairpersons = [
+  { name: 'Ms. Hilda Bowen', period: '1972 - 1976' },
+  { name: 'Mrs. Dorothy Phillips', period: '1977' },
+  { name: 'Ms. Hilda Bowen', period: '1978 - 1983' },
+  { name: 'Mrs. Ironaca Morris-Baker', period: '1984 - 1992' },
+  { name: 'Mrs. Castella Bowleg', period: '1993 - 1996' },
+  { name: 'Mrs. Beverley Ford', period: '1997 - 1999' },
+  { name: 'Mr. Andil LaRoda', period: '2000' },
+  { name: 'Mrs. Jacqueline Dean', period: '2001 - 2003' },
+  { name: 'Mrs. Philabertha Carter', period: '2004 - 2007' },
+  { name: 'Ms. Ivy Wilson', period: 'July 2007 - June 2008' },
+  { name: 'Mrs. Maggie Turner', period: 'July 2008 - June 2011' },
+  { name: 'Mrs. Coral Dean', period: 'July 2011 - June 2013' },
+  { name: 'Mrs. Gwendolyn Brice-Sealy', period: 'June 2013 - September 2014' },
+];
+
 const governanceGroups = [
   {
     seats: '1 seat',
@@ -576,27 +592,59 @@ export default function AboutPage() {
           </div>
 
           <div className="container mx-auto mt-16 px-4">
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="grid overflow-hidden rounded-[4px] border border-slate-200 bg-white lg:grid-cols-[0.78fr_1.22fr]">
               <div className="bg-council-primary p-8 text-white md:p-10">
-                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Common Seal of the Council</p>
-                <h3 className="font-heading mb-5 text-3xl font-bold">Healing hands, the conch shell, and the flame.</h3>
-                <p className="leading-relaxed text-white/82">
-                  The Common Seal was designed in 1971 by Student Nurse Dorothy Hepburn nee Morris. The hands represent healing hands and compassionate care, the conch shell represents The Bahamas, and the flame signifies Florence Nightingale.
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Legacy leadership</p>
+                <h3 className="font-heading mt-5 text-4xl font-bold leading-tight">Past Chairpersons</h3>
+                <p className="mt-5 max-w-md leading-relaxed text-white/80">
+                  The Chairperson has guided Council deliberations, public protection, and the continued development of nursing regulation in The Bahamas.
                 </p>
+                <div className="mt-8 border-t border-white/20 pt-6">
+                  <p className="font-heading text-4xl font-bold text-council-accent">13</p>
+                  <p className="mt-2 text-sm font-medium text-white/75">recorded chairperson appointments from 1972 to September 2014</p>
+                </div>
+                <div className="mt-8 border-t border-white/20 pt-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Common Seal of the Council</p>
+                  <h4 className="font-heading mt-4 text-2xl font-bold leading-tight">Healing hands, the conch shell, and the flame.</h4>
+                  <p className="mt-4 text-sm leading-relaxed text-white/80">
+                    Designed in 1971 by Student Nurse Dorothy Hepburn nee Morris, the seal represents healing hands and compassionate care, The Bahamas, and Florence Nightingale.
+                  </p>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                    <figure className="rounded-[4px] bg-white p-3 text-council-dark">
+                      <div className="relative aspect-[4/5]">
+                        <Image src="/assets/history/seal-presentation.png" alt="Historical photo of the Council seal presentation" fill sizes="(min-width: 1024px) 13vw, 45vw" className="object-contain" />
+                      </div>
+                      <figcaption className="mt-3 text-xs leading-relaxed text-gray-600">Seal presentation to the first Chairman of the Council.</figcaption>
+                    </figure>
+                    <figure className="rounded-[4px] bg-white p-3 text-council-dark">
+                      <div className="relative aspect-square">
+                        <Image src="/assets/history/nursing-council-seal.png" alt="Historical Nursing Council seal illustration" fill sizes="(min-width: 1024px) 13vw, 45vw" className="object-contain" />
+                      </div>
+                      <figcaption className="mt-3 text-xs leading-relaxed text-gray-600">The seal incorporated into the Nursing Council pin.</figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-px bg-slate-200 sm:grid-cols-2">
-                <figure className="bg-white p-5">
-                  <div className="relative aspect-[4/5]">
-                    <Image src="/assets/history/seal-presentation.png" alt="Historical photo of the Council seal presentation" fill sizes="(min-width: 1024px) 24vw, 50vw" className="object-contain" />
-                  </div>
-                  <figcaption className="mt-4 text-sm text-gray-600">Seal presentation to the first Chairman of the Council.</figcaption>
-                </figure>
-                <figure className="bg-white p-5">
-                  <div className="relative aspect-square">
-                    <Image src="/assets/history/nursing-council-seal.png" alt="Historical Nursing Council seal illustration" fill sizes="(min-width: 1024px) 24vw, 50vw" className="object-contain" />
-                  </div>
-                  <figcaption className="mt-4 text-sm text-gray-600">The seal incorporated into the Nursing Council pin.</figcaption>
-                </figure>
+
+              <div className="p-6 md:p-10">
+                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
+                  <span className="h-px w-9 bg-council-accent" />
+                  Chairperson record
+                </p>
+                <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Leadership through the years.</h3>
+                <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
+                  The following record is based on the Council-supplied list of past Chairpersons. Service periods are shown as provided.
+                </p>
+
+                <ol className="mt-8 overflow-hidden rounded-[4px] border border-slate-200">
+                  {pastChairpersons.map((chairperson, index) => (
+                    <li key={`${chairperson.name}-${chairperson.period}`} className="grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)] sm:items-center sm:gap-5 sm:px-6">
+                      <span className="font-heading text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
+                      <p className="font-heading text-lg font-bold text-council-dark">{chairperson.name}</p>
+                      <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </div>
           </div>
