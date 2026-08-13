@@ -512,7 +512,7 @@ export default function AboutPage() {
 
                   <div className="mt-4 grid gap-4 sm:grid-cols-[0.78fr_1fr]">
                     <figure className="rounded-[4px] bg-white p-4">
-                      <div className="relative aspect-[4/5]">
+                      <div className="relative h-52 sm:h-60 lg:h-52 xl:h-60">
                         <Image
                           src="/assets/history/seal-presentation.png"
                           alt="Historical photo of the Council seal presentation"
@@ -617,7 +617,7 @@ export default function AboutPage() {
                       <figcaption className="mt-3 text-xs leading-relaxed text-gray-600">Seal presentation to the first Chairman of the Council.</figcaption>
                     </figure>
                     <figure className="rounded-[4px] bg-white p-3 text-council-dark">
-                      <div className="relative aspect-square">
+                      <div className="relative h-52 sm:h-60 lg:h-52 xl:h-60">
                         <Image src="/assets/history/nursing-council-seal.png" alt="Historical Nursing Council seal illustration" fill sizes="(min-width: 1024px) 13vw, 45vw" className="object-contain" />
                       </div>
                       <figcaption className="mt-3 text-xs leading-relaxed text-gray-600">The seal incorporated into the Nursing Council pin.</figcaption>
