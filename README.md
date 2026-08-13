@@ -15,7 +15,7 @@ The project provides:
 - A role-aware staff complaints portal backed by Supabase
 - Responsive navigation, accessible page structures, and search-engine metadata
 
-The News page is intentionally excluded from public navigation and the sitemap until approved news content is available.
+The News page is available in public navigation and the sitemap. It links to selected external reporting and source material; it does not republish full third-party articles.
 
 ## Technology
 
@@ -108,7 +108,7 @@ Netlify uses `npm run build` and publishes the generated Next.js application fro
 - Primary blue: `#000080`
 - Secondary blue: `#003A70`
 - Accent gold: `#FFC72C`
-- Typeface: Urbanist
+- Typeface: Manrope
 - Standard interface radius: 4px where framing is useful
 
 ## Contact

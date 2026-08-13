@@ -24,6 +24,7 @@ export default function Header() {
     { href: "/legal-ethics", label: "Legal" },
     { href: "/forms", label: "Forms" },
     { href: "/complaints", label: "Complaints" },
+    { href: "/news", label: "News" },
     { href: "/uaps", label: "UAPs" },
   ];
 

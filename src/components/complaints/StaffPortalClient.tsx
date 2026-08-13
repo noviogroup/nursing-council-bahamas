@@ -251,7 +251,7 @@ function openPrintDocument(title: string, body: string) {
       <head>
         <title>${escapeHtml(title)}</title>
         <style>
-          body { font-family: Urbanist, Arial, sans-serif; color: #0f172a; margin: 40px; line-height: 1.45; }
+          body { font-family: Manrope, Arial, sans-serif; color: #0f172a; margin: 40px; line-height: 1.45; }
           h1 { font-size: 28px; margin: 0 0 8px; }
           h2 { border-top: 1px solid #dbe3ea; font-size: 18px; margin: 28px 0 12px; padding-top: 18px; }
           table { border-collapse: collapse; width: 100%; }

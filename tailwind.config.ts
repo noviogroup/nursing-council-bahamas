@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['var(--font-urbanist)', 'system-ui', 'sans-serif'],
-        'heading': ['var(--font-urbanist)', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        'heading': ['var(--font-manrope)', 'system-ui', 'sans-serif'],
       },
       colors: {
         council: {

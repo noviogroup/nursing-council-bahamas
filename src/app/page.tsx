@@ -15,6 +15,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { portalPath } from "@/lib/portal";
+import { featuredNewsArticles, formatNewsDate } from "@/lib/news";
 
 const services = [
   {
@@ -288,6 +289,79 @@ export default function HomePage() {
                   aria-hidden="true"
                 />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="bg-gray-50 py-20 lg:py-28"
+          aria-labelledby="latest-news-heading"
+        >
+          <div className="container mx-auto px-4">
+            <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div className="max-w-3xl">
+                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
+                  <span className="h-px w-9 bg-council-accent" />
+                  News and updates
+                </p>
+                <h2
+                  id="latest-news-heading"
+                  className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl"
+                >
+                  Nursing news from The Bahamas.
+                </h2>
+              </div>
+              <Link
+                href="/news"
+                className="council-text-link inline-flex min-h-11 items-center gap-2 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+              >
+                View all news
+                <ArrowRight
+                  className="council-arrow h-4 w-4"
+                  aria-hidden="true"
+                />
+              </Link>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {featuredNewsArticles.map((article) => (
+                <article
+                  key={article.href}
+                  className="council-card group flex h-full flex-col overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <Image
+                      src={article.image}
+                      alt={article.imageAlt}
+                      fill
+                      sizes="(min-width: 1280px) 23vw, (min-width: 768px) 46vw, 100vw"
+                      className="council-card-image object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.12em] text-gray-500">
+                      <span>{article.publisher}</span>
+                      <time dateTime={article.publishedAt}>
+                        {formatNewsDate(article)}
+                      </time>
+                    </div>
+                    <h3 className="font-heading mt-4 text-xl font-bold leading-snug text-council-dark">
+                      {article.title}
+                    </h3>
+                    <a
+                      href={article.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="council-text-link mt-6 inline-flex min-h-11 w-fit items-center gap-2 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+                    >
+                      Read source article
+                      <ArrowRight
+                        className="council-arrow h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
