@@ -17,6 +17,7 @@ export default function Footer() {
     { name: 'Forms & Documents', href: '/forms' },
     { name: 'Legal', href: '/legal-ethics' },
     { name: 'Verification', href: '/verification' },
+    { name: 'Registry Preview', href: '/registry' },
     { name: 'Submit Complaint', href: '/complaints/new' },
     { name: 'Track Complaint', href: '/complaints/track' },
     { name: 'Committees', href: '/committees' },

@@ -11,6 +11,13 @@ import { portalPath } from '@/lib/portal';
 
 const verificationOptions = [
   {
+    title: 'Browse Registry Preview',
+    description: 'Search the draft 500-record sample by name, registration number, type, or original registration year.',
+    icon: IdentificationCard,
+    action: 'Open registry preview',
+    href: '/registry',
+  },
+  {
     title: 'Verify Licence or Registration',
     description: 'Confirm whether a nurse, midwife, applicant, or licensee has a current public registration record.',
     icon: IdentificationCard,
@@ -72,7 +79,7 @@ export default function VerificationPage() {
               </p>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-3">
               {verificationOptions.map((option) => {
                 const Icon = option.icon;
                 return (
