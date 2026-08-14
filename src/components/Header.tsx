@@ -1,57 +1,42 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  Clock,
-  EnvelopeSimple as Mail,
-  List as Menu,
-  MapPin,
-  Phone,
-  X,
-} from "@phosphor-icons/react/dist/ssr";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Clock, EnvelopeSimple as Mail, List as Menu, MapPin, Phone, X } from '@phosphor-icons/react/dist/ssr';
+import { Button } from '@/components/ui/button';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/education-training", label: "Education" },
-    { href: "/nursing-agencies", label: "Agencies" },
-    { href: "/legal-ethics", label: "Legal" },
-    { href: "/forms", label: "Forms" },
-    { href: "/complaints", label: "Complaints" },
-    { href: "/news", label: "News" },
-    { href: "/uaps", label: "UAPs" },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/education-training', label: 'Education' },
+    { href: '/nursing-agencies', label: 'Agencies' },
+    { href: '/news', label: 'News' },
   ];
 
   return (
-    <header className="border-b border-slate-200 bg-white" role="banner">
+    <header className="bg-white shadow-sm" role="banner">
       {/* Top Contact Bar */}
-      <div className="bg-council-primary text-xs text-white sm:text-sm">
+      <div className="bg-council-primary py-2 text-xs text-white sm:text-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-4">
               <div className="hidden items-center gap-2 md:flex">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
-                <span>
-                  #23 Capitol House, Virginia & Augusta Street, Nassau
-                </span>
+                <span>#23 Capitol House, Virginia & Augusta Street, Nassau</span>
               </div>
               <div className="flex min-w-0 items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <a
                   href="mailto:info@nursingcouncilbahamas.com"
-                  className="council-text-link inline-flex min-h-9 items-center truncate text-white hover:text-white"
+                  className="truncate hover:underline"
                   aria-label="Email the Nursing Council at info@nursingcouncilbahamas.com"
                 >
                   <span className="sm:hidden">Email Council</span>
-                  <span className="hidden sm:inline">
-                    info@nursingcouncilbahamas.com
-                  </span>
+                  <span className="hidden sm:inline">info@nursingcouncilbahamas.com</span>
                 </a>
               </div>
             </div>
@@ -60,13 +45,11 @@ export default function Header() {
                 <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <a
                   href="tel:+12426046015"
-                  className="council-text-link inline-flex min-h-9 items-center whitespace-nowrap text-white hover:text-white"
+                  className="whitespace-nowrap hover:underline"
                   aria-label="Call the Nursing Council at (242) 604-6015"
                 >
                   <span className="sm:hidden">604-6015</span>
-                  <span className="hidden sm:inline">
-                    (242) 604-6015 / 6017
-                  </span>
+                  <span className="hidden sm:inline">(242) 604-6015 / 6017</span>
                 </a>
               </div>
               <div className="hidden items-center gap-2 lg:flex">
@@ -100,9 +83,7 @@ export default function Header() {
                 <div className="whitespace-nowrap font-heading text-base font-bold text-council-dark sm:text-lg md:text-xl">
                   The Nursing Council
                 </div>
-                <p className="hidden text-sm text-gray-600 sm:block">
-                  of the Commonwealth of The Bahamas
-                </p>
+                <p className="hidden text-sm text-gray-600 sm:block">of the Commonwealth of The Bahamas</p>
               </div>
             </Link>
 
@@ -112,7 +93,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="council-action inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 text-[13px] font-medium text-gray-700 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 2xl:px-2 2xl:text-sm"
+                  className="whitespace-nowrap rounded-sm px-1 py-1 text-[13px] font-medium text-gray-700 transition-colors duration-200 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 2xl:px-2 2xl:text-sm"
                   aria-label={`Navigate to ${item.label} page`}
                 >
                   {item.label}
@@ -121,10 +102,7 @@ export default function Header() {
             </div>
 
             <div className="ml-auto hidden justify-end xl:flex">
-              <Button
-                asChild
-                className="h-11 rounded-sm bg-council-primary px-5 hover:bg-council-secondary"
-              >
+              <Button asChild className="rounded-sm bg-council-primary hover:bg-council-secondary">
                 <Link href="/portal/login">Portal Access</Link>
               </Button>
             </div>
@@ -135,12 +113,10 @@ export default function Header() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label={
-                  isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"
-                }
+                aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
-                className="h-11 w-11 rounded-sm p-0 text-council-dark hover:text-council-primary"
+                className="rounded-sm text-council-dark hover:text-council-primary"
               >
                 {isMobileMenuOpen ? (
                   <X className="h-6 w-6" aria-hidden="true" />
@@ -155,7 +131,7 @@ export default function Header() {
           {isMobileMenuOpen && (
             <div
               id="mobile-menu"
-              className="border-t border-gray-200 py-3 xl:hidden"
+              className="border-t border-gray-200 py-2 xl:hidden"
               role="menu"
               aria-label="Mobile navigation menu"
             >
@@ -164,7 +140,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="council-action flex min-h-11 items-center rounded-sm px-3 py-2 text-sm font-medium text-gray-700 hover:bg-slate-50 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                    className="flex min-h-11 items-center rounded-sm px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-slate-50 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                     role="menuitem"
                     aria-label={`Navigate to ${item.label} page`}
@@ -174,7 +150,7 @@ export default function Header() {
                 ))}
                 <Link
                   href="/portal/login"
-                  className="council-action flex min-h-11 items-center rounded-sm bg-council-primary px-3 py-2 text-sm font-semibold text-white hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                  className="flex min-h-11 items-center rounded-sm bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   role="menuitem"
                 >

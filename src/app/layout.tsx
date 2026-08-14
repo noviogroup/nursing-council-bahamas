@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   publisher: "The Nursing Council of the Commonwealth of The Bahamas",
   applicationName: "Nursing Council Bahamas",
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "127x127" }],
-    apple: "/favicon.png",
+    icon: [{ url: "/nursing-council-logo.png", type: "image/png" }],
+    apple: "/nursing-council-logo.png",
   },
   category: "Healthcare",
   classification: "Government",
@@ -158,8 +158,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <link rel="icon" href="/favicon.png" type="image/png" sizes="127x127" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/nursing-council-logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/nursing-council-logo.png" />
         <meta name="theme-color" content="#000080" />
         <meta name="msapplication-TileColor" content="#000080" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
