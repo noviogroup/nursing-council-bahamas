@@ -5,9 +5,6 @@ const PAGE_SIZE = 25;
 const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "TCN", "LPN", "APRN"]);
 const SEARCH_PATTERN = /^[\p{L}\p{N}’'./ -]+$/u;
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 type RegistryRow = {
   entry_id: number;
   nurse_name: string;
