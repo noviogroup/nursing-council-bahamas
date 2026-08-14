@@ -5,6 +5,9 @@ const PAGE_SIZE = 25;
 const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "TCN", "LPN", "APRN"]);
 const SEARCH_PATTERN = /^[\p{L}\p{N}’'./ -]+$/u;
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type RegistryRow = {
   entry_id: number;
   nurse_name: string;
@@ -115,8 +118,7 @@ export async function GET(request: NextRequest) {
     },
     {
       headers: {
-        "Cache-Control":
-          "public, max-age=30, s-maxage=120, stale-while-revalidate=300",
+        "Cache-Control": "private, no-store, max-age=0",
       },
     },
   );
