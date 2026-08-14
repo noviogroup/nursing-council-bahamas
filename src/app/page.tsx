@@ -20,37 +20,33 @@ import { featuredNewsArticles, formatNewsDate } from "@/lib/news";
 const services = [
   {
     icon: UserPlus,
-    title: "Register",
-    description:
-      "Begin your nursing registration process and submit your application online.",
-    action: "Start registration",
-    href: portalPath("/register?type=registration"),
-    image: "/assets/approved/nurses-graduates-ub.jpg",
-    imageAlt:
-      "University of The Bahamas nursing graduates at a recognition ceremony",
-    imagePosition: "object-center",
+    title: 'Register',
+    description: 'Begin your nursing registration process and submit your application online.',
+    action: 'Start registration',
+    href: portalPath('/register?type=registration'),
+    image: '/assets/approved/register-card.jpg',
+    imageAlt: 'Nurse in blue scrubs ready to begin professional registration',
+    imagePosition: 'object-center',
   },
   {
     icon: RotateCcw,
-    title: "Renew Licence",
-    description:
-      "Keep your annual nursing licence current with a simple online renewal.",
-    action: "Renew online",
-    href: portalPath("/register?type=renewal"),
-    image: "/assets/approved/nursing-allied-health-2.png",
-    imageAlt: "Nurses seated together during a formal nursing ceremony",
-    imagePosition: "object-center",
+    title: 'Renew Licence',
+    description: 'Keep your annual nursing licence current with a simple online renewal.',
+    action: 'Renew online',
+    href: portalPath('/register?type=renewal'),
+    image: '/assets/approved/renew-card.jpg',
+    imageAlt: 'Nurse in blue scrubs representing professional licence renewal',
+    imagePosition: 'object-center',
   },
   {
     icon: GraduationCap,
-    title: "Education & Training",
-    description:
-      "Review approved training institutions, clinical sites, CPD providers, and CPD requirements.",
-    action: "View education standards",
-    href: "/education-training",
-    image: "/assets/approved/tcn-nurses-1.jpg",
-    imageAlt: "Trained Clinical Nurses at a formal nursing ceremony",
-    imagePosition: "object-center",
+    title: 'Education & Training',
+    description: 'Review approved nursing education pathways, training institutions, clinical sites, CPD providers, and professional-development requirements.',
+    action: 'View education standards',
+    href: '/education-training',
+    image: '/assets/approved/tcn-nurses-1.jpg',
+    imageAlt: 'Trained Clinical Nurses at a formal nursing ceremony',
+    imagePosition: 'object-center',
   },
 ];
 
@@ -69,9 +65,8 @@ const councilHighlights = [
   },
   {
     icon: Building,
-    title: "Education & Registration",
-    description:
-      "Maintain the nursing register and support high-quality nursing care across The Bahamas.",
+    title: 'Education & Registration',
+    description: 'Maintain the nursing register, oversee nursing education standards, and support high-quality nursing care across The Bahamas.',
   },
 ];
 

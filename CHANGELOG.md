@@ -2,6 +2,31 @@
 
 This file records material website and platform releases. Council-supplied legal documents, lists, photographs, and forms should be noted here when published.
 
+## 2026-08-13 - Meeting Content Corrections and Local CSS Stability
+
+### Public content
+
+- Reordered About guiding statements to Vision, Mission, and Core Values, with the four approved values presented directly beneath them.
+- Standardized public past-chairperson service periods to year-only display.
+- Updated homepage education wording to explicitly include nursing education oversight.
+- Removed union and unrelated promotional coverage from News and revised the page language around Council-relevant updates.
+- Reduced the primary navigation to Home, About, Education, Agencies, and News; secondary services remain available through homepage actions and the footer.
+- Replaced fake Education and Agencies placeholder rows with publication-status notices and removed unconfirmed agency requirements.
+- Added the Council-confirmed clinical-site groupings to Education and separated Legal Counsel/Attorney and Education appointments in the statutory governance hierarchy.
+- Replaced the Education hero photograph with the approved clinical skills instruction image.
+- Replaced the Legal hero photograph with the supplied nursing professional image.
+- Replaced the Agency hero photograph with a home-care nursing image and added responsive focal positioning to keep the nurse and patient visible.
+- Replaced the News hero photograph with the Nursing Council Board and Minister meeting image.
+- Consolidated the About-page legacy content into a two-column record with a sticky founding-history panel and naturally scrolling Founding Members and Past Chairpersons sections.
+- Replaced the homepage Register and Renew Licence service-card photographs with the newly supplied nurse portraits.
+- Published the three Council-supplied current nursing agencies on the Nursing Agencies page, including the corrected Happy Healing Home Care name.
+- Added verified public brand artwork for all three listed nursing agencies and standardized its presentation across the agency directory cards.
+- Replaced the Education page&apos;s CPD provider and requirement placeholders with a logo-led directory of the four Council-identified clinical-site groups.
+
+### Development environment
+
+- Separated development output into `.next-dev` so production builds no longer invalidate CSS assets served by a running local development server.
+
 ## 2026-08-04 - Public Hero and Typography Update
 
 ### Presentation
