@@ -1,5 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+
+/** @param {string} phase */
+module.exports = (phase) => ({
+  // Keep local dev assets separate so a production build cannot invalidate
+  // stylesheets being served by a running development server.
+  distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next-dev' : '.next',
   outputFileTracingRoot: __dirname,
   allowedDevOrigins: ["*.preview.same-app.com"],
   env: {
@@ -43,6 +48,4 @@ const nextConfig = {
       },
     ],
   },
-};
-
-module.exports = nextConfig;
+});

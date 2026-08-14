@@ -12,8 +12,8 @@ export default function NewsPage() {
         <section className="relative isolate min-h-[520px] overflow-hidden bg-council-primary text-white lg:min-h-[580px]">
           <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[72%] lg:w-[52%]">
             <Image
-              src="/assets/news/ub-pinning-ceremony.jpg"
-              alt="Nursing graduates at a University of The Bahamas pinning ceremony"
+              src="/assets/news/nursing-council-board-minister.jpg"
+              alt="Nursing Council Board meeting with the Minister of Health and Wellness"
               fill
               priority
               sizes="(min-width: 1024px) 52vw, (min-width: 640px) 72vw, 88vw"
@@ -29,7 +29,7 @@ export default function NewsPage() {
               </p>
               <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Nursing news from The Bahamas.</h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
-                Selected external reporting and public information related to nursing, midwifery, education, workforce development, and the Council&apos;s statutory work.
+                Council-relevant updates on nursing, midwifery, education, legislation, regulation, and workforce development in The Bahamas.
               </p>
             </div>
           </div>
@@ -38,8 +38,8 @@ export default function NewsPage() {
         <section className="bg-white py-20 lg:py-28">
           <div className="container mx-auto px-4">
             <div className="mb-12 flex max-w-3xl flex-col gap-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">External sources</p>
-              <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Latest news and historical context.</h2>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">News and updates</p>
+              <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Council and nursing sector updates.</h2>
               <p className="text-lg leading-relaxed text-gray-600">
                 Each item opens the original publisher&apos;s article. Article images are shown from the respective source.
               </p>

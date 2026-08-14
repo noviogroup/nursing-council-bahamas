@@ -42,12 +42,12 @@ export default function LegalEthicsPage() {
         >
           <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[72%] lg:w-[52%]">
             <Image
-              src="/assets/history/council-seal-presentation-group.jpg"
-              alt="Council representatives at the Nursing Council seal presentation"
+              src="/assets/approved/legal-hero-nurse.jpg"
+              alt="Nursing professional wearing a stethoscope"
               fill
               priority
               sizes="(min-width: 1024px) 52vw, (min-width: 640px) 72vw, 88vw"
-              className="object-cover object-center"
+              className="object-cover object-[60%_center] sm:object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/15 to-transparent" />
           </div>

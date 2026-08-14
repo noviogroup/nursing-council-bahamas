@@ -14,11 +14,7 @@ export default function Header() {
     { href: '/about', label: 'About' },
     { href: '/education-training', label: 'Education' },
     { href: '/nursing-agencies', label: 'Agencies' },
-    { href: '/legal-ethics', label: 'Legal' },
-    { href: '/forms', label: 'Forms' },
-    { href: '/complaints', label: 'Complaints' },
     { href: '/news', label: 'News' },
-    { href: '/uaps', label: 'UAPs' },
   ];
 
   return (
@@ -92,7 +88,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-3 xl:flex 2xl:gap-5">
+            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-7 xl:flex 2xl:gap-9">
               {navigationItems.map((item) => (
                 <Link
                   key={item.href}

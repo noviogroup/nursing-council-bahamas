@@ -1,32 +1,43 @@
 import Image from 'next/image';
 import {
-  CheckCircle,
-  ClipboardText,
   GraduationCap,
-  SealCheck,
   Stethoscope,
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const educationSections = [
+const clinicalSites = [
   {
-    title: 'Approved Clinical Sites',
-    description: 'Clinical learning environments reviewed for student placement and professional training.',
-    icon: Stethoscope,
-    items: ['Approved clinical site list placeholder', 'Placement capacity placeholder', 'Site approval status placeholder'],
+    name: 'Princess Margaret Hospital',
+    network: 'Public Hospitals Authority',
+    location: 'New Providence',
+    logo: '/assets/clinical-sites/public-hospitals-authority.webp',
+    logoAlt: 'Public Hospitals Authority logo',
+    logoClass: 'scale-[3]',
   },
   {
-    title: 'Approved CPD Providers',
-    description: 'Continuing professional development providers recognized for licence renewal requirements.',
-    icon: SealCheck,
-    items: ['Approved CPD provider list placeholder', 'Provider approval status placeholder', 'Provider contact placeholder'],
+    name: 'Doctors Hospital',
+    network: 'Doctors Hospital Health System',
+    location: 'New Providence',
+    logo: '/assets/clinical-sites/doctors-hospital.png',
+    logoAlt: 'Doctors Hospital Health System logo',
+    logoClass: '',
   },
   {
-    title: 'Approved CPD Requirements',
-    description: 'Current continuing professional development expectations for registration and renewal.',
-    icon: ClipboardText,
-    items: ['Annual CPD requirement placeholder', 'Required learning categories placeholder', 'Submission guidance placeholder'],
+    name: 'Community Clinics',
+    network: 'Ministry of Health & Wellness',
+    location: 'Across The Bahamas',
+    logo: '/assets/clinical-sites/ministry-health-wellness.webp',
+    logoAlt: 'Ministry of Health and Wellness Bahamas logo',
+    logoClass: '',
+  },
+  {
+    name: 'Rand Memorial Hospital and Grand Bahama Community Clinics',
+    network: 'Public Hospitals Authority / Grand Bahama Health Services',
+    location: 'Grand Bahama',
+    logo: '/assets/clinical-sites/public-hospitals-authority.webp',
+    logoAlt: 'Public Hospitals Authority logo',
+    logoClass: 'scale-[3]',
   },
 ];
 
@@ -72,8 +83,8 @@ export default function EducationRegistrationPage() {
         >
           <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[72%] lg:w-[52%]">
             <Image
-              src="/assets/approved/nurses-graduates.webp"
-              alt="Nursing graduates seated at a formal ceremony"
+              src="/assets/approved/hero-education.png"
+              alt="Nursing students receiving clinical skills instruction"
               fill
               priority
               sizes="(min-width: 1024px) 52vw, (min-width: 640px) 72vw, 88vw"
@@ -91,7 +102,7 @@ export default function EducationRegistrationPage() {
                 Approved pathways for nursing education.
               </h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Review Council-approved nursing training institutions and programmes, plus public information for clinical sites and continuing professional development.
+                Review Council-approved nursing training institutions, programmes, and clinical learning sites.
               </p>
             </div>
           </div>
@@ -140,7 +151,7 @@ export default function EducationRegistrationPage() {
                 <ul className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
                   {universityOfTheBahamas.programmes.map((programme) => (
                     <li key={programme} className="flex gap-3 text-sm leading-relaxed text-white/90">
-                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-council-accent" aria-hidden="true" />
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-council-accent" aria-hidden="true" />
                       <span>{programme}</span>
                     </li>
                   ))}
@@ -171,7 +182,7 @@ export default function EducationRegistrationPage() {
 
                         return (
                           <li key={programme} className="flex gap-3 text-sm leading-relaxed text-gray-700">
-                            <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-council-primary" aria-hidden="true" />
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-council-primary" aria-hidden="true" />
                             <span>
                               {programmeName}
                               {provisional && (
@@ -197,39 +208,42 @@ export default function EducationRegistrationPage() {
               <div>
                 <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                   <span className="h-px w-9 bg-council-accent" />
-                  Additional public lists
+                  Approved clinical sites
                 </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Clinical training and CPD approvals.
+                  Clinical learning environments.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                Approved clinical-site and continuing-professional-development details will be published when the Council supplies the current lists and requirements.
+                These Council-identified hospitals and community health services support nursing education and supervised clinical practice.
               </p>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2 xl:grid-cols-3">
-              {educationSections.map((section, index) => {
-                const Icon = section.icon;
-                return (
-                  <article key={section.title} className="bg-white p-7 md:p-8">
-                    <div className="mb-8 flex items-start justify-between">
-                      <Icon className="h-9 w-9 text-council-primary" aria-hidden="true" />
-                      <span className="font-heading text-2xl font-bold text-council-accent">0{index + 1}</span>
+            <div className="grid gap-5 md:grid-cols-2">
+              {clinicalSites.map((site, index) => (
+                <article key={site.name} className="overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm">
+                  <div className="relative flex h-40 items-center justify-center overflow-hidden border-b border-slate-200 bg-white p-6">
+                    <Image
+                      src={site.logo}
+                      alt={site.logoAlt}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className={`object-contain p-6 ${site.logoClass}`}
+                    />
+                    <span className="absolute right-4 top-4 bg-council-primary px-2.5 py-1 text-xs font-semibold text-white">
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <div className="p-6 md:p-7">
+                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[4px] bg-council-primary text-white">
+                      <Stethoscope className="h-5 w-5" aria-hidden="true" />
                     </div>
-                    <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{section.title}</h3>
-                    <p className="mb-6 leading-relaxed text-gray-600">{section.description}</p>
-                    <ul className="space-y-3">
-                      {section.items.map((item) => (
-                        <li key={item} className="flex gap-3 text-sm leading-relaxed text-gray-700">
-                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-council-primary" aria-hidden="true" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                );
-              })}
+                    <h3 className="font-heading text-2xl font-bold leading-tight text-council-dark">{site.name}</h3>
+                    <p className="mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-council-primary">{site.network}</p>
+                    <p className="mt-2 text-sm text-gray-600">{site.location}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
