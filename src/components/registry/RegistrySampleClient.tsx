@@ -63,6 +63,7 @@ export default function RegistrySampleClient() {
 
       try {
         const response = await fetch(`/api/registry?${params.toString()}`, {
+          cache: "no-store",
           signal: controller.signal,
         });
         const payload = await response.json();
