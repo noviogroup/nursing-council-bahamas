@@ -11,10 +11,10 @@ import { portalPath } from '@/lib/portal';
 
 const verificationOptions = [
   {
-    title: 'Browse Registry Preview',
-    description: 'Search the draft 500-record sample by name, registration number, type, or original registration year.',
+    title: 'Browse Nurse Registry',
+    description: 'Search the published registry by name, registration number, type, or original registration year.',
     icon: IdentificationCard,
-    action: 'Open registry preview',
+    action: 'Open nurse registry',
     href: '/registry',
   },
   {

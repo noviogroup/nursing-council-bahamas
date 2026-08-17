@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
 
   if (!supabaseUrl || !anonKey) {
     return NextResponse.json(
-      { error: "The registry preview is not configured in this environment." },
+      { error: "The public registry is not configured in this environment." },
       { status: 503 },
     );
   }
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  if (!Number.isInteger(page) || page < 1 || page > 20) {
+  if (!Number.isInteger(page) || page < 1 || page > 500) {
     return NextResponse.json(
       { error: "Select a valid results page." },
       { status: 400 },
@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 
-  const { data, error } = await supabase.rpc("public_search_registry_sample", {
+  const { data, error } = await supabase.rpc("public_search_registry", {
     p_query: query || null,
     p_registration_type: registrationType || null,
     p_registration_year: registrationYear,
@@ -83,11 +83,11 @@ export async function GET(request: NextRequest) {
   });
 
   if (error) {
-    console.error("Public registry sample query failed", error.code);
+    console.error("Public registry query failed", error.code);
     return NextResponse.json(
       {
         error:
-          "The registry preview is temporarily unavailable. Please try again.",
+          "The public registry is temporarily unavailable. Please try again.",
       },
       { status: 502 },
     );
@@ -111,7 +111,7 @@ export async function GET(request: NextRequest) {
         total,
         pages: Math.ceil(total / PAGE_SIZE),
       },
-      sample: true,
+      source: "published_registry",
     },
     {
       headers: {

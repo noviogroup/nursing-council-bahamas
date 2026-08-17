@@ -38,8 +38,6 @@ type Filters = {
 
 const EMPTY_FILTERS: Filters = { query: "", type: "", year: "" };
 const REGISTRATION_TYPES = ["RN", "EN", "RM", "TCN", "LPN", "APRN"];
-const SAMPLE_YEARS = ["2024", "2023", "2022", "2021"];
-
 export default function RegistrySampleClient() {
   const [formFilters, setFormFilters] = useState<Filters>(EMPTY_FILTERS);
   const [activeFilters, setActiveFilters] = useState<Filters>(EMPTY_FILTERS);
@@ -70,7 +68,7 @@ export default function RegistrySampleClient() {
 
         if (!response.ok) {
           throw new Error(
-            payload.error || "Unable to load the registry preview.",
+            payload.error || "Unable to load the public registry.",
           );
         }
 
@@ -86,7 +84,7 @@ export default function RegistrySampleClient() {
         setError(
           loadError instanceof Error
             ? loadError.message
-            : "Unable to load the registry preview.",
+            : "Unable to load the public registry.",
         );
       } finally {
         if (!controller.signal.aborted) setLoading(false);
@@ -128,7 +126,7 @@ export default function RegistrySampleClient() {
       <form
         onSubmit={handleSubmit}
         className="grid gap-4 rounded-sm border border-slate-200 bg-white p-5 shadow-sm lg:grid-cols-[minmax(0,1fr)_180px_180px_auto] lg:items-end lg:p-6"
-        aria-label="Search sample nurse registry"
+        aria-label="Search public nurse registry"
       >
         <div>
           <label
@@ -192,8 +190,11 @@ export default function RegistrySampleClient() {
           >
             Registration year
           </label>
-          <select
+          <Input
             id="registry-year"
+            type="number"
+            min={1900}
+            max={new Date().getFullYear()}
             value={formFilters.year}
             onChange={(event) =>
               setFormFilters((current) => ({
@@ -201,15 +202,9 @@ export default function RegistrySampleClient() {
                 year: event.target.value,
               }))
             }
-            className="h-12 w-full rounded-sm border border-input bg-white px-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-council-primary"
-          >
-            <option value="">All years</option>
-            {SAMPLE_YEARS.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
+            placeholder="All years"
+            className="h-12"
+          />
         </div>
 
         <Button
@@ -241,7 +236,7 @@ export default function RegistrySampleClient() {
         <div className="flex flex-col gap-3 border-b border-slate-200 px-5 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-6">
           <div>
             <h2 className="font-heading text-2xl font-bold text-council-dark">
-              Sample registry results
+              Registry results
             </h2>
             <p className="mt-1 text-sm text-slate-600" aria-live="polite">
               {loading
@@ -267,7 +262,7 @@ export default function RegistrySampleClient() {
         {loading ? (
           <div className="flex min-h-64 items-center justify-center gap-3 text-slate-600">
             <LoaderCircle className="h-5 w-5 animate-spin" aria-hidden="true" />
-            Loading registry preview…
+            Loading public registry…
           </div>
         ) : records.length > 0 ? (
           <>
@@ -350,11 +345,11 @@ export default function RegistrySampleClient() {
               aria-hidden="true"
             />
             <h3 className="font-heading text-xl font-bold text-council-dark">
-              No sample records found
+              No registry records found
             </h3>
             <p className="mx-auto mt-2 max-w-lg text-slate-600">
-              Check the spelling or clear a filter to search the full 500-record
-              preview.
+              Check the spelling or clear a filter to search the full published
+              registry.
             </p>
           </div>
         )}
