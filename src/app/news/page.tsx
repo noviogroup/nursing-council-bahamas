@@ -12,12 +12,12 @@ export default function NewsPage() {
         <section className="relative isolate min-h-[520px] overflow-hidden bg-council-primary text-white lg:min-h-[580px]">
           <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[72%] lg:w-[52%]">
             <Image
-              src="/assets/news/nursing-council-board-minister.jpg"
-              alt="Nursing Council Board meeting with the Minister of Health and Wellness"
+              src="/assets/news/regional-nursing-body-bahamas-delegation.jpg"
+              alt="Nursing Council of The Bahamas delegation participating in a regional nursing meeting"
               fill
               priority
               sizes="(min-width: 1024px) 52vw, (min-width: 640px) 72vw, 88vw"
-              className="object-cover object-center"
+              className="object-cover object-[45%_center] lg:object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/15 to-transparent" />
           </div>

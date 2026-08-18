@@ -75,6 +75,12 @@ const pastChairpersons = [
   { name: 'Mrs. Gwendolyn Brice-Sealy', period: '2013 - 2014' },
 ];
 
+const pastRegistrars = [
+  { name: 'Mrs. Theda Godet', period: 'Service period to be confirmed' },
+  { name: 'Ms. Mary Johnson', period: '2010 - 2022' },
+  { name: 'Mrs. Ruth Albury', period: '2022 - Present' },
+];
+
 const governanceGroups = [
   {
     seats: '1 seat',
@@ -631,6 +637,34 @@ export default function AboutPage() {
                         <span className="font-heading text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
                         <p className="font-heading text-lg font-bold text-council-dark">{chairperson.name}</p>
                         <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+
+                <section className="rounded-[4px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+                  <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
+                    <span className="h-px w-9 bg-council-accent" />
+                    Administrative leadership
+                  </p>
+                  <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Registrars through the years.</h3>
+                  <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
+                    The Registrar leads the Council’s administration and supports continuity in its statutory and operational work.
+                  </p>
+
+                  <ol className="mt-8 overflow-hidden rounded-[4px] border border-slate-200">
+                    {pastRegistrars.map((registrar, index) => (
+                      <li
+                        key={`${registrar.name}-${registrar.period}`}
+                        className="grid gap-3 border-b border-slate-200 bg-white px-5 py-5 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(12rem,0.8fr)] sm:items-center sm:gap-5 sm:px-6"
+                      >
+                        <span className="font-heading text-sm font-bold text-council-primary">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <p className="font-heading text-lg font-bold text-council-dark">{registrar.name}</p>
+                        <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">
+                          {registrar.period}
+                        </p>
                       </li>
                     ))}
                   </ol>

@@ -2,6 +2,12 @@
 
 This file records material website and platform releases. Council-supplied legal documents, lists, photographs, and forms should be noted here when published.
 
+## 2026-08-17 - Regional Nursing Body News
+
+- Added an external news link covering the 53rd Regional Nursing Body meeting in Georgetown, Guyana.
+- Added the supplied high-resolution regional delegation photograph as the news-card cover.
+- Replaced the News page hero with an authentic photograph of the Nursing Council of The Bahamas delegation participating in the regional meeting.
+
 ## 2026-08-13 - Meeting Content Corrections and Local CSS Stability
 
 ### Public content

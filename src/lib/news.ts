@@ -11,6 +11,15 @@ export type NewsArticle = {
 
 export const newsArticles: NewsArticle[] = [
   {
+    title: 'Nurses and Midwives Lauded for Resilience and Leadership at 53rd Regional Nursing Body Meeting',
+    summary: 'Regional nursing leaders gathered in Georgetown, Guyana, with the profession recognized for its resilience and leadership amid ongoing and emerging healthcare challenges.',
+    publisher: 'Caribbean News Global',
+    publishedAt: '2026-08-15',
+    href: 'https://caribbeannewsglobal.com/nurses-midwives-53rd-regional-nursing-body-lauded-for-resilience-leadership/',
+    image: '/assets/news/regional-nursing-body-2026.jpg',
+    imageAlt: 'Officials from the CARICOM Secretariat and members of the Regional Nursing Body gathered in Georgetown, Guyana',
+  },
+  {
     title: 'Darville: Ministry Will Call Up 47 Retired Nurses as They Look to Recruit 50 More from Ghana',
     summary: 'Coverage of plans to bring retired nurses back into the public healthcare system alongside recruitment efforts.',
     publisher: 'The Tribune',
