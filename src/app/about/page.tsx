@@ -346,21 +346,21 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-3">
-              <div className="bg-council-primary p-7 text-white">
-                <Star className="mb-5 h-9 w-9 text-council-accent" aria-hidden="true" />
-                <h3 className="font-heading mb-3 text-2xl font-bold">Vision</h3>
-                <p className="leading-relaxed text-white/85">
+              <div className="bg-white p-7">
+                <Star className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
+                <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Vision</h3>
+                <p className="leading-relaxed text-gray-600">
                   To protect the public through the enforcement of quality nursing education, training, and practice.
                 </p>
               </div>
-              <div className="bg-council-secondary p-7 text-white">
-                <Target className="mb-5 h-9 w-9 text-council-accent" aria-hidden="true" />
-                <h3 className="font-heading mb-3 text-2xl font-bold">Mission</h3>
-                <p className="leading-relaxed text-white/85">
+              <div className="bg-white p-7">
+                <Target className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
+                <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Mission</h3>
+                <p className="leading-relaxed text-gray-600">
                   Provide the legal framework to control education, training and practice of Nurses and Midwives in the Commonwealth of The Bahamas. Establish and monitor the standards of professional Nursing and Midwifery through on-going collaboration with statutory accreditation body, Nursing Schools, and Health Professionals.
                 </p>
               </div>
-              <div className="bg-council-accent/20 p-7">
+              <div className="bg-white p-7">
                 <ShieldCheck className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                 <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Core Values</h3>
                 <p className="leading-relaxed text-gray-600">
@@ -373,7 +373,7 @@ export default function AboutPage() {
               {values.map((value) => {
                 const Icon = value.icon;
                 return (
-                  <article key={value.title} className="border-t-4 border-council-accent bg-white p-6">
+                  <article key={value.title} className="bg-white p-6">
                     <Icon className="mb-5 h-8 w-8 text-council-primary" aria-hidden="true" />
                     <h3 className="font-heading text-xl font-bold text-council-dark">{value.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-gray-600">{value.description}</p>
@@ -384,46 +384,45 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-council-primary py-20 text-white lg:py-28">
+        <section className="border-y border-slate-200 bg-white py-20 lg:py-28">
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
+                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                   <span className="h-px w-9 bg-council-accent" />
                   Current Board Appointments
                 </p>
-                <h2 className="font-heading text-4xl font-bold leading-tight md:text-5xl">
+                <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                   The Council&apos;s current leadership.
                 </h2>
               </div>
-              <p className="max-w-2xl text-lg leading-relaxed text-white/80">
+              <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
                 Current Council appointments supplied by the Nursing Council, including the vacant Medical Practitioner seat.
               </p>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-sm bg-white/20 sm:grid-cols-2 lg:grid-cols-3">
-              {currentBoardMembers.map((member, index) => (
-                <article key={`${member.role}-${member.name}`} className={`p-6 ${member.vacant ? 'bg-white/10' : 'bg-white text-council-dark'}`}>
-                  <div className="flex items-start justify-between gap-4">
-                    <span className={`font-heading text-sm font-bold ${member.vacant ? 'text-council-accent' : 'text-council-primary'}`}>
+            <div className="mx-auto max-w-5xl overflow-hidden rounded-sm border border-slate-200 bg-white">
+              <div className="max-h-[38rem] divide-y divide-slate-200 overflow-y-auto" aria-label="Current Board appointments">
+                {currentBoardMembers.map((member, index) => (
+                  <article key={`${member.role}-${member.name}`} className="grid gap-3 bg-white px-5 py-5 transition-colors hover:bg-gray-50 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(12rem,0.8fr)] sm:items-center sm:gap-5 sm:px-6">
+                    <span className="font-heading text-sm font-bold text-council-primary">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    {member.vacant && <span className="border border-council-accent/60 px-2 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-council-accent">Vacant</span>}
-                  </div>
-                  <h3 className={`font-heading mt-7 text-xl font-bold ${member.vacant ? 'text-white' : 'text-council-dark'}`}>{member.role}</h3>
-                  {!member.vacant && <p className="mt-2 leading-relaxed text-gray-600">{member.name}</p>}
-                </article>
-              ))}
+                    <h3 className="font-heading text-lg font-bold text-council-dark">{member.name}</h3>
+                    <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600">{member.role}</p>
+                  </article>
+                ))}
+              </div>
             </div>
 
-            <article className="mt-8 rounded-sm border border-white/20 bg-white/10 p-7 md:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Administration</p>
-              <h3 className="font-heading mt-4 text-3xl font-bold">Office of the Registrar</h3>
+            <article className="mx-auto mt-8 max-w-5xl rounded-sm border border-slate-200 bg-gray-50 p-7 md:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Administration</p>
+              <h3 className="font-heading mt-4 text-3xl font-bold text-council-dark">Office of the Registrar</h3>
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 {administrationRoles.map((role) => (
-                  <div key={role.title} className="border-t border-white/25 pt-4">
-                    <h4 className="font-heading text-xl font-bold text-council-accent">{role.title}</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-white/80">{role.description}</p>
+                  <div key={role.title} className="border-t border-slate-200 pt-4">
+                    <h4 className="font-heading text-xl font-bold text-council-primary">{role.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600">{role.description}</p>
                   </div>
                 ))}
               </div>
