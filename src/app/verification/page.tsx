@@ -7,35 +7,26 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { portalPath } from '@/lib/portal';
-
 const verificationOptions = [
   {
-    title: 'Browse Nurse Registry',
-    description: 'Search the published registry by name, registration number, type, or original registration year.',
+    title: 'Verify a Nurse’s Registration/Enrollment Status',
+    description: 'Search the published registry by name or registration/enrollment number.',
     icon: IdentificationCard,
-    action: 'Open nurse registry',
+    action: 'Browse nurse registry',
     href: '/registry',
   },
   {
-    title: 'Verify Licence or Registration',
-    description: 'Confirm whether a nurse, midwife, applicant, or licensee has a current public registration record.',
-    icon: IdentificationCard,
-    action: 'Open verification',
-    href: portalPath('/verify'),
-  },
-  {
-    title: 'Good Standing Request',
-    description: 'Request official confirmation of registration status and standing for employment, education, or regulatory purposes.',
+    title: 'Apply as a Nurse for a Letter of Good Standing',
+    description: 'Use the Council application process to request an official Letter of Good Standing for employment, education, or regulatory purposes.',
     icon: SealCheck,
-    action: 'Request guidance',
-    href: '/contact',
+    action: 'Find the application form',
+    href: '/forms',
   },
 ];
 
 const publicInfo = [
-  'Name and registration or licence reference where available',
-  'General registration status',
+  'Name and registration/enrollment reference where available',
+  'General registration/enrollment status',
   'Instructions for requesting formal letters',
   'Council contact instructions for unclear results',
 ];
@@ -53,10 +44,10 @@ export default function VerificationPage() {
                 Verification
               </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
-                Verify registration and good standing.
+                Verify registration/enrollment or request good standing.
               </h1>
               <p className="text-xl leading-relaxed text-white/85">
-                Use Council verification services to confirm registration status or request formal good standing information.
+                Choose whether to verify a nurse&apos;s registration/enrollment status or apply as a nurse for a Letter of Good Standing.
               </p>
             </div>
           </div>
@@ -75,11 +66,11 @@ export default function VerificationPage() {
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                Public verification should show only the information needed to confirm status and direct formal requests to the Council.
+                Public verification shows only the information needed to confirm status and directs formal requests to the Council.
               </p>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-3">
+            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2">
               {verificationOptions.map((option) => {
                 const Icon = option.icon;
                 return (

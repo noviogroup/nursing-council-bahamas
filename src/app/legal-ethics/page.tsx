@@ -14,7 +14,7 @@ const frameworks = [
     id: 'act',
     title: 'Nurses and Midwives Act, 2023',
     description:
-      'The current Act governing nursing and midwifery education, registration, licensure, conduct, and professional practice.',
+      'The current Act governing nursing and midwifery education, registration, enrollment, licensure, conduct, and professional practice.',
     status: '2023 Act available',
     links: [
       {
@@ -61,7 +61,7 @@ export default function LegalEthicsPage() {
                 Laws and professional accountability.
               </h1>
               <p className="text-xl leading-relaxed text-white/85">
-                Access the legal framework that guides nursing and midwifery education, registration, conduct, and professional practice.
+                Access the legal framework that guides nursing and midwifery education, registration, enrollment, conduct, and professional practice.
               </p>
             </div>
           </div>

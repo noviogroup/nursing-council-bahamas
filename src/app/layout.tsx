@@ -95,13 +95,13 @@ const structuredData = {
   "@type": "GovernmentOrganization",
   "name": "The Nursing Council of the Commonwealth of The Bahamas",
   "alternateName": "Nursing Council of the Bahamas",
-  "description": "Official regulatory body for nursing practice throughout the Commonwealth of The Bahamas. We are committed to safeguarding the public through the regulation of nursing education, registration, and professional standards.",
+  "description": "Official regulatory body for nursing practice throughout the Commonwealth of The Bahamas. We safeguard the public through the regulation of nursing education, registration, enrollment, and professional standards.",
   "url": "https://nursingcouncilbahamas.com",
   "logo": "https://nursingcouncilbahamas.com/nursing-council-logo.png",
   "foundingDate": "1972",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "#23 Capitol House, Virginia & Augusta Street",
+    "streetAddress": "#23 Capitol House, Virginia and Augusta Streets",
     "addressLocality": "Nassau",
     "addressCountry": "BS",
     "postalCode": "N-3509"

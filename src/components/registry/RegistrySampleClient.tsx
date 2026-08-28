@@ -37,7 +37,12 @@ type Filters = {
 };
 
 const EMPTY_FILTERS: Filters = { query: "", type: "", year: "" };
-const REGISTRATION_TYPES = ["RN", "EN", "RM", "TCN", "LPN", "APRN"];
+const REGISTRATION_TYPES = [
+  { value: "RN", label: "RN — Registered Nurse" },
+  { value: "EN", label: "EN — Enrolled Nurse, including TCNs/LPNs" },
+  { value: "RM", label: "RM — Registered Midwife" },
+  { value: "APN", label: "APN — Advanced Practice Nurse" },
+];
 export default function RegistrySampleClient() {
   const [formFilters, setFormFilters] = useState<Filters>(EMPTY_FILTERS);
   const [activeFilters, setActiveFilters] = useState<Filters>(EMPTY_FILTERS);
@@ -133,7 +138,7 @@ export default function RegistrySampleClient() {
             htmlFor="registry-search"
             className="mb-2 block text-sm font-semibold text-council-dark"
           >
-            Name or registration number
+            Name or registration/enrollment number
           </label>
           <div className="relative">
             <Search
@@ -161,7 +166,7 @@ export default function RegistrySampleClient() {
             htmlFor="registry-type"
             className="mb-2 block text-sm font-semibold text-council-dark"
           >
-            Registration type
+            Registration/Enrollment Type
           </label>
           <select
             id="registry-type"
@@ -176,8 +181,8 @@ export default function RegistrySampleClient() {
           >
             <option value="">All types</option>
             {REGISTRATION_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
+              <option key={type.value} value={type.value}>
+                {type.label}
               </option>
             ))}
           </select>
@@ -188,7 +193,7 @@ export default function RegistrySampleClient() {
             htmlFor="registry-year"
             className="mb-2 block text-sm font-semibold text-council-dark"
           >
-            Registration year
+            Registration/Enrollment Year
           </label>
           <Input
             id="registry-year"
@@ -277,13 +282,13 @@ export default function RegistrySampleClient() {
                       Type
                     </th>
                     <th scope="col" className="px-6 py-4 font-semibold">
-                      Registration number
+                      Registration/Enrollment number
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-4 text-right font-semibold"
                     >
-                      Year registered
+                      Original year
                     </th>
                   </tr>
                 </thead>
@@ -325,11 +330,11 @@ export default function RegistrySampleClient() {
                     </span>
                   </div>
                   <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
-                    <dt className="text-slate-500">Registration</dt>
+                    <dt className="text-slate-500">Registration/Enrollment</dt>
                     <dd className="text-right font-mono text-slate-800">
                       {record.registrationNumber}
                     </dd>
-                    <dt className="text-slate-500">Year registered</dt>
+                    <dt className="text-slate-500">Original year</dt>
                     <dd className="text-right font-semibold text-slate-800">
                       {record.registrationYear}
                     </dd>

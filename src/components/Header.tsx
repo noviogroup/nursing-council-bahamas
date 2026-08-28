@@ -15,6 +15,7 @@ export default function Header() {
     { href: '/education-training', label: 'Education' },
     { href: '/nursing-agencies', label: 'Agencies' },
     { href: '/news', label: 'News' },
+    { href: '/complaints', label: 'Complaints' },
   ];
 
   return (
@@ -26,7 +27,7 @@ export default function Header() {
             <div className="flex min-w-0 items-center gap-4">
               <div className="hidden items-center gap-2 md:flex">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
-                <span>#23 Capitol House, Virginia & Augusta Street, Nassau</span>
+                <span>#23 Capitol House, Virginia and Augusta Streets, Nassau</span>
               </div>
               <div className="flex min-w-0 items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />

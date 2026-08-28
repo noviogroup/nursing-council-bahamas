@@ -11,9 +11,17 @@ const clinicalSites = [
     name: 'Princess Margaret Hospital',
     network: 'Public Hospitals Authority',
     location: 'New Providence',
-    logo: '/assets/clinical-sites/public-hospitals-authority.webp',
+    logo: '/assets/clinical-sites/public-hospitals-authority.png',
     logoAlt: 'Public Hospitals Authority logo',
-    logoClass: 'scale-[3]',
+    logoClass: '',
+  },
+  {
+    name: 'Sandilands Rehabilitation Centre',
+    network: 'Public Hospitals Authority',
+    location: 'New Providence',
+    logo: '/assets/clinical-sites/public-hospitals-authority.png',
+    logoAlt: 'Public Hospitals Authority logo',
+    logoClass: '',
   },
   {
     name: 'Doctors Hospital',
@@ -25,7 +33,7 @@ const clinicalSites = [
   },
   {
     name: 'Community Clinics',
-    network: 'Ministry of Health & Wellness',
+    network: 'Department of Public Health Community Clinics',
     location: 'Across The Bahamas',
     logo: '/assets/clinical-sites/ministry-health-wellness.webp',
     logoAlt: 'Ministry of Health and Wellness Bahamas logo',
@@ -35,9 +43,9 @@ const clinicalSites = [
     name: 'Rand Memorial Hospital and Grand Bahama Community Clinics',
     network: 'Public Hospitals Authority / Grand Bahama Health Services',
     location: 'Grand Bahama',
-    logo: '/assets/clinical-sites/public-hospitals-authority.webp',
+    logo: '/assets/clinical-sites/public-hospitals-authority.png',
     logoAlt: 'Public Hospitals Authority logo',
-    logoClass: 'scale-[3]',
+    logoClass: '',
   },
 ];
 
@@ -121,7 +129,7 @@ export default function EducationRegistrationPage() {
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                The Council has approved the institutions and programmes listed below. Southern College&apos;s Bachelor of Science in Nursing is identified as provisional in the supplied Council list.
+                The Council has approved the institutions and programs listed below.
               </p>
             </div>
 
@@ -215,7 +223,7 @@ export default function EducationRegistrationPage() {
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                These Council-identified hospitals and community health services support nursing education and supervised clinical practice.
+                The clinical sites below are approved to support nursing education and supervised clinical practice.
               </p>
             </div>
 

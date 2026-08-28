@@ -20,9 +20,9 @@ import { featuredNewsArticles, formatNewsDate } from '@/lib/news';
 const services = [
   {
     icon: UserPlus,
-    title: 'Register',
-    description: 'Begin your nursing registration process and submit your application online.',
-    action: 'Start registration',
+    title: 'Register or Enroll',
+    description: 'Begin your nursing registration or enrollment process and submit your application online.',
+    action: 'Start application',
     href: portalPath('/register?type=registration'),
     image: '/assets/approved/register-card.jpg',
     imageAlt: 'Nurse in blue scrubs ready to begin professional registration',
@@ -41,7 +41,7 @@ const services = [
   {
     icon: GraduationCap,
     title: 'Education & Training',
-    description: 'Review approved nursing education pathways, training institutions, clinical sites, CPD providers, and professional-development requirements.',
+    description: 'Review approved nursing education programs, training institutions, clinical sites and CPD providers.',
     action: 'View education standards',
     href: '/education-training',
     image: '/assets/approved/tcn-nurses-1.jpg',
@@ -59,11 +59,11 @@ const councilHighlights = [
   {
     icon: CheckCircle,
     title: 'Professional Standards',
-    description: 'Set standards for nursing education, registration, conduct, and continuing professional practice.',
+    description: 'Set standards for nursing education, registration, enrollment, conduct, and continuing professional practice.',
   },
   {
     icon: Building,
-    title: 'Education & Registration',
+    title: 'Education, Registration & Enrollment',
     description: 'Maintain the nursing register, oversee nursing education standards, and support high-quality nursing care across The Bahamas.',
   },
 ];
@@ -109,7 +109,7 @@ export default function HomePage() {
                   href="/indexing"
                   className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
                 >
-                  Indexing
+                  Nursing Student Indexing
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
@@ -196,7 +196,7 @@ export default function HomePage() {
                 Guiding the future of nursing in The Bahamas
               </h2>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                The Nursing Council safeguards the public through the regulation of nursing education, registration, and professional standards practice across the Commonwealth of The Bahamas.
+                The Nursing Council safeguards the public through the regulation of nursing education, registration, enrollment, and practice across the Commonwealth of The Bahamas.
               </p>
 
               <div className="mt-8 space-y-5">
@@ -239,9 +239,9 @@ export default function HomePage() {
               <div className="max-w-3xl">
                 <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                   <span className="h-px w-9 bg-council-accent" />
-                  News and updates
+                  Nursing and midwifery
                 </p>
-                <h2 id="latest-news-heading" className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Nursing news from The Bahamas.</h2>
+                <h2 id="latest-news-heading" className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Nursing and Midwifery News &amp; Updates.</h2>
               </div>
               <Link href="/news" className="inline-flex items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
                 View all news
@@ -274,11 +274,11 @@ export default function HomePage() {
         <section className="bg-white py-16" aria-label="Need assistance contact section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="font-heading mb-4 text-3xl font-bold text-council-primary">Need Assistance?</h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-600">Our team is here to help with your nursing registration, licensing, and professional development needs.</p>
+            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-600">Our team is here to help with nursing registration, enrollment, licensing, and professional development needs.</p>
             <div className="mx-auto mb-8 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Phone className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Call Us</h3><a href="tel:+12426046015" className="text-gray-600 hover:underline">(242) 604-6015 / 6017</a><p className="mt-1 text-sm text-gray-500">Mon-Fri: 9:00am - 5:00pm</p></div>
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Mail className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Email Us</h3><a href="mailto:info@nursingcouncilbahamas.com" className="text-gray-600 hover:underline">info@nursingcouncilbahamas.com</a></div>
-              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><MapPin className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Visit Us</h3><address className="not-italic text-gray-600">#23 Capitol House<br />Virginia & Augusta Street<br />Nassau, Bahamas</address></div>
+              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><MapPin className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Visit Us</h3><address className="not-italic text-gray-600">#23 Capitol House<br />Virginia and Augusta Streets<br />Nassau, Bahamas</address></div>
             </div>
             <Link href="/contact" className="inline-flex items-center rounded-sm bg-council-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">Get in Touch <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
           </div>

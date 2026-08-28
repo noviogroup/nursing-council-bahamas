@@ -11,7 +11,7 @@ import { portalPath } from '@/lib/portal';
 
 export default function Footer() {
   const quickLinks = [
-    { name: 'Register', href: portalPath('/register?type=registration') },
+    { name: 'Register / Enroll', href: portalPath('/register?type=registration') },
     { name: 'Renew Licence', href: portalPath('/register?type=renewal') },
     { name: 'Education', href: '/education-training' },
     { name: 'Forms & Documents', href: '/forms' },
@@ -108,7 +108,7 @@ export default function Footer() {
                 <MapPin className="h-4 w-4 text-council-accent mt-1 flex-shrink-0" />
                 <div className="text-sm text-gray-300">
                   #23 Capitol House<br />
-                  Virginia & Augusta Street<br />
+                  Virginia and Augusta Streets<br />
                   Nassau, Bahamas
                 </div>
               </div>

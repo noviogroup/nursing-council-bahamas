@@ -73,6 +73,10 @@ const pastChairpersons = [
   { name: 'Mrs. Maggie Turner', period: '2008 - 2011' },
   { name: 'Mrs. Coral Dean', period: '2011 - 2013' },
   { name: 'Mrs. Gwendolyn Brice-Sealy', period: '2013 - 2014' },
+  { name: 'Carol Markey' },
+  { name: 'Patricia Newbold' },
+  { name: 'Patricia Brown' },
+  { name: 'Ferneka Deleveaux' },
 ];
 
 const pastRegistrars = [
@@ -123,30 +127,44 @@ const administrationRoles = [
   },
 ];
 
+const currentBoardMembers = [
+  { name: 'Ferneka Deleveaux', role: 'Chairperson' },
+  { name: 'Tamica Knowles', role: 'Deputy Chairperson' },
+  { name: 'Ms. Genevieve Bowe', role: 'Director of Nursing (Ex-officio)' },
+  { name: 'Ms. Vanria Jack', role: 'Ministry of Education' },
+  { name: 'Ms. Morlette Johnson', role: 'Legal Counsel/Attorney' },
+  { name: 'Ms. Andrea Nottage', role: 'Midwives Association' },
+  { name: 'Ms. Jen Rolle', role: 'Nurses Association' },
+  { name: 'Ms. Tandra Longley', role: 'Nurses Association' },
+  { name: 'Ms. Valencia Rolle', role: 'Nurses Association' },
+  { name: 'Ms. Shirley Bain', role: 'Other (Nursing)' },
+  { name: 'Vacant', role: 'Medical Practitioner', vacant: true },
+];
+
 const values = [
   {
     icon: Shield,
     title: 'Professionalism',
     description:
-      'The Council upholds ethical principles and conducts business with utmost professionalism. Council matters are kept confidential and disclosed only to appropriate stakeholders as required.',
+      'The Nursing Council upholds ethical principles and conducts its business with utmost objectivity and confidentiality.',
   },
   {
     icon: CheckCircle,
     title: 'Integrity',
     description:
-      'The Council conducts its business guided by honesty, fairness, and respect, operating on reliable evidence for the best possible outcome.',
+      'The Nursing Council is guided by honesty, fairness and respect.',
   },
   {
     icon: Star,
     title: 'Excellence',
     description:
-      'The Council is committed to high-quality standards, advancement, and sustainability of evidence-informed nursing and midwifery practice.',
+      'The Nursing Council is committed to maintaining high standards and ensuring the advancement of evidence-informed nursing and midwifery practice.',
   },
   {
     icon: Zap,
-    title: 'Efficiency',
+    title: 'Responsiveness',
     description:
-      'The Council keeps current with national, regional, and global standards and makes every effort to respond quickly to questions, concerns, and requests.',
+      'The Nursing Council acts promptly and efficiently to address requests and matters of concern in a timely manner and provide feedback.',
   },
 ];
 
@@ -328,25 +346,25 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-3">
-              <div className="bg-white p-7">
-                <Star className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
-                <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Vision</h3>
-                <p className="leading-relaxed text-gray-600">
-                  A trusted, responsive Council that advances public confidence in nursing and midwifery practice across The Bahamas.
+              <div className="bg-council-primary p-7 text-white">
+                <Star className="mb-5 h-9 w-9 text-council-accent" aria-hidden="true" />
+                <h3 className="font-heading mb-3 text-2xl font-bold">Vision</h3>
+                <p className="leading-relaxed text-white/85">
+                  To protect the public through the enforcement of quality nursing education, training, and practice.
                 </p>
               </div>
-              <div className="bg-white p-7">
-                <Target className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
-                <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Mission</h3>
-                <p className="leading-relaxed text-gray-600">
-                  Protect the public through the enforcement of quality nursing education, training, and practice across the Commonwealth of The Bahamas.
+              <div className="bg-council-secondary p-7 text-white">
+                <Target className="mb-5 h-9 w-9 text-council-accent" aria-hidden="true" />
+                <h3 className="font-heading mb-3 text-2xl font-bold">Mission</h3>
+                <p className="leading-relaxed text-white/85">
+                  Provide the legal framework to control education, training and practice of Nurses and Midwives in the Commonwealth of The Bahamas. Establish and monitor the standards of professional Nursing and Midwifery through on-going collaboration with statutory accreditation body, Nursing Schools, and Health Professionals.
                 </p>
               </div>
-              <div className="bg-white p-7">
+              <div className="bg-council-accent/20 p-7">
                 <ShieldCheck className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                 <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Core Values</h3>
                 <p className="leading-relaxed text-gray-600">
-                  Professionalism, integrity, excellence, and efficiency guide the Council&apos;s decisions, service, and public-protection work.
+                  Professionalism, Integrity, Excellence, and Responsiveness guide the Council&apos;s decisions, service, and public-protection work.
                 </p>
               </div>
             </div>
@@ -355,7 +373,7 @@ export default function AboutPage() {
               {values.map((value) => {
                 const Icon = value.icon;
                 return (
-                  <article key={value.title} className="bg-white p-6">
+                  <article key={value.title} className="border-t-4 border-council-accent bg-white p-6">
                     <Icon className="mb-5 h-8 w-8 text-council-primary" aria-hidden="true" />
                     <h3 className="font-heading text-xl font-bold text-council-dark">{value.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-gray-600">{value.description}</p>
@@ -363,6 +381,53 @@ export default function AboutPage() {
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        <section className="bg-council-primary py-20 text-white lg:py-28">
+          <div className="container mx-auto px-4">
+            <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
+                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
+                  <span className="h-px w-9 bg-council-accent" />
+                  Current Board Appointments
+                </p>
+                <h2 className="font-heading text-4xl font-bold leading-tight md:text-5xl">
+                  The Council&apos;s current leadership.
+                </h2>
+              </div>
+              <p className="max-w-2xl text-lg leading-relaxed text-white/80">
+                Current Council appointments supplied by the Nursing Council, including the vacant Medical Practitioner seat.
+              </p>
+            </div>
+
+            <div className="grid gap-px overflow-hidden rounded-sm bg-white/20 sm:grid-cols-2 lg:grid-cols-3">
+              {currentBoardMembers.map((member, index) => (
+                <article key={`${member.role}-${member.name}`} className={`p-6 ${member.vacant ? 'bg-white/10' : 'bg-white text-council-dark'}`}>
+                  <div className="flex items-start justify-between gap-4">
+                    <span className={`font-heading text-sm font-bold ${member.vacant ? 'text-council-accent' : 'text-council-primary'}`}>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {member.vacant && <span className="border border-council-accent/60 px-2 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-council-accent">Vacant</span>}
+                  </div>
+                  <h3 className={`font-heading mt-7 text-xl font-bold ${member.vacant ? 'text-white' : 'text-council-dark'}`}>{member.role}</h3>
+                  {!member.vacant && <p className="mt-2 leading-relaxed text-gray-600">{member.name}</p>}
+                </article>
+              ))}
+            </div>
+
+            <article className="mt-8 rounded-sm border border-white/20 bg-white/10 p-7 md:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Administration</p>
+              <h3 className="font-heading mt-4 text-3xl font-bold">Office of the Registrar</h3>
+              <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                {administrationRoles.map((role) => (
+                  <div key={role.title} className="border-t border-white/25 pt-4">
+                    <h4 className="font-heading text-xl font-bold text-council-accent">{role.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-white/80">{role.description}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
           </div>
         </section>
 
@@ -383,7 +448,7 @@ export default function AboutPage() {
               </div>
               <div className="max-w-2xl">
                 <p className="text-lg leading-relaxed text-gray-600">
-                  The Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
+                  The Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, enrollment, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
                 </p>
                 <Link
                   href="/documents/nurses-and-midwives-act-2023.pdf"
@@ -518,7 +583,7 @@ export default function AboutPage() {
                       />
                     </div>
                     <figcaption className="border-t border-slate-200 px-3 py-2 text-xs leading-relaxed text-gray-600">
-                      Council representatives pictured with historical Council imagery and the Nursing Council seal.
+                      Pictured with historical imagery of the Nursing Council seal.
                     </figcaption>
                   </figure>
 
@@ -537,8 +602,8 @@ export default function AboutPage() {
                       <dt className="mt-1 text-xs leading-relaxed text-white/75">Council established</dt>
                     </div>
                     <div className="bg-white/10 p-3">
-                      <dd className="font-heading text-2xl font-bold text-council-accent">13</dd>
-                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Recorded appointments</dt>
+                      <dd className="font-heading text-2xl font-bold text-council-accent">{pastChairpersons.length}</dd>
+                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Recorded Council Chairs</dt>
                     </div>
                   </dl>
 
@@ -576,7 +641,7 @@ export default function AboutPage() {
                     The founding Council members.
                   </h3>
                   <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                    The first appointed Council brought together leaders across nursing, medicine, and public service to regulate education, registration, practice, and discipline.
+                    The first appointed Council brought together leaders across nursing, medicine, and public service to regulate education, registration, enrollment, practice, and discipline.
                   </p>
                   <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
                     Historical administration record: Mrs. Beverly Ford served as Registrar and is not listed as a Council member.
@@ -628,15 +693,15 @@ export default function AboutPage() {
                   </p>
                   <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Leadership through the years.</h3>
                   <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
-                    The following record is based on the Council-supplied list of past Chairpersons. Service periods are presented by year for a consistent public record.
+                    The following record is based on the Council-supplied list of past and current Chairpersons. Service periods are shown where they were supplied.
                   </p>
 
                   <ol className="mt-8 overflow-hidden rounded-[4px] border border-slate-200">
                     {pastChairpersons.map((chairperson, index) => (
-                      <li key={`${chairperson.name}-${chairperson.period}`} className="grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)] sm:items-center sm:gap-5 sm:px-6">
+                      <li key={chairperson.name} className={`grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:items-center sm:gap-5 sm:px-6 ${chairperson.period ? 'sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)]' : 'sm:grid-cols-[3.5rem_minmax(0,1fr)]'}`}>
                         <span className="font-heading text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
                         <p className="font-heading text-lg font-bold text-council-dark">{chairperson.name}</p>
-                        <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>
+                        {chairperson.period && <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>}
                       </li>
                     ))}
                   </ol>
@@ -736,28 +801,6 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-slate-200 bg-slate-200 lg:grid-cols-2">
-                <article className="bg-white p-7 md:p-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Council Members</p>
-                  <h3 className="font-heading mt-4 text-3xl font-bold text-council-dark">Current appointments</h3>
-                  <p className="mt-4 max-w-xl leading-relaxed text-gray-600">
-                    Confirmed names, official titles, appointment terms, and consistent professional photographs will be published once they are supplied and approved by the Council.
-                  </p>
-                </article>
-                <article className="bg-council-primary p-7 text-white md:p-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Administration</p>
-                  <h3 className="font-heading mt-4 text-3xl font-bold">Office of the Registrar</h3>
-                  <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                    {administrationRoles.map((role) => (
-                      <div key={role.title} className="border-t border-white/25 pt-4">
-                        <h4 className="font-heading text-xl font-bold text-council-accent">{role.title}</h4>
-                        <p className="mt-2 text-sm leading-relaxed text-white/80">{role.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-6 text-sm leading-relaxed text-white/70">General support staff are not publicly listed.</p>
-                </article>
-              </div>
             </div>
           </div>
         </section>

@@ -25,9 +25,9 @@ export default function NewsPage() {
             <div className="max-w-[88%] sm:max-w-2xl lg:max-w-[58%]">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
                 <span className="h-px w-10 bg-council-accent" />
-                News and updates
+                Nursing and midwifery
               </p>
-              <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Nursing news from The Bahamas.</h1>
+              <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Nursing and Midwifery News &amp; Updates.</h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
                 Council-relevant updates on nursing, midwifery, education, legislation, regulation, and workforce development in The Bahamas.
               </p>
@@ -39,7 +39,7 @@ export default function NewsPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 flex max-w-3xl flex-col gap-5">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">News and updates</p>
-              <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Council and nursing sector updates.</h2>
+              <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Nursing and Midwifery News &amp; Updates.</h2>
               <p className="text-lg leading-relaxed text-gray-600">
                 Each item opens the original publisher&apos;s article. Article images are shown from the respective source.
               </p>

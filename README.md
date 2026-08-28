@@ -114,7 +114,7 @@ Netlify uses `npm run build` and publishes the generated Next.js application fro
 ## Contact
 
 The Nursing Council of the Commonwealth of The Bahamas<br />
-#23 Capitol House, Virginia & Augusta Street, Nassau, The Bahamas<br />
+#23 Capitol House, Virginia and Augusta Streets, Nassau, The Bahamas<br />
 (242) 604-6015 / 6017<br />
 info@nursingcouncilbahamas.com
 

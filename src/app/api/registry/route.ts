@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { type NextRequest, NextResponse } from "next/server";
 
 const PAGE_SIZE = 25;
-const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "TCN", "LPN", "APRN"]);
+const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "APN"]);
 const SEARCH_PATTERN = /^[\p{L}\p{N}’'./ -]+$/u;
 
 type RegistryRow = {
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 
   if (registrationType && !ALLOWED_TYPES.has(registrationType)) {
     return NextResponse.json(
-      { error: "Select a valid registration type." },
+      { error: "Select a valid registration/enrollment type." },
       { status: 400 },
     );
   }
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
       registrationYear > currentYear)
   ) {
     return NextResponse.json(
-      { error: "Select a valid registration year." },
+      { error: "Select a valid registration/enrollment year." },
       { status: 400 },
     );
   }
@@ -74,16 +74,32 @@ export async function GET(request: NextRequest) {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 
-  const { data, error } = await supabase.rpc("public_search_registry", {
-    p_query: query || null,
-    p_registration_type: registrationType || null,
-    p_registration_year: registrationYear,
-    p_limit: PAGE_SIZE,
-    p_offset: (page - 1) * PAGE_SIZE,
-  });
+  const backendTypes: Array<string | null> =
+    registrationType === "EN"
+      ? ["EN", "TCN", "LPN"]
+      : registrationType === "APN"
+        ? ["APRN"]
+        : [registrationType || null];
+  const offset = (page - 1) * PAGE_SIZE;
+  const isGroupedEnrollmentSearch = backendTypes.length > 1;
+  const queryLimit = isGroupedEnrollmentSearch ? page * PAGE_SIZE : PAGE_SIZE;
+  const queryOffset = isGroupedEnrollmentSearch ? 0 : offset;
 
-  if (error) {
-    console.error("Public registry query failed", error.code);
+  const results = await Promise.all(
+    backendTypes.map((backendType) =>
+      supabase.rpc("public_search_registry", {
+        p_query: query || null,
+        p_registration_type: backendType,
+        p_registration_year: registrationYear,
+        p_limit: queryLimit,
+        p_offset: queryOffset,
+      }),
+    ),
+  );
+  const failedResult = results.find((result) => result.error);
+
+  if (failedResult?.error) {
+    console.error("Public registry query failed", failedResult.error.code);
     return NextResponse.json(
       {
         error:
@@ -93,15 +109,34 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const rows = (data || []) as RegistryRow[];
-  const total = Number(rows[0]?.total_count || 0);
+  const dataSets = results.map(
+    (result) => (result.data || []) as RegistryRow[],
+  );
+  const total = dataSets.reduce(
+    (sum, dataSet) => sum + Number(dataSet[0]?.total_count || 0),
+    0,
+  );
+  const rows = dataSets
+    .flat()
+    .sort(
+      (left, right) =>
+        left.nurse_name.localeCompare(right.nurse_name) ||
+        left.registration_number.localeCompare(right.registration_number) ||
+        left.entry_id - right.entry_id,
+    )
+    .slice(isGroupedEnrollmentSearch ? offset : 0, PAGE_SIZE);
 
   return NextResponse.json(
     {
       records: rows.map((row) => ({
         id: row.entry_id,
         name: row.nurse_name,
-        type: row.registration_type,
+        type:
+          row.registration_type === "TCN" || row.registration_type === "LPN"
+            ? "EN"
+            : row.registration_type === "APRN"
+              ? "APN"
+              : row.registration_type,
         registrationNumber: row.registration_number,
         registrationYear: row.registration_year,
       })),

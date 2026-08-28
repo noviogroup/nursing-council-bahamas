@@ -77,7 +77,7 @@ export default function NursingAgenciesPage() {
                 Agency licensing and compliance.
               </h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Review licensed nursing agencies, required documents, and the Council process for agency licensing and renewal.
+                Review licensed nursing agencies, required documents, and the Council&apos;s process for agency licensing and renewal.
               </p>
             </div>
           </div>

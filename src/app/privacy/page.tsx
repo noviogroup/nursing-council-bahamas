@@ -16,8 +16,8 @@ export default function PrivacyPage() {
         <section className="container mx-auto max-w-4xl px-4 py-16">
           <div className="space-y-8 text-gray-700">
             <section><h2 className="font-heading mb-3 text-2xl font-bold text-council-dark">Information We Collect</h2><p>When you contact the Council, we may receive your name, contact details, inquiry type, subject, and message so staff can respond to your request.</p></section>
-            <section><h2 className="font-heading mb-3 text-2xl font-bold text-council-dark">How Information Is Used</h2><p>Information is used to respond to public inquiries, support registration and licensing services, and improve Council communications.</p></section>
-            <section><h2 className="font-heading mb-3 text-2xl font-bold text-council-dark">Portal Services</h2><p>Registration, renewal, verification, and payment workflows are handled through the secure Council portal and follow the privacy and security controls configured for that system.</p></section>
+            <section><h2 className="font-heading mb-3 text-2xl font-bold text-council-dark">How Information Is Used</h2><p>Information is used to respond to public inquiries, support registration, enrollment, and licensing services, and improve Council communications.</p></section>
+            <section><h2 className="font-heading mb-3 text-2xl font-bold text-council-dark">Portal Services</h2><p>Registration, enrollment, renewal, verification, and payment workflows are handled through the secure Council portal and follow the privacy and security controls configured for that system.</p></section>
             <section><h2 className="font-heading mb-3 text-2xl font-bold text-council-dark">Contact</h2><p>Questions about privacy can be sent to info@nursingcouncilbahamas.com.</p></section>
           </div>
         </section>

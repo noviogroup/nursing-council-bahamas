@@ -1,13 +1,13 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import RegistrySampleClient from "@/components/registry/RegistrySampleClient";
-import { AlertTriangle, Database, ShieldCheck } from "lucide-react";
+import { Database, Info, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Nurse Registry | The Nursing Council of The Bahamas",
   description:
-    "Search the Nursing Council’s published nurse registry by name, registration number, type, or original registration year.",
+    "Search the Nursing Council’s published nurse registry by name or registration/enrollment number.",
 };
 
 export default function RegistryPage() {
@@ -30,8 +30,8 @@ export default function RegistryPage() {
                 Search the nurse registry.
               </h1>
               <p className="max-w-2xl text-lg leading-relaxed text-white/85">
-                Browse the published register using a nurse’s name,
-                registration number, type, or original registration year.
+                Search the published registry by name or
+                registration/enrollment number.
               </p>
             </div>
 
@@ -58,10 +58,10 @@ export default function RegistryPage() {
           </div>
         </section>
 
-        <section className="border-b border-amber-200 bg-amber-50">
-          <div className="container mx-auto flex max-w-6xl items-start gap-4 px-4 py-5 text-amber-950">
-            <AlertTriangle
-              className="mt-0.5 h-6 w-6 shrink-0 text-amber-700"
+        <section className="border-b border-council-primary/15 bg-white">
+          <div className="container mx-auto my-6 flex max-w-6xl items-start gap-4 rounded-sm border-l-4 border-council-primary bg-council-primary/5 px-5 py-5 text-council-dark shadow-sm">
+            <Info
+              className="mt-0.5 h-6 w-6 shrink-0 text-council-primary"
               aria-hidden="true"
             />
             <div>
@@ -90,8 +90,8 @@ export default function RegistryPage() {
                     Limited public fields
                   </h2>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Only name, registration type, registration number, and
-                    original registration year are shown.
+                    Only name, registration/enrollment type and number, and
+                    original registration/enrollment year are shown.
                   </p>
                 </div>
               </div>

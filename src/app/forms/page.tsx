@@ -18,21 +18,22 @@ import Footer from '@/components/Footer';
 const formGroups = [
   {
     id: 'registration',
-    title: 'Registration & Licensure',
-    description: 'Forms for entry to practice, registration, licensing, and renewal.',
+    title: 'Registration, Enrollment & Licensure',
+    description: 'Forms for entry to practice, registration, enrollment, licensing, and renewal.',
     forms: [
       'Graduate Nurse Letter',
       'Registration - Local',
       'Registration - International',
       'Provisional (Temporary) Licence',
       'Licence Renewal',
+      'Letter of Good Standing',
     ],
   },
   {
     id: 'education',
     title: 'Education & Examination',
     description: 'Forms for education pathways, examinations, and institutional approval.',
-    forms: ['Indexing', 'Examination', 'Training Institution Approval'],
+    forms: ['Nursing Student Indexing', 'Examination', 'Training Institution Approval'],
   },
   {
     id: 'cpd',
@@ -101,7 +102,7 @@ export default function FormsPage() {
                 Find the right Council form.
               </h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Browse forms for registration, education, professional development, agencies, and Unlicensed Assistive Personnel.
+                Browse forms for registration, enrollment, education, professional development, agencies, and Unlicensed Assistive Personnel.
               </p>
             </div>
           </div>
