@@ -2,6 +2,14 @@
 
 This file records material website and platform releases. Council-supplied legal documents, lists, photographs, and forms should be noted here when published.
 
+## 2026-08-31 - Council Leadership and Public Terminology
+
+- Published the Council-supplied current 11-seat roster on the About page, including the ten named members and vacant Medical Practitioner seat.
+- Consolidated current Council members, founding members, past Chairpersons, and Registrars into the existing scrolling leadership record.
+- Retained the statutory Council composition and Office of the Registrar as separate governance and administration content.
+- Removed the Frequently Asked Questions section from the Contact page.
+- Renamed all public-facing Indexing labels to Nursing Student Indexing while preserving the existing route and portal integration identifiers.
+
 ## 2026-08-17 - Regional Nursing Body News
 
 - Added an external news link covering the 53rd Regional Nursing Body meeting in Georgetown, Guyana.

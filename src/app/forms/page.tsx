@@ -32,7 +32,7 @@ const formGroups = [
     id: 'education',
     title: 'Education & Examination',
     description: 'Forms for education pathways, examinations, and institutional approval.',
-    forms: ['Indexing', 'Examination', 'Training Institution Approval'],
+    forms: ['Nursing Student Indexing', 'Examination', 'Training Institution Approval'],
   },
   {
     id: 'cpd',

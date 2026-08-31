@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import {
   ArrowRight,
-  ChatCircleDots as MessageSquare,
   Clock,
   EnvelopeSimple as Mail,
   MapPin,
@@ -30,13 +29,6 @@ const departmentContacts = [
   { department: 'Education & Continuing Education', email: 'education@nursingcouncilbahamas.com', phone: '(242) 604-6015 ext. 102', description: 'CE requirements, approved programs, and educational standards' },
   { department: 'Committees & Governance', email: 'committees@nursingcouncilbahamas.com', phone: '(242) 604-6015 ext. 103', description: 'Committee information and meeting schedules' },
   { department: 'Nursing Agency Licensing', email: 'agencies@nursingcouncilbahamas.com', phone: '(242) 604-6015 ext. 104', description: 'Agency licensing, compliance, and regulations' },
-];
-
-const faqs = [
-  { question: 'How long does the registration process take?', answer: 'The nursing registration process typically takes 4–6 weeks from submission of a complete application with all required documents.' },
-  { question: 'When is the deadline for licence renewal?', answer: 'All nursing licences must be renewed by December 31st each year. Late renewals incur additional fees.' },
-  { question: 'How many continuing education units do I need?', answer: 'Registered nurses must complete 24 continuing education units annually to maintain their licence.' },
-  { question: 'Can I verify a nurse’s registration online?', answer: 'Yes, you can verify current nursing registrations using the online search tool on the homepage.' },
 ];
 
 export default function ContactPage() {
@@ -76,7 +68,6 @@ export default function ContactPage() {
 
         <section className="bg-gray-50 py-20 lg:py-28"><div className="container mx-auto px-4"><div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"><div><p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Direct support</p><h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">Department contacts</h2></div><p className="max-w-2xl text-lg leading-relaxed text-gray-600">Contact a specialist team directly for more focused support and faster service.</p></div><div className="mx-auto grid max-w-6xl gap-px border border-slate-200 bg-slate-200 md:grid-cols-2">{departmentContacts.map((department, index) => <article key={department.department} className="bg-white p-7 md:p-8"><span className="mb-8 block text-sm font-bold text-council-primary">0{index + 1}</span><h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{department.department}</h3><p className="mb-6 leading-relaxed text-gray-600">{department.description}</p><div className="space-y-3 border-l-2 border-council-accent pl-4 text-sm"><a href={`mailto:${department.email}`} className="flex items-start gap-2 text-council-primary hover:underline"><Mail className="mt-0.5 h-4 w-4 shrink-0" />{department.email}</a><a href={`tel:${department.phone.replace(/[^+\d]/g, '')}`} className="flex items-start gap-2 text-gray-700 hover:text-council-primary"><Phone className="mt-0.5 h-4 w-4 shrink-0" />{department.phone}</a></div></article>)}</div></div></section>
 
-        <section className="bg-white py-20 lg:py-28"><div className="container mx-auto px-4"><div className="mb-12 text-center"><p className="mb-4 flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary"><span className="h-px w-9 bg-council-accent" />Helpful answers</p><h2 className="font-heading mb-4 text-4xl font-bold text-council-dark">Frequently asked questions</h2><p className="mx-auto max-w-2xl text-lg text-gray-600">Quick answers to common questions. Contact us if you need more detail.</p></div><div className="mx-auto grid max-w-5xl gap-px border border-slate-200 bg-slate-200 md:grid-cols-2">{faqs.map((faq, index) => <article key={faq.question} className="bg-white p-7"><span className="mb-8 block text-sm font-bold text-council-primary">0{index + 1}</span><h3 className="font-heading mb-3 text-xl font-bold text-council-dark">{faq.question}</h3><p className="leading-relaxed text-gray-600">{faq.answer}</p></article>)}</div><div className="mt-12 text-center"><button type="button" onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex items-center gap-2 bg-council-primary px-7 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"><MessageSquare className="h-5 w-5" />Contact us directly</button></div></div></section>
       </main>
       <Footer />
     </>

@@ -109,7 +109,7 @@ export default function HomePage() {
                   href="/indexing"
                   className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
                 >
-                  Indexing
+                  Nursing Student Indexing
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link

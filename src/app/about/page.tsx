@@ -112,6 +112,20 @@ const governanceGroups = [
   },
 ];
 
+const currentCouncilMembers = [
+  { role: 'Chairperson', name: 'Ferneka Deleveaux' },
+  { role: 'Deputy Chairperson', name: 'Tamica Knowles' },
+  { role: 'Director of Nursing (ex officio)', name: 'Ms. Genevieve Bowe' },
+  { role: 'Ministry of Education Representative', name: 'Ms. Vanria Jack' },
+  { role: 'Legal Counsel/Attorney', name: 'Ms. Morlette Johnson' },
+  { role: 'Midwives Association Representative', name: 'Ms. Andrea Nottage' },
+  { role: 'Nurses Association Representative', name: 'Ms. Jen Rolle' },
+  { role: 'Nurses Association Representative', name: 'Ms. Tandra Longley' },
+  { role: 'Nurses Association Representative', name: 'Ms. Valencia Rolle' },
+  { role: 'Other Nursing Representative', name: 'Ms. Shirley Bain' },
+  { role: 'Medical Practitioner', name: null },
+];
+
 const administrationRoles = [
   {
     title: 'Registrar',
@@ -523,22 +537,22 @@ export default function AboutPage() {
                   </figure>
 
                   <div className="mt-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Founding Council</p>
-                    <h3 className="font-heading mt-2 text-2xl font-bold leading-tight">A legacy of public protection.</h3>
+                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Council leadership</p>
+                    <h3 className="font-heading mt-2 text-2xl font-bold leading-tight">A record of service and public protection.</h3>
                   </div>
 
                   <dl className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-[4px] bg-white/20">
+                    <div className="bg-white/10 p-3">
+                      <dd className="font-heading text-2xl font-bold text-council-accent">11</dd>
+                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Current Council seats</dt>
+                    </div>
                     <div className="bg-white/10 p-3">
                       <dd className="font-heading text-2xl font-bold text-council-accent">10</dd>
                       <dt className="mt-1 text-xs leading-relaxed text-white/75">Founding members</dt>
                     </div>
                     <div className="bg-white/10 p-3">
-                      <dd className="font-heading text-2xl font-bold text-council-accent">1972</dd>
-                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Council established</dt>
-                    </div>
-                    <div className="bg-white/10 p-3">
                       <dd className="font-heading text-2xl font-bold text-council-accent">13</dd>
-                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Recorded appointments</dt>
+                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Past Chairpersons</dt>
                     </div>
                   </dl>
 
@@ -567,6 +581,48 @@ export default function AboutPage() {
               </aside>
 
               <div className="space-y-14">
+                <section className="overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm">
+                  <div className="border-b border-slate-200 p-6 md:p-10">
+                    <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
+                      <span className="h-px w-9 bg-council-accent" />
+                      Current Council Members
+                    </p>
+                    <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Current appointments.</h3>
+                    <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
+                      The current Council brings together nursing leadership, professional representatives, legal counsel, education, and medical expertise.
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-gray-500">
+                      Council-supplied current appointments, August 2026.
+                    </p>
+                  </div>
+                  <ol>
+                    {currentCouncilMembers.map((member, index) => {
+                      const isVacant = member.name === null;
+
+                      return (
+                        <li
+                          key={`${member.role}-${member.name ?? 'vacant'}`}
+                          className={`grid gap-3 border-b border-slate-200 px-5 py-5 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(12rem,0.9fr)] sm:items-center sm:gap-5 sm:px-6 ${isVacant ? 'bg-amber-50' : 'bg-white'}`}
+                        >
+                          <span className="font-heading text-sm font-bold text-council-primary">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <p className="font-heading text-lg font-bold text-council-dark">{member.role}</p>
+                          {isVacant ? (
+                            <span className="w-fit rounded-[4px] border border-amber-300 bg-white px-3 py-1.5 text-sm font-semibold text-amber-800">
+                              Vacant
+                            </span>
+                          ) : (
+                            <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-700">
+                              {member.name}
+                            </p>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </section>
+
                 <section className="rounded-[4px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
                   <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                     <span className="h-px w-9 bg-council-accent" />
@@ -736,28 +792,19 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-slate-200 bg-slate-200 lg:grid-cols-2">
-                <article className="bg-white p-7 md:p-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Council Members</p>
-                  <h3 className="font-heading mt-4 text-3xl font-bold text-council-dark">Current appointments</h3>
-                  <p className="mt-4 max-w-xl leading-relaxed text-gray-600">
-                    Confirmed names, official titles, appointment terms, and consistent professional photographs will be published once they are supplied and approved by the Council.
-                  </p>
-                </article>
-                <article className="bg-council-primary p-7 text-white md:p-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Administration</p>
-                  <h3 className="font-heading mt-4 text-3xl font-bold">Office of the Registrar</h3>
-                  <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                    {administrationRoles.map((role) => (
-                      <div key={role.title} className="border-t border-white/25 pt-4">
-                        <h4 className="font-heading text-xl font-bold text-council-accent">{role.title}</h4>
-                        <p className="mt-2 text-sm leading-relaxed text-white/80">{role.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-6 text-sm leading-relaxed text-white/70">General support staff are not publicly listed.</p>
-                </article>
-              </div>
+              <article className="mt-12 rounded-[4px] bg-council-primary p-7 text-white shadow-sm md:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Administration</p>
+                <h3 className="font-heading mt-4 text-3xl font-bold">Office of the Registrar</h3>
+                <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                  {administrationRoles.map((role) => (
+                    <div key={role.title} className="border-t border-white/25 pt-4">
+                      <h4 className="font-heading text-xl font-bold text-council-accent">{role.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-white/80">{role.description}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 text-sm leading-relaxed text-white/70">General support staff are not publicly listed.</p>
+              </article>
             </div>
           </div>
         </section>
