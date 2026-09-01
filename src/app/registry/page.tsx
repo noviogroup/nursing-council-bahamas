@@ -36,7 +36,7 @@ export default function RegistryPage() {
 
             <div className="grid w-full grid-cols-3 divide-x divide-white/15 rounded-sm border border-white/20 bg-white/10 px-2 py-5 backdrop-blur-sm sm:px-4 lg:px-2">
               <div className="min-w-0 px-2 text-center sm:px-3">
-                <strong className="block text-xl font-bold text-council-accent sm:text-2xl">
+                <strong className="block text-lg font-bold text-council-accent sm:text-xl">
                   4,300+
                 </strong>
                 <span className="mt-1 block text-xs text-white/75">
@@ -44,7 +44,7 @@ export default function RegistryPage() {
                 </span>
               </div>
               <div className="min-w-0 px-2 text-center sm:px-3">
-                <strong className="block text-lg font-bold text-council-accent sm:text-2xl">
+                <strong className="block text-lg font-bold text-council-accent sm:text-xl">
                   Combined
                 </strong>
                 <span className="mt-1 block text-xs text-white/75">
@@ -52,7 +52,7 @@ export default function RegistryPage() {
                 </span>
               </div>
               <div className="min-w-0 px-2 text-center sm:px-3">
-                <strong className="block text-xl font-bold text-council-accent sm:text-2xl">
+                <strong className="block text-lg font-bold text-council-accent sm:text-xl">
                   4
                 </strong>
                 <span className="mt-1 block text-xs text-white/75">types</span>
