@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import RegistrySampleClient from "@/components/registry/RegistrySampleClient";
-import { AlertTriangle, Database, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -30,88 +29,40 @@ export default function RegistryPage() {
                 Search the nurse registry.
               </h1>
               <p className="max-w-2xl text-lg leading-relaxed text-white/85">
-                Browse the published register using a nurse’s name,
-                registration number, type, or original registration year.
+                Browse the published register using a nurse’s name, registration
+                number, type, or original registration year.
               </p>
             </div>
 
-            <div className="grid grid-cols-3 divide-x divide-white/15 rounded-sm border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-              <div className="px-3 text-center">
-                <strong className="block text-2xl font-bold text-council-accent">
-                  3,124
+            <div className="grid w-full grid-cols-3 divide-x divide-white/15 rounded-sm border border-white/20 bg-white/10 px-2 py-5 backdrop-blur-sm sm:px-4 lg:px-2">
+              <div className="min-w-0 px-2 text-center sm:px-3">
+                <strong className="block text-xl font-bold text-council-accent sm:text-2xl">
+                  4,300+
                 </strong>
-                <span className="text-xs text-white/75">records</span>
+                <span className="mt-1 block text-xs text-white/75">
+                  records
+                </span>
               </div>
-              <div className="px-3 text-center">
-                <strong className="block text-2xl font-bold text-council-accent">
-                  1973–2024
+              <div className="min-w-0 px-2 text-center sm:px-3">
+                <strong className="block text-lg font-bold text-council-accent sm:text-2xl">
+                  Combined
                 </strong>
-                <span className="text-xs text-white/75">years</span>
+                <span className="mt-1 block text-xs text-white/75">
+                  registry
+                </span>
               </div>
-              <div className="px-3 text-center">
-                <strong className="block text-2xl font-bold text-council-accent">
+              <div className="min-w-0 px-2 text-center sm:px-3">
+                <strong className="block text-xl font-bold text-council-accent sm:text-2xl">
                   4
                 </strong>
-                <span className="text-xs text-white/75">types</span>
+                <span className="mt-1 block text-xs text-white/75">types</span>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-amber-200 bg-amber-50">
-          <div className="container mx-auto flex max-w-6xl items-start gap-4 px-4 py-5 text-amber-950">
-            <AlertTriangle
-              className="mt-0.5 h-6 w-6 shrink-0 text-amber-700"
-              aria-hidden="true"
-            />
-            <div>
-              <h2 className="font-heading font-bold">
-                Registry listing — not proof of current good standing
-              </h2>
-              <p className="mt-1 text-sm leading-relaxed">
-                Inclusion confirms that the person appears in the Council’s
-                published historical registry. It does not confirm that a
-                licence is current, active, unrestricted, or in good standing.
-              </p>
             </div>
           </div>
         </section>
 
         <section className="py-12 lg:py-16">
           <div className="container mx-auto max-w-6xl px-4">
-            <div className="mb-8 grid gap-5 sm:grid-cols-2">
-              <div className="flex items-start gap-4 rounded-sm border border-slate-200 bg-white p-5">
-                <Database
-                  className="mt-0.5 h-6 w-6 shrink-0 text-council-primary"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h2 className="font-heading font-bold text-council-dark">
-                    Limited public fields
-                  </h2>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Only name, registration type, registration number, and
-                    original registration year are shown.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 rounded-sm border border-slate-200 bg-white p-5">
-                <ShieldCheck
-                  className="mt-0.5 h-6 w-6 shrink-0 text-council-primary"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h2 className="font-heading font-bold text-council-dark">
-                    Formal verification remains separate
-                  </h2>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Contact the Council or use its verification service when
-                    current status or an official letter is required.
-                  </p>
-                </div>
-              </div>
-            </div>
-
             <RegistrySampleClient />
           </div>
         </section>

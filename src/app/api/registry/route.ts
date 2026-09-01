@@ -1,38 +1,29 @@
-import { createClient } from "@supabase/supabase-js";
+import { searchRegistryIndex } from "@/lib/registryIndex";
 import { type NextRequest, NextResponse } from "next/server";
 
 const PAGE_SIZE = 25;
-const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "TCN", "LPN", "APRN"]);
+const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "TCN"]);
+const ALLOWED_YEAR_RANGES = new Set([
+  "2021-2030",
+  "2011-2020",
+  "2001-2010",
+  "1991-2000",
+  "1981-1990",
+  "1971-1980",
+]);
 const SEARCH_PATTERN = /^[\p{L}\p{N}’'./ -]+$/u;
 
-type RegistryRow = {
-  entry_id: number;
-  nurse_name: string;
-  registration_type: string;
-  registration_number: string;
-  registration_year: number;
-  total_count: number | string;
-};
-
 export async function GET(request: NextRequest) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !anonKey) {
-    return NextResponse.json(
-      { error: "The public registry is not configured in this environment." },
-      { status: 503 },
-    );
-  }
-
   const query = request.nextUrl.searchParams.get("q")?.trim() || "";
   const registrationType =
     request.nextUrl.searchParams.get("type")?.trim().toUpperCase() || "";
-  const yearValue = request.nextUrl.searchParams.get("year")?.trim() || "";
+  const yearFromValue =
+    request.nextUrl.searchParams.get("yearFrom")?.trim() || "";
+  const yearToValue = request.nextUrl.searchParams.get("yearTo")?.trim() || "";
   const pageValue = request.nextUrl.searchParams.get("page")?.trim() || "1";
   const page = Number(pageValue);
-  const registrationYear = yearValue ? Number(yearValue) : null;
-  const currentYear = new Date().getFullYear();
+  const registrationYearFrom = yearFromValue ? Number(yearFromValue) : null;
+  const registrationYearTo = yearToValue ? Number(yearToValue) : null;
 
   if (
     query &&
@@ -52,13 +43,17 @@ export async function GET(request: NextRequest) {
   }
 
   if (
-    registrationYear !== null &&
-    (!Number.isInteger(registrationYear) ||
-      registrationYear < 1900 ||
-      registrationYear > currentYear)
+    (registrationYearFrom === null) !== (registrationYearTo === null) ||
+    (registrationYearFrom !== null &&
+      registrationYearTo !== null &&
+      (!Number.isInteger(registrationYearFrom) ||
+        !Number.isInteger(registrationYearTo) ||
+        !ALLOWED_YEAR_RANGES.has(
+          `${registrationYearFrom}-${registrationYearTo}`,
+        )))
   ) {
     return NextResponse.json(
-      { error: "Select a valid registration year." },
+      { error: "Select a valid registration period." },
       { status: 400 },
     );
   }
@@ -70,20 +65,22 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const supabase = createClient(supabaseUrl, anonKey, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
+  let result: Awaited<ReturnType<typeof searchRegistryIndex>>;
 
-  const { data, error } = await supabase.rpc("public_search_registry", {
-    p_query: query || null,
-    p_registration_type: registrationType || null,
-    p_registration_year: registrationYear,
-    p_limit: PAGE_SIZE,
-    p_offset: (page - 1) * PAGE_SIZE,
-  });
-
-  if (error) {
-    console.error("Public registry query failed", error.code);
+  try {
+    result = await searchRegistryIndex({
+      query,
+      registrationType,
+      registrationYearFrom,
+      registrationYearTo,
+      limit: PAGE_SIZE,
+      offset: (page - 1) * PAGE_SIZE,
+    });
+  } catch (error) {
+    console.error(
+      "Public registry index query failed",
+      error instanceof Error ? error.message : "Unknown error",
+    );
     return NextResponse.json(
       {
         error:
@@ -93,25 +90,15 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const rows = (data || []) as RegistryRow[];
-  const total = Number(rows[0]?.total_count || 0);
-
   return NextResponse.json(
     {
-      records: rows.map((row) => ({
-        id: row.entry_id,
-        name: row.nurse_name,
-        type: row.registration_type,
-        registrationNumber: row.registration_number,
-        registrationYear: row.registration_year,
-      })),
+      records: result.records,
       pagination: {
         page,
         pageSize: PAGE_SIZE,
-        total,
-        pages: Math.ceil(total / PAGE_SIZE),
+        total: result.total,
+        pages: Math.ceil(result.total / PAGE_SIZE),
       },
-      source: "published_registry",
     },
     {
       headers: {

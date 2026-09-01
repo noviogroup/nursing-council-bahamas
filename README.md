@@ -11,6 +11,7 @@ The project provides:
 - Public information about the Council, its history, mandate, governance, and committees
 - Registration, licence renewal, indexing, and verification entry points
 - Education, training, nursing agency, UAP, legal, and forms pages
+- A searchable public nurse registry sourced from the Council's Airtable records
 - Public complaint submission and complaint-status tracking
 - A role-aware staff complaints portal backed by Supabase
 - Responsive navigation, accessible page structures, and search-engine metadata
@@ -43,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Environment Variables
 
-The public informational pages can render without database credentials. Complaint submission, tracking, and staff portal features require the Supabase values documented in `.env.example`.
+The public informational pages can render without database credentials. The nurse registry, complaint submission, tracking, and staff portal features require the values documented in `.env.example`.
 
 Important variables include:
 
@@ -52,8 +53,12 @@ Important variables include:
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXT_PUBLIC_PORTAL_URL`
 - `NEXT_PUBLIC_COMPLAINTS_STORAGE_BUCKET`
+- `AIRTABLE_TOKEN` and the Airtable base, table, and view IDs
+- `REGISTRY_SYNC_SECRET`
 
 Email delivery remains disabled until an email provider and approved templates are configured.
+
+The public registry searches a protected Supabase index. Netlify refreshes that index daily from Airtable; an authorized manual refresh can be run with `npm run sync:registry`.
 
 Never commit `.env.local` or private credentials.
 
@@ -74,6 +79,7 @@ npm run build
 - `/legal-ethics` - Nurses and Midwives Act, 2023
 - `/indexing` - Indexing guidance and portal entry
 - `/verification` - Registration verification and good-standing guidance
+- `/registry` - Searchable public nurse registry
 - `/forms` - Public forms library
 - `/committees` - Council committees and responsibilities
 - `/complaints` - Complaint information, submission, and tracking

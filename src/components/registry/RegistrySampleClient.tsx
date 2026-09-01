@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   AlertTriangle,
+  Check,
   ChevronLeft,
   ChevronRight,
   LoaderCircle,
@@ -13,11 +14,10 @@ import {
 import { type FormEvent, useEffect, useState } from "react";
 
 type RegistryRecord = {
-  id: number;
   name: string;
   type: string;
   registrationNumber: string;
-  registrationYear: number;
+  registrationYear: number | null;
 };
 
 type RegistryResponse = {
@@ -33,11 +33,29 @@ type RegistryResponse = {
 type Filters = {
   query: string;
   type: string;
-  year: string;
+  yearRange: string;
 };
 
-const EMPTY_FILTERS: Filters = { query: "", type: "", year: "" };
-const REGISTRATION_TYPES = ["RN", "EN", "RM", "TCN", "LPN", "APRN"];
+const EMPTY_FILTERS: Filters = { query: "", type: "", yearRange: "" };
+const REGISTRATION_TYPES = [
+  { label: "All registration types", value: "" },
+  { label: "Registered Nurse", value: "RN" },
+  { label: "Enrolled Nurse", value: "EN" },
+  { label: "Registered Midwife", value: "RM" },
+  { label: "Trained Clinical Nurse", value: "TCN" },
+];
+const REGISTRATION_TYPE_LABELS = new Map(
+  REGISTRATION_TYPES.map((type) => [type.value, type.label]),
+);
+const REGISTRATION_DECADES = [
+  { label: "2021–2030", value: "2021-2030", from: 2021, to: 2030 },
+  { label: "2011–2020", value: "2011-2020", from: 2011, to: 2020 },
+  { label: "2001–2010", value: "2001-2010", from: 2001, to: 2010 },
+  { label: "1991–2000", value: "1991-2000", from: 1991, to: 2000 },
+  { label: "1981–1990", value: "1981-1990", from: 1981, to: 1990 },
+  { label: "1971–1980", value: "1971-1980", from: 1971, to: 1980 },
+];
+
 export default function RegistrySampleClient() {
   const [formFilters, setFormFilters] = useState<Filters>(EMPTY_FILTERS);
   const [activeFilters, setActiveFilters] = useState<Filters>(EMPTY_FILTERS);
@@ -53,7 +71,13 @@ export default function RegistrySampleClient() {
     const params = new URLSearchParams({ page: String(page) });
     if (activeFilters.query) params.set("q", activeFilters.query);
     if (activeFilters.type) params.set("type", activeFilters.type);
-    if (activeFilters.year) params.set("year", activeFilters.year);
+    const selectedDecade = REGISTRATION_DECADES.find(
+      (decade) => decade.value === activeFilters.yearRange,
+    );
+    if (selectedDecade) {
+      params.set("yearFrom", String(selectedDecade.from));
+      params.set("yearTo", String(selectedDecade.to));
+    }
 
     async function loadRegistry() {
       setLoading(true);
@@ -115,8 +139,41 @@ export default function RegistrySampleClient() {
     setPage(1);
   }
 
+  function handleDecadeSelection(yearRange: string) {
+    const query = formFilters.query.trim();
+
+    if (query && query.length < 2) {
+      setError("Enter at least two letters or numbers to search.");
+      return;
+    }
+
+    const nextYearRange = formFilters.yearRange === yearRange ? "" : yearRange;
+    const nextFilters = { ...formFilters, query, yearRange: nextYearRange };
+
+    setError("");
+    setFormFilters(nextFilters);
+    setActiveFilters(nextFilters);
+    setPage(1);
+  }
+
+  function handleTypeSelection(type: string) {
+    const query = formFilters.query.trim();
+
+    if (query && query.length < 2) {
+      setError("Enter at least two letters or numbers to search.");
+      return;
+    }
+
+    const nextFilters = { ...formFilters, query, type };
+
+    setError("");
+    setFormFilters(nextFilters);
+    setActiveFilters(nextFilters);
+    setPage(1);
+  }
+
   const hasFilters = Boolean(
-    activeFilters.query || activeFilters.type || activeFilters.year,
+    activeFilters.query || activeFilters.type || activeFilters.yearRange,
   );
   const firstResult = total === 0 ? 0 : (page - 1) * 25 + 1;
   const lastResult = Math.min(page * 25, total);
@@ -125,95 +182,107 @@ export default function RegistrySampleClient() {
     <div className="space-y-8">
       <form
         onSubmit={handleSubmit}
-        className="grid gap-4 rounded-sm border border-slate-200 bg-white p-5 shadow-sm lg:grid-cols-[minmax(0,1fr)_180px_180px_auto] lg:items-end lg:p-6"
+        className="rounded-sm border border-slate-200 bg-white p-5 shadow-sm lg:p-6"
         aria-label="Search public nurse registry"
       >
-        <div>
-          <label
-            htmlFor="registry-search"
-            className="mb-2 block text-sm font-semibold text-council-dark"
-          >
-            Name or registration number
-          </label>
-          <div className="relative">
-            <Search
-              className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
-              aria-hidden="true"
-            />
-            <Input
-              id="registry-search"
-              value={formFilters.query}
-              onChange={(event) =>
-                setFormFilters((current) => ({
-                  ...current,
-                  query: event.target.value,
-                }))
-              }
-              placeholder="e.g. Rolle or RN 24-5537"
-              maxLength={80}
-              className="h-12 pl-10"
-            />
+        <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+          <div>
+            <label
+              htmlFor="registry-search"
+              className="mb-2 block text-sm font-semibold text-council-dark"
+            >
+              Name or registration number
+            </label>
+            <div className="relative">
+              <Search
+                className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+                aria-hidden="true"
+              />
+              <Input
+                id="registry-search"
+                value={formFilters.query}
+                onChange={(event) =>
+                  setFormFilters((current) => ({
+                    ...current,
+                    query: event.target.value,
+                  }))
+                }
+                placeholder="e.g. Rolle or RN 24-5537"
+                maxLength={80}
+                className="h-12 pl-10"
+              />
+            </div>
           </div>
+
+          <Button
+            type="submit"
+            className="h-12 rounded-sm bg-council-primary px-6 font-semibold hover:bg-council-secondary"
+          >
+            <Search className="h-4 w-4" aria-hidden="true" />
+            Search
+          </Button>
         </div>
 
-        <div>
-          <label
-            htmlFor="registry-type"
-            className="mb-2 block text-sm font-semibold text-council-dark"
-          >
+        <fieldset className="mt-6 border-t border-slate-200 pt-5">
+          <legend className="mx-auto px-3 text-center text-sm font-semibold text-council-dark">
             Registration type
-          </label>
-          <select
-            id="registry-type"
-            value={formFilters.type}
-            onChange={(event) =>
-              setFormFilters((current) => ({
-                ...current,
-                type: event.target.value,
-              }))
-            }
-            className="h-12 w-full rounded-sm border border-input bg-white px-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-council-primary"
-          >
-            <option value="">All types</option>
-            {REGISTRATION_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </div>
+          </legend>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+            {REGISTRATION_TYPES.map((type) => {
+              const isSelected = formFilters.type === type.value;
 
-        <div>
-          <label
-            htmlFor="registry-year"
-            className="mb-2 block text-sm font-semibold text-council-dark"
-          >
-            Registration year
-          </label>
-          <Input
-            id="registry-year"
-            type="number"
-            min={1900}
-            max={new Date().getFullYear()}
-            value={formFilters.year}
-            onChange={(event) =>
-              setFormFilters((current) => ({
-                ...current,
-                year: event.target.value,
-              }))
-            }
-            placeholder="All years"
-            className="h-12"
-          />
-        </div>
+              return (
+                <button
+                  key={type.value || "all"}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => handleTypeSelection(type.value)}
+                  className={`flex min-h-16 items-center justify-center gap-2 rounded-sm border px-4 py-3 text-center text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 ${
+                    isSelected
+                      ? "border-council-primary bg-council-primary/10 text-council-primary"
+                      : "border-slate-300 bg-white text-slate-700 hover:border-council-primary hover:bg-council-primary/5 hover:text-council-primary"
+                  }`}
+                >
+                  <Check
+                    className={`h-4 w-4 shrink-0 ${isSelected ? "opacity-100" : "opacity-0"}`}
+                    aria-hidden="true"
+                  />
+                  <span>{type.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
 
-        <Button
-          type="submit"
-          className="h-12 rounded-sm bg-council-primary px-6 font-semibold hover:bg-council-secondary"
-        >
-          <Search className="h-4 w-4" aria-hidden="true" />
-          Search
-        </Button>
+        <fieldset className="mt-6 border-t border-slate-200 pt-5">
+          <legend className="mx-auto px-3 text-center text-sm font-semibold text-council-dark">
+            Registration period
+          </legend>
+          <div
+            className="flex flex-wrap justify-center gap-2"
+            aria-label="Registration period"
+          >
+            {REGISTRATION_DECADES.map((decade) => {
+              const isSelected = formFilters.yearRange === decade.value;
+
+              return (
+                <button
+                  key={decade.value}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => handleDecadeSelection(decade.value)}
+                  className={`min-h-10 rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 ${
+                    isSelected
+                      ? "border-council-primary bg-council-primary text-white"
+                      : "border-slate-300 bg-white text-council-primary hover:border-council-primary hover:bg-council-primary/5"
+                  }`}
+                >
+                  {decade.label}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
       </form>
 
       {error && (
@@ -288,8 +357,11 @@ export default function RegistrySampleClient() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {records.map((record) => (
-                    <tr key={record.id} className="hover:bg-slate-50/70">
+                  {records.map((record, index) => (
+                    <tr
+                      key={`${record.registrationNumber}:${record.name}:${index}`}
+                      className="hover:bg-slate-50/70"
+                    >
                       <th
                         scope="row"
                         className="px-6 py-4 font-semibold text-council-dark"
@@ -298,14 +370,15 @@ export default function RegistrySampleClient() {
                       </th>
                       <td className="px-6 py-4">
                         <span className="inline-flex min-w-11 justify-center rounded-full bg-council-primary/10 px-3 py-1 text-sm font-semibold text-council-primary">
-                          {record.type}
+                          {REGISTRATION_TYPE_LABELS.get(record.type) ??
+                            record.type}
                         </span>
                       </td>
                       <td className="px-6 py-4 font-mono text-sm text-slate-700">
                         {record.registrationNumber}
                       </td>
                       <td className="px-6 py-4 text-right text-slate-700">
-                        {record.registrationYear}
+                        {record.registrationYear ?? "Not recorded"}
                       </td>
                     </tr>
                   ))}
@@ -314,14 +387,18 @@ export default function RegistrySampleClient() {
             </div>
 
             <div className="divide-y divide-slate-100 md:hidden">
-              {records.map((record) => (
-                <article key={record.id} className="p-5">
+              {records.map((record, index) => (
+                <article
+                  key={`${record.registrationNumber}:${record.name}:${index}`}
+                  className="p-5"
+                >
                   <div className="mb-3 flex items-start justify-between gap-4">
                     <h3 className="font-heading text-lg font-bold text-council-dark">
                       {record.name}
                     </h3>
                     <span className="rounded-full bg-council-primary/10 px-3 py-1 text-sm font-semibold text-council-primary">
-                      {record.type}
+                        {REGISTRATION_TYPE_LABELS.get(record.type) ??
+                          record.type}
                     </span>
                   </div>
                   <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
@@ -331,7 +408,7 @@ export default function RegistrySampleClient() {
                     </dd>
                     <dt className="text-slate-500">Year registered</dt>
                     <dd className="text-right font-semibold text-slate-800">
-                      {record.registrationYear}
+                      {record.registrationYear ?? "Not recorded"}
                     </dd>
                   </dl>
                 </article>
