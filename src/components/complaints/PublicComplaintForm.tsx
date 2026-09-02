@@ -70,15 +70,15 @@ function buildResumeUrl(token: string) {
 }
 
 function fieldClassName() {
-  return 'mt-2 min-h-12 rounded-sm border-slate-300 bg-white text-base shadow-none focus-visible:ring-council-primary';
+  return 'mt-2 min-h-12 rounded-[8px] border-slate-300 bg-white text-base shadow-none focus-visible:ring-council-primary';
 }
 
 function selectClassName() {
-  return 'mt-2 min-h-12 w-full rounded-sm border border-slate-300 bg-white px-3 text-base text-council-dark focus:outline-none focus:ring-1 focus:ring-council-primary';
+  return 'mt-2 min-h-12 w-full rounded-[8px] border border-slate-300 bg-white px-3 text-base text-council-dark focus:outline-none focus:ring-1 focus:ring-council-primary';
 }
 
 function checkboxClassName() {
-  return 'mt-1 h-4 w-4 shrink-0 rounded border-slate-300 text-council-primary focus:ring-council-primary';
+  return 'mt-1 h-4 w-4 shrink-0 rounded-[8px] border-slate-300 text-council-primary focus:ring-council-primary';
 }
 
 export default function PublicComplaintForm({ draftToken }: { draftToken?: string }) {
@@ -323,7 +323,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
                 step === index ? 'bg-white text-council-primary' : 'text-white/80 hover:bg-white/10'
               }`}
             >
-              <span className="flex h-7 w-7 items-center justify-center rounded-sm border border-current text-xs font-bold">
+              <span className="flex h-7 w-7 items-center justify-center rounded-[8px] border border-current text-xs font-bold">
                 {index + 1}
               </span>
               {label}
@@ -354,11 +354,11 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
           <div className="mb-6 border border-slate-200 bg-gray-50 p-4">
             <p className="mb-2 text-sm font-semibold text-council-dark">Draft resume link</p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Input readOnly value={resumeUrl} className="min-h-11 rounded-sm bg-white" />
+              <Input readOnly value={resumeUrl} className="min-h-11 rounded-[8px] bg-white" />
               <Button
                 type="button"
                 variant="outline"
-                className="min-h-11 rounded-sm"
+                className="min-h-11 rounded-[8px]"
                 onClick={() => navigator.clipboard.writeText(resumeUrl)}
               >
                 <Copy className="h-4 w-4" />
@@ -373,7 +373,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Step {step + 1} of 7</p>
             <h1 className="font-heading mt-2 text-3xl font-bold text-council-dark">{steps[step]}</h1>
           </div>
-          <Button type="button" variant="outline" onClick={saveDraft} disabled={isSaving} className="hidden min-h-11 rounded-sm sm:inline-flex">
+          <Button type="button" variant="outline" onClick={saveDraft} disabled={isSaving} className="hidden min-h-11 rounded-[8px] sm:inline-flex">
             <FloppyDisk className="h-4 w-4" />
             {isSaving ? 'Saving...' : 'Save draft'}
           </Button>
@@ -485,11 +485,11 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Detailed description *
-              <Textarea rows={8} value={formData.incident.description} onChange={(event) => setSectionValue('incident', 'description', event.target.value)} className="mt-2 rounded-sm border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
+              <Textarea rows={8} value={formData.incident.description} onChange={(event) => setSectionValue('incident', 'description', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               People involved
-              <Textarea rows={3} value={formData.incident.peopleInvolved} onChange={(event) => setSectionValue('incident', 'peopleInvolved', event.target.value)} className="mt-2 rounded-sm border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
+              <Textarea rows={3} value={formData.incident.peopleInvolved} onChange={(event) => setSectionValue('incident', 'peopleInvolved', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
             <label className="flex gap-3 text-sm font-medium text-gray-700">
               <input type="checkbox" checked={formData.incident.ongoing} onChange={(event) => setSectionValue('incident', 'ongoing', event.target.checked)} className={checkboxClassName()} />
@@ -501,7 +501,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Outcome requested
-              <Textarea rows={4} value={formData.incident.outcome} onChange={(event) => setSectionValue('incident', 'outcome', event.target.value)} className="mt-2 rounded-sm border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
+              <Textarea rows={4} value={formData.incident.outcome} onChange={(event) => setSectionValue('incident', 'outcome', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
           </div>
         )}
@@ -514,11 +514,11 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             </label>
             <label className="block text-sm font-medium text-gray-700">
               Prior action details
-              <Textarea rows={5} value={formData.priorAction.details} onChange={(event) => setSectionValue('priorAction', 'details', event.target.value)} className="mt-2 rounded-sm border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
+              <Textarea rows={5} value={formData.priorAction.details} onChange={(event) => setSectionValue('priorAction', 'details', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
             <label className="block text-sm font-medium text-gray-700">
               Response received
-              <Textarea rows={4} value={formData.priorAction.response} onChange={(event) => setSectionValue('priorAction', 'response', event.target.value)} className="mt-2 rounded-sm border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
+              <Textarea rows={4} value={formData.priorAction.response} onChange={(event) => setSectionValue('priorAction', 'response', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
             <label className="block text-sm font-medium text-gray-700">
               Existing case or reference numbers
@@ -580,22 +580,22 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
         )}
 
         <div className="mt-10 flex flex-col-reverse justify-between gap-3 border-t border-slate-200 pt-6 sm:flex-row">
-          <Button type="button" variant="outline" disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))} className="min-h-12 rounded-sm">
+          <Button type="button" variant="outline" disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))} className="min-h-12 rounded-[8px]">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button type="button" variant="outline" onClick={saveDraft} disabled={isSaving} className="min-h-12 rounded-sm sm:hidden">
+            <Button type="button" variant="outline" onClick={saveDraft} disabled={isSaving} className="min-h-12 rounded-[8px] sm:hidden">
               <FloppyDisk className="h-4 w-4" />
               {isSaving ? 'Saving...' : 'Save draft'}
             </Button>
             {step < steps.length - 1 ? (
-              <Button type="button" disabled={!canContinue()} onClick={() => setStep((current) => current + 1)} className="min-h-12 rounded-sm bg-council-primary px-7 hover:bg-council-secondary">
+              <Button type="button" disabled={!canContinue()} onClick={() => setStep((current) => current + 1)} className="min-h-12 rounded-[8px] bg-council-primary px-7 hover:bg-council-secondary">
                 Continue
                 <ArrowRight className="h-4 w-4" />
               </Button>
             ) : (
-              <Button type="button" disabled={isSubmitting || !allAcknowledged} onClick={submitComplaint} className="min-h-12 rounded-sm bg-council-primary px-7 hover:bg-council-secondary">
+              <Button type="button" disabled={isSubmitting || !allAcknowledged} onClick={submitComplaint} className="min-h-12 rounded-[8px] bg-council-primary px-7 hover:bg-council-secondary">
                 {isSubmitting ? 'Submitting...' : 'Submit complaint'}
                 <CheckCircle className="h-4 w-4" />
               </Button>

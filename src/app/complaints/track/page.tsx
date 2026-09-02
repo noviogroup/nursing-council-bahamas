@@ -89,13 +89,13 @@ export default function ComplaintTrackPage() {
               <FileSearch className="mb-8 h-10 w-10 text-council-primary" />
               <label className="block text-sm font-medium text-gray-700">
                 Complaint reference number
-                <Input required value={referenceNumber} onChange={(event) => setReferenceNumber(event.target.value.toUpperCase())} placeholder="NC-2026-00001" className="mt-2 min-h-12 rounded-sm" />
+                <Input required value={referenceNumber} onChange={(event) => setReferenceNumber(event.target.value.toUpperCase())} placeholder="NC-2026-00001" className="mt-2 min-h-12 rounded-[8px]" />
               </label>
               <label className="mt-5 block text-sm font-medium text-gray-700">
                 Contact email
-                <Input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 min-h-12 rounded-sm" />
+                <Input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 min-h-12 rounded-[8px]" />
               </label>
-              <Button type="submit" disabled={isLoading} className="mt-6 min-h-12 w-full rounded-sm bg-council-primary hover:bg-council-secondary">
+              <Button type="submit" disabled={isLoading} className="mt-6 min-h-12 w-full rounded-[8px] bg-council-primary hover:bg-council-secondary">
                 {isLoading ? 'Checking...' : 'Track complaint'}
                 <ArrowRight className="h-4 w-4" />
               </Button>

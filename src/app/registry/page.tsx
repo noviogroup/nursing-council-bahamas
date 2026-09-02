@@ -1,13 +1,13 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import RegistrySampleClient from "@/components/registry/RegistrySampleClient";
-import type { Metadata } from "next";
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: "Nurse Registry | The Nursing Council of The Bahamas",
-  description:
-    "Search the Nursing Council’s published nurse registry by name, registration number, type, or original registration year.",
-};
+export const metadata = createPageMetadata({
+  title: 'Public Nurse Registry',
+  description: 'Search the Nursing Council’s published nurse registry by name, registration number, registration type, or original registration year.',
+  path: '/registry',
+});
 
 export default function RegistryPage() {
   return (
@@ -34,7 +34,7 @@ export default function RegistryPage() {
               </p>
             </div>
 
-            <div className="grid w-full grid-cols-3 divide-x divide-white/15 rounded-sm border border-white/20 bg-white/10 px-2 py-5 backdrop-blur-sm sm:px-4 lg:px-2">
+            <div className="grid w-full grid-cols-3 divide-x divide-white/15 rounded-[8px] border border-white/20 bg-white/10 px-2 py-5 backdrop-blur-sm sm:px-4 lg:px-2">
               <div className="min-w-0 px-2 text-center sm:px-3">
                 <strong className="block text-lg font-bold text-council-accent sm:text-xl">
                   4,300+

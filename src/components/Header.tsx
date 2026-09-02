@@ -68,7 +68,7 @@ export default function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex shrink-0 items-center gap-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+              className="flex shrink-0 items-center gap-3 rounded-[8px] focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
               aria-label="The Nursing Council of the Commonwealth of The Bahamas - Go to homepage"
             >
               <Image
@@ -93,7 +93,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="whitespace-nowrap rounded-sm px-1 py-1 text-[13px] font-medium text-gray-700 transition-colors duration-200 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 2xl:px-2 2xl:text-sm"
+                  className="whitespace-nowrap rounded-[8px] px-1 py-1 text-[13px] font-medium text-gray-700 transition-colors duration-200 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 2xl:px-2 2xl:text-sm"
                   aria-label={`Navigate to ${item.label} page`}
                 >
                   {item.label}
@@ -102,7 +102,7 @@ export default function Header() {
             </div>
 
             <div className="ml-auto hidden justify-end xl:flex">
-              <Button asChild className="rounded-sm bg-council-primary hover:bg-council-secondary">
+              <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
                 <Link href="/portal/login">Portal Access</Link>
               </Button>
             </div>
@@ -116,7 +116,7 @@ export default function Header() {
                 aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
-                className="rounded-sm text-council-dark hover:text-council-primary"
+                className="rounded-[8px] text-council-dark hover:text-council-primary"
               >
                 {isMobileMenuOpen ? (
                   <X className="h-6 w-6" aria-hidden="true" />
@@ -140,7 +140,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="flex min-h-11 items-center rounded-sm px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-slate-50 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                    className="flex min-h-11 items-center rounded-[8px] px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-slate-50 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                     role="menuitem"
                     aria-label={`Navigate to ${item.label} page`}
@@ -150,7 +150,7 @@ export default function Header() {
                 ))}
                 <Link
                   href="/portal/login"
-                  className="flex min-h-11 items-center rounded-sm bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                  className="flex min-h-11 items-center rounded-[8px] bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   role="menuitem"
                 >

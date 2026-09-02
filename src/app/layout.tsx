@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
+import { DEFAULT_DESCRIPTION, DEFAULT_SOCIAL_IMAGE, SITE_NAME, SITE_URL } from '@/lib/seo';
 import "./globals.css";
 
 const manrope = Manrope({
@@ -9,12 +10,12 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nursingcouncilbahamas.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "The Nursing Council of the Commonwealth of The Bahamas | Official Website",
-    template: "%s | The Nursing Council of the Commonwealth of The Bahamas"
+    default: `${SITE_NAME} | Official Website`,
+    template: `%s | ${SITE_NAME}`
   },
-  description: "Official website of The Nursing Council of the Commonwealth of The Bahamas. Guiding and promoting excellence in the practice of nursing through regulation, education, and professional standards since 1972.",
+  description: DEFAULT_DESCRIPTION,
   keywords: [
     "nursing council bahamas",
     "nursing registration bahamas",
@@ -51,27 +52,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_BS",
-    url: "https://nursingcouncilbahamas.com",
-    siteName: "The Nursing Council of the Commonwealth of The Bahamas",
-    title: "The Nursing Council of the Commonwealth of The Bahamas | Official Website",
-    description: "Official website of The Nursing Council of the Commonwealth of The Bahamas. Guiding and promoting excellence in the practice of nursing through regulation, education, and professional standards since 1972.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Official Website`,
+    description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: "/nursing-council-logo.png",
-        width: 400,
-        height: 400,
-        alt: "The Nursing Council of the Commonwealth of The Bahamas Official Logo",
+        url: DEFAULT_SOCIAL_IMAGE,
+        width: 1024,
+        height: 683,
+        alt: "Nurses in The Bahamas",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Nursing Council of the Commonwealth of The Bahamas | Official Website",
-    description: "Official website of The Nursing Council of the Commonwealth of The Bahamas. Guiding and promoting excellence in the practice of nursing.",
-    images: ["/nursing-council-logo.png"],
-  },
-  alternates: {
-    canonical: "https://nursingcouncilbahamas.com",
+    title: `${SITE_NAME} | Official Website`,
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_SOCIAL_IMAGE],
   },
   other: {
     "contact:country": "Bahamas",
@@ -89,63 +87,6 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-// Schema.org structured data
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "GovernmentOrganization",
-  "name": "The Nursing Council of the Commonwealth of The Bahamas",
-  "alternateName": "Nursing Council of the Bahamas",
-  "description": "Official regulatory body for nursing practice throughout the Commonwealth of The Bahamas. We are committed to safeguarding the public through the regulation of nursing education, registration, and professional standards.",
-  "url": "https://nursingcouncilbahamas.com",
-  "logo": "https://nursingcouncilbahamas.com/nursing-council-logo.png",
-  "foundingDate": "1972",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "#23 Capitol House, Virginia & Augusta Street",
-    "addressLocality": "Nassau",
-    "addressCountry": "BS",
-    "postalCode": "N-3509"
-  },
-  "contactPoint": [
-    {
-      "@type": "ContactPoint",
-      "telephone": "+1-242-604-6015",
-      "contactType": "customer service",
-      "areaServed": "BS",
-      "availableLanguage": "English",
-      "hoursAvailable": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "17:00"
-      }
-    },
-    {
-      "@type": "ContactPoint",
-      "email": "info@nursingcouncilbahamas.com",
-      "contactType": "customer service",
-      "areaServed": "BS",
-      "availableLanguage": "English"
-    }
-  ],
-  "areaServed": {
-    "@type": "Country",
-    "name": "Commonwealth of The Bahamas"
-  },
-  "serviceType": [
-    "Nursing Registration",
-    "Nursing Licence Renewal",
-    "Nursing Education Standards",
-    "Professional Standards Regulation",
-    "Nursing Agency Licensure"
-  ],
-  "sameAs": [
-    "https://www.facebook.com/nursingcouncilbahamas",
-    "https://twitter.com/nursingcouncilbs",
-    "https://www.linkedin.com/company/nursing-council-bahamas"
-  ]
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -154,10 +95,6 @@ export default function RootLayout({
   return (
     <html lang="en-BS" className={manrope.variable}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
         <link rel="icon" href="/nursing-council-logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/nursing-council-logo.png" />
         <meta name="theme-color" content="#000080" />

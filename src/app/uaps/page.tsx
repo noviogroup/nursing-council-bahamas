@@ -10,6 +10,13 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Unregulated Assistive Personnel',
+  description: 'Review public guidance, application pathways, renewal information, and training resources for unregulated assistive personnel.',
+  path: '/uaps',
+});
 
 const uapSections = [
   {
@@ -77,7 +84,7 @@ export default function UapsPage() {
               </p>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 md:grid-cols-2">
               {uapSections.map((section, index) => {
                 const Icon = section.icon;
                 return (
@@ -117,13 +124,13 @@ export default function UapsPage() {
                 The page structure is ready for final forms, requirements, and approved training lists.
               </p>
             </div>
-            <div className="rounded-sm border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="rounded-[8px] border border-slate-200 bg-white p-8 shadow-sm">
               <FileText className="mb-6 h-10 w-10 text-council-primary" aria-hidden="true" />
               <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Forms will be published in the Forms library.</h3>
               <p className="mb-8 leading-relaxed text-gray-600">
                 UAP application and renewal forms are visible as placeholder rows on the Forms & Documents page.
               </p>
-              <Link href="/forms" className="inline-flex items-center gap-2 rounded-sm bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary">
+              <Link href="/forms" className="inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary">
                 View UAP form placeholders
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

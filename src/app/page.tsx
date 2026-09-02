@@ -16,6 +16,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { portalPath } from '@/lib/portal';
 import { featuredNewsArticles, formatNewsDate } from '@/lib/news';
+import { createPageMetadata, organizationStructuredData, SITE_NAME } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: SITE_NAME,
+  description: 'Access nursing registration, licence renewal, education, legal resources, the public nurse registry, and Council information for The Bahamas.',
+  path: '/',
+});
 
 const services = [
   {
@@ -76,6 +83,10 @@ const councilFacts = [
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
+      />
       <Header />
       <main className="flex-1">
         <section
@@ -107,14 +118,14 @@ export default function HomePage() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/indexing"
-                  className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
+                  className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
                 >
                   Nursing Student Indexing
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/verification"
-                  className="inline-flex items-center justify-center gap-2 rounded-[4px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
+                  className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
                 >
                   Verification
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -170,7 +181,7 @@ export default function HomePage() {
 
         <section className="bg-white py-20 lg:py-28" aria-label="About the Nursing Council">
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
-            <div className="relative min-h-[520px] overflow-hidden rounded-[4px] bg-slate-100 shadow-sm">
+            <div className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm">
               <Image
                 src="/assets/approved/nurses-bahamas.png"
                 alt="Nurses seated together during a ceremony in The Bahamas"
@@ -179,7 +190,7 @@ export default function HomePage() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-council-primary/70 via-council-primary/10 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 rounded-[4px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm md:left-auto md:w-[68%]">
+              <div className="absolute bottom-6 left-6 right-6 rounded-[8px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm md:left-auto md:w-[68%]">
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
                 <p className="mt-3 text-lg font-semibold leading-relaxed">
                   Safeguarding the public through nursing regulation, education standards, and professional accountability.
@@ -203,8 +214,8 @@ export default function HomePage() {
                 {councilHighlights.map((highlight) => {
                   const Icon = highlight.icon;
                   return (
-                    <article key={highlight.title} className="grid grid-cols-[3.5rem_1fr] gap-5 rounded-[4px] bg-gray-50 p-6 transition-all duration-300 hover:bg-white hover:shadow-lg">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-[4px] bg-council-primary text-white">
+                    <article key={highlight.title} className="grid grid-cols-[3.5rem_1fr] gap-5 rounded-[8px] bg-gray-50 p-6 transition-all duration-300 hover:bg-white hover:shadow-lg">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-council-primary text-white">
                         <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
                       <div>
@@ -216,7 +227,7 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="mt-8 grid overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm sm:grid-cols-2">
+              <div className="mt-8 grid overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm sm:grid-cols-2">
                 {councilFacts.map((fact) => (
                   <div key={fact.label} className="border-b border-slate-200 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
                     <p className="font-heading text-3xl font-bold text-council-primary">{fact.value}</p>
@@ -225,7 +236,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <Link href="/about" className="mt-8 inline-flex items-center gap-2 rounded-[4px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+              <Link href="/about" className="mt-8 inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
                 Learn about the Council
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
@@ -250,7 +261,7 @@ export default function HomePage() {
             </div>
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {featuredNewsArticles.map((article) => (
-                <article key={article.href} className="group flex h-full flex-col overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+                <article key={article.href} className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                     <Image src={article.image} alt={article.imageAlt} fill sizes="(min-width: 1280px) 23vw, (min-width: 768px) 46vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
@@ -280,7 +291,7 @@ export default function HomePage() {
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Mail className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Email Us</h3><a href="mailto:info@nursingcouncilbahamas.com" className="text-gray-600 hover:underline">info@nursingcouncilbahamas.com</a></div>
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><MapPin className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Visit Us</h3><address className="not-italic text-gray-600">#23 Capitol House<br />Virginia & Augusta Street<br />Nassau, Bahamas</address></div>
             </div>
-            <Link href="/contact" className="inline-flex items-center rounded-sm bg-council-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">Get in Touch <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
+            <Link href="/contact" className="inline-flex items-center rounded-[8px] bg-council-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">Get in Touch <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>

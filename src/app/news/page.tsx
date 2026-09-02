@@ -3,6 +3,14 @@ import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { formatNewsDate, newsArticles } from '@/lib/news';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'News and Updates',
+  description: 'Read external news and public updates relevant to nursing, midwifery, education, regulation, and workforce development in The Bahamas.',
+  path: '/news',
+  image: '/assets/news/regional-nursing-body-bahamas-delegation.jpg',
+});
 
 export default function NewsPage() {
   return (
@@ -47,7 +55,7 @@ export default function NewsPage() {
 
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {newsArticles.map((article) => (
-                <article key={article.href} className="group flex h-full flex-col overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+                <article key={article.href} className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
                   <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                     <Image src={article.image} alt={article.imageAlt} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>

@@ -182,7 +182,7 @@ export default function RegistrySampleClient() {
     <div className="space-y-8">
       <form
         onSubmit={handleSubmit}
-        className="rounded-sm border border-slate-200 bg-white p-5 shadow-sm lg:p-6"
+        className="rounded-[8px] border border-slate-200 bg-white p-5 shadow-sm lg:p-6"
         aria-label="Search public nurse registry"
       >
         <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
@@ -209,14 +209,14 @@ export default function RegistrySampleClient() {
                 }
                 placeholder="e.g. Rolle or RN 24-5537"
                 maxLength={80}
-                className="h-12 pl-10"
+                className="h-12 rounded-[8px] pl-10"
               />
             </div>
           </div>
 
           <Button
             type="submit"
-            className="h-12 rounded-sm bg-council-primary px-6 font-semibold hover:bg-council-secondary"
+            className="h-12 rounded-[8px] bg-council-primary px-6 font-semibold hover:bg-council-secondary"
           >
             <Search className="h-4 w-4" aria-hidden="true" />
             Search
@@ -237,7 +237,7 @@ export default function RegistrySampleClient() {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => handleTypeSelection(type.value)}
-                  className={`flex min-h-16 items-center justify-center gap-2 rounded-sm border px-4 py-3 text-center text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 ${
+                  className={`flex min-h-16 items-center justify-center gap-2 rounded-[8px] border px-4 py-3 text-center text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 ${
                     isSelected
                       ? "border-council-primary bg-council-primary/10 text-council-primary"
                       : "border-slate-300 bg-white text-slate-700 hover:border-council-primary hover:bg-council-primary/5 hover:text-council-primary"
@@ -288,7 +288,7 @@ export default function RegistrySampleClient() {
       {error && (
         <div
           role="alert"
-          className="flex items-start gap-3 rounded-sm border border-red-200 bg-red-50 p-4 text-red-900"
+          className="flex items-start gap-3 rounded-[8px] border border-red-200 bg-red-50 p-4 text-red-900"
         >
           <AlertTriangle
             className="mt-0.5 h-5 w-5 shrink-0"
@@ -299,7 +299,7 @@ export default function RegistrySampleClient() {
       )}
 
       <section
-        className="overflow-hidden rounded-sm border border-slate-200 bg-white shadow-sm"
+        className="overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm"
         aria-busy={loading}
       >
         <div className="flex flex-col gap-3 border-b border-slate-200 px-5 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-6">
@@ -320,7 +320,7 @@ export default function RegistrySampleClient() {
               type="button"
               variant="outline"
               onClick={clearFilters}
-              className="h-11 self-start sm:self-auto"
+              className="h-11 rounded-[8px] self-start sm:self-auto"
             >
               <X className="h-4 w-4" aria-hidden="true" />
               Clear filters
@@ -438,7 +438,7 @@ export default function RegistrySampleClient() {
               variant="outline"
               onClick={() => setPage((current) => Math.max(1, current - 1))}
               disabled={page <= 1}
-              className="h-11"
+              className="h-11 rounded-[8px]"
             >
               <ChevronLeft className="h-4 w-4" aria-hidden="true" />
               Previous
@@ -451,7 +451,7 @@ export default function RegistrySampleClient() {
               variant="outline"
               onClick={() => setPage((current) => Math.min(pages, current + 1))}
               disabled={page >= pages}
-              className="h-11"
+              className="h-11 rounded-[8px]"
             >
               Next
               <ChevronRight className="h-4 w-4" aria-hidden="true" />

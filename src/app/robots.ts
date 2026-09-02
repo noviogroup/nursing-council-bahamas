@@ -1,16 +1,16 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/seo'
 
 export const dynamic = 'force-static'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://nursingcouncilbahamas.com'
-
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/', '/portal/', '/complaints/resume/', '/complaints/submitted/', '/_next/'],
+      disallow: ['/api/', '/admin/', '/portal/', '/complaints/resume/', '/complaints/submitted/'],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   }
 }

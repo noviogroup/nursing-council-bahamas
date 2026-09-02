@@ -133,20 +133,20 @@ export default function FormsPage() {
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search forms by name"
-                  className="min-h-14 w-full rounded-sm border border-slate-300 bg-slate-50 py-3 pl-12 pr-12 text-base text-council-dark outline-none transition-colors placeholder:text-slate-500 focus:border-council-primary focus:ring-2 focus:ring-council-primary/20"
+                  className="min-h-14 w-full rounded-[8px] border border-slate-300 bg-slate-50 py-3 pl-12 pr-12 text-base text-council-dark outline-none transition-colors placeholder:text-slate-500 focus:border-council-primary focus:ring-2 focus:ring-council-primary/20"
                 />
                 {search && (
                   <button
                     type="button"
                     onClick={() => setSearch('')}
-                    className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-sm text-slate-500 transition-colors hover:bg-slate-200 hover:text-council-dark focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                    className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-[8px] text-slate-500 transition-colors hover:bg-slate-200 hover:text-council-dark focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                     aria-label="Clear form search"
                   >
                     <X className="h-4 w-4" aria-hidden="true" />
                   </button>
                 )}
               </label>
-              <div className="mt-5 grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 sm:grid-cols-2 xl:grid-cols-5">
+              <div className="mt-5 grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 sm:grid-cols-2 xl:grid-cols-5">
                 <button
                   type="button"
                   onClick={() => setActiveCategory('all')}
@@ -185,14 +185,14 @@ export default function FormsPage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Available form titles</p>
                 <h2 className="font-heading mt-2 text-3xl font-bold text-council-dark sm:text-4xl">{visibleFormCount} {visibleFormCount === 1 ? 'form' : 'forms'} shown</h2>
               </div>
-              <span className="inline-flex items-center gap-2 rounded-sm border border-council-accent/60 bg-council-accent/10 px-3 py-2 text-sm font-semibold text-council-dark">
+              <span className="inline-flex items-center gap-2 rounded-[8px] border border-council-accent/60 bg-council-accent/10 px-3 py-2 text-sm font-semibold text-council-dark">
                 <Clock className="h-4 w-4" aria-hidden="true" />
                 Pending Council publication
               </span>
             </div>
 
             {visibleGroups.length > 0 ? (
-              <div className="overflow-hidden rounded-sm border border-slate-200 bg-white">
+              <div className="overflow-hidden rounded-[8px] border border-slate-200 bg-white">
                 {visibleGroups.map((group, groupIndex) => (
                   <section key={group.id} className={groupIndex > 0 ? 'border-t-8 border-gray-50' : ''} aria-labelledby={`${group.id}-heading`}>
                     <div className="grid gap-4 border-b border-slate-200 px-6 py-6 md:grid-cols-[minmax(15rem,0.65fr)_1.35fr] md:items-end md:px-8">
@@ -228,7 +228,7 @@ export default function FormsPage() {
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="mt-6 inline-flex items-center justify-center rounded-sm bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                  className="mt-6 inline-flex items-center justify-center rounded-[8px] bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                 >
                   View all forms
                 </button>
@@ -243,7 +243,7 @@ export default function FormsPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need help choosing a form?</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council before submitting documents.</h2>
             </div>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               Contact us
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

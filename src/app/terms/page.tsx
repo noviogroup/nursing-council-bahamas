@@ -1,5 +1,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Terms of Service',
+  description: 'Read the terms governing use of the Nursing Council public website and its linked online services.',
+  path: '/terms',
+});
 
 export default function TermsPage() {
   return (

@@ -8,6 +8,13 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { portalPath } from '@/lib/portal';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Registration and Licence Verification',
+  description: 'Browse the public nurse registry, access licence verification, or request official good-standing guidance from the Nursing Council.',
+  path: '/verification',
+});
 
 const verificationOptions = [
   {
@@ -79,7 +86,7 @@ export default function VerificationPage() {
               </p>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-3">
+            <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 md:grid-cols-3">
               {verificationOptions.map((option) => {
                 const Icon = option.icon;
                 return (
@@ -87,7 +94,7 @@ export default function VerificationPage() {
                     <Icon className="mb-8 h-10 w-10 text-council-primary" aria-hidden="true" />
                     <h3 className="font-heading mb-4 text-3xl font-bold text-council-dark">{option.title}</h3>
                     <p className="mb-8 leading-relaxed text-gray-600">{option.description}</p>
-                    <Link href={option.href} className="inline-flex items-center gap-2 rounded-sm bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary">
+                    <Link href={option.href} className="inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary">
                       {option.action}
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
@@ -112,7 +119,7 @@ export default function VerificationPage() {
                 Formal letters and detailed records should remain controlled through Council staff processes.
               </p>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 sm:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 sm:grid-cols-2">
               {publicInfo.map((item) => (
                 <div key={item} className="bg-white p-6">
                   <CheckCircle className="mb-5 h-8 w-8 text-council-primary" aria-hidden="true" />
@@ -129,7 +136,7 @@ export default function VerificationPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need a document?</p>
               <h2 className="font-heading text-4xl font-bold">Use the Council process for official good standing letters.</h2>
             </div>
-            <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+            <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               View forms
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

@@ -8,6 +8,14 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Legal Framework',
+  description: 'Access the Nurses and Midwives Act, related legal notices, and regulatory information governing nursing and midwifery in The Bahamas.',
+  path: '/legal-ethics',
+  image: '/assets/approved/legal-hero-nurse.jpg',
+});
 
 const frameworks = [
   {
@@ -84,13 +92,13 @@ export default function LegalEthicsPage() {
               </p>
             </div>
 
-            <div className="grid max-w-3xl gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200">
+            <div className="grid max-w-3xl gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200">
               {frameworks.map((framework) => {
                 const Icon = framework.icon;
                 return (
                   <article id={framework.id} key={framework.title} className="bg-white p-8 scroll-mt-24">
                     <Icon className="mb-8 h-10 w-10 text-council-primary" aria-hidden="true" />
-                    <span className="mb-4 inline-flex rounded-sm bg-council-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-council-primary">
+                    <span className="mb-4 inline-flex rounded-[8px] bg-council-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-council-primary">
                       {framework.status}
                     </span>
                     <h3 className="font-heading mb-4 text-3xl font-bold text-council-dark">{framework.title}</h3>
@@ -98,7 +106,7 @@ export default function LegalEthicsPage() {
                     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                       {framework.links.map((link) => {
                         const isExternal = link.href.startsWith('http');
-                        const className = 'inline-flex items-center gap-2 rounded-sm bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary';
+                        const className = 'inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary';
 
                         return isExternal ? (
                           <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className={className}>
@@ -114,7 +122,7 @@ export default function LegalEthicsPage() {
                       })}
                     </div>
                     {framework.note && (
-                      <p className="mt-5 flex gap-3 rounded-sm border border-slate-200 bg-slate-50 p-4 text-sm leading-relaxed text-slate-600">
+                      <p className="mt-5 flex gap-3 rounded-[8px] border border-slate-200 bg-slate-50 p-4 text-sm leading-relaxed text-slate-600">
                         <FileText className="mt-0.5 h-4 w-4 shrink-0 text-council-primary" aria-hidden="true" />
                         {framework.note}
                       </p>
@@ -132,7 +140,7 @@ export default function LegalEthicsPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need help interpreting a requirement?</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council for legal framework guidance.</h2>
             </div>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               Contact us
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

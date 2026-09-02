@@ -1,5 +1,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Privacy Policy',
+  description: 'Read how the Nursing Council public website handles information submitted by visitors.',
+  path: '/privacy',
+});
 
 export default function PrivacyPage() {
   return (

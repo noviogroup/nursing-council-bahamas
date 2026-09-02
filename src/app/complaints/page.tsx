@@ -2,6 +2,13 @@ import Link from 'next/link';
 import { ArrowRight, ClipboardText, FileMagnifyingGlass as FileSearch, ShieldCheck, WarningCircle } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Public Complaints',
+  description: 'Learn how to submit and track a complaint concerning an individual nurse, midwife, applicant, or licensee.',
+  path: '/complaints',
+});
 
 const processSteps = [
   { title: 'Submit the complaint', description: 'Provide contact details, information about the individual practitioner, incident details, and supporting documents.' },

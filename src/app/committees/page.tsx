@@ -14,6 +14,13 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Council Committees',
+  description: 'Learn about the Nursing Council committees responsible for education, examinations, finance, registration, standards, and disciplinary matters.',
+  path: '/committees',
+});
 
 type Committee = {
   id: string;

@@ -7,6 +7,14 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'Licensed Nursing Agencies',
+  description: 'Find nursing agency licensing information, the Council review pathway, and the current list of licensed nursing agencies in The Bahamas.',
+  path: '/nursing-agencies',
+  image: '/assets/approved/agency-hero-home-care.jpg',
+});
 
 const agencyHighlights = [
   {
@@ -102,7 +110,7 @@ export default function NursingAgenciesPage() {
 
             <div className="grid gap-5 lg:grid-cols-3">
               {licensedAgencies.map((agency, index) => (
-                <article key={agency.name} className="overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm">
+                <article key={agency.name} className="overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm">
                   <div className={`relative h-44 border-b border-slate-200 ${agency.logoPanelClassName}`}>
                     <Image
                       src={agency.logo}
@@ -114,7 +122,7 @@ export default function NursingAgenciesPage() {
                   </div>
                   <div className="p-7">
                     <div className="mb-8 flex items-start justify-between">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-[4px] bg-council-primary text-white">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-council-primary text-white">
                         <ShieldCheck className="h-6 w-6" aria-hidden="true" />
                       </div>
                       <span className="font-heading text-2xl font-bold text-council-accent">0{index + 1}</span>
@@ -126,7 +134,7 @@ export default function NursingAgenciesPage() {
               ))}
             </div>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 lg:grid-cols-2">
+            <div className="mt-12 grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 lg:grid-cols-2">
               {agencyHighlights.map((highlight, index) => {
                 const Icon = highlight.icon;
                 return (
@@ -164,7 +172,7 @@ export default function NursingAgenciesPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Agency enquiries</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council for current agency guidance.</h2>
             </div>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               Contact the Council
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

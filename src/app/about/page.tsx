@@ -12,6 +12,13 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { createPageMetadata } from '@/lib/seo';
+
+export const metadata = createPageMetadata({
+  title: 'About the Council',
+  description: 'Learn about the Nursing Council’s history, statutory mandate, governance, current Council, administration, past chairpersons, registrars, and common seal.',
+  path: '/about',
+});
 
 const timelineEvents = [
   {
@@ -341,7 +348,7 @@ export default function AboutPage() {
                 The Council's mandate is to develop and execute regulations and byelaws that govern the education and practice of nurses and midwives in accordance with the Nurses and Midwives Act and subsidiary regulations.
               </p>
             </div>
-            <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-3">
+            <div className="mt-12 grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 md:grid-cols-3">
               <div className="bg-white p-7">
                 <Star className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                 <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Vision</h3>
@@ -365,7 +372,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="mt-8 grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value) => {
                 const Icon = value.icon;
                 return (
@@ -408,7 +415,7 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-sm border border-slate-200 bg-slate-200 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 md:grid-cols-2 xl:grid-cols-3">
               {councilFunctionGroups.map((group, index) => (
                 <article key={group.title} className="bg-white p-7 md:p-8">
                   <span className="font-heading text-2xl font-bold text-council-accent">0{index + 1}</span>
@@ -425,7 +432,7 @@ export default function AboutPage() {
                   <details className="group mt-7 border-t border-slate-200 pt-5">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4 [&::-webkit-details-marker]:hidden">
                       <span>View exact statutory wording</span>
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-council-primary/25 text-lg leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] border border-council-primary/25 text-lg leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                     </summary>
                     <ol className="mt-5 space-y-4 border-l-2 border-council-accent pl-4">
                       {group.statutoryFunctions.map((item) => (
@@ -442,7 +449,7 @@ export default function AboutPage() {
             <div className="mt-10 text-center">
               <Link
                 href="/documents/nurses-and-midwives-act-2023.pdf"
-                className="inline-flex items-center gap-2 rounded-sm bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
+                className="inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4"
               >
                 Read the full Act (PDF)
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -467,7 +474,7 @@ export default function AboutPage() {
                 Revised in February 2025, the Code of Ethics guides ethical decision-making, accountability, professionalism, and safe care for nurses, midwives, students, educators, administrators, and researchers.
               </p>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-sm bg-white/20 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-px overflow-hidden rounded-[8px] bg-white/20 md:grid-cols-2 xl:grid-cols-4">
               {ethicsElements.map((element) => {
                 const Icon = element.icon;
                 return (
@@ -481,7 +488,7 @@ export default function AboutPage() {
             </div>
             <Link
               href="/documents/code-of-ethics-for-nurses-2025.pdf"
-              className="mt-10 inline-flex items-center gap-2 rounded-sm bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-council-accent focus:ring-offset-2 focus:ring-offset-council-primary"
+              className="mt-10 inline-flex items-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-council-accent focus:ring-offset-2 focus:ring-offset-council-primary"
             >
               View Code of Ethics
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -520,8 +527,8 @@ export default function AboutPage() {
           <div className="container mx-auto mt-16 px-4">
             <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
               <aside className="lg:sticky lg:top-28">
-                <div className="rounded-[4px] bg-council-primary p-5 text-white shadow-sm">
-                  <figure className="overflow-hidden rounded-[4px] bg-white text-council-dark">
+                <div className="rounded-[8px] bg-council-primary p-5 text-white shadow-sm">
+                  <figure className="overflow-hidden rounded-[8px] bg-white text-council-dark">
                     <div className="relative h-40 bg-gray-100">
                       <Image
                         src="/assets/history/council-seal-presentation-group.jpg"
@@ -541,7 +548,7 @@ export default function AboutPage() {
                     <h3 className="font-heading mt-2 text-2xl font-bold leading-tight">A record of service and public protection.</h3>
                   </div>
 
-                  <dl className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-[4px] bg-white/20">
+                  <dl className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-[8px] bg-white/20">
                     <div className="bg-white/10 p-3">
                       <dd className="font-heading text-2xl font-bold text-council-accent">11</dd>
                       <dt className="mt-1 text-xs leading-relaxed text-white/75">Current Council seats</dt>
@@ -563,13 +570,13 @@ export default function AboutPage() {
                       Designed in 1971 by Student Nurse Dorothy Hepburn nee Morris, the seal represents healing hands and compassionate care, The Bahamas, and Florence Nightingale.
                     </p>
                     <div className="mt-3 grid grid-cols-2 gap-3">
-                      <figure className="grid grid-rows-[5rem_auto] rounded-[4px] bg-white p-2 text-council-dark">
+                      <figure className="grid grid-rows-[5rem_auto] rounded-[8px] bg-white p-2 text-council-dark">
                         <div className="relative">
                           <Image src="/assets/history/seal-presentation.png" alt="Historical photo of the Council seal presentation" fill sizes="(min-width: 1024px) 14vw, 45vw" className="object-contain" />
                         </div>
                         <figcaption className="mt-2 text-xs leading-relaxed text-gray-600">Seal presentation to the first Chairman of the Council.</figcaption>
                       </figure>
-                      <figure className="grid grid-rows-[5rem_auto] rounded-[4px] bg-white p-2 text-council-dark">
+                      <figure className="grid grid-rows-[5rem_auto] rounded-[8px] bg-white p-2 text-council-dark">
                         <div className="relative">
                           <Image src="/assets/history/nursing-council-seal.png" alt="Historical Nursing Council seal illustration" fill sizes="(min-width: 1024px) 14vw, 45vw" className="object-contain" />
                         </div>
@@ -581,7 +588,7 @@ export default function AboutPage() {
               </aside>
 
               <div className="space-y-14">
-                <section className="overflow-hidden rounded-[4px] border border-slate-200 bg-white shadow-sm">
+                <section className="overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm">
                   <div className="border-b border-slate-200 p-6 md:p-10">
                     <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                       <span className="h-px w-9 bg-council-accent" />
@@ -609,7 +616,7 @@ export default function AboutPage() {
                           </span>
                           <p className="font-heading text-lg font-bold text-council-dark">{member.role}</p>
                           {isVacant ? (
-                            <span className="w-fit rounded-[4px] border border-amber-300 bg-white px-3 py-1.5 text-sm font-semibold text-amber-800">
+                            <span className="w-fit rounded-[8px] border border-amber-300 bg-white px-3 py-1.5 text-sm font-semibold text-amber-800">
                               Vacant
                             </span>
                           ) : (
@@ -623,7 +630,7 @@ export default function AboutPage() {
                   </ol>
                 </section>
 
-                <section className="rounded-[4px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+                <section className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
                   <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                     <span className="h-px w-9 bg-council-accent" />
                     Founding members
@@ -640,7 +647,7 @@ export default function AboutPage() {
 
                   <div className="mt-8 space-y-3 md:hidden">
                     {foundingMembers.map((member, index) => (
-                      <div key={member.name} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[4px] border border-slate-200 bg-white p-4">
+                      <div key={member.name} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[8px] border border-slate-200 bg-white p-4">
                         <span className="font-heading text-sm font-bold text-council-primary">
                           {String(index + 1).padStart(2, '0')}
                         </span>
@@ -652,7 +659,7 @@ export default function AboutPage() {
                     ))}
                   </div>
 
-                  <div className="mt-8 hidden overflow-hidden rounded-[4px] border border-slate-200 md:block">
+                  <div className="mt-8 hidden overflow-hidden rounded-[8px] border border-slate-200 md:block">
                     <table className="w-full text-left">
                       <caption className="sr-only">Founding Council members of the Nursing Council</caption>
                       <thead className="bg-council-primary text-white">
@@ -677,7 +684,7 @@ export default function AboutPage() {
                   </div>
                 </section>
 
-                <section className="rounded-[4px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+                <section className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
                   <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                     <span className="h-px w-9 bg-council-accent" />
                     Chairperson record
@@ -687,7 +694,7 @@ export default function AboutPage() {
                     The following record is based on the Council-supplied list of past Chairpersons. Service periods are presented by year for a consistent public record.
                   </p>
 
-                  <ol className="mt-8 overflow-hidden rounded-[4px] border border-slate-200">
+                  <ol className="mt-8 overflow-hidden rounded-[8px] border border-slate-200">
                     {pastChairpersons.map((chairperson, index) => (
                       <li key={`${chairperson.name}-${chairperson.period}`} className="grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)] sm:items-center sm:gap-5 sm:px-6">
                         <span className="font-heading text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
@@ -698,7 +705,7 @@ export default function AboutPage() {
                   </ol>
                 </section>
 
-                <section className="rounded-[4px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+                <section className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
                   <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                     <span className="h-px w-9 bg-council-accent" />
                     Administrative leadership
@@ -708,7 +715,7 @@ export default function AboutPage() {
                     The Registrar leads the Council’s administration and supports continuity in its statutory and operational work.
                   </p>
 
-                  <ol className="mt-8 overflow-hidden rounded-[4px] border border-slate-200">
+                  <ol className="mt-8 overflow-hidden rounded-[8px] border border-slate-200">
                     {pastRegistrars.map((registrar, index) => (
                       <li
                         key={`${registrar.name}-${registrar.period}`}
@@ -746,7 +753,7 @@ export default function AboutPage() {
                 <p className="text-lg leading-relaxed text-gray-600">
                   The First Schedule of the Nurses and Midwives Act, 2023 establishes an eleven-member Council appointed by the Minister, with representation across nursing, midwifery, medicine, Legal Counsel/Attorney, and education.
                 </p>
-                <Link href="/committees" className="mt-6 inline-flex items-center gap-2 rounded-[4px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+                <Link href="/committees" className="mt-6 inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
                   Explore committees
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -754,9 +761,9 @@ export default function AboutPage() {
             </div>
 
             <div className="mx-auto max-w-5xl" aria-label="Statutory Council hierarchy">
-              <article className="rounded-[4px] bg-council-primary p-7 text-white shadow-sm md:p-8">
+              <article className="rounded-[8px] bg-council-primary p-7 text-white shadow-sm md:p-8">
                 <div className="mb-7 flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-[4px] border border-white/25 bg-white/10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[8px] border border-white/25 bg-white/10">
                     <Users className="h-7 w-7 text-council-accent" aria-hidden="true" />
                   </div>
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Statutory body</p>
@@ -775,7 +782,7 @@ export default function AboutPage() {
                 Representation on the Council
               </p>
 
-              <div className="grid gap-px overflow-hidden rounded-[4px] border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-5">
                 {governanceGroups.map((group) => (
                   <article key={group.title} className="border-t-4 border-council-primary bg-white p-6">
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">{group.seats}</p>
@@ -792,7 +799,7 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <article className="mt-12 rounded-[4px] bg-council-primary p-7 text-white shadow-sm md:p-8">
+              <article className="mt-12 rounded-[8px] bg-council-primary p-7 text-white shadow-sm md:p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Administration</p>
                 <h3 className="font-heading mt-4 text-3xl font-bold">Office of the Registrar</h3>
                 <div className="mt-6 grid gap-5 sm:grid-cols-2">
