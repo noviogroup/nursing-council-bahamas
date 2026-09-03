@@ -1,10 +1,2 @@
-import { StaffComplaintDetail } from '@/components/complaints/StaffPortalClient';
-
-type PortalComplaintDetailPageProps = {
-  params: Promise<{ id: string }>;
-};
-
-export default async function PortalComplaintDetailPage({ params }: PortalComplaintDetailPageProps) {
-  const { id } = await params;
-  return <StaffComplaintDetail complaintId={id} />;
-}
+import { redirectToLicensingPortal } from '../../redirect';
+export default async function PortalComplaintDetailPage({ params }: { params: Promise<{ id: string }> }) { const { id } = await params; redirectToLicensingPortal(`/admin/complaints/${encodeURIComponent(id)}`); }

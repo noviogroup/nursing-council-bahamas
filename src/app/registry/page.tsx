@@ -14,7 +14,7 @@ export default function RegistryPage() {
     <>
       <Header />
       <main className="flex-1 bg-slate-50">
-        <section className="relative overflow-hidden bg-council-primary py-16 text-white lg:py-20">
+        <section className="relative overflow-hidden bg-council-primary py-16 text-white lg:py-20" data-page-hero="registry">
           <div
             className="absolute inset-y-0 right-0 w-1/3 bg-[radial-gradient(circle_at_center,rgba(255,199,44,0.16),transparent_68%)]"
             aria-hidden="true"

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, EnvelopeSimple as Mail, List as Menu, MapPin, Phone, X } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/button';
+import { portalPath } from '@/lib/portal';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -103,7 +104,7 @@ export default function Header() {
 
             <div className="ml-auto hidden justify-end xl:flex">
               <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
-                <Link href="/portal/login">Portal Access</Link>
+                <a href={portalPath('/login')}>Portal Access</a>
               </Button>
             </div>
 
@@ -148,14 +149,14 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-                <Link
-                  href="/portal/login"
+                <a
+                  href={portalPath('/login')}
                   className="flex min-h-11 items-center rounded-[8px] bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   role="menuitem"
                 >
                   Portal Access
-                </Link>
+                </a>
               </div>
             </div>
           )}

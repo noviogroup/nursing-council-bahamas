@@ -7,7 +7,7 @@ export default function NotFoundPage() {
     <>
       <Header />
       <main className="flex-1 bg-white">
-        <section className="bg-council-primary py-24 text-white">
+        <section className="bg-council-primary py-24 text-white" data-page-hero="not-found">
           <div className="container mx-auto max-w-3xl px-4 text-center">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Page not found</p>
             <h1 className="font-heading text-5xl font-bold">We could not find that page.</h1>

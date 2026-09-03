@@ -1,5 +1,2 @@
-import { StaffAuditLogPage } from '@/components/complaints/StaffPortalClient';
-
-export default function PortalAuditLogPage() {
-  return <StaffAuditLogPage />;
-}
+import { redirectToLicensingPortal } from '../redirect';
+export default function PortalAuditLogPage() { redirectToLicensingPortal('/admin/audit'); }

@@ -1,5 +1,2 @@
-import { StaffWalkInPage } from '@/components/complaints/StaffPortalClient';
-
-export default function PortalWalkInPage() {
-  return <StaffWalkInPage />;
-}
+import { redirectToLicensingPortal } from '../redirect';
+export default function PortalWalkInPage() { redirectToLicensingPortal('/admin/complaints'); }

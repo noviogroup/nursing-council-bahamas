@@ -296,7 +296,7 @@ export default function AboutPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="relative isolate min-h-[560px] bg-council-primary text-white lg:min-h-[620px]">
+        <section className="relative isolate min-h-[560px] bg-council-primary text-white lg:min-h-[620px]" data-page-hero="about">
           <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block">
             <Image
               src="/assets/approved/nursing-image-card-1.webp"

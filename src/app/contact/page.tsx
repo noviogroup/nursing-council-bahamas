@@ -52,7 +52,7 @@ export default function ContactPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-council-primary py-20 text-white lg:py-28">
+        <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="contact">
           <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div><p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-10 bg-council-accent" />We are here to help</p><h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Contact & Help</h1><p className="max-w-2xl text-xl leading-relaxed text-white/85">Get in touch for support with registration, licensing, or questions about nursing regulation in The Bahamas.</p></div>
             <div className="border-l-4 border-council-accent bg-white/10 p-7"><p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-council-accent">Office hours</p><p className="font-heading text-3xl font-bold">Monday–Friday</p><p className="mt-1 text-xl text-white/85">9:00am–5:00pm</p><a href="tel:+12426046015" className="mt-6 inline-flex items-center gap-2 font-semibold text-white hover:text-council-accent"><Phone className="h-4 w-4" /> (242) 604-6015</a></div>

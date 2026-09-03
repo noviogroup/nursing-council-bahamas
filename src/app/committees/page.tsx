@@ -44,7 +44,7 @@ export default function CommitteesPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-council-primary py-20 text-white lg:py-28">
+        <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="committees">
           <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div><p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent"><span className="h-px w-10 bg-council-accent" />Governance & oversight</p><h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Guiding the profession together.</h1><p className="max-w-2xl text-xl leading-relaxed text-white/85">Six specialized committees bring the expertise, accountability, and care that support nursing practice in The Bahamas.</p></div>
             <div className="border-l-4 border-council-accent bg-white/10 p-8"><p className="font-heading text-6xl font-bold text-council-accent">6</p><p className="mt-2 text-xl font-semibold">Specialized committees</p><p className="mt-3 leading-relaxed text-white/75">Working across education, registration, standards, finance, examinations, and professional conduct.</p></div>

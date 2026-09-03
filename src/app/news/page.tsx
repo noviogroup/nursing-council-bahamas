@@ -17,7 +17,7 @@ export default function NewsPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="relative isolate min-h-[520px] overflow-hidden bg-council-primary text-white lg:min-h-[580px]">
+        <section className="relative isolate min-h-[520px] overflow-hidden bg-council-primary text-white lg:min-h-[580px]" data-page-hero="news">
           <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[72%] lg:w-[52%]">
             <Image
               src="/assets/news/regional-nursing-body-bahamas-delegation.jpg"

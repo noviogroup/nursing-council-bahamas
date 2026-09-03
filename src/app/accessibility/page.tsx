@@ -13,7 +13,7 @@ export default function AccessibilityPage() {
     <>
       <Header />
       <main className="flex-1 bg-white">
-        <section className="bg-council-primary py-20 text-white">
+        <section className="bg-council-primary py-20 text-white" data-page-hero="accessibility">
           <div className="container mx-auto max-w-4xl px-4">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Website policy</p>
             <h1 className="font-heading text-5xl font-bold">Accessibility</h1>

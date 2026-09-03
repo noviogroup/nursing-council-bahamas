@@ -50,7 +50,7 @@ export default function UapsPage() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="bg-council-primary py-20 text-white lg:py-28">
+        <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="uaps">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">

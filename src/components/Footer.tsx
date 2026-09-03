@@ -18,8 +18,8 @@ export default function Footer() {
     { name: 'Legal', href: '/legal-ethics' },
     { name: 'Verification', href: '/verification' },
     { name: 'Registry Preview', href: '/registry' },
-    { name: 'Submit Complaint', href: '/complaints/new' },
-    { name: 'Track Complaint', href: '/complaints/track' },
+    { name: 'Submit Complaint', href: portalPath('/complaints/new') },
+    { name: 'Track Complaint', href: portalPath('/complaints/track') },
     { name: 'Committees', href: '/committees' },
     { name: 'Contact', href: '/contact' },
   ];

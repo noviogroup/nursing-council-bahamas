@@ -1,5 +1,2 @@
-import { StaffUsersPage } from '@/components/complaints/StaffPortalClient';
-
-export default function PortalUsersAliasPage() {
-  return <StaffUsersPage />;
-}
+import { redirectToLicensingPortal } from '../redirect';
+export default function PortalOfficersPage() { redirectToLicensingPortal('/admin/users'); }

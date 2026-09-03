@@ -1,5 +1,2 @@
-import { StaffResetPasswordPage } from '@/components/complaints/StaffPortalClient';
-
-export default function PortalResetPasswordPage() {
-  return <StaffResetPasswordPage />;
-}
+import { redirectToLicensingPortal } from '../redirect';
+export default function PortalResetPasswordPage() { redirectToLicensingPortal('/reset-password'); }

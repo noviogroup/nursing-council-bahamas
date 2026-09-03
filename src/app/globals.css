@@ -59,6 +59,35 @@
   }
 }
 
+/* Keep interior page openers concise on small screens so useful content appears
+   within the first viewport. Tablet and desktop layouts retain their page-level
+   Tailwind sizing. */
+@media (max-width: 767px) {
+  [data-page-hero] {
+    min-height: 0;
+    padding-block: 2.5rem;
+  }
+
+  [data-page-hero] > .container {
+    min-height: 0;
+    gap: 1.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  [data-page-hero] h1 {
+    margin-bottom: 1rem;
+    font-size: 2.25rem;
+    line-height: 1.12;
+  }
+
+  [data-page-hero] h1 + p {
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.625;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
