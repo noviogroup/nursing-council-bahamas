@@ -80,6 +80,10 @@ const pastChairpersons = [
   { name: 'Mrs. Maggie Turner', period: '2008 - 2011' },
   { name: 'Mrs. Coral Dean', period: '2011 - 2013' },
   { name: 'Mrs. Gwendolyn Brice-Sealy', period: '2013 - 2014' },
+  { name: 'Carol Markey' },
+  { name: 'Patricia Newbold' },
+  { name: 'Patricia Brown' },
+  { name: 'Ferneka Deleveaux' },
 ];
 
 const pastRegistrars = [
@@ -149,25 +153,25 @@ const values = [
     icon: Shield,
     title: 'Professionalism',
     description:
-      'The Council upholds ethical principles and conducts business with utmost professionalism. Council matters are kept confidential and disclosed only to appropriate stakeholders as required.',
+      'The Nursing Council upholds ethical principles and conducts its business with utmost objectivity and confidentiality.',
   },
   {
     icon: CheckCircle,
     title: 'Integrity',
     description:
-      'The Council conducts its business guided by honesty, fairness, and respect, operating on reliable evidence for the best possible outcome.',
+      'The Nursing Council is guided by honesty, fairness and respect.',
   },
   {
     icon: Star,
     title: 'Excellence',
     description:
-      'The Council is committed to high-quality standards, advancement, and sustainability of evidence-informed nursing and midwifery practice.',
+      'The Nursing Council is committed to maintaining high standards and ensuring the advancement of evidence-informed nursing and midwifery practice.',
   },
   {
     icon: Zap,
-    title: 'Efficiency',
+    title: 'Responsiveness',
     description:
-      'The Council keeps current with national, regional, and global standards and makes every effort to respond quickly to questions, concerns, and requests.',
+      'The Nursing Council acts promptly and efficiently to address requests and matters of concern in a timely manner and provide feedback.',
   },
 ];
 
@@ -353,21 +357,21 @@ export default function AboutPage() {
                 <Star className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                 <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Vision</h3>
                 <p className="leading-relaxed text-gray-600">
-                  A trusted, responsive Council that advances public confidence in nursing and midwifery practice across The Bahamas.
+                  To protect the public through the enforcement of quality nursing education, training, and practice.
                 </p>
               </div>
               <div className="bg-white p-7">
                 <Target className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                 <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Mission</h3>
                 <p className="leading-relaxed text-gray-600">
-                  Protect the public through the enforcement of quality nursing education, training, and practice across the Commonwealth of The Bahamas.
+                  Provide the legal framework to control education, training and practice of Nurses and Midwives in the Commonwealth of The Bahamas. Establish and monitor the standards of professional Nursing and Midwifery through on-going collaboration with statutory accreditation body, Nursing Schools, and Health Professionals.
                 </p>
               </div>
               <div className="bg-white p-7">
                 <ShieldCheck className="mb-5 h-9 w-9 text-council-primary" aria-hidden="true" />
                 <h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">Core Values</h3>
                 <p className="leading-relaxed text-gray-600">
-                  Professionalism, integrity, excellence, and efficiency guide the Council&apos;s decisions, service, and public-protection work.
+                  Professionalism, Integrity, Excellence, and Responsiveness guide the Council&apos;s decisions, service, and public-protection work.
                 </p>
               </div>
             </div>
@@ -404,7 +408,7 @@ export default function AboutPage() {
               </div>
               <div className="max-w-2xl">
                 <p className="text-lg leading-relaxed text-gray-600">
-                  The Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
+                  The Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, enrollment, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
                 </p>
                 <Link
                   href="/documents/nurses-and-midwives-act-2023.pdf"
@@ -539,7 +543,7 @@ export default function AboutPage() {
                       />
                     </div>
                     <figcaption className="border-t border-slate-200 px-3 py-2 text-xs leading-relaxed text-gray-600">
-                      Council representatives pictured with historical Council imagery and the Nursing Council seal.
+                      Pictured with historical imagery of the Nursing Council seal.
                     </figcaption>
                   </figure>
 
@@ -558,8 +562,8 @@ export default function AboutPage() {
                       <dt className="mt-1 text-xs leading-relaxed text-white/75">Founding members</dt>
                     </div>
                     <div className="bg-white/10 p-3">
-                      <dd className="font-heading text-2xl font-bold text-council-accent">13</dd>
-                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Past Chairpersons</dt>
+                      <dd className="font-heading text-2xl font-bold text-council-accent">{pastChairpersons.length}</dd>
+                      <dt className="mt-1 text-xs leading-relaxed text-white/75">Recorded Council Chairs</dt>
                     </div>
                   </dl>
 
@@ -639,7 +643,7 @@ export default function AboutPage() {
                     The founding Council members.
                   </h3>
                   <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                    The first appointed Council brought together leaders across nursing, medicine, and public service to regulate education, registration, practice, and discipline.
+                    The first appointed Council brought together leaders across nursing, medicine, and public service to regulate education, registration, enrollment, practice, and discipline.
                   </p>
                   <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500">
                     Historical administration record: Mrs. Beverly Ford served as Registrar and is not listed as a Council member.
@@ -691,15 +695,15 @@ export default function AboutPage() {
                   </p>
                   <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Leadership through the years.</h3>
                   <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
-                    The following record is based on the Council-supplied list of past Chairpersons. Service periods are presented by year for a consistent public record.
+                    The following record is based on the Council-supplied list of past and current Chairpersons. Service periods are shown where they were supplied.
                   </p>
 
                   <ol className="mt-8 overflow-hidden rounded-[8px] border border-slate-200">
                     {pastChairpersons.map((chairperson, index) => (
-                      <li key={`${chairperson.name}-${chairperson.period}`} className="grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)] sm:items-center sm:gap-5 sm:px-6">
+                      <li key={chairperson.name} className={`grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:items-center sm:gap-5 sm:px-6 ${chairperson.period ? 'sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)]' : 'sm:grid-cols-[3.5rem_minmax(0,1fr)]'}`}>
                         <span className="font-heading text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
                         <p className="font-heading text-lg font-bold text-council-dark">{chairperson.name}</p>
-                        <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>
+                        {chairperson.period && <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>}
                       </li>
                     ))}
                   </ol>

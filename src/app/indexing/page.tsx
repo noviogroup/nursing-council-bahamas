@@ -18,12 +18,12 @@ export const metadata = createPageMetadata({
 const indexingSteps = [
   'Confirm eligibility through an approved nursing or midwifery education pathway.',
   'Prepare the required identification, education, and programme documents.',
-  'Submit the nursing student indexing application through the portal or approved Council process.',
+  'Submit the Nursing Student Indexing application through the portal or approved Council process.',
   'Track Council review status and respond to requests for additional information.',
 ];
 
 const placeholders = [
-  'Nursing student indexing application form placeholder',
+  'Nursing Student Indexing application form placeholder',
   'Programme confirmation document placeholder',
   'Student identification requirement placeholder',
   'Council review checklist placeholder',
@@ -45,7 +45,7 @@ export default function IndexingPage() {
                 Nursing Student Indexing.
               </h1>
               <p className="text-xl leading-relaxed text-white/85">
-                Nursing student indexing records students and applicants entering a nurse education programme under Council oversight.
+                Nursing Student Indexing records applicants entering an approved nursing or midwifery education programme as students under Council oversight.
               </p>
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function IndexingPage() {
                   Forms pending
                 </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Nursing student indexing documents.
+                  Nursing Student Indexing documents.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
@@ -116,11 +116,11 @@ export default function IndexingPage() {
           <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Online action</p>
-              <h2 className="font-heading text-4xl font-bold">Begin nursing student indexing through the Council portal.</h2>
+              <h2 className="font-heading text-4xl font-bold">Begin Nursing Student Indexing through the Council portal.</h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link href={portalPath('/register?type=indexing')} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
-                Apply for nursing student indexing
+                Apply for Nursing Student Indexing
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-white/40 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10">
