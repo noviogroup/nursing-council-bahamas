@@ -15,6 +15,7 @@ export default function Header() {
     { href: '/about', label: 'About' },
     { href: '/education-training', label: 'Education' },
     { href: '/nursing-agencies', label: 'Agencies' },
+    { href: '/registry', label: 'Registry' },
     { href: '/news', label: 'News' },
   ];
 
