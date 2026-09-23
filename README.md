@@ -48,6 +48,8 @@ The public informational pages can render without database credentials. The nurs
 
 Important variables include:
 
+- `PUBLIC_SITE_LIVE=true` to expose the complete public website; when omitted, visitors see the temporary landing page while staff portal and API routes remain available
+
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `NEXT_PUBLIC_SITE_URL`

@@ -14,15 +14,24 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ComingSoon from '@/components/ComingSoon';
 import { portalPath } from '@/lib/portal';
 import { featuredNewsArticles, formatNewsDate } from '@/lib/news';
 import { createPageMetadata, organizationStructuredData, SITE_NAME } from '@/lib/seo';
 
-export const metadata = createPageMetadata({
-  title: SITE_NAME,
-  description: 'Access nursing registration, licence renewal, education, legal resources, the public nurse registry, and Council information for The Bahamas.',
-  path: '/',
-});
+const publicSiteLive = process.env.PUBLIC_SITE_LIVE === 'true';
+
+export const metadata = publicSiteLive
+  ? createPageMetadata({
+      title: SITE_NAME,
+      description: 'Access nursing registration, licence renewal, education, legal resources, the public nurse registry, and Council information for The Bahamas.',
+      path: '/',
+    })
+  : {
+      title: `Nursing is going digital | ${SITE_NAME}`,
+      description: 'The Nursing Council is preparing a simpler digital experience for registration, renewals, verification, and professional guidance.',
+      robots: { index: false, follow: false },
+    };
 
 const services = [
   {
@@ -81,6 +90,10 @@ const councilFacts = [
 ];
 
 export default function HomePage() {
+  if (!publicSiteLive) {
+    return <ComingSoon />;
+  }
+
   return (
     <>
       <script
