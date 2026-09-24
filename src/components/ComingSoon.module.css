@@ -149,6 +149,67 @@
   line-height: 1.62;
 }
 
+.portalLinks {
+  width: min(100%, 650px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.portalLink {
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 15px;
+  border: 1px solid rgba(242, 245, 255, 0.48);
+  border-radius: 10px;
+  color: var(--white);
+  background: rgba(3, 3, 62, 0.78);
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 140ms ease;
+}
+
+.primaryPortalLink {
+  border-color: var(--gold);
+  color: #11113b;
+  background: var(--gold);
+}
+
+.portalLink > span {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.portalLink small {
+  color: inherit;
+  font-size: 0.7rem;
+  font-weight: 720;
+  opacity: 0.76;
+}
+
+.portalLink strong {
+  font-size: 0.96rem;
+  font-weight: 820;
+  white-space: nowrap;
+}
+
+.portalArrow {
+  opacity: 0.72;
+}
+
+.portalLink:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.portalLink:active {
+  transform: scale(0.98);
+}
+
 .support {
   width: min(100%, 1240px);
   display: grid;
@@ -297,6 +358,16 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .portalLink:hover {
+    border-color: var(--gold);
+    background: rgba(242, 245, 255, 0.14);
+  }
+
+  .primaryPortalLink:hover {
+    border-color: #e5af13;
+    background: #f2bc20;
+  }
+
   .contact:hover {
     border-color: var(--gold);
     background: rgba(242, 245, 255, 0.14);
@@ -393,6 +464,11 @@
     margin-top: 20px;
     font-size: 0.98rem;
     line-height: 1.55;
+  }
+
+  .portalLinks {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
   }
 
   .support {

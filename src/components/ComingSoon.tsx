@@ -1,10 +1,14 @@
 import Image from 'next/image';
 import {
+  ArrowSquareOut,
   Clock,
   EnvelopeSimple,
+  FileText,
+  IdentificationCard,
   MapPinLine,
   Phone,
 } from '@phosphor-icons/react/dist/ssr';
+import { portalPath } from '@/lib/portal';
 import styles from './ComingSoon.module.css';
 
 const COUNCIL_PHONE_DISPLAY = '(242) 604-6015 / 6017';
@@ -54,6 +58,24 @@ export default function ComingSoon() {
           <p className={styles.intro}>
             Registration, renewals, verification, and guidance are coming together in one simpler online experience.
           </p>
+          <nav className={styles.portalLinks} aria-label="Online application services">
+            <a className={`${styles.portalLink} ${styles.primaryPortalLink}`} href={portalPath('/register?type=exam')}>
+              <FileText size={22} weight="bold" aria-hidden="true" />
+              <span>
+                <small>Apply online</small>
+                <strong>Exam Registration</strong>
+              </span>
+              <ArrowSquareOut className={styles.portalArrow} size={20} weight="bold" aria-hidden="true" />
+            </a>
+            <a className={styles.portalLink} href={portalPath('/register?type=registration')}>
+              <IdentificationCard size={22} weight="bold" aria-hidden="true" />
+              <span>
+                <small>Apply online</small>
+                <strong>Registration</strong>
+              </span>
+              <ArrowSquareOut className={styles.portalArrow} size={20} weight="bold" aria-hidden="true" />
+            </a>
+          </nav>
         </div>
 
         <aside className={styles.support} aria-labelledby="support-title">

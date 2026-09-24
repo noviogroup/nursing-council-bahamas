@@ -1,7 +1,4 @@
-const fallbackPortalUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://127.0.0.1:3002'
-    : 'https://portal.nursingcouncilbahamas.com';
+const fallbackPortalUrl = 'https://nursing-council-portal.netlify.app';
 
 export const portalBaseUrl =
   (process.env.NEXT_PUBLIC_PORTAL_URL || fallbackPortalUrl).replace(/\/$/, '');
