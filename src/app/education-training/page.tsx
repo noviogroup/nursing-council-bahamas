@@ -6,6 +6,7 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { createPageMetadata } from '@/lib/seo';
+import { otherTrainingInstitutions, universityOfTheBahamas } from '@/lib/councilContent';
 
 export const metadata = createPageMetadata({
   title: 'Nursing Education and Training',
@@ -46,37 +47,6 @@ const clinicalSites = [
     logo: '/assets/clinical-sites/public-hospitals-authority.webp',
     logoAlt: 'Public Hospitals Authority logo',
     logoClass: 'scale-[3]',
-  },
-];
-
-const universityOfTheBahamas = {
-  name: 'The University of The Bahamas',
-  programmes: [
-    'Master of Science Nursing Education | Nursing Administration | Adult Gerontology',
-    'Diploma of Midwifery',
-    'Diploma of Community Health Nursing',
-    'Bachelor of Science in Nursing',
-    'Registered Nurse to Bachelor of Science in Nursing',
-    'Trained Clinical Nursing Program',
-  ],
-};
-
-const otherTrainingInstitutions = [
-  {
-    name: 'Bahamas Baptist University College',
-    programmes: ['Trained Clinical Nursing Program'],
-  },
-  {
-    name: 'Public Hospitals Authority Academy',
-    programmes: ['Trained Clinical Nursing Program'],
-  },
-  {
-    name: 'Southern College',
-    programmes: ['Bachelor of Science in Nursing (Provisional)'],
-  },
-  {
-    name: 'Terreve University College',
-    programmes: ['Bachelor of Science in Nursing', 'Trained Clinical Nursing Program'],
   },
 ];
 

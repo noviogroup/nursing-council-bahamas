@@ -8,6 +8,8 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { createPageMetadata } from '@/lib/seo';
+import { isLinkAvailable } from '@/lib/siteAvailability';
+import { licensedAgencies } from '@/lib/councilContent';
 
 export const metadata = createPageMetadata({
   title: 'Licensed Nursing Agencies',
@@ -28,30 +30,6 @@ const agencyHighlights = [
     description: 'Overview of the review pathway for operating a nursing agency in The Bahamas.',
     icon: ClipboardText,
     items: ['Submit application documents', 'Council compliance review', 'Licensure, renewal, or follow-up decision'],
-  },
-];
-
-const licensedAgencies = [
-  {
-    name: 'Angels Elite Nursing Services',
-    logo: '/assets/agencies/angels-elite.jpg',
-    logoAlt: 'Angels Elite Nursing Services logo',
-    logoClassName: 'object-contain p-7 sm:p-8',
-    logoPanelClassName: 'bg-white',
-  },
-  {
-    name: 'Blessed Beginnings Midwifery and Nursing Agency',
-    logo: '/assets/agencies/blessed-beginning.jpg',
-    logoAlt: 'Blessed Beginning Midwifery and Nursing Agency logo',
-    logoClassName: 'object-contain p-5',
-    logoPanelClassName: 'bg-[#fbf7fc]',
-  },
-  {
-    name: 'Happy Healing Home Care',
-    logo: '/assets/agencies/happy-healing.png',
-    logoAlt: 'Happy Healing Homecare logo',
-    logoClassName: 'object-contain p-7 sm:p-8',
-    logoPanelClassName: 'bg-council-primary',
   },
 ];
 
@@ -172,7 +150,7 @@ export default function NursingAgenciesPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Agency enquiries</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council for current agency guidance.</h2>
             </div>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+            <Link href={isLinkAvailable('/contact') ? '/contact' : 'mailto:info@nursingcouncilbahamas.com'} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               Contact the Council
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

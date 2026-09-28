@@ -13,6 +13,8 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { createPageMetadata } from '@/lib/seo';
+import { isLinkAvailable } from '@/lib/siteAvailability';
+import { councilDocuments, currentCouncilMembers } from '@/lib/councilContent';
 
 export const metadata = createPageMetadata({
   title: 'About the Council',
@@ -121,20 +123,6 @@ const governanceGroups = [
     title: 'Education appointment',
     roles: ['One Minister of Education nominee'],
   },
-];
-
-const currentCouncilMembers = [
-  { role: 'Chairperson', name: 'Ferneka Deleveaux' },
-  { role: 'Deputy Chairperson', name: 'Tamica Knowles' },
-  { role: 'Director of Nursing (ex officio)', name: 'Ms. Genevieve Bowe' },
-  { role: 'Ministry of Education Representative', name: 'Ms. Vanria Jack' },
-  { role: 'Legal Counsel/Attorney', name: 'Ms. Morlette Johnson' },
-  { role: 'Midwives Association Representative', name: 'Ms. Andrea Nottage' },
-  { role: 'Nurses Association Representative', name: 'Ms. Jen Rolle' },
-  { role: 'Nurses Association Representative', name: 'Ms. Tandra Longley' },
-  { role: 'Nurses Association Representative', name: 'Ms. Valencia Rolle' },
-  { role: 'Other Nursing Representative', name: 'Ms. Shirley Bain' },
-  { role: 'Medical Practitioner', name: null },
 ];
 
 const administrationRoles = [
@@ -491,7 +479,7 @@ export default function AboutPage() {
               })}
             </div>
             <Link
-              href="/documents/code-of-ethics-for-nurses-2025.pdf"
+              href={councilDocuments.codeOfEthics.href}
               className="mt-10 inline-flex items-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-council-accent focus:ring-offset-2 focus:ring-offset-council-primary"
             >
               View Code of Ethics
@@ -757,10 +745,12 @@ export default function AboutPage() {
                 <p className="text-lg leading-relaxed text-gray-600">
                   The First Schedule of the Nurses and Midwives Act, 2023 establishes an eleven-member Council appointed by the Minister, with representation across nursing, midwifery, medicine, Legal Counsel/Attorney, and education.
                 </p>
-                <Link href="/committees" className="mt-6 inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                  Explore committees
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                {isLinkAvailable('/committees') && (
+                  <Link href="/committees" className="mt-6 inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+                    Explore committees
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
             </div>
 

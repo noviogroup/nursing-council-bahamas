@@ -9,6 +9,8 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { createPageMetadata } from '@/lib/seo';
+import { isLinkAvailable } from '@/lib/siteAvailability';
+import { councilDocuments } from '@/lib/councilContent';
 
 export const metadata = createPageMetadata({
   title: 'Legal Framework',
@@ -25,14 +27,8 @@ const frameworks = [
       'The current Act governing nursing and midwifery education, registration, enrollment, licensure, conduct, and professional practice.',
     status: '2023 Act available',
     links: [
-      {
-        label: 'Nurses and Midwives Act, 2023',
-        href: '/documents/nurses-and-midwives-act-2023.pdf',
-      },
-      {
-        label: '2024 Appointed Day Notice',
-        href: 'https://laws.bahamas.gov.bs/cms/images/LEGISLATION/SUBORDINATE/2024/2024-0069/2024-0069.pdf',
-      },
+      councilDocuments.act,
+      councilDocuments.appointedDayNotice,
     ],
     note: 'This updated Act document was supplied for publication by the Council.',
     icon: Gavel,
@@ -140,7 +136,7 @@ export default function LegalEthicsPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need help interpreting a requirement?</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council for legal framework guidance.</h2>
             </div>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+            <Link href={isLinkAvailable('/contact') ? '/contact' : 'mailto:info@nursingcouncilbahamas.com'} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               Contact us
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>

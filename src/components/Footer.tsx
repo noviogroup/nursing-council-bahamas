@@ -8,15 +8,26 @@ import {
   TwitterLogo as Twitter,
 } from '@phosphor-icons/react/dist/ssr';
 import { portalPath } from '@/lib/portal';
+import { isLinkAvailable, publicSiteLive } from '@/lib/siteAvailability';
+import { StagedFooter } from '@/components/StagedChrome';
 
 export default function Footer() {
+  if (!publicSiteLive) {
+    return <StagedFooter />;
+  }
+
   const quickLinks = [
     { name: 'Register / Enroll', href: portalPath('/register?type=registration') },
     { name: 'Renew Licence', href: portalPath('/register?type=renewal') },
     { name: 'Education', href: '/education-training' },
     { name: 'Forms & Documents', href: '/forms' },
-    { name: 'Track Complaint', href: portalPath('/complaints/track') },
-  ];
+    { name: 'Registry', href: '/registry' },
+    { name: 'Code of Ethics & the Act', href: '/legal-ethics' },
+    { name: 'Submit a Complaint', href: '/complaints/new' },
+    { name: 'Track Complaint', href: '/complaints/track' },
+  ].filter((link) => isLinkAvailable(link.href));
+
+  const committeesAvailable = isLinkAvailable('/committees');
 
   const committees = [
     'Education Committee',
@@ -83,12 +94,16 @@ export default function Footer() {
             <ul className="space-y-2">
               {committees.map((committee) => (
                 <li key={committee}>
-                  <Link
-                    href="/committees"
-                    className="text-gray-300 hover:text-council-accent transition-colors text-sm"
-                  >
-                    {committee}
-                  </Link>
+                  {committeesAvailable ? (
+                    <Link
+                      href="/committees"
+                      className="text-gray-300 hover:text-council-accent transition-colors text-sm"
+                    >
+                      {committee}
+                    </Link>
+                  ) : (
+                    <span className="text-gray-300 text-sm">{committee}</span>
+                  )}
                 </li>
               ))}
             </ul>

@@ -1,23 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-const publicSiteLive = process.env.PUBLIC_SITE_LIVE === 'true';
+import { isPathAvailable, panelRedirects } from '@/lib/siteAvailability';
 
 export function middleware(request: NextRequest) {
-  if (publicSiteLive) {
+  if (isPathAvailable(request.nextUrl.pathname)) {
     return NextResponse.next();
   }
 
-  const { pathname } = request.nextUrl;
-  const isAvailableDuringBuild =
-    pathname === '/' ||
-    pathname.startsWith('/portal') ||
-    pathname.startsWith('/api');
-
-  if (isAvailableDuringBuild) {
-    return NextResponse.next();
-  }
-
-  return NextResponse.redirect(new URL('/', request.url));
+  const panel = panelRedirects[request.nextUrl.pathname.replace(/\/$/, '')];
+  return NextResponse.redirect(new URL(panel ? `/#${panel}` : '/', request.url));
 }
 
 export const config = {

@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import {
-  ArrowSquareOut,
   Clock,
   EnvelopeSimple,
-  FileText,
-  IdentificationCard,
   MapPinLine,
   Phone,
+  WhatsappLogo,
 } from '@phosphor-icons/react/dist/ssr';
-import { portalPath } from '@/lib/portal';
+import LandingPanels from '@/components/LandingPanels';
+import { councilContact } from '@/lib/councilContent';
 import styles from './ComingSoon.module.css';
 
-const COUNCIL_PHONE_DISPLAY = '(242) 604-6015 / 6017';
-const COUNCIL_PHONE_LINK = '+12426046015';
-const COUNCIL_EMAIL = 'info@nursingcouncilbahamas.com';
+const COUNCIL_PHONE_DISPLAY = councilContact.phoneDisplay;
+const COUNCIL_PHONE_LINK = councilContact.phoneLink;
+const COUNCIL_EMAIL = councilContact.email;
+const COUNCIL_WHATSAPP_CHANNEL = councilContact.whatsappChannel;
 
 export default function ComingSoon() {
   return (
@@ -58,24 +58,7 @@ export default function ComingSoon() {
           <p className={styles.intro}>
             Registration, renewals, verification, and guidance are coming together in one simpler online experience.
           </p>
-          <nav className={styles.portalLinks} aria-label="Online application services">
-            <a className={`${styles.portalLink} ${styles.primaryPortalLink}`} href={portalPath('/register?type=exam')}>
-              <FileText size={22} weight="bold" aria-hidden="true" />
-              <span>
-                <small>Apply online</small>
-                <strong>Exam Registration</strong>
-              </span>
-              <ArrowSquareOut className={styles.portalArrow} size={20} weight="bold" aria-hidden="true" />
-            </a>
-            <a className={styles.portalLink} href={portalPath('/register?type=registration')}>
-              <IdentificationCard size={22} weight="bold" aria-hidden="true" />
-              <span>
-                <small>Apply online</small>
-                <strong>Registration</strong>
-              </span>
-              <ArrowSquareOut className={styles.portalArrow} size={20} weight="bold" aria-hidden="true" />
-            </a>
-          </nav>
+          <LandingPanels />
         </div>
 
         <aside className={styles.support} aria-labelledby="support-title">
@@ -114,6 +97,36 @@ export default function ComingSoon() {
               <MapPinLine size={19} weight="bold" aria-hidden="true" />
               <span>#23 Capitol House, Virginia and Augusta Streets, Nassau</span>
             </p>
+          </div>
+
+          <div className={styles.whatsapp}>
+            <Image
+              className={styles.whatsappQr}
+              src="/assets/whatsapp/nursing-council-whatsapp-qr.png"
+              alt="QR code for the Nursing Council WhatsApp channel"
+              width={112}
+              height={112}
+              unoptimized
+            />
+            <div className={styles.whatsappCopy}>
+              <p className={styles.supportLabel}>Stay informed</p>
+              <p>
+                Follow the Council&apos;s official WhatsApp channel for announcements as new online services go live.
+                <span className={styles.scanHint}> Scan the code with your phone camera, or open the link.</span>
+              </p>
+            </div>
+            <a
+              className={`${styles.contact} ${styles.whatsappLink}`}
+              href={COUNCIL_WHATSAPP_CHANNEL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <WhatsappLogo size={22} weight="bold" aria-hidden="true" />
+              <span>
+                <small>WhatsApp channel</small>
+                <strong>Follow the Council</strong>
+              </span>
+            </a>
           </div>
         </aside>
       </section>

@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { Clock, EnvelopeSimple as Mail, List as Menu, MapPin, Phone, X } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/button';
 import { portalPath } from '@/lib/portal';
+import { isLinkAvailable, publicSiteLive } from '@/lib/siteAvailability';
+import { StagedHeader } from '@/components/StagedChrome';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,7 +19,13 @@ export default function Header() {
     { href: '/nursing-agencies', label: 'Agencies' },
     { href: '/registry', label: 'Registry' },
     { href: '/news', label: 'News' },
-  ];
+    { href: '/legal-ethics', label: 'Legal & Ethics' },
+    { href: '/complaints', label: 'Complaints' },
+  ].filter((item) => isLinkAvailable(item.href));
+
+  if (!publicSiteLive) {
+    return <StagedHeader />;
+  }
 
   return (
     <header className="bg-white shadow-sm" role="banner">
@@ -90,7 +98,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center justify-center gap-7 xl:flex 2xl:gap-9">
+            <div className="hidden min-w-0 flex-1 items-center justify-center gap-5 px-4 xl:flex 2xl:gap-8">
               {navigationItems.map((item) => (
                 <Link
                   key={item.href}
@@ -103,11 +111,13 @@ export default function Header() {
               ))}
             </div>
 
-            <div className="ml-auto hidden justify-end xl:flex">
-              <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
-                <a href={portalPath('/login')}>Portal Access</a>
-              </Button>
-            </div>
+            {publicSiteLive && (
+              <div className="ml-auto hidden justify-end xl:flex">
+                <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
+                  <a href={portalPath('/login')}>Portal Access</a>
+                </Button>
+              </div>
+            )}
 
             {/* Mobile Menu Button */}
             <div className="ml-auto shrink-0 xl:hidden">
@@ -150,14 +160,16 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-                <a
-                  href={portalPath('/login')}
-                  className="flex min-h-11 items-center rounded-[8px] bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  role="menuitem"
-                >
-                  Portal Access
-                </a>
+                {publicSiteLive && (
+                  <a
+                    href={portalPath('/login')}
+                    className="flex min-h-11 items-center rounded-[8px] bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    role="menuitem"
+                  >
+                    Portal Access
+                  </a>
+                )}
               </div>
             </div>
           )}

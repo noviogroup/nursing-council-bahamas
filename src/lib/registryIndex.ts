@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
+import { formatPersonName } from "@/lib/formatName";
 import {
   type AirtableRegistryEnvironment,
   getAirtableRegistryEnvironment,
@@ -158,7 +159,7 @@ export async function searchRegistryIndex(filters: RegistrySearchFilters) {
   const rows = (data || []) as RegistrySearchRow[];
   return {
     records: rows.map((row) => ({
-      name: row.nurse_name,
+      name: formatPersonName(row.nurse_name),
       type: row.registration_type || "Not recorded",
       registrationNumber: row.registration_number,
       registrationYear: row.registration_year,

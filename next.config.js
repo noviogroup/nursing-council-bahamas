@@ -8,6 +8,8 @@ module.exports = (phase) => ({
   outputFileTracingRoot: __dirname,
   allowedDevOrigins: ["*.preview.same-app.com"],
   env: {
+    // Inlined so client components (site navigation) see the same staged-launch flag as middleware.
+    PUBLIC_SITE_LIVE: process.env.PUBLIC_SITE_LIVE || 'false',
     NEXT_PUBLIC_SUPABASE_URL:
       process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY:

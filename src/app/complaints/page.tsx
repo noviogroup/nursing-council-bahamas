@@ -1,8 +1,8 @@
+import Link from 'next/link';
 import { ArrowRight, ClipboardText, FileMagnifyingGlass as FileSearch, ShieldCheck, WarningCircle } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { createPageMetadata } from '@/lib/seo';
-import { portalPath } from '@/lib/portal';
 
 export const metadata = createPageMetadata({
   title: 'Public Complaints',
@@ -33,7 +33,7 @@ export default function ComplaintsPage() {
               </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Submit a complaint or concern.</h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Use the online complaint portal to report concerns involving an individual nurse, midwife, applicant, or licensee.
+                Use the online complaint form to report concerns involving an individual nurse, midwife, applicant, or licensee.
               </p>
             </div>
             <div className="border-l-4 border-council-accent bg-white/10 p-7">
@@ -76,22 +76,22 @@ export default function ComplaintsPage() {
 
         <section className="bg-gray-50 py-16 lg:py-20">
           <div className="container mx-auto grid gap-6 px-4 md:grid-cols-2">
-            <a href={portalPath('/complaints/new')} className="group bg-white p-8 shadow-sm transition-colors hover:bg-gray-100">
+            <Link href="/complaints/new" className="group bg-white p-8 shadow-sm transition-colors hover:bg-gray-100">
               <ClipboardText className="mb-10 h-10 w-10 text-council-primary" />
               <h2 className="font-heading text-3xl font-bold text-council-dark">Start a complaint</h2>
               <p className="mt-4 leading-relaxed text-gray-600">Complete the multi-step public complaint form and receive a reference number.</p>
               <span className="mt-8 inline-flex items-center gap-2 font-semibold text-council-primary">
                 Open form <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-            </a>
-            <a href={portalPath('/complaints/track')} className="group bg-white p-8 shadow-sm transition-colors hover:bg-gray-100">
+            </Link>
+            <Link href="/complaints/track" className="group bg-white p-8 shadow-sm transition-colors hover:bg-gray-100">
               <FileSearch className="mb-10 h-10 w-10 text-council-primary" />
               <h2 className="font-heading text-3xl font-bold text-council-dark">Track a complaint</h2>
               <p className="mt-4 leading-relaxed text-gray-600">Use a reference number and contact email to view safe public progress updates.</p>
               <span className="mt-8 inline-flex items-center gap-2 font-semibold text-council-primary">
                 Track status <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>
