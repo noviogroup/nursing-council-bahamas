@@ -21,7 +21,7 @@ export default function Footer() {
     { name: 'Renew Licence', href: portalPath('/register?type=renewal') },
     { name: 'Education', href: '/education-training' },
     { name: 'Forms & Documents', href: '/forms' },
-    { name: 'Registry', href: '/registry' },
+    { name: 'Register', href: '/registry' },
     { name: 'Code of Ethics & the Act', href: '/legal-ethics' },
     { name: 'Submit a Complaint', href: '/complaints/new' },
     { name: 'Track Complaint', href: '/complaints/track' },

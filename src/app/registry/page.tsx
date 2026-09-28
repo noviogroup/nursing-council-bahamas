@@ -4,8 +4,8 @@ import RegistrySampleClient from "@/components/registry/RegistrySampleClient";
 import { createPageMetadata } from '@/lib/seo';
 
 export const metadata = createPageMetadata({
-  title: 'Public Nurse Registry',
-  description: 'Search the Nursing Council’s published nurse registry by name, registration number, registration type, or original registration year.',
+  title: 'Public Nurse Register',
+  description: 'Search the Nursing Council’s published nurse register by name, registration number, registration type, or original registration year.',
   path: '/registry',
 });
 
@@ -23,10 +23,10 @@ export default function RegistryPage() {
             <div className="max-w-3xl">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
                 <span className="h-px w-10 bg-council-accent" />
-                Official public registry
+                Official public register
               </p>
               <h1 className="font-heading mb-5 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-                Search the nurse registry.
+                Search the nurse register.
               </h1>
               <p className="max-w-2xl text-lg leading-relaxed text-white/85">
                 Browse the published register using a nurse’s name, registration
@@ -48,7 +48,7 @@ export default function RegistryPage() {
                   Combined
                 </strong>
                 <span className="mt-1 block text-xs text-white/75">
-                  registry
+                  register
                 </span>
               </div>
               <div className="min-w-0 px-2 text-center sm:px-3">
