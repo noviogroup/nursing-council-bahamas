@@ -4,8 +4,10 @@
 export const publicSiteLive = process.env.PUBLIC_SITE_LIVE === 'true';
 
 // Complaints are held back until the Council finalises categories and the complaints SOP.
-// Flip to true to publish the complaint pages and the landing-page complaints panel.
-export const complaintsPublic = false;
+// Set NEXT_PUBLIC_COMPLAINTS_PUBLIC=true to publish the complaint pages and the
+// landing-page complaints panel (for example in .env.local to work on them locally).
+// Unset, as on the live site, they stay hidden.
+export const complaintsPublic = process.env.NEXT_PUBLIC_COMPLAINTS_PUBLIC === 'true';
 
 export const approvedPublicPaths = [
   // The complaint form is a full page; the other approved content opens in landing-page panels.

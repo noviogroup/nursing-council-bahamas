@@ -6,15 +6,15 @@ import { createPageMetadata } from '@/lib/seo';
 
 export const metadata = createPageMetadata({
   title: 'Public Complaints',
-  description: 'Learn how to submit and track a complaint concerning an individual nurse, midwife, applicant, or licensee.',
+  description: 'Submit a complaint about a nurse, midwife, applicant or licensee, and track it with your tracking number.',
   path: '/complaints',
 });
 
 const processSteps = [
-  { title: 'Submit the complaint', description: 'Provide contact details, information about the individual practitioner, incident details, and supporting documents.' },
-  { title: 'Receive a reference number', description: 'The system creates a secure Nursing Council reference number for tracking.' },
-  { title: 'Council review', description: 'Authorized staff triage, assign, investigate, and update the complaint through the secure staff portal.' },
-  { title: 'Track public progress', description: 'Use the reference number and email address to see safe public status updates.' },
+  { title: 'Tell us what happened', description: 'Give your contact details, who the complaint is about, what happened and when. You can attach documents or photos.' },
+  { title: 'Get a tracking number', description: 'When you submit, you receive a tracking number such as NC-2026-00012. Keep it with the email address you used.' },
+  { title: 'The Council reviews it', description: 'Council staff check the complaint, may contact you for more information, and decide the next step.' },
+  { title: 'Check progress', description: 'Enter your tracking number and email address at any time to see the current status of your complaint.' },
 ];
 
 const acceptedSubjects = ['Nurse', 'Midwife', 'Applicant', 'Licensee'];
@@ -33,8 +33,16 @@ export default function ComplaintsPage() {
               </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Submit a complaint or concern.</h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Use the online complaint form to report concerns involving an individual nurse, midwife, applicant, or licensee.
+                Report a concern about a nurse, midwife, applicant or licensee. It takes about 10 minutes, and you can save your progress and finish later.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/complaints/new" className="inline-flex min-h-12 items-center gap-2 bg-white px-6 font-semibold text-council-primary transition-colors hover:bg-council-accent hover:text-council-dark">
+                  Start a complaint <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="/complaints/track" className="inline-flex min-h-12 items-center gap-2 border border-white/60 px-6 font-semibold text-white transition-colors hover:bg-white/10">
+                  Track a complaint
+                </Link>
+              </div>
             </div>
             <div className="border-l-4 border-council-accent bg-white/10 p-7">
               <WarningCircle className="mb-5 h-9 w-9 text-council-accent" />
@@ -58,7 +66,7 @@ export default function ComplaintsPage() {
               ))}
             </div>
             <aside className="bg-gray-50 p-7">
-              <h2 className="font-heading text-2xl font-bold text-council-dark">Accepted complaint subjects</h2>
+              <h2 className="font-heading text-2xl font-bold text-council-dark">Who a complaint can be about</h2>
               <div className="mt-6 space-y-3">
                 {acceptedSubjects.map((subject) => (
                   <div key={subject} className="flex items-center gap-3 border-b border-slate-200 pb-3 text-gray-700">
@@ -68,7 +76,7 @@ export default function ComplaintsPage() {
                 ))}
               </div>
               <p className="mt-6 text-sm leading-relaxed text-gray-600">
-                Facility or employer details may be included as context, but the complaint respondent must be an individual practitioner, applicant, or licensee.
+                You can mention the hospital, clinic or employer, but the complaint must be about an individual person.
               </p>
             </aside>
           </div>
@@ -79,17 +87,17 @@ export default function ComplaintsPage() {
             <Link href="/complaints/new" className="group bg-white p-8 shadow-sm transition-colors hover:bg-gray-100">
               <ClipboardText className="mb-10 h-10 w-10 text-council-primary" />
               <h2 className="font-heading text-3xl font-bold text-council-dark">Start a complaint</h2>
-              <p className="mt-4 leading-relaxed text-gray-600">Complete the multi-step public complaint form and receive a reference number.</p>
+              <p className="mt-4 leading-relaxed text-gray-600">Answer a few short sections and receive a tracking number when you submit.</p>
               <span className="mt-8 inline-flex items-center gap-2 font-semibold text-council-primary">
-                Open form <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                Start a complaint <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
             <Link href="/complaints/track" className="group bg-white p-8 shadow-sm transition-colors hover:bg-gray-100">
               <FileSearch className="mb-10 h-10 w-10 text-council-primary" />
               <h2 className="font-heading text-3xl font-bold text-council-dark">Track a complaint</h2>
-              <p className="mt-4 leading-relaxed text-gray-600">Use a reference number and contact email to view safe public progress updates.</p>
+              <p className="mt-4 leading-relaxed text-gray-600">Enter your tracking number and the email address you used to see the current status.</p>
               <span className="mt-8 inline-flex items-center gap-2 font-semibold text-council-primary">
-                Track status <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                Check the status <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
           </div>

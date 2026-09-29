@@ -31,7 +31,7 @@ type SubmitResponse = {
   submitted_at: string;
 };
 
-const steps = ['Complainant', 'Respondent', 'Category', 'Incident', 'Prior action', 'Documents', 'Review'];
+const steps = ['Your details', 'Who it is about', 'Type of concern', 'What happened', 'Earlier steps', 'Documents', 'Check and submit'];
 
 type ComplaintFormSection = Exclude<keyof ComplaintFormData, 'category'>;
 
@@ -188,7 +188,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
         return;
       }
 
-      setStatus('Draft updated. Email delivery is not enabled yet, so keep the resume link shown below.');
+      setStatus('Draft updated. Keep the link below to come back and finish your complaint.');
       setResumeUrl(buildResumeUrl(resumeToken));
       return;
     }
@@ -212,7 +212,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
 
     setResumeToken(draft.resume_token);
     setResumeUrl(buildResumeUrl(draft.resume_token));
-    setStatus('Draft saved for 30 days. Email delivery is not enabled yet, so keep the resume link shown below.');
+    setStatus('Draft saved for 30 days. Keep the link below to come back and finish your complaint.');
   };
 
   const uploadDocuments = async (referenceNumber: string) => {
@@ -331,7 +331,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
           ))}
         </div>
         <div className="mt-8 border-l-2 border-council-accent pl-4 text-sm leading-relaxed text-white/80">
-          Complaints must include contact details and must concern an individual nurse, midwife, applicant, or licensee.
+          We need your contact details, and the complaint must be about a nurse, midwife, applicant or licensee.
         </div>
       </aside>
 
@@ -513,7 +513,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
               I have already contacted a nurse, employer, facility, police, court, regulator, or other agency.
             </label>
             <label className="block text-sm font-medium text-gray-700">
-              Prior action details
+              What was done
               <Textarea rows={5} value={formData.priorAction.details} onChange={(event) => setSectionValue('priorAction', 'details', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
             <label className="block text-sm font-medium text-gray-700">
@@ -521,7 +521,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
               <Textarea rows={4} value={formData.priorAction.response} onChange={(event) => setSectionValue('priorAction', 'response', event.target.value)} className="mt-2 rounded-[8px] border-slate-300 text-base shadow-none focus-visible:ring-council-primary" />
             </label>
             <label className="block text-sm font-medium text-gray-700">
-              Existing case or reference numbers
+              Any case or reference numbers you were given
               <Input value={formData.priorAction.referenceNumbers} onChange={(event) => setSectionValue('priorAction', 'referenceNumbers', event.target.value)} className={fieldClassName()} />
             </label>
           </div>
@@ -551,8 +551,8 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
         {step === 6 && (
           <div className="space-y-6">
             <div className="grid gap-px border border-slate-200 bg-slate-200 md:grid-cols-2">
-              <div className="bg-white p-5"><p className="text-sm text-gray-500">Complainant</p><p className="font-semibold text-council-dark">{formData.complainant.name || 'Not provided'}</p><p className="text-sm text-gray-600">{formData.complainant.email || 'No email'} / {formData.complainant.phone || 'No phone'}</p></div>
-              <div className="bg-white p-5"><p className="text-sm text-gray-500">Respondent</p><p className="font-semibold text-council-dark">{formData.respondent.name || 'Not provided'}</p><p className="text-sm text-gray-600">{formData.respondent.type || 'No type'} / {formData.respondent.registrationNumber || 'No number'}</p></div>
+              <div className="bg-white p-5"><p className="text-sm text-gray-500">Your details</p><p className="font-semibold text-council-dark">{formData.complainant.name || 'Not provided'}</p><p className="text-sm text-gray-600">{formData.complainant.email || 'No email'} / {formData.complainant.phone || 'No phone'}</p></div>
+              <div className="bg-white p-5"><p className="text-sm text-gray-500">Who it is about</p><p className="font-semibold text-council-dark">{formData.respondent.name || 'Not provided'}</p><p className="text-sm text-gray-600">{formData.respondent.type || 'No type'} / {formData.respondent.registrationNumber || 'No number'}</p></div>
               <div className="bg-white p-5"><p className="text-sm text-gray-500">Category</p><p className="font-semibold text-council-dark">{selectedCategory?.label || 'Not selected'}</p></div>
               <div className="bg-white p-5"><p className="text-sm text-gray-500">Documents</p><p className="font-semibold text-council-dark">{files.length} file(s)</p></div>
             </div>

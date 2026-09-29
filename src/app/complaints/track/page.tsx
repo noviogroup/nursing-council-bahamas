@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, FileMagnifyingGlass as FileSearch, WarningCircle } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
@@ -35,13 +35,19 @@ export default function ComplaintTrackPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // The confirmation page links here with the tracking number filled in.
+  useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get('ref');
+    if (ref) setReferenceNumber(ref.toUpperCase());
+  }, []);
+
   const trackComplaint = async (event: React.FormEvent) => {
     event.preventDefault();
     setError('');
     setResult(null);
 
     if (!hasSupabaseConfig()) {
-      setError('Supabase is not configured for this environment.');
+      setError('Tracking is not available right now. Please call the Council on (242) 604-6015.');
       return;
     }
 
@@ -54,12 +60,12 @@ export default function ComplaintTrackPage() {
     setIsLoading(false);
 
     if (trackError) {
-      setError(trackError.message);
+      setError('Tracking is not available right now. Please try again, or call the Council on (242) 604-6015.');
       return;
     }
 
     if (!data?.[0]) {
-      setError('No complaint was found for that reference number and email address.');
+      setError('We could not find a complaint with that tracking number and email address. Check both and try again.');
       return;
     }
 
@@ -74,11 +80,11 @@ export default function ComplaintTrackPage() {
           <div className="container mx-auto max-w-4xl px-4">
             <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
               <span className="h-px w-10 bg-council-accent" />
-              Public tracking
+              Complaints
             </p>
-            <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Track complaint status.</h1>
+            <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Track a complaint.</h1>
             <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/85">
-              View safe public progress details using the reference number and contact email provided with the complaint.
+              Enter your tracking number and the email address you used when you submitted your complaint.
             </p>
           </div>
         </section>
@@ -88,19 +94,19 @@ export default function ComplaintTrackPage() {
             <form onSubmit={trackComplaint} className="bg-white p-7 shadow-sm">
               <FileSearch className="mb-8 h-10 w-10 text-council-primary" />
               <label className="block text-sm font-medium text-gray-700">
-                Complaint reference number
+                Tracking number
                 <Input required value={referenceNumber} onChange={(event) => setReferenceNumber(event.target.value.toUpperCase())} placeholder="NC-2026-00001" className="mt-2 min-h-12 rounded-[8px]" />
               </label>
               <label className="mt-5 block text-sm font-medium text-gray-700">
-                Contact email
+                Email address you used
                 <Input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 min-h-12 rounded-[8px]" />
               </label>
               <Button type="submit" disabled={isLoading} className="mt-6 min-h-12 w-full rounded-[8px] bg-council-primary hover:bg-council-secondary">
-                {isLoading ? 'Checking...' : 'Track complaint'}
+                {isLoading ? 'Checking…' : 'Check status'}
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <p className="mt-5 text-sm leading-relaxed text-gray-500">
-                Internal notes, staff comments, private attachments, and committee deliberations are never shown in public tracking.
+                You see the status and any updates the Council shares with you. Staff notes and internal records are not shown here.
               </p>
             </form>
 
@@ -113,23 +119,23 @@ export default function ComplaintTrackPage() {
               )}
 
               {!result && !error && (
-                <div className="flex min-h-80 items-center justify-center bg-gray-50 p-8 text-center text-gray-600">
-                  Enter complaint tracking details to view the public status timeline.
+                <div className="flex min-h-48 items-center justify-center bg-gray-50 p-8 text-center text-gray-600">
+                  Your complaint&apos;s status will appear here.
                 </div>
               )}
 
               {result && (
                 <article>
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Reference {result.reference_number}</p>
-                  <h2 className="font-heading mt-3 text-4xl font-bold text-council-dark">{result.public_label}</h2>
+                  <p className="text-sm font-semibold text-gray-500">Tracking number <span className="font-mono text-council-dark">{result.reference_number}</span></p>
+                  <h2 className="font-heading mt-2 text-3xl font-bold text-council-dark">{result.public_label}</h2>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">{result.public_description}</p>
                   {result.public_status_note && <p className="mt-5 border-l-4 border-council-accent bg-yellow-50 p-4 text-gray-700">{result.public_status_note}</p>}
-                  <dl className="mt-8 grid gap-px border border-slate-200 bg-slate-200 sm:grid-cols-2">
-                    <div className="bg-white p-4"><dt className="text-sm text-gray-500">Submitted</dt><dd className="font-semibold text-council-dark">{formatComplaintDate(result.submitted_at)}</dd></div>
-                    <div className="bg-white p-4"><dt className="text-sm text-gray-500">Information requested</dt><dd className="font-semibold text-council-dark">{result.information_requested ? 'Yes' : 'No'}</dd></div>
-                  </dl>
-                  <div className="mt-8">
-                    <h3 className="font-heading mb-4 text-2xl font-bold text-council-dark">Public timeline</h3>
+                  <p className="mt-5 text-sm text-gray-600">Submitted {formatComplaintDate(result.submitted_at)}</p>
+                  {result.information_requested ? (
+                    <p className="mt-3 border-l-4 border-council-alert bg-red-50 p-4 text-sm text-red-900">The Council has asked you for more information. Please check your email, or call the Council on (242) 604-6015.</p>
+                  ) : null}
+                  <div className="mt-7">
+                    <h3 className="font-heading mb-3 text-xl font-bold text-council-dark">History</h3>
                     <div className="space-y-3">
                       {result.timeline.map((item) => (
                         <div key={`${item.status}-${item.createdAt}`} className="border-l-2 border-council-primary bg-gray-50 p-4">
