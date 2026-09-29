@@ -18,9 +18,9 @@ export const metadata = createPageMetadata({
 const verificationOptions = [
   {
     title: 'Verify a Nurse’s Registration/Enrollment Status',
-    description: 'Search the published register by name or registration/enrollment number.',
+    description: 'Search the public nurse register by name or registration/enrollment number.',
     icon: IdentificationCard,
-    action: 'Browse the nurse register',
+    action: 'Browse the public nurse register',
     href: '/registry',
   },
   {
