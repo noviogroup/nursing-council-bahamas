@@ -200,6 +200,10 @@ export default function RegistrySampleClient() {
               />
               <Input
                 id="registry-search"
+                type="search"
+                autoComplete="off"
+                enterKeyHint="search"
+                spellCheck={false}
                 value={formFilters.query}
                 onChange={(event) =>
                   setFormFilters((current) => ({

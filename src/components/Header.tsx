@@ -114,7 +114,7 @@ export default function Header() {
             {publicSiteLive && (
               <div className="ml-auto hidden justify-end xl:flex">
                 <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
-                  <a href={portalPath('/login')}>Portal Access</a>
+                  <a href={portalPath('/')}>Portal Access</a>
                 </Button>
               </div>
             )}
@@ -162,7 +162,7 @@ export default function Header() {
                 ))}
                 {publicSiteLive && (
                   <a
-                    href={portalPath('/login')}
+                    href={portalPath('/')}
                     className="flex min-h-11 items-center rounded-[8px] bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                     role="menuitem"

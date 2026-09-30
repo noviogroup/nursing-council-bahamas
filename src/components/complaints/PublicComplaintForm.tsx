@@ -354,7 +354,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
           <div className="mb-6 border border-slate-200 bg-gray-50 p-4">
             <p className="mb-2 text-sm font-semibold text-council-dark">Draft resume link</p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Input readOnly value={resumeUrl} className="min-h-11 rounded-[8px] bg-white" />
+              <Input readOnly autoComplete="off" value={resumeUrl} className="min-h-11 rounded-[8px] bg-white" />
               <Button
                 type="button"
                 variant="outline"
@@ -383,15 +383,15 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
           <div className="grid gap-5 md:grid-cols-2">
             <label className="text-sm font-medium text-gray-700">
               Full name *
-              <Input value={formData.complainant.name} onChange={(event) => setSectionValue('complainant', 'name', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="name" value={formData.complainant.name} onChange={(event) => setSectionValue('complainant', 'name', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Email address *
-              <Input type="email" value={formData.complainant.email} onChange={(event) => setSectionValue('complainant', 'email', event.target.value)} className={fieldClassName()} />
+              <Input type="email" autoComplete="email" autoCapitalize="none" spellCheck={false} value={formData.complainant.email} onChange={(event) => setSectionValue('complainant', 'email', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Phone number *
-              <Input type="tel" value={formData.complainant.phone} onChange={(event) => setSectionValue('complainant', 'phone', event.target.value)} className={fieldClassName()} />
+              <Input type="tel" inputMode="tel" autoComplete="tel" value={formData.complainant.phone} onChange={(event) => setSectionValue('complainant', 'phone', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Preferred contact
@@ -401,7 +401,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Address or location
-              <Input value={formData.complainant.address} onChange={(event) => setSectionValue('complainant', 'address', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="street-address" value={formData.complainant.address} onChange={(event) => setSectionValue('complainant', 'address', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Relationship to the matter
@@ -424,27 +424,27 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             </label>
             <label className="text-sm font-medium text-gray-700">
               Name *
-              <Input value={formData.respondent.name} onChange={(event) => setSectionValue('respondent', 'name', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.respondent.name} onChange={(event) => setSectionValue('respondent', 'name', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Registration or licence number
-              <Input value={formData.respondent.registrationNumber} onChange={(event) => setSectionValue('respondent', 'registrationNumber', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" autoCapitalize="characters" spellCheck={false} value={formData.respondent.registrationNumber} onChange={(event) => setSectionValue('respondent', 'registrationNumber', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Employer or facility context
-              <Input value={formData.respondent.employer} onChange={(event) => setSectionValue('respondent', 'employer', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.respondent.employer} onChange={(event) => setSectionValue('respondent', 'employer', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Department or unit
-              <Input value={formData.respondent.department} onChange={(event) => setSectionValue('respondent', 'department', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.respondent.department} onChange={(event) => setSectionValue('respondent', 'department', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Contact details, if known
-              <Input value={formData.respondent.contact} onChange={(event) => setSectionValue('respondent', 'contact', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.respondent.contact} onChange={(event) => setSectionValue('respondent', 'contact', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Location
-              <Input value={formData.respondent.location} onChange={(event) => setSectionValue('respondent', 'location', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.respondent.location} onChange={(event) => setSectionValue('respondent', 'location', event.target.value)} className={fieldClassName()} />
             </label>
           </div>
         )}
@@ -473,15 +473,15 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
           <div className="grid gap-5 md:grid-cols-2">
             <label className="text-sm font-medium text-gray-700">
               Incident date
-              <Input type="date" value={formData.incident.date} onChange={(event) => setSectionValue('incident', 'date', event.target.value)} className={fieldClassName()} />
+              <Input type="date" autoComplete="off" max={new Date().toISOString().slice(0, 10)} value={formData.incident.date} onChange={(event) => setSectionValue('incident', 'date', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700">
               Incident location
-              <Input value={formData.incident.location} onChange={(event) => setSectionValue('incident', 'location', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.incident.location} onChange={(event) => setSectionValue('incident', 'location', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Short summary *
-              <Input value={formData.incident.summary} onChange={(event) => setSectionValue('incident', 'summary', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" value={formData.incident.summary} onChange={(event) => setSectionValue('incident', 'summary', event.target.value)} className={fieldClassName()} />
             </label>
             <label className="text-sm font-medium text-gray-700 md:col-span-2">
               Detailed description *
@@ -522,7 +522,7 @@ export default function PublicComplaintForm({ draftToken }: { draftToken?: strin
             </label>
             <label className="block text-sm font-medium text-gray-700">
               Any case or reference numbers you were given
-              <Input value={formData.priorAction.referenceNumbers} onChange={(event) => setSectionValue('priorAction', 'referenceNumbers', event.target.value)} className={fieldClassName()} />
+              <Input autoComplete="off" autoCapitalize="characters" spellCheck={false} value={formData.priorAction.referenceNumbers} onChange={(event) => setSectionValue('priorAction', 'referenceNumbers', event.target.value)} className={fieldClassName()} />
             </label>
           </div>
         )}

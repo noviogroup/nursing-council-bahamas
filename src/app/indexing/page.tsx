@@ -119,7 +119,7 @@ export default function IndexingPage() {
               <h2 className="font-heading text-4xl font-bold">Begin Nursing Student Indexing through the Council portal.</h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Link href={portalPath('/register?type=indexing')} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+              <Link href={portalPath('/start/indexing')} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
                 Apply for Nursing Student Indexing
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

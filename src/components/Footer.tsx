@@ -17,8 +17,8 @@ export default function Footer() {
   }
 
   const quickLinks = [
-    { name: 'Register / Enroll', href: portalPath('/register?type=registration') },
-    { name: 'Renew Licence', href: portalPath('/register?type=renewal') },
+    { name: 'Register / Enroll', href: portalPath('/start/registration') },
+    { name: 'Renew Licence', href: portalPath('/start/renewal') },
     { name: 'Education', href: '/education-training' },
     { name: 'Forms & Documents', href: '/forms' },
     { name: 'Public nurse register', href: '/registry' },

@@ -131,6 +131,8 @@ export default function FormsPage() {
                 <MagnifyingGlass className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-council-primary" aria-hidden="true" />
                 <input
                   type="search"
+                  autoComplete="off"
+                  enterKeyHint="search"
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search forms by name"
