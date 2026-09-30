@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 import { formatPersonName } from "@/lib/formatName";
 import {
@@ -19,7 +19,40 @@ type SupabaseRegistryEnvironment = {
 export type RegistrySyncEnvironment = {
   airtable?: AirtableRegistryEnvironment;
   supabase?: SupabaseRegistryEnvironment;
+  /** Rebuild even when Airtable has not changed since the last sync. */
+  force?: boolean;
 };
+
+type RegistryIndexRow = {
+  source_record_id: string;
+  display_name: string;
+  registration_type: string | null;
+  registration_number: string;
+  registration_number_key: string;
+  registration_year: number | null;
+};
+
+/** Same rows in any order give the same fingerprint. */
+function fingerprintRows(rows: RegistryIndexRow[]) {
+  const sorted = [...rows].sort((a, b) =>
+    a.source_record_id < b.source_record_id ? -1 : a.source_record_id > b.source_record_id ? 1 : 0,
+  );
+  const hash = createHash("sha256");
+  for (const row of sorted) {
+    hash.update(
+      JSON.stringify([
+        row.source_record_id,
+        row.display_name,
+        row.registration_type,
+        row.registration_number,
+        row.registration_number_key,
+        row.registration_year,
+      ]),
+    );
+    hash.update("\n");
+  }
+  return hash.digest("hex");
+}
 
 type RegistrySearchFilters = {
   query: string;
@@ -92,7 +125,7 @@ export async function syncRegistryIndex(
   const supabase = createRegistryClient(supabaseEnvironment);
   const syncId = randomUUID();
 
-  const rows = records.map((record) => ({
+  const rows: RegistryIndexRow[] = records.map((record) => ({
     source_record_id: record.id,
     display_name: record.name,
     registration_type: record.type || null,
@@ -102,6 +135,25 @@ export async function syncRegistryIndex(
     ),
     registration_year: record.registrationYear,
   }));
+
+  const fingerprint = fingerprintRows(rows);
+
+  // Rebuilding rewrites every row and both search indexes, so skip it when
+  // the active index already holds exactly these rows. If the check is not
+  // available (older database), fall through to a full rebuild.
+  if (!environment.force && rows.length > 0) {
+    const { data: unchanged, error: checkError } = await supabase.rpc(
+      "check_airtable_registry_fingerprint",
+      { p_fingerprint: fingerprint, p_secret: syncSecret },
+    );
+    if (!checkError && unchanged === true) {
+      return {
+        recordCount: rows.length,
+        durationMs: Date.now() - startedAt,
+        skipped: true,
+      };
+    }
+  }
 
   try {
     for (let start = 0; start < rows.length; start += INSERT_CHUNK_SIZE) {
@@ -115,14 +167,23 @@ export async function syncRegistryIndex(
         throw new Error(`Unable to stage registry index: ${error.code}`);
     }
 
-    const { data: activatedCount, error: activationError } = await supabase.rpc(
+    const activationArgs = {
+      p_sync_id: syncId,
+      p_expected_count: rows.length,
+      p_secret: syncSecret,
+    };
+    let { data: activatedCount, error: activationError } = await supabase.rpc(
       "activate_airtable_registry_sync",
-      {
-        p_sync_id: syncId,
-        p_expected_count: rows.length,
-        p_secret: syncSecret,
-      },
+      { ...activationArgs, p_fingerprint: fingerprint },
     );
+    // A database without the fingerprint column still has the older
+    // three-argument function (PGRST202: no function with these arguments).
+    if (activationError?.code === "PGRST202") {
+      ({ data: activatedCount, error: activationError } = await supabase.rpc(
+        "activate_airtable_registry_sync",
+        activationArgs,
+      ));
+    }
 
     if (activationError) {
       throw new Error(
@@ -133,6 +194,7 @@ export async function syncRegistryIndex(
     return {
       recordCount: Number(activatedCount || rows.length),
       durationMs: Date.now() - startedAt,
+      skipped: false,
     };
   } catch (error) {
     await supabase.rpc("discard_airtable_registry_sync", {

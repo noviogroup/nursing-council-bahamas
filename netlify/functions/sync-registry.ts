@@ -32,7 +32,9 @@ export default async () => {
   try {
     const result = await syncRegistryIndex(getEnvironment());
     console.log(
-      `Registry index synchronized: ${result.recordCount} records in ${result.durationMs}ms.`,
+      result.skipped
+        ? `Registry unchanged: ${result.recordCount} records, rebuild skipped (${result.durationMs}ms).`
+        : `Registry index synchronized: ${result.recordCount} records in ${result.durationMs}ms.`,
     );
     return new Response("Registry index synchronized.", { status: 200 });
   } catch (error) {

@@ -5,9 +5,12 @@ loadEnvConfig(process.cwd());
 
 async function main() {
   try {
-    const result = await syncRegistryIndex();
+    // Pass --force to rebuild even when Airtable has not changed.
+    const result = await syncRegistryIndex({ force: process.argv.includes("--force") });
     console.log(
-      `Registry index synchronized: ${result.recordCount} records in ${result.durationMs}ms.`,
+      result.skipped
+        ? `Registry unchanged: ${result.recordCount} records, rebuild skipped (${result.durationMs}ms). Use --force to rebuild anyway.`
+        : `Registry index synchronized: ${result.recordCount} records in ${result.durationMs}ms.`,
     );
   } catch (error) {
     console.error(
