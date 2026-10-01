@@ -80,7 +80,7 @@ const councilHighlights = [
   {
     icon: Building,
     title: 'Education, Registration & Enrollment',
-    description: 'Maintain the nursing register, oversee nursing education standards, and support high-quality nursing care across The Bahamas.',
+    description: 'Maintain the nurse registry, oversee nursing education standards, and support high-quality nursing care across The Bahamas.',
   },
 ];
 

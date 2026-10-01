@@ -33,7 +33,10 @@ export const metadata: Metadata = {
   publisher: "The Nursing Council of the Commonwealth of The Bahamas",
   applicationName: "Nursing Council Bahamas",
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "127x127" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "127x127" },
+    ],
     apple: "/favicon.png",
   },
   category: "Healthcare",

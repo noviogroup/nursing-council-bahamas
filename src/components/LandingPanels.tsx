@@ -70,7 +70,7 @@ const allPanels: Panel[] = [
     wide: true,
     kicker: 'Official nurse registry',
     title: 'Search the nurse registry',
-    intro: 'Search the published register by name, registration number, type, or original registration year.',
+    intro: 'Search the published registry by name, registration number, type, or original registration year.',
     content: () => <RegistrySampleClient />,
   },
   {

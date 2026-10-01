@@ -182,7 +182,7 @@ export default function RegistrySampleClient() {
     <div className="space-y-8">
       <form
         onSubmit={handleSubmit}
-        className="rounded-[8px] border border-slate-200 bg-white p-5 shadow-sm lg:p-6"
+        className="rounded-[8px] border border-slate-200 bg-white p-5 text-council-dark shadow-sm lg:p-6"
         aria-label="Search the nurse registry"
       >
         <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
@@ -213,7 +213,7 @@ export default function RegistrySampleClient() {
                 }
                 placeholder="e.g. Rolle or RN 24-5537"
                 maxLength={80}
-                className="h-12 rounded-[8px] pl-10"
+                className="h-12 rounded-[8px] bg-white pl-10 text-council-dark placeholder:text-slate-500"
               />
             </div>
           </div>
