@@ -14,6 +14,8 @@ type SupabaseRegistryEnvironment = {
   url: string;
   anonKey: string;
   syncSecret?: string;
+  /** Server-only key. The sync endpoints accept only the service role. */
+  serviceRoleKey?: string;
 };
 
 export type RegistrySyncEnvironment = {
@@ -94,13 +96,17 @@ function getSupabaseRegistryEnvironment(
     url: getRequiredEnvironmentVariable("NEXT_PUBLIC_SUPABASE_URL"),
     anonKey: getRequiredEnvironmentVariable("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
     syncSecret,
+    ...(requireSyncSecret
+      ? { serviceRoleKey: getRequiredEnvironmentVariable("SUPABASE_SERVICE_ROLE_KEY") }
+      : {}),
   };
 }
 
 function createRegistryClient(environment?: SupabaseRegistryEnvironment) {
   const config = environment || getSupabaseRegistryEnvironment();
 
-  return createClient(config.url, config.anonKey, {
+  // Search uses the public key; syncing uses the server-only key.
+  return createClient(config.url, config.serviceRoleKey || config.anonKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 }
@@ -115,6 +121,11 @@ export async function syncRegistryIndex(
   const supabaseEnvironment =
     environment.supabase || getSupabaseRegistryEnvironment(true);
   const syncSecret = supabaseEnvironment.syncSecret?.trim();
+  if (!supabaseEnvironment.serviceRoleKey?.trim()) {
+    throw new Error(
+      "Missing required registry configuration: SUPABASE_SERVICE_ROLE_KEY",
+    );
+  }
 
   if (!syncSecret) {
     throw new Error(

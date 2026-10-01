@@ -24,6 +24,7 @@ function getEnvironment(): RegistrySyncEnvironment {
       url: requiredEnvironmentVariable("NEXT_PUBLIC_SUPABASE_URL"),
       anonKey: requiredEnvironmentVariable("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
       syncSecret: requiredEnvironmentVariable("REGISTRY_SYNC_SECRET"),
+      serviceRoleKey: requiredEnvironmentVariable("SUPABASE_SERVICE_ROLE_KEY"),
     },
   };
 }

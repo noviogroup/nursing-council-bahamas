@@ -57,6 +57,7 @@ Important variables include:
 - `NEXT_PUBLIC_COMPLAINTS_STORAGE_BUCKET`
 - `AIRTABLE_TOKEN` and the Airtable base, table, and view IDs
 - `REGISTRY_SYNC_SECRET`
+- `SUPABASE_SERVICE_ROLE_KEY` (server-only; the registry sync endpoints accept only the service role)
 
 Email delivery remains disabled until an email provider and approved templates are configured.
 
