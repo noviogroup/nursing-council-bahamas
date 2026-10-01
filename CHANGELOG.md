@@ -2,6 +2,13 @@
 
 This file records material website and platform releases. Council-supplied legal documents, lists, photographs, and forms should be noted here when published.
 
+## 2026-09-03 - Complaint Email Template Drafts
+
+- Drafted thirteen complainant and staff email templates covering the full complaint lifecycle, including submission, review, referral, closure, assignment, and SLA alerts.
+- Added audience, trigger, subject, and expandable body previews to the staff Notifications screen for Council review.
+- Limited manual case communication choices to complainant-facing templates intended for staff use.
+- Synchronized the application catalogue with the Supabase notification-template seed while keeping outbound delivery disabled pending Council approval and provider setup.
+
 ## 2026-08-31 - Council Leadership and Public Terminology
 
 - Published the Council-supplied current 11-seat roster on the About page, including the ten named members and vacant Medical Practitioner seat.

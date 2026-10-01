@@ -52,15 +52,10 @@ export const complaintPriorities = [
   { code: 'repeat_or_systemic_issue', label: 'Repeat or systemic issue' },
 ];
 
-export const complaintEmailTemplates = [
-  { code: 'complaint_received', label: 'Complaint received' },
-  { code: 'complaint_draft_resume', label: 'Draft resume link' },
-  { code: 'complaint_status_update', label: 'Status update' },
-  { code: 'complaint_information_request', label: 'Request for information' },
-  { code: 'complaint_staff_assignment', label: 'Staff assignment' },
-  { code: 'complaint_sla_overdue', label: 'SLA overdue alert' },
-  { code: 'complaint_case_closure', label: 'Case closure' },
-];
+export {
+  complaintEmailTemplates,
+  complaintStaffSelectableEmailTemplates,
+} from './complaint-email-templates';
 
 export const allowedComplaintFileTypes = [
   'application/pdf',
