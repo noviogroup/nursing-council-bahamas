@@ -11,16 +11,16 @@ import { createPageMetadata } from '@/lib/seo';
 
 export const metadata = createPageMetadata({
   title: 'Registration and Licence Verification',
-  description: 'Browse the public nurse register, access licence verification, or request official good-standing guidance from the Nursing Council.',
+  description: 'Browse the nurse registry, access licence verification, or request official good-standing guidance from the Nursing Council.',
   path: '/verification',
 });
 
 const verificationOptions = [
   {
     title: 'Verify a Nurse’s Registration/Enrollment Status',
-    description: 'Search the public nurse register by name or registration/enrollment number.',
+    description: 'Search the nurse registry by name or registration/enrollment number.',
     icon: IdentificationCard,
-    action: 'Browse the public nurse register',
+    action: 'Browse the nurse registry',
     href: '/registry',
   },
   {

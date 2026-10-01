@@ -17,7 +17,7 @@ export default function Header() {
     { href: '/about', label: 'About' },
     { href: '/education-training', label: 'Education' },
     { href: '/nursing-agencies', label: 'Agencies' },
-    { href: '/registry', label: 'Public nurse register' },
+    { href: '/registry', label: 'Nurse registry' },
     { href: '/news', label: 'News' },
     { href: '/legal-ethics', label: 'Legal & Ethics' },
     { href: '/complaints', label: 'Complaints' },

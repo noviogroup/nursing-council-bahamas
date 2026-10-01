@@ -24,7 +24,7 @@ const publicSiteLive = process.env.PUBLIC_SITE_LIVE === 'true';
 export const metadata = publicSiteLive
   ? createPageMetadata({
       title: SITE_NAME,
-      description: 'Access nursing registration, licence renewal, education, legal resources, the public nurse register, and Council information for The Bahamas.',
+      description: 'Access nursing registration, licence renewal, education, legal resources, the nurse registry, and Council information for The Bahamas.',
       path: '/',
     })
   : {

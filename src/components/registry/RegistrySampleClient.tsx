@@ -183,7 +183,7 @@ export default function RegistrySampleClient() {
       <form
         onSubmit={handleSubmit}
         className="rounded-[8px] border border-slate-200 bg-white p-5 shadow-sm lg:p-6"
-        aria-label="Search public nurse registry"
+        aria-label="Search the nurse registry"
       >
         <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
           <div>
