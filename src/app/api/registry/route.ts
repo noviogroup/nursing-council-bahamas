@@ -11,7 +11,8 @@ const ALLOWED_YEAR_RANGES = new Set([
   "1981-1990",
   "1971-1980",
 ]);
-const SEARCH_PATTERN = /^[\p{L}\p{N}’'./ -]+$/u;
+// Letters, numbers, spaces and the punctuation names and numbers use ("Brown, Talia", "O’Riley", "RN 23-5381").
+const SEARCH_PATTERN = /^[\p{L}\p{N}’'.,/ -]+$/u;
 
 export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q")?.trim() || "";

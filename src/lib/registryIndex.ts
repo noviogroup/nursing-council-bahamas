@@ -230,6 +230,20 @@ export async function searchRegistryIndex(filters: RegistrySearchFilters) {
   if (error) throw new Error(`Registry index search failed: ${error.code}`);
 
   const rows = (data || []) as RegistrySearchRow[];
+  // A page past the last result has no rows to carry the total; ask for it from the first page.
+  let total = Number(rows[0]?.total_count || 0);
+  if (!rows.length && filters.offset > 0) {
+    const { data: first, error: firstError } = await supabase.rpc("search_airtable_registry_index", {
+      p_query: filters.query || null,
+      p_registration_type: filters.registrationType || null,
+      p_registration_year_from: filters.registrationYearFrom,
+      p_registration_year_to: filters.registrationYearTo,
+      p_limit: 1,
+      p_offset: 0,
+    });
+    if (firstError) throw new Error(`Registry index search failed: ${firstError.code}`);
+    total = Number((first as RegistrySearchRow[] | null)?.[0]?.total_count || 0);
+  }
   return {
     records: rows.map((row) => ({
       name: formatPersonName(row.nurse_name),
@@ -237,6 +251,6 @@ export async function searchRegistryIndex(filters: RegistrySearchFilters) {
       registrationNumber: row.registration_number,
       registrationYear: row.registration_year,
     })),
-    total: Number(rows[0]?.total_count || 0),
+    total,
   };
 }
