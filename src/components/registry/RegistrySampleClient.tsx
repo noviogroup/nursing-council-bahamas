@@ -12,7 +12,6 @@ import {
   X,
 } from "lucide-react";
 import { type FormEvent, useEffect, useState } from "react";
-import { councilContact } from "@/lib/councilContent";
 
 type RegistryRecord = {
   name: string;
@@ -432,25 +431,6 @@ export default function RegistrySampleClient() {
             <p className="mx-auto mt-2 max-w-lg text-slate-600">
               The Nursing Council is still updating the public nurse registry,
               so some registered nurses are not listed online yet.
-            </p>
-            <p className="mx-auto mt-3 max-w-lg text-slate-600">
-              Check the spelling, try the registration number, or clear a
-              filter. To confirm a nurse&apos;s registration, contact the
-              Council at{" "}
-              <a
-                href={`tel:${councilContact.phoneLink}`}
-                className="whitespace-nowrap font-semibold text-council-dark underline underline-offset-2"
-              >
-                {councilContact.phoneDisplay}
-              </a>{" "}
-              or{" "}
-              <a
-                href={`mailto:${councilContact.email}`}
-                className="whitespace-nowrap font-semibold text-council-dark underline underline-offset-2"
-              >
-                {councilContact.email}
-              </a>
-              .
             </p>
           </div>
         )}
