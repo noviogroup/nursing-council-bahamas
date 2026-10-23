@@ -40,9 +40,8 @@ const EMPTY_FILTERS: Filters = { query: "", type: "", yearRange: "" };
 const REGISTRATION_TYPES = [
   { label: "All registration types", value: "" },
   { label: "Registered Nurse", value: "RN" },
-  { label: "Enrolled Nurse", value: "EN" },
+  { label: "Licensed Practical Nurse", value: "LPN" },
   { label: "Registered Midwife", value: "RM" },
-  { label: "Trained Clinical Nurse", value: "TCN" },
 ];
 const REGISTRATION_TYPE_LABELS = new Map(
   REGISTRATION_TYPES.map((type) => [type.value, type.label]),
@@ -231,7 +230,7 @@ export default function RegistrySampleClient() {
           <legend className="mx-auto px-3 text-center text-sm font-semibold text-council-dark">
             Registration type
           </legend>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {REGISTRATION_TYPES.map((type) => {
               const isSelected = formFilters.type === type.value;
 

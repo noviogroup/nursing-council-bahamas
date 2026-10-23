@@ -2,7 +2,7 @@ import { searchRegistryIndex } from "@/lib/registryIndex";
 import { type NextRequest, NextResponse } from "next/server";
 
 const PAGE_SIZE = 25;
-const ALLOWED_TYPES = new Set(["RN", "EN", "RM", "TCN"]);
+const ALLOWED_TYPES = new Set(["RN", "LPN", "RM"]);
 const ALLOWED_YEAR_RANGES = new Set([
   "2021-2030",
   "2011-2020",

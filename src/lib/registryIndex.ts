@@ -34,6 +34,15 @@ type RegistryIndexRow = {
   registration_year: number | null;
 };
 
+// The Council decided (22 Oct 2026) that Enrolled Nurse and Trained Clinical
+// Nurse are one class, shown publicly as LPN with the same number. The index
+// keeps the original EN or TCN category, which the staff registry tools match on.
+const LEGACY_LPN_TYPES = new Set(["EN", "TCN"]);
+
+function toLpnNumber(registrationNumber: string) {
+  return registrationNumber.replace(/^(EN|TCN)(?![A-Z])[\s-]*/i, "LPN ");
+}
+
 /** Same rows in any order give the same fingerprint. */
 function fingerprintRows(rows: RegistryIndexRow[]) {
   const sorted = [...rows].sort((a, b) =>
@@ -245,12 +254,17 @@ export async function searchRegistryIndex(filters: RegistrySearchFilters) {
     total = Number((first as RegistrySearchRow[] | null)?.[0]?.total_count || 0);
   }
   return {
-    records: rows.map((row) => ({
-      name: formatPersonName(row.nurse_name),
-      type: row.registration_type || "Not recorded",
-      registrationNumber: row.registration_number,
-      registrationYear: row.registration_year,
-    })),
+    records: rows.map((row) => {
+      const legacy = LEGACY_LPN_TYPES.has(row.registration_type || "");
+      return {
+        name: formatPersonName(row.nurse_name),
+        type: legacy ? "LPN" : row.registration_type || "Not recorded",
+        registrationNumber: legacy
+          ? toLpnNumber(row.registration_number)
+          : row.registration_number,
+        registrationYear: row.registration_year,
+      };
+    }),
     total,
   };
 }
