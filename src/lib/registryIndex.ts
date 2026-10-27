@@ -80,6 +80,7 @@ type RegistrySearchRow = {
   registration_number: string;
   registration_year: number | null;
   total_count: number | string;
+  match_kind: "exact" | "close";
 };
 
 function getRequiredEnvironmentVariable(name: string) {
@@ -266,5 +267,7 @@ export async function searchRegistryIndex(filters: RegistrySearchFilters) {
       };
     }),
     total,
+    // No exact match was found, so the rows are spelling-tolerant near matches.
+    closeMatches: rows[0]?.match_kind === "close",
   };
 }

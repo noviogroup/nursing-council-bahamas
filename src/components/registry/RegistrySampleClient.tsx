@@ -22,6 +22,7 @@ type RegistryRecord = {
 
 type RegistryResponse = {
   records: RegistryRecord[];
+  closeMatches: boolean;
   pagination: {
     page: number;
     pageSize: number;
@@ -61,6 +62,7 @@ export default function RegistrySampleClient() {
   const [records, setRecords] = useState<RegistryRecord[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [closeMatches, setCloseMatches] = useState(false);
   const [pages, setPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -98,11 +100,13 @@ export default function RegistrySampleClient() {
         const result = payload as RegistryResponse;
         setRecords(result.records);
         setTotal(result.pagination.total);
+        setCloseMatches(result.closeMatches);
         setPages(result.pagination.pages);
       } catch (loadError) {
         if (controller.signal.aborted) return;
         setRecords([]);
         setTotal(0);
+        setCloseMatches(false);
         setPages(0);
         setError(
           loadError instanceof Error
@@ -315,8 +319,18 @@ export default function RegistrySampleClient() {
                 ? "Loading records…"
                 : total === 0
                   ? "No matching records"
-                  : `Showing ${firstResult}–${lastResult} of ${total} records`}
+                  : closeMatches
+                    ? total === 1
+                      ? "No exact match. Showing 1 close match"
+                      : `No exact match. Showing ${firstResult}–${lastResult} of ${total} close matches`
+                    : `Showing ${firstResult}–${lastResult} of ${total} records`}
             </p>
+            {!loading && closeMatches && total > 0 && (
+              <p className="mt-1 text-sm text-slate-600">
+                These names are spelt similarly to your search. Check the name
+                and registration number before relying on a result.
+              </p>
+            )}
           </div>
           {hasFilters && (
             <Button

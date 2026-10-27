@@ -94,6 +94,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(
     {
       records: result.records,
+      closeMatches: result.closeMatches,
       pagination: {
         page,
         pageSize: PAGE_SIZE,
