@@ -424,12 +424,8 @@ export default function RegistrySampleClient() {
               className="mx-auto mb-4 h-9 w-9 text-slate-400"
               aria-hidden="true"
             />
-            <h3 className="font-heading text-xl font-bold text-council-dark">
-              We couldn&apos;t find that nurse yet
-            </h3>
-            <p className="mx-auto mt-2 max-w-lg text-slate-600">
-              The Nursing Council is still updating the public nurse registry,
-              so some registered nurses are not listed online yet.
+            <p className="mx-auto max-w-lg font-bold text-council-dark">
+              The Nursing Council is still updating the public nurse registry
             </p>
           </div>
         )}
