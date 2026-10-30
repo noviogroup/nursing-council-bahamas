@@ -67,6 +67,8 @@ export const licensedAgencies = [
 
 export const universityOfTheBahamas = {
   name: 'The University of The Bahamas',
+  logo: '/assets/institutions/university-of-the-bahamas.png',
+  logoAlt: 'University of The Bahamas logo',
   programmes: [
     'Master of Science Nursing Education | Nursing Administration | Adult Gerontology',
     'Diploma of Midwifery',
@@ -80,18 +82,26 @@ export const universityOfTheBahamas = {
 export const otherTrainingInstitutions = [
   {
     name: 'Bahamas Baptist University College',
+    logo: '/assets/institutions/bahamas-baptist-university-college.png',
+    logoAlt: 'Bahamas Baptist University College logo',
     programmes: ['Trained Clinical Nursing Program'],
   },
   {
     name: 'Public Hospitals Authority Academy',
+    logo: '/assets/institutions/public-hospitals-authority.png',
+    logoAlt: 'Public Hospitals Authority logo',
     programmes: ['Trained Clinical Nursing Program'],
   },
   {
     name: 'Southern College',
+    logo: '/assets/institutions/southern-college.png',
+    logoAlt: 'Southern College logo',
     programmes: ['Bachelor of Science in Nursing (Provisional)'],
   },
   {
     name: 'Terreve University College',
+    logo: '/assets/institutions/terreve-university-college.jpg',
+    logoAlt: 'Terreve University College logo',
     programmes: ['Bachelor of Science in Nursing', 'Trained Clinical Nursing Program'],
   },
 ];

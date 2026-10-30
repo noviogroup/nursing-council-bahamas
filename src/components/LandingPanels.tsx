@@ -404,8 +404,21 @@ function ProgrammesPanel() {
   return (
     <div className="space-y-3">
       <div className="rounded-[8px] bg-council-primary p-5 text-white">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-council-accent">Approved institution</p>
-        <h3 className="font-heading mt-1 text-xl font-bold">{universityOfTheBahamas.name}</h3>
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 pt-0.5">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-council-accent">Approved institution</p>
+            <h3 className="font-heading mt-1 text-xl font-bold leading-tight">{universityOfTheBahamas.name}</h3>
+          </div>
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[8px] border border-white/20 bg-white p-1.5 shadow-sm">
+            <Image
+              src={universityOfTheBahamas.logo}
+              alt={universityOfTheBahamas.logoAlt}
+              width={48}
+              height={48}
+              className="h-full w-full object-contain"
+            />
+          </span>
+        </div>
         <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/85">
           {universityOfTheBahamas.programmes.map((programme) => (
             <li key={programme} className="border-t border-white/15 pt-2">{programme}</li>
@@ -414,12 +427,25 @@ function ProgrammesPanel() {
       </div>
       {otherTrainingInstitutions.map((institution) => (
         <div key={institution.name} className="rounded-[8px] border border-slate-200 bg-white p-5">
-          <h3 className="font-heading text-lg font-bold text-council-dark">{institution.name}</h3>
-          <ul className="mt-2 space-y-1 text-sm text-gray-600">
-            {institution.programmes.map((programme) => (
-              <li key={programme}>{programme}</li>
-            ))}
-          </ul>
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] border border-slate-200 bg-white p-1.5 shadow-sm">
+              <Image
+                src={institution.logo}
+                alt={institution.logoAlt}
+                width={40}
+                height={40}
+                className="h-full w-full object-contain"
+              />
+            </span>
+            <div className="min-w-0 pt-0.5">
+              <h3 className="font-heading text-lg font-bold leading-tight text-council-dark">{institution.name}</h3>
+              <ul className="mt-2 space-y-1 text-sm leading-relaxed text-gray-600">
+                {institution.programmes.map((programme) => (
+                  <li key={programme}>{programme}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       ))}
       <p className="pt-2 text-sm leading-relaxed text-gray-600">
