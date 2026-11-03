@@ -1,4 +1,4 @@
--- Keep the database catalogue aligned with the reviewable complaint email copy
+-- Applied 3 November 2026. Keep the database catalogue aligned with the reviewable complaint email copy
 -- in src/lib/complaint-email-templates.ts. Delivery remains disabled until an
 -- email provider is configured.
 
