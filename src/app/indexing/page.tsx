@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import {
   ArrowRight,
+  CheckCircle,
   FileText,
-  IdentificationBadge,
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -22,11 +22,20 @@ const indexingSteps = [
   'Track Council review status and respond to requests for additional information.',
 ];
 
-const placeholders = [
-  'Nursing Student Indexing application form placeholder',
-  'Programme confirmation document placeholder',
-  'Student identification requirement placeholder',
-  'Council review checklist placeholder',
+const academicRequirements = [
+  'High school diploma or equivalent',
+  'Academic qualifications, including certificate type, subjects, grades, and year completed',
+  'Confirmation of admission to an approved nursing or midwifery programme',
+];
+
+const supportingDocuments = [
+  'College preparatory transcript',
+  'Medical certificate',
+  'Character reference',
+  'Police certificate',
+  'Birth certificate and passport',
+  'Marriage certificate, if applicable',
+  'Government-issued photo identification',
 ];
 
 export default function IndexingPage() {
@@ -62,7 +71,7 @@ export default function IndexingPage() {
                 A clear route into Council records.
               </h2>
               <p className="max-w-md leading-relaxed text-gray-600">
-                The final instructions and PDF forms are placeholders until the Council supplies the approved wording and documents.
+                Review the requirements before starting. The portal guides applicants through each section and identifies any missing information.
               </p>
             </div>
             <ol className="space-y-4">
@@ -84,30 +93,41 @@ export default function IndexingPage() {
               <div>
                 <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
                   <span className="h-px w-9 bg-council-accent" />
-                  Forms pending
+                  Application requirements
                 </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Nursing Student Indexing documents.
+                  Prepare your education details and documents.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                Placeholder rows are shown now so official PDFs can be attached later without changing the page structure.
+                Enter your academic qualifications as they appear on your certificates, including subjects, grades, and completion year.
               </p>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 md:grid-cols-2">
-              {placeholders.map((item, index) => (
-                <article key={item} className="bg-white p-7">
-                  <div className="mb-7 flex items-start justify-between">
-                    {index % 2 === 0 ? (
-                      <FileText className="h-9 w-9 text-council-primary" aria-hidden="true" />
-                    ) : (
-                      <IdentificationBadge className="h-9 w-9 text-council-primary" aria-hidden="true" />
-                    )}
-                    <span className="rounded-[8px] bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">PDF coming soon</span>
-                  </div>
-                  <h3 className="font-heading text-xl font-bold text-council-dark">{item}</h3>
-                </article>
-              ))}
+            <div className="grid gap-6 lg:grid-cols-2">
+              <article className="rounded-[8px] border border-slate-200 bg-white p-7 shadow-sm">
+                <CheckCircle className="mb-6 h-9 w-9 text-council-primary" aria-hidden="true" />
+                <h3 className="font-heading text-2xl font-bold text-council-dark">Education information</h3>
+                <ul className="mt-6 space-y-4">
+                  {academicRequirements.map((item) => (
+                    <li key={item} className="flex gap-3 leading-relaxed text-gray-700">
+                      <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-council-primary" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+              <article className="rounded-[8px] border border-slate-200 bg-white p-7 shadow-sm">
+                <FileText className="mb-6 h-9 w-9 text-council-primary" aria-hidden="true" />
+                <h3 className="font-heading text-2xl font-bold text-council-dark">Supporting documents</h3>
+                <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                  {supportingDocuments.map((item) => (
+                    <li key={item} className="flex gap-3 leading-relaxed text-gray-700">
+                      <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-council-primary" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             </div>
           </div>
         </section>

@@ -17,15 +17,17 @@ export const metadata = createPageMetadata({
 
 const verificationOptions = [
   {
-    title: 'Verify a Nurse’s Registration/Enrollment Status',
-    description: 'Search the nurse registry by name or registration/enrollment number.',
+    audience: 'For the public',
+    title: 'Verify a nurse’s registration or enrollment',
+    description: 'Search the public registry by name or registration/enrollment number.',
     icon: IdentificationCard,
     action: 'Browse the nurse registry',
     href: '/registry',
   },
   {
-    title: 'Apply as a Nurse for a Letter of Good Standing',
-    description: 'Use the Council application process to request an official Letter of Good Standing for employment, education, or regulatory purposes.',
+    audience: 'For nurses',
+    title: 'Request a Letter of Good Standing',
+    description: 'Request an official Council letter for employment, education, or regulatory purposes.',
     icon: SealCheck,
     action: 'Find the application form',
     href: '/forms',
@@ -33,10 +35,10 @@ const verificationOptions = [
 ];
 
 const publicInfo = [
-  'Name and registration/enrollment reference where available',
-  'General registration/enrollment status',
-  'Instructions for requesting formal letters',
-  'Council contact instructions for unclear results',
+  'Nurse’s name',
+  'Registration or enrollment type',
+  'Registration or enrollment number',
+  'Original registration or enrollment year',
 ];
 
 export default function VerificationPage() {
@@ -52,10 +54,10 @@ export default function VerificationPage() {
                 Verification
               </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
-                Verify registration/enrollment or request good standing.
+                Verify a nurse or request an official letter.
               </h1>
               <p className="text-xl leading-relaxed text-white/85">
-                Choose whether to verify a nurse&apos;s registration/enrollment status or apply as a nurse for a Letter of Good Standing.
+                Members of the public can search the nurse registry. Nurses can request an official Letter of Good Standing.
               </p>
             </div>
           </div>
@@ -70,11 +72,11 @@ export default function VerificationPage() {
                   Verification services
                 </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Select the correct verification path.
+                  Choose a service.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                Public verification should show only the information needed to confirm status and direct formal requests to the Council.
+                Use the public registry for a registration or enrollment check. Official letters are requested through the Council.
               </p>
             </div>
 
@@ -84,6 +86,7 @@ export default function VerificationPage() {
                 return (
                   <article key={option.title} className="bg-white p-8">
                     <Icon className="mb-8 h-10 w-10 text-council-primary" aria-hidden="true" />
+                    <p className="mb-3 text-sm font-bold uppercase tracking-[0.14em] text-council-primary">{option.audience}</p>
                     <h3 className="font-heading mb-4 text-3xl font-bold text-council-dark">{option.title}</h3>
                     <p className="mb-8 leading-relaxed text-gray-600">{option.description}</p>
                     <Link href={option.href} className="inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-council-secondary">
@@ -105,10 +108,10 @@ export default function VerificationPage() {
                 Public details
               </p>
               <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                What public verification should include.
+                Information shown in the public registry.
               </h2>
               <p className="max-w-md leading-relaxed text-gray-600">
-                Formal letters and detailed records should remain controlled through Council staff processes.
+                The registry displays limited public information. Contact the Council if a result is unclear.
               </p>
             </div>
             <div className="grid gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200 sm:grid-cols-2">
@@ -125,8 +128,8 @@ export default function VerificationPage() {
         <section className="bg-council-primary py-20 text-white">
           <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need a document?</p>
-              <h2 className="font-heading text-4xl font-bold">Use the Council process for official good standing letters.</h2>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need an official document?</p>
+              <h2 className="font-heading text-4xl font-bold">Nurses can request a Letter of Good Standing through the Council.</h2>
             </div>
             <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
               View forms

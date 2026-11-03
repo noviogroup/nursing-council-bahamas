@@ -53,7 +53,7 @@ export default function RegistryPage() {
               </div>
               <div className="min-w-0 px-2 text-center sm:px-3">
                 <strong className="block text-lg font-bold text-council-accent sm:text-xl">
-                  4
+                  3
                 </strong>
                 <span className="mt-1 block text-xs text-white/75">types</span>
               </div>

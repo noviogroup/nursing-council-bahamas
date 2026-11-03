@@ -20,9 +20,9 @@ const clinicalSites = [
     name: 'Princess Margaret Hospital',
     network: 'Public Hospitals Authority',
     location: 'New Providence',
-    logo: '/assets/clinical-sites/public-hospitals-authority.webp',
+    logo: '/assets/clinical-sites/public-hospitals-authority.png',
     logoAlt: 'Public Hospitals Authority logo',
-    logoClass: 'scale-[3]',
+    logoClass: '',
   },
   {
     name: 'Doctors Hospital',
@@ -44,9 +44,9 @@ const clinicalSites = [
     name: 'Rand Memorial Hospital and Grand Bahama Community Clinics',
     network: 'Public Hospitals Authority / Grand Bahama Health Services',
     location: 'Grand Bahama',
-    logo: '/assets/clinical-sites/public-hospitals-authority.webp',
+    logo: '/assets/clinical-sites/public-hospitals-authority.png',
     logoAlt: 'Public Hospitals Authority logo',
-    logoClass: 'scale-[3]',
+    logoClass: '',
   },
 ];
 

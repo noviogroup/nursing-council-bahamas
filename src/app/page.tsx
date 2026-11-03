@@ -11,6 +11,7 @@ import {
   ArrowsClockwise as RotateCcw,
   ShieldCheck,
   UserPlus,
+  WhatsappLogo,
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,6 +19,7 @@ import ComingSoon from '@/components/ComingSoon';
 import { portalPath } from '@/lib/portal';
 import { featuredNewsArticles, formatNewsDate } from '@/lib/news';
 import { createPageMetadata, organizationStructuredData, SITE_NAME } from '@/lib/seo';
+import { councilContact } from '@/lib/councilContent';
 
 const publicSiteLive = process.env.PUBLIC_SITE_LIVE === 'true';
 
@@ -40,8 +42,8 @@ const services = [
     description: 'Begin your nursing registration or enrollment process and submit your application online.',
     action: 'Start application',
     href: portalPath('/start/registration'),
-    image: '/assets/approved/register-card.jpg',
-    imageAlt: 'Nurse in blue scrubs ready to begin professional registration',
+    image: '/assets/approved/nurses-ub.png',
+    imageAlt: 'Nursing graduates at a University of The Bahamas ceremony',
     imagePosition: 'object-center',
   },
   {
@@ -50,8 +52,8 @@ const services = [
     description: 'Keep your annual nursing licence current with a simple online renewal.',
     action: 'Renew online',
     href: portalPath('/start/renewal'),
-    image: '/assets/approved/renew-card.jpg',
-    imageAlt: 'Nurse in blue scrubs representing professional licence renewal',
+    image: '/assets/approved/nurses-bahamas.png',
+    imageAlt: 'Nurses gathered at a professional ceremony in The Bahamas',
     imagePosition: 'object-center',
   },
   {
@@ -299,10 +301,11 @@ export default function HomePage() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="font-heading mb-4 text-3xl font-bold text-council-primary">Need Assistance?</h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-600">Our team is here to help with nursing registration, enrollment, licensing, and professional development needs.</p>
-            <div className="mx-auto mb-8 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Phone className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Call Us</h3><a href="tel:+12426046015" className="text-gray-600 hover:underline">(242) 604-6015 / 6017</a><p className="mt-1 text-sm text-gray-500">Mon-Fri: 9:00am - 5:00pm</p></div>
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Mail className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Email Us</h3><a href="mailto:info@nursingcouncilbahamas.com" className="text-gray-600 hover:underline">info@nursingcouncilbahamas.com</a></div>
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><MapPin className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Visit Us</h3><address className="not-italic text-gray-600">#23 Capitol House<br />Virginia and Augusta Streets<br />Nassau, Bahamas</address></div>
+              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><WhatsappLogo className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Stay Informed</h3><a href={councilContact.whatsappChannel} target="_blank" rel="noreferrer" className="text-gray-600 hover:underline">Follow our WhatsApp channel</a><p className="mt-1 text-sm text-gray-500">Official Council announcements</p></div>
             </div>
             <Link href="/contact" className="inline-flex items-center rounded-[8px] bg-council-primary px-8 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2">Get in Touch <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
           </div>

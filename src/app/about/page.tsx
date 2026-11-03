@@ -82,10 +82,10 @@ const pastChairpersons = [
   { name: 'Mrs. Maggie Turner', period: '2008 - 2011' },
   { name: 'Mrs. Coral Dean', period: '2011 - 2013' },
   { name: 'Mrs. Gwendolyn Brice-Sealy', period: '2013 - 2014' },
-  { name: 'Carol Markey' },
-  { name: 'Patricia Newbold' },
-  { name: 'Patricia Brown' },
-  { name: 'Ferneka Deleveaux' },
+  { name: 'Carol Markey', period: 'Service period to be confirmed' },
+  { name: 'Patricia Newbold', period: 'Service period to be confirmed' },
+  { name: 'Patricia Brown', period: 'Service period to be confirmed' },
+  { name: 'Ferneka Deleveaux', period: 'Service period to be confirmed' },
 ];
 
 const pastRegistrars = [
@@ -688,10 +688,10 @@ export default function AboutPage() {
 
                   <ol className="mt-8 overflow-hidden rounded-[8px] border border-slate-200">
                     {pastChairpersons.map((chairperson, index) => (
-                      <li key={chairperson.name} className={`grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:items-center sm:gap-5 sm:px-6 ${chairperson.period ? 'sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)]' : 'sm:grid-cols-[3.5rem_minmax(0,1fr)]'}`}>
+                      <li key={chairperson.name} className="grid gap-3 border-b border-slate-200 bg-white px-5 py-4 last:border-b-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)] sm:items-center sm:gap-5 sm:px-6">
                         <span className="font-heading text-sm font-bold text-council-primary">{String(index + 1).padStart(2, '0')}</span>
                         <p className="font-heading text-lg font-bold text-council-dark">{chairperson.name}</p>
-                        {chairperson.period && <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>}
+                        <p className="border-l-2 border-council-accent pl-3 text-sm font-semibold text-gray-600 sm:justify-self-start">{chairperson.period}</p>
                       </li>
                     ))}
                   </ol>

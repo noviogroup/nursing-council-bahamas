@@ -6,10 +6,12 @@ import {
   MapPin,
   Phone,
   TwitterLogo as Twitter,
+  WhatsappLogo,
 } from '@phosphor-icons/react/dist/ssr';
 import { portalPath } from '@/lib/portal';
 import { isLinkAvailable, publicSiteLive } from '@/lib/siteAvailability';
 import { StagedFooter } from '@/components/StagedChrome';
+import { councilContact } from '@/lib/councilContent';
 
 export default function Footer() {
   if (!publicSiteLive) {
@@ -67,6 +69,9 @@ export default function Footer() {
               </a>
               <a href="https://www.linkedin.com/company/nursing-council-bahamas" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council on LinkedIn">
                 <Linkedin className="h-5 w-5" />
+              </a>
+              <a href={councilContact.whatsappChannel} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council WhatsApp channel">
+                <WhatsappLogo className="h-5 w-5" />
               </a>
             </div>
           </div>

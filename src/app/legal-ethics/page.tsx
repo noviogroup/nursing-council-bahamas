@@ -33,6 +33,16 @@ const frameworks = [
     note: 'This updated Act document was supplied for publication by the Council.',
     icon: Gavel,
   },
+  {
+    id: 'code-of-ethics',
+    title: 'Code of Ethics for Nurses, 2025',
+    description:
+      'Professional ethical guidance for nurses, including responsibilities to patients, the public, colleagues, and the profession.',
+    status: '2025 code available',
+    links: [councilDocuments.codeOfEthics],
+    note: 'This Code of Ethics document was supplied for publication by the Council.',
+    icon: FileText,
+  },
 ];
 
 export default function LegalEthicsPage() {
@@ -80,15 +90,15 @@ export default function LegalEthicsPage() {
                   Council documents
                 </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Act and regulations.
+                  Act and Code of Ethics.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                The 2023 Act is linked now. Related regulations can be added when approved for publication.
+                Access the current Act, Appointed Day Notice, and the Council&apos;s 2025 Code of Ethics for Nurses.
               </p>
             </div>
 
-            <div className="grid max-w-3xl gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200">
+            <div className="grid max-w-4xl gap-px overflow-hidden rounded-[8px] border border-slate-200 bg-slate-200">
               {frameworks.map((framework) => {
                 const Icon = framework.icon;
                 return (
