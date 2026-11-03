@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { type FormEvent, useEffect, useState } from "react";
+import RegistryNotListedForm from "./RegistryNotListedForm";
 
 type RegistryRecord = {
   name: string;
@@ -180,6 +181,14 @@ export default function RegistrySampleClient() {
   );
   const firstResult = total === 0 ? 0 : (page - 1) * 25 + 1;
   const lastResult = Math.min(page * 25, total);
+  const notListedForm = (
+    <RegistryNotListedForm
+      key={`${activeFilters.query}|${activeFilters.type}`}
+      embedded
+      searchedFor={activeFilters.query}
+      registrationType={activeFilters.type}
+    />
+  );
 
   return (
     <div className="space-y-8">
@@ -306,7 +315,7 @@ export default function RegistrySampleClient() {
       )}
 
       <section
-        className="overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm"
+        className="overflow-hidden rounded-[8px] border border-slate-200 bg-white text-council-dark shadow-sm"
         aria-busy={loading}
       >
         <div className="flex flex-col gap-3 border-b border-slate-200 px-5 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-6">
@@ -431,6 +440,18 @@ export default function RegistrySampleClient() {
                 </article>
               ))}
             </div>
+            {/* Asked after the list, once the nurse has checked whether a close match is them. */}
+            {closeMatches && activeFilters.query && (
+              <div className="border-t border-slate-200 px-5 py-6 lg:px-6">
+                <RegistryNotListedForm
+                  key={`${activeFilters.query}|${activeFilters.type}`}
+                  embedded
+                  afterCloseMatches
+                  searchedFor={activeFilters.query}
+                  registrationType={activeFilters.type}
+                />
+              </div>
+            )}
           </>
         ) : (
           <div className="min-h-64 px-6 py-16 text-center">
@@ -441,6 +462,11 @@ export default function RegistrySampleClient() {
             <p className="mx-auto max-w-lg font-bold text-council-dark">
               The Nursing Council is still updating the public nurse registry
             </p>
+            {activeFilters.query && (
+              <div className="mx-auto mt-8 max-w-3xl border-t border-slate-200 pt-8">
+                {notListedForm}
+              </div>
+            )}
           </div>
         )}
 

@@ -271,3 +271,26 @@ export async function searchRegistryIndex(filters: RegistrySearchFilters) {
     closeMatches: rows[0]?.match_kind === "close",
   };
 }
+
+export type NotListedRequest = {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};
+
+/** Files an "I'm not in the registry" request as a public inquiry; staff are emailed by a database trigger. */
+export async function submitNotListedRequest(request: NotListedRequest) {
+  const supabase = createRegistryClient();
+  const { error } = await supabase.rpc("submit_public_inquiry", {
+    p_name: request.name,
+    p_email: request.email,
+    p_phone: request.phone,
+    p_inquiry_type: "registry_missing",
+    p_subject: request.subject,
+    p_message: request.message,
+  });
+
+  if (error) throw new Error(error.message);
+}
