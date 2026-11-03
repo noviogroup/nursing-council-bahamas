@@ -59,7 +59,7 @@ Important variables include:
 - `REGISTRY_SYNC_SECRET`
 - `SUPABASE_SERVICE_ROLE_KEY` (server-only; the registry sync endpoints accept only the service role)
 
-Email delivery remains disabled until an email provider and approved templates are configured.
+The complaints portal includes a reviewable catalogue of draft email templates. Email delivery remains disabled until the Council approves the copy and an email provider is configured.
 
 The public registry searches a protected Supabase index. Netlify refreshes that index daily from Airtable; an authorized manual refresh can be run with `npm run sync:registry`.
 
