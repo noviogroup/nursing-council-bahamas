@@ -11,5 +11,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|favicon.png|favicon.svg|nursing-council-logo.png|browserconfig.xml|robots.txt|sitemap.xml|assets|documents).*)'],
+  // Netlify Functions (e.g. /.netlify/functions/registry-changed) bypass the page gate.
+  matcher: ['/((?!\\.netlify/|_next/static|_next/image|favicon.ico|favicon.png|favicon.svg|nursing-council-logo.png|browserconfig.xml|robots.txt|sitemap.xml|assets|documents).*)'],
 };
