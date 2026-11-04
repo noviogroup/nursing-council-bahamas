@@ -1,5 +1,7 @@
 import type { Config } from "@netlify/functions";
 import {
+  claimRegistrySync,
+  markRegistryChanged,
   syncRegistryIndex,
   type RegistrySyncEnvironment,
 } from "../../src/lib/registryIndex";
@@ -10,7 +12,7 @@ function requiredEnvironmentVariable(name: string) {
   return value;
 }
 
-function getEnvironment(): RegistrySyncEnvironment {
+function getEnvironment(): Required<Pick<RegistrySyncEnvironment, "airtable" | "supabase">> {
   return {
     airtable: {
       token: requiredEnvironmentVariable("AIRTABLE_TOKEN"),
@@ -29,23 +31,43 @@ function getEnvironment(): RegistrySyncEnvironment {
   };
 }
 
+/**
+ * Runs every five minutes but reads Airtable only when it is due: Airtable
+ * reported a change (see registry-changed) that has settled for two minutes,
+ * or the last full read is a day old, which also catches deleted rows.
+ */
 export default async () => {
+  let reason: Awaited<ReturnType<typeof claimRegistrySync>> = null;
   try {
-    const result = await syncRegistryIndex(getEnvironment());
+    const environment = getEnvironment();
+    reason = await claimRegistrySync(environment.supabase);
+
+    // Before the change flag exists in the database, keep an hourly full read.
+    if (reason === "unavailable" && new Date().getUTCMinutes() >= 5) reason = null;
+    if (!reason) {
+      console.log("Registry: no changes reported, Airtable not read.");
+      return new Response("No register changes.", { status: 200 });
+    }
+
+    const result = await syncRegistryIndex(environment);
     console.log(
       result.skipped
-        ? `Registry unchanged: ${result.recordCount} records, rebuild skipped (${result.durationMs}ms).`
-        : `Registry index synchronized: ${result.recordCount} records in ${result.durationMs}ms.`,
+        ? `Registry unchanged (${reason}): ${result.recordCount} records, rebuild skipped (${result.durationMs}ms).`
+        : `Registry index synchronized (${reason}): ${result.recordCount} records in ${result.durationMs}ms.`,
     );
     return new Response("Registry index synchronized.", { status: 200 });
   } catch (error) {
     console.error(
       error instanceof Error ? error.message : "Registry synchronization failed.",
     );
+    // Put a claimed change back so the next run tries again.
+    if (reason === "change") {
+      await markRegistryChanged(getEnvironment().supabase).catch(() => undefined);
+    }
     return new Response("Registry synchronization failed.", { status: 500 });
   }
 };
 
 export const config: Config = {
-  schedule: "@hourly",
+  schedule: "*/5 * * * *",
 };

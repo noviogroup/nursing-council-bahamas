@@ -10,7 +10,7 @@ import {
 
 const INSERT_CHUNK_SIZE = 500;
 
-type SupabaseRegistryEnvironment = {
+export type SupabaseRegistryEnvironment = {
   url: string;
   anonKey: string;
   syncSecret?: string;
@@ -119,6 +119,47 @@ function createRegistryClient(environment?: SupabaseRegistryEnvironment) {
   return createClient(config.url, config.serviceRoleKey || config.anonKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
+}
+
+/** Why a scheduled run should read Airtable, or null when there is nothing to do. */
+export type RegistrySyncReason = "change" | "daily";
+
+function createSyncClient(environment: SupabaseRegistryEnvironment) {
+  const syncSecret = environment.syncSecret?.trim();
+  if (!environment.serviceRoleKey?.trim() || !syncSecret) {
+    throw new Error("Missing required registry sync configuration");
+  }
+  return { supabase: createRegistryClient(environment), syncSecret };
+}
+
+/**
+ * Asks the database whether Airtable reported a change (settled for two
+ * minutes) or the last full read is a day old. A claimed change is cleared;
+ * call markRegistryChanged again if the sync then fails. Returns
+ * "unavailable" when the database does not have the change flag yet.
+ */
+export async function claimRegistrySync(
+  environment: SupabaseRegistryEnvironment,
+): Promise<RegistrySyncReason | null | "unavailable"> {
+  const { supabase, syncSecret } = createSyncClient(environment);
+  const { data, error } = await supabase.rpc("claim_airtable_registry_sync", {
+    p_secret: syncSecret,
+    p_settle_seconds: 120,
+  });
+  if (error) {
+    if (error.code === "PGRST202") return "unavailable";
+    throw new Error(`Unable to check for register changes: ${error.code}`);
+  }
+  return data === "change" || data === "daily" ? data : null;
+}
+
+/** Flags the register for the next scheduled run. */
+export async function markRegistryChanged(environment: SupabaseRegistryEnvironment) {
+  const { supabase, syncSecret } = createSyncClient(environment);
+  const { error } = await supabase.rpc("mark_airtable_registry_changed", {
+    p_secret: syncSecret,
+  });
+  if (error) throw new Error(`Unable to flag the register change: ${error.code}`);
 }
 
 export async function syncRegistryIndex(
