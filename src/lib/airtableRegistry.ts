@@ -111,6 +111,35 @@ function cleanText(value: unknown) {
   return value.trim().replace(/\s+/g, " ");
 }
 
+function nameTokens(value: string) {
+  return (value.toLowerCase().match(/[a-z0-9]+/g) || []).filter(
+    (token) => token !== "nee",
+  );
+}
+
+export function selectPublicName(publicName: string, filedName: string) {
+  if (!publicName) return filedName;
+  if (!filedName) return publicName;
+
+  const publicTokens = nameTokens(publicName);
+  const filedTokens = nameTokens(filedName);
+  const shorter =
+    publicTokens.length <= filedTokens.length ? publicTokens : filedTokens;
+  const longer =
+    publicTokens.length <= filedTokens.length ? filedTokens : publicTokens;
+  const available = [...longer];
+  const samePerson =
+    shorter.length >= 2 &&
+    shorter.every((token) => {
+      const index = available.indexOf(token);
+      if (index < 0) return false;
+      available.splice(index, 1);
+      return true;
+    });
+
+  return samePerson ? publicName : filedName;
+}
+
 function hasPublishableName(value: string) {
   const normalized = value.toLowerCase().replace(/[()]/g, "").trim();
 
@@ -233,13 +262,14 @@ async function fetchSourceRecords(
 
       records.push({
         id: record.id,
-        name:
-          cleanText(record.fields[source.fields.name]) ||
+        name: selectPublicName(
+          cleanText(record.fields[source.fields.name]),
           cleanText(
             source.fields.fallbackName
               ? record.fields[source.fields.fallbackName]
               : undefined,
           ),
+        ),
         type: cleanText(
           record.fields[source.fields.registrationType],
         ).toUpperCase(),
