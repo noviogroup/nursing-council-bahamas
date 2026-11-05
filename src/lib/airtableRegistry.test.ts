@@ -1,6 +1,16 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { loadRegistryFromAirtable } from "./airtableRegistry";
+import {
+  loadRegistryFromAirtable,
+  parseRegistrationYearFromNumber,
+} from "./airtableRegistry";
+
+test("derives a four-digit licence year from the first two number digits", () => {
+  assert.equal(parseRegistrationYearFromNumber("RM 07-0873"), 2007);
+  assert.equal(parseRegistrationYearFromNumber("RN 21-1234"), 2021);
+  assert.equal(parseRegistrationYearFromNumber("RM 94-0746"), 1994);
+  assert.equal(parseRegistrationYearFromNumber("RM 99032"), null);
+});
 
 test("records marked do not publish stay out of public registry search", async () => {
   const originalFetch = globalThis.fetch;
@@ -27,7 +37,6 @@ test("records marked do not publish stay out of public registry search", async (
               "Full Name (as filed)": "APPROVED, REGISTRY RECORD",
               Category: "RM",
               "Licence No. (as filed)": "RM 94-0746",
-              "Licence Year (derived)": 1994,
               Notes: "Reviewer approved.",
             },
           },
