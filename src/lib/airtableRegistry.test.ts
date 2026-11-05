@@ -35,6 +35,7 @@ test("records marked do not publish stay out of public registry search", async (
             id: "recnoteHncPgg0oXY",
             fields: {
               "Full Name (as filed)": "APPROVED, REGISTRY RECORD",
+              "Public Name": "Registry Record Approved",
               Category: "RM",
               "Licence No. (as filed)": "RM 94-0746",
               Notes: "Reviewer approved.",
@@ -60,7 +61,7 @@ test("records marked do not publish stay out of public registry search", async (
     assert.deepEqual(records, [
       {
         id: "recnoteHncPgg0oXY",
-        name: "APPROVED, REGISTRY RECORD",
+        name: "Registry Record Approved",
         type: "RM",
         registrationNumber: "RM 94-0746",
         registrationYear: 1994,
