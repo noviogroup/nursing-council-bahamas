@@ -50,6 +50,8 @@ export type PublicRegistryRecord = {
 type SourceRecord = PublicRegistryRecord & {
   /** Newer-table record this historical row was imported from, if any. */
   importedFrom: string | null;
+  /** Council review marker that keeps an unresolved row out of public search. */
+  publicationBlocked: boolean;
 };
 
 function getRequiredEnvironmentVariable(name: string) {
@@ -149,6 +151,10 @@ function parseImportedFrom(value: unknown) {
   return value.match(/Source record ID:\s*(rec[A-Za-z0-9]{14})/)?.[1] ?? null;
 }
 
+function isPublicationBlocked(value: unknown) {
+  return typeof value === "string" && /\bdo not publish\b/i.test(value);
+}
+
 async function fetchAirtablePage(url: string, token: string) {
   const maximumAttempts = 3;
 
@@ -203,6 +209,10 @@ async function fetchSourceRecords(
     const payload = await fetchAirtablePage(url, token);
 
     for (const record of payload.records || []) {
+      const importNotes = source.fields.importNotes
+        ? record.fields[source.fields.importNotes]
+        : undefined;
+
       records.push({
         id: record.id,
         name: cleanText(record.fields[source.fields.name]),
@@ -215,9 +225,8 @@ async function fetchSourceRecords(
         registrationYear: parseRegistrationYear(
           record.fields[source.fields.registrationYear],
         ),
-        importedFrom: source.fields.importNotes
-          ? parseImportedFrom(record.fields[source.fields.importNotes])
-          : null,
+        importedFrom: parseImportedFrom(importNotes),
+        publicationBlocked: isPublicationBlocked(importNotes),
       });
     }
 
@@ -246,8 +255,13 @@ export async function loadRegistryFromAirtable(
   const combined = new Map<string, PublicRegistryRecord>();
   const importedIds = new Set<string>();
 
-  for (const { importedFrom, ...record } of historicalRecords) {
+  for (const {
+    importedFrom,
+    publicationBlocked,
+    ...record
+  } of historicalRecords) {
     if (importedFrom) importedIds.add(importedFrom);
+    if (publicationBlocked) continue;
     if (!hasPublishableName(record.name) || !record.registrationNumber)
       continue;
 
@@ -257,7 +271,11 @@ export async function loadRegistryFromAirtable(
   // A matching record in the newer table is authoritative, unless it has
   // already been imported into the historical table. The imported copy is
   // the corrected one (name order, licence prefix, year), so keep it.
-  for (const { importedFrom: _, ...record } of recentRecords) {
+  for (const {
+    importedFrom: _,
+    publicationBlocked: __,
+    ...record
+  } of recentRecords) {
     if (importedIds.has(record.id)) continue;
     if (!hasPublishableName(record.name) || !record.registrationNumber)
       continue;
