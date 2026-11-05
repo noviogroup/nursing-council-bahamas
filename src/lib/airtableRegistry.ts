@@ -22,6 +22,7 @@ type RegistrySource = {
   viewId: string;
   fields: {
     name: string;
+    fallbackName?: string;
     registrationType: string;
     registrationNumber: string;
     registrationYear: string;
@@ -84,7 +85,8 @@ function getRegistrySources(environment: AirtableRegistryEnvironment): {
       tableId: environment.oldTableId,
       viewId: environment.oldViewId,
       fields: {
-        name: "Full Name (as filed)",
+        name: "Public Name",
+        fallbackName: "Full Name (as filed)",
         registrationType: "Category",
         registrationNumber: "Licence No. (as filed)",
         registrationYear: "Licence Year (derived)",
@@ -231,7 +233,13 @@ async function fetchSourceRecords(
 
       records.push({
         id: record.id,
-        name: cleanText(record.fields[source.fields.name]),
+        name:
+          cleanText(record.fields[source.fields.name]) ||
+          cleanText(
+            source.fields.fallbackName
+              ? record.fields[source.fields.fallbackName]
+              : undefined,
+          ),
         type: cleanText(
           record.fields[source.fields.registrationType],
         ).toUpperCase(),
