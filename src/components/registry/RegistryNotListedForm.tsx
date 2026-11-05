@@ -137,9 +137,7 @@ export default function RegistryNotListedForm({
       >
         <div>
           <p className="font-semibold text-council-dark">
-            {afterCloseMatches
-              ? "None of these is you?"
-              : "Can\u2019t find your record?"}
+            Can\u2019t find your record?
           </p>
           <p className="mt-1 text-sm text-slate-600">
             {afterCloseMatches
