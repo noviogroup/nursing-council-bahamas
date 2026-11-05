@@ -25,6 +25,8 @@ type RegistrySource = {
     registrationType: string;
     registrationNumber: string;
     registrationYear: string;
+    /** Free-text notes that name the newer-table record a row was imported from. */
+    importNotes?: string;
   };
 };
 
@@ -43,6 +45,11 @@ export type PublicRegistryRecord = {
   type: string;
   registrationNumber: string;
   registrationYear: number | null;
+};
+
+type SourceRecord = PublicRegistryRecord & {
+  /** Newer-table record this historical row was imported from, if any. */
+  importedFrom: string | null;
 };
 
 function getRequiredEnvironmentVariable(name: string) {
@@ -79,6 +86,7 @@ function getRegistrySources(environment: AirtableRegistryEnvironment): {
         registrationType: "Category",
         registrationNumber: "Licence No. (as filed)",
         registrationYear: "Licence Year (derived)",
+        importNotes: "Notes",
       },
     },
     newRecords: {
@@ -124,6 +132,23 @@ export function normalizeRegistrationNumber(value: string) {
   return value.toUpperCase().replace(/[^A-Z0-9]/g, "");
 }
 
+// The newer table files numbers without the category prefix ("25-5734"),
+// the historical table with it ("RN 25-5734"). Key both the same way.
+function registryKey(record: PublicRegistryRecord) {
+  const normalizedNumber = normalizeRegistrationNumber(
+    record.registrationNumber,
+  );
+  if (!normalizedNumber) return `airtable:${record.id}`;
+  return /^\d/.test(normalizedNumber)
+    ? `${record.type}${normalizedNumber}`
+    : normalizedNumber;
+}
+
+function parseImportedFrom(value: unknown) {
+  if (typeof value !== "string") return null;
+  return value.match(/Source record ID:\s*(rec[A-Za-z0-9]{14})/)?.[1] ?? null;
+}
+
 async function fetchAirtablePage(url: string, token: string) {
   const maximumAttempts = 3;
 
@@ -159,7 +184,7 @@ async function fetchSourceRecords(
   token: string,
   source: RegistrySource,
 ) {
-  const records: PublicRegistryRecord[] = [];
+  const records: SourceRecord[] = [];
   let offset: string | undefined;
 
   do {
@@ -190,6 +215,9 @@ async function fetchSourceRecords(
         registrationYear: parseRegistrationYear(
           record.fields[source.fields.registrationYear],
         ),
+        importedFrom: source.fields.importNotes
+          ? parseImportedFrom(record.fields[source.fields.importNotes])
+          : null,
       });
     }
 
@@ -216,26 +244,25 @@ export async function loadRegistryFromAirtable(
     newRecords,
   );
   const combined = new Map<string, PublicRegistryRecord>();
+  const importedIds = new Set<string>();
 
-  for (const record of historicalRecords) {
+  for (const { importedFrom, ...record } of historicalRecords) {
+    if (importedFrom) importedIds.add(importedFrom);
     if (!hasPublishableName(record.name) || !record.registrationNumber)
       continue;
 
-    const normalizedNumber = normalizeRegistrationNumber(
-      record.registrationNumber,
-    );
-    combined.set(normalizedNumber || `airtable:${record.id}`, record);
+    combined.set(registryKey(record), record);
   }
 
-  // A matching record in the newer table is authoritative.
-  for (const record of recentRecords) {
+  // A matching record in the newer table is authoritative, unless it has
+  // already been imported into the historical table. The imported copy is
+  // the corrected one (name order, licence prefix, year), so keep it.
+  for (const { importedFrom: _, ...record } of recentRecords) {
+    if (importedIds.has(record.id)) continue;
     if (!hasPublishableName(record.name) || !record.registrationNumber)
       continue;
 
-    const normalizedNumber = normalizeRegistrationNumber(
-      record.registrationNumber,
-    );
-    combined.set(normalizedNumber || `airtable:${record.id}`, record);
+    combined.set(registryKey(record), record);
   }
 
   return [...combined.values()].sort((left, right) =>
