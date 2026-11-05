@@ -130,6 +130,18 @@ function parseRegistrationYear(value: unknown) {
   return match ? Number(match[0]) : null;
 }
 
+export function parseRegistrationYearFromNumber(value: string) {
+  const number = value.trim().replace(/^[A-Z]+\s*/i, "");
+  const fullYear = number.match(/^(?:18|19|20|21)\d{2}(?=\D|$)/)?.[0];
+  if (fullYear) return Number(fullYear);
+
+  const shortYear = number.match(/^(\d{2})(?=\D|$)/)?.[1];
+  if (!shortYear) return null;
+
+  const year = Number(shortYear);
+  return year >= 70 ? 1900 + year : 2000 + year;
+}
+
 export function normalizeRegistrationNumber(value: string) {
   return value.toUpperCase().replace(/[^A-Z0-9]/g, "");
 }
@@ -213,18 +225,20 @@ async function fetchSourceRecords(
         ? record.fields[source.fields.importNotes]
         : undefined;
 
+      const registrationNumber = cleanText(
+        record.fields[source.fields.registrationNumber],
+      );
+
       records.push({
         id: record.id,
         name: cleanText(record.fields[source.fields.name]),
         type: cleanText(
           record.fields[source.fields.registrationType],
         ).toUpperCase(),
-        registrationNumber: cleanText(
-          record.fields[source.fields.registrationNumber],
-        ),
+        registrationNumber,
         registrationYear: parseRegistrationYear(
           record.fields[source.fields.registrationYear],
-        ),
+        ) ?? parseRegistrationYearFromNumber(registrationNumber),
         importedFrom: parseImportedFrom(importNotes),
         publicationBlocked: isPublicationBlocked(importNotes),
       });
