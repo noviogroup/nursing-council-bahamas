@@ -18,11 +18,23 @@ function capitalise(part: string) {
 }
 
 export function formatPersonName(name: string) {
-  return name
-    .trim()
-    .replace(/\s+/g, ' ')
+  const cleaned = name.trim().replace(/\s+/g, ' ');
+  const comma = cleaned.indexOf(',');
+  let ordered = cleaned;
+
+  // Historical entries are filed as "LAST, FIRST MIDDLE". Keep a trailing
+  // maiden name at the end when converting to "First Middle Last".
+  if (comma > 0) {
+    const lastName = cleaned.slice(0, comma).trim();
+    let givenNames = cleaned.slice(comma + 1).trim();
+    const maiden = givenNames.match(/\s*(\([^()]+\))\s*$/)?.[1] || '';
+    if (maiden) givenNames = givenNames.slice(0, -maiden.length).trim();
+    ordered = [givenNames, lastName, maiden].filter(Boolean).join(' ');
+  }
+
+  return ordered
     .split(' ')
     // Capitalise each piece of hyphenated and apostrophe names: Smith-Rolle, O'Brien.
-    .map((word) => word.split(/([-'’])/).map(capitalise).join(''))
+    .map((word) => word.split(/([-'’()])/).map(capitalise).join(''))
     .join(' ');
 }
