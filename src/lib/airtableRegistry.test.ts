@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   loadRegistryFromAirtable,
   parseRegistrationYearFromNumber,
+  selectPublicName,
 } from "./airtableRegistry";
 
 test("derives a four-digit licence year from the first two number digits", () => {
@@ -10,6 +11,17 @@ test("derives a four-digit licence year from the first two number digits", () =>
   assert.equal(parseRegistrationYearFromNumber("RN 21-1234"), 2021);
   assert.equal(parseRegistrationYearFromNumber("RM 94-0746"), 1994);
   assert.equal(parseRegistrationYearFromNumber("RM 99032"), null);
+});
+
+test("uses reordered approved names but rejects a different person's name", () => {
+  assert.equal(
+    selectPublicName("Ceceel Kemeel Imana", "IMANA, CECEEL KEMEEL"),
+    "Ceceel Kemeel Imana",
+  );
+  assert.equal(
+    selectPublicName("ERMA PATRICE ROLLE", "LAVETTE ELOISE GLINTON"),
+    "LAVETTE ELOISE GLINTON",
+  );
 });
 
 test("records marked do not publish stay out of public registry search", async () => {
