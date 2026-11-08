@@ -18,8 +18,9 @@ import Footer from '@/components/Footer';
 import ComingSoon from '@/components/ComingSoon';
 import Nurse360IntroVideo from '@/components/Nurse360IntroVideo';
 import WhatsAppChannelCard from '@/components/WhatsAppChannelCard';
+import NewsCard from '@/components/NewsCard';
 import { portalPath } from '@/lib/portal';
-import { featuredNewsArticles, formatNewsDate } from '@/lib/news';
+import { featuredNewsArticles } from '@/lib/news';
 import { createPageMetadata, organizationStructuredData, SITE_NAME } from '@/lib/seo';
 import { councilContact } from '@/lib/councilContent';
 
@@ -272,40 +273,26 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-gray-50 py-20 lg:py-28" aria-labelledby="latest-news-heading">
+        <section className="bg-slate-50 py-14 lg:py-16" aria-labelledby="latest-news-heading">
           <div className="container mx-auto px-4">
-            <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div className="max-w-3xl">
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Nursing and midwifery
-                </p>
-                <h2 id="latest-news-heading" className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Nursing and Midwifery News &amp; Updates.</h2>
+                <span className="mb-4 block h-1 w-10 rounded-full bg-[#f23d5c]" aria-hidden="true" />
+                <h2 id="latest-news-heading" className="font-heading text-3xl font-bold leading-tight text-council-primary md:text-4xl">Nursing &amp; midwifery news</h2>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">News and updates from the original publishers.</p>
               </div>
-              <Link href="/news" className="inline-flex items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+              <Link href="/news" className="inline-flex min-h-11 w-fit shrink-0 items-center gap-3 rounded-[8px] border border-council-primary/20 bg-white px-4 text-sm font-semibold text-council-primary transition-colors hover:border-council-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary">
                 View all news
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {featuredNewsArticles.map((article) => (
-                <article key={article.href} className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                    <Image src={article.image} alt={article.imageAlt} fill sizes="(min-width: 1280px) 23vw, (min-width: 768px) 46vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.12em] text-gray-500">
-                      <span>{article.publisher}</span>
-                      <time dateTime={article.publishedAt}>{formatNewsDate(article)}</time>
-                    </div>
-                    <h3 className="font-heading mt-4 text-xl font-bold leading-snug text-council-dark">{article.title}</h3>
-                    <a href={article.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex w-fit items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                      Read source article
-                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </article>
-              ))}
+            <div className="grid gap-5 lg:grid-cols-[1.05fr_1fr] lg:gap-6">
+              {featuredNewsArticles[0] && <NewsCard article={featuredNewsArticles[0]} variant="featured" />}
+              <div className="grid gap-4">
+                {featuredNewsArticles.slice(1).map((article) => (
+                  <NewsCard key={article.href} article={article} variant="compact" />
+                ))}
+              </div>
             </div>
           </div>
         </section>

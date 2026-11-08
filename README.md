@@ -58,6 +58,8 @@ The homepage uses the supplied 27-second Nurse 360 introduction, the existing of
 
 This branch is for local review; publishing requires a separate go-live decision.
 
+News cards share `src/components/NewsCard.tsx` across the homepage and `/news`. The homepage gives the latest listed story more space beside three compact stories; narrow screens stack their images and text. Preserve complete headlines, publisher attribution, original dates and source links. Each card has one keyboard-accessible link, a visible focus outline around the card, and an announced external-tab destination.
+
 ## Environment Variables
 
 The public informational pages can render without database credentials. The nurse registry, complaint submission, tracking, and staff portal features require the values documented in `.env.example`.

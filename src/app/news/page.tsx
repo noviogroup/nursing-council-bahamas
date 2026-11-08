@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { formatNewsDate, newsArticles } from '@/lib/news';
+import NewsCard from '@/components/NewsCard';
+import { newsArticles } from '@/lib/news';
 import { createPageMetadata } from '@/lib/seo';
 
 export const metadata = createPageMetadata({
@@ -43,35 +43,19 @@ export default function NewsPage() {
           </div>
         </section>
 
-        <section className="bg-white py-20 lg:py-28">
+        <section className="bg-slate-50 py-14 lg:py-16" aria-labelledby="news-list-heading">
           <div className="container mx-auto px-4">
-            <div className="mb-12 flex max-w-3xl flex-col gap-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">News and updates</p>
-              <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">Nursing and Midwifery News &amp; Updates.</h2>
-              <p className="text-lg leading-relaxed text-gray-600">
+            <div className="mb-8 max-w-3xl">
+              <span className="mb-4 block h-1 w-10 rounded-full bg-[#f23d5c]" aria-hidden="true" />
+              <h2 id="news-list-heading" className="font-heading text-3xl font-bold leading-tight text-council-primary md:text-4xl">News &amp; updates</h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Each item opens the original publisher&apos;s article. Article images are shown from the respective source.
               </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {newsArticles.map((article) => (
-                <article key={article.href} className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                    <Image src={article.image} alt={article.imageAlt} fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="mb-4 flex items-center justify-between gap-3 text-sm font-medium text-gray-500">
-                      <span>{article.publisher}</span>
-                      <time dateTime={article.publishedAt}>{formatNewsDate(article)}</time>
-                    </div>
-                    <h2 className="font-heading text-2xl font-bold leading-snug text-council-dark">{article.title}</h2>
-                    <p className="mt-4 flex-1 leading-relaxed text-gray-600">{article.summary}</p>
-                    <a href={article.href} target="_blank" rel="noreferrer" className="mt-7 inline-flex w-fit items-center gap-2 font-semibold text-council-primary transition-colors hover:text-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
-                      Read source article
-                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </article>
+                <NewsCard key={article.href} article={article} />
               ))}
             </div>
           </div>
