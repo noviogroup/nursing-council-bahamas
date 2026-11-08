@@ -53,10 +53,6 @@ export default function UapsPage() {
         <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="uaps">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                UAPs
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
                 Unlicensed assistive personnel information.
               </h1>
@@ -71,10 +67,6 @@ export default function UapsPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  UAP public resources
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                   Recording, renewal, training, and CPD.
                 </h2>
@@ -113,10 +105,6 @@ export default function UapsPage() {
         <section className="bg-gray-50 py-20 lg:py-28">
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-px w-9 bg-council-accent" />
-                Documents
-              </p>
               <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                 UAP PDFs are placeholders for now.
               </h2>

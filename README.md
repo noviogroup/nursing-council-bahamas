@@ -144,6 +144,12 @@ Netlify uses `npm run build` and publishes the generated Next.js application fro
 - Typeface: Manrope
 - Standard interface radius: 4px where framing is useful
 
+Public-page copy direction (8 November 2026): lead with clear headings and avoid
+decorative eyebrows that repeat the heading or section context. State institution
+approval once in the section heading rather than on every card. Retain meaningful
+status, audience, programme, office-hour, form-progress, and table labels; fold any
+essential context from a removed eyebrow into the heading or supporting copy.
+
 ## Contact
 
 The Nursing Council of the Commonwealth of The Bahamas<br />

@@ -49,10 +49,6 @@ export default function VerificationPage() {
         <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="verification">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Verification
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
                 Verify a nurse or request an official letter.
               </h1>
@@ -67,12 +63,8 @@ export default function VerificationPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Verification services
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Choose a service.
+                  Choose a verification service.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
@@ -103,10 +95,6 @@ export default function VerificationPage() {
         <section className="bg-gray-50 py-20 lg:py-28">
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-px w-9 bg-council-accent" />
-                Public details
-              </p>
               <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                 Information shown in the public registry.
               </h2>
@@ -128,7 +116,6 @@ export default function VerificationPage() {
         <section className="bg-council-primary py-20 text-white">
           <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need an official document?</p>
               <h2 className="font-heading text-4xl font-bold">Nurses can request a Letter of Good Standing through the Council.</h2>
             </div>
             <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">

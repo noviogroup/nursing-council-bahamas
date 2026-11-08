@@ -328,10 +328,6 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div>
-              <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-px w-9 bg-council-accent" />
-                Our mandate
-              </p>
               <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                 Mandate and guiding statements.
               </h2>
@@ -383,10 +379,6 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Section 8 of the Act
-                </p>
                 <h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">
                   Functions of the Council.
                 </h2>
@@ -396,7 +388,7 @@ export default function AboutPage() {
               </div>
               <div className="max-w-2xl">
                 <p className="text-lg leading-relaxed text-gray-600">
-                  The Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, enrollment, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
+                  Section 8 of the Nurses and Midwives Act, 2023 sets out the Council&apos;s functions. They span public protection, professional standards, registration, enrollment, education, agencies, Unlicensed Assistive Personnel, investigations, and statutory advice.
                 </p>
                 <Link
                   href="/documents/nurses-and-midwives-act-2023.pdf"
@@ -454,12 +446,8 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Code of ethics
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight md:text-5xl">
-                  Ethical guidance for nursing practice.
+                  Code of Ethics for nursing practice.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-white/80">
@@ -491,12 +479,8 @@ export default function AboutPage() {
         <section className="bg-white py-20 lg:py-28">
           <div className="container mx-auto grid gap-14 px-4 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-px w-9 bg-council-accent" />
-                Our story
-              </p>
               <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                A statutory Council rooted in public protection.
+                History of the Council.
               </h2>
               <p className="max-w-md leading-relaxed text-gray-600">
                 The basis on which the Council was created remains the reason for its operation to date: protecting citizens and all who require health care services within the country.
@@ -536,8 +520,7 @@ export default function AboutPage() {
                   </figure>
 
                   <div className="mt-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Council leadership</p>
-                    <h3 className="font-heading mt-2 text-2xl font-bold leading-tight">A record of service and public protection.</h3>
+                    <h3 className="font-heading text-2xl font-bold leading-tight">Council leadership.</h3>
                   </div>
 
                   <dl className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-[8px] bg-white/20">
@@ -582,11 +565,7 @@ export default function AboutPage() {
               <div className="space-y-14">
                 <section className="overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm">
                   <div className="border-b border-slate-200 p-6 md:p-10">
-                    <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                      <span className="h-px w-9 bg-council-accent" />
-                      Current Council Members
-                    </p>
-                    <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Current appointments.</h3>
+                    <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Current Council members.</h3>
                     <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
                       The current Council brings together nursing leadership, professional representatives, legal counsel, education, and medical expertise.
                     </p>
@@ -623,10 +602,6 @@ export default function AboutPage() {
                 </section>
 
                 <section className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-                  <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                    <span className="h-px w-9 bg-council-accent" />
-                    Founding members
-                  </p>
                   <h3 className="font-heading mb-5 text-3xl font-bold text-council-dark md:text-4xl">
                     The founding Council members.
                   </h3>
@@ -677,11 +652,7 @@ export default function AboutPage() {
                 </section>
 
                 <section className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-                  <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                    <span className="h-px w-9 bg-council-accent" />
-                    Chairperson record
-                  </p>
-                  <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Leadership through the years.</h3>
+                  <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Chairpersons through the years.</h3>
                   <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
                     The following record is based on the Council-supplied list of past and current Chairpersons. Service periods are shown where they were supplied.
                   </p>
@@ -698,10 +669,6 @@ export default function AboutPage() {
                 </section>
 
                 <section className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-                  <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                    <span className="h-px w-9 bg-council-accent" />
-                    Administrative leadership
-                  </p>
                   <h3 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Registrars through the years.</h3>
                   <p className="mt-4 max-w-2xl leading-relaxed text-gray-600">
                     The Registrar leads the Council’s administration and supports continuity in its statutory and operational work.
@@ -733,10 +700,6 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Governance / Council Members
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                   Council composition under the 2023 Act.
                 </h2>

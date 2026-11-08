@@ -21,10 +21,6 @@ export default function RegistryPage() {
           />
           <div className="container relative mx-auto grid gap-10 px-4 lg:grid-cols-[1fr_360px] lg:items-end">
             <div className="max-w-3xl">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Official nurse registry
-              </p>
               <h1 className="font-heading mb-5 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                 Search the nurse registry.
               </h1>

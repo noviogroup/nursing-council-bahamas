@@ -78,10 +78,6 @@ export default function ComplaintTrackPage() {
       <main className="flex-1">
         <section className="bg-council-primary py-20 text-white lg:py-28">
           <div className="container mx-auto max-w-4xl px-4">
-            <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-              <span className="h-px w-10 bg-council-accent" />
-              Complaints
-            </p>
             <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Track a complaint.</h1>
             <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/85">
               Enter your tracking number and the email address you used when you submitted your complaint.

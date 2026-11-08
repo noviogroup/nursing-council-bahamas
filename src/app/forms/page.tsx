@@ -94,10 +94,6 @@ export default function FormsPage() {
           </div>
           <div className="container relative mx-auto flex min-h-[520px] items-center px-4 py-20 lg:min-h-[580px] lg:py-28">
             <div className="max-w-[88%] sm:max-w-2xl lg:max-w-[58%]">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Forms & documents
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
                 Find the right Council form.
               </h1>
@@ -112,12 +108,8 @@ export default function FormsPage() {
           <div className="container mx-auto px-4">
             <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Forms directory
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Browse by purpose.
+                  Browse forms by purpose.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
@@ -185,8 +177,7 @@ export default function FormsPage() {
           <div className="container mx-auto px-4">
             <div className="mb-9 flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-5">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">Available form titles</p>
-                <h2 className="font-heading mt-2 text-3xl font-bold text-council-dark sm:text-4xl">{visibleFormCount} {visibleFormCount === 1 ? 'form' : 'forms'} shown</h2>
+                <h2 className="font-heading text-3xl font-bold text-council-dark sm:text-4xl">{visibleFormCount} {visibleFormCount === 1 ? 'form' : 'forms'} shown</h2>
               </div>
               <span className="inline-flex items-center gap-2 rounded-[8px] border border-council-accent/60 bg-council-accent/10 px-3 py-2 text-sm font-semibold text-council-dark">
                 <Clock className="h-4 w-4" aria-hidden="true" />
@@ -200,7 +191,6 @@ export default function FormsPage() {
                   <section key={group.id} className={groupIndex > 0 ? 'border-t-8 border-gray-50' : ''} aria-labelledby={`${group.id}-heading`}>
                     <div className="grid gap-4 border-b border-slate-200 px-6 py-6 md:grid-cols-[minmax(15rem,0.65fr)_1.35fr] md:items-end md:px-8">
                       <div>
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-council-primary">Form category</p>
                         <h3 id={`${group.id}-heading`} className="font-heading text-2xl font-bold text-council-dark">{group.title}</h3>
                       </div>
                       <p className="max-w-xl text-sm leading-relaxed text-gray-600">{group.description}</p>
@@ -243,7 +233,6 @@ export default function FormsPage() {
         <section className="bg-council-primary py-20 text-white">
           <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Need help choosing a form?</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council before submitting documents.</h2>
             </div>
             <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">

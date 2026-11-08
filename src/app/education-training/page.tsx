@@ -71,10 +71,6 @@ export default function EducationRegistrationPage() {
           </div>
           <div className="container relative mx-auto flex min-h-[520px] items-center px-4 py-20 lg:min-h-[580px] lg:py-28">
             <div className="max-w-[88%] sm:max-w-2xl lg:max-w-[58%]">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Education & training
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
                 Approved pathways for nursing education.
               </h1>
@@ -89,12 +85,8 @@ export default function EducationRegistrationPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Approved institutions
-                </p>
                 <h2 id="approved-institutions-heading" className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Nursing training institutions and programmes.
+                  Approved institutions and programmes.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
@@ -112,9 +104,6 @@ export default function EducationRegistrationPage() {
                   className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-council-primary/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-council-primary/35" />
-                <span className="absolute bottom-5 left-6 border border-white/30 bg-council-primary/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white">
-                  Featured institution
-                </span>
               </div>
               <div className="p-7 sm:p-9 lg:p-11">
                 <div className="flex flex-col gap-5 border-b border-white/20 pb-7 sm:flex-row sm:items-center">
@@ -128,11 +117,10 @@ export default function EducationRegistrationPage() {
                     />
                   </div>
                   <div>
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-council-accent">Approved institution</p>
                     <h3 className="font-heading text-3xl font-bold leading-tight sm:text-4xl">{universityOfTheBahamas.name}</h3>
                   </div>
                 </div>
-                <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-white/65">Approved programmes</p>
+                <p className="mt-6 text-sm font-semibold text-white/80">Programmes</p>
                 <ul className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
                   {universityOfTheBahamas.programmes.map((programme) => (
                     <li key={programme} className="flex gap-3 text-sm leading-relaxed text-white/90">
@@ -160,11 +148,10 @@ export default function EducationRegistrationPage() {
                     />
                   </div>
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-council-primary">Approved institution</p>
                     <h3 className="font-heading text-2xl font-bold leading-tight text-council-dark">{institution.name}</h3>
                   </div>
                   <div className="border-t border-slate-200 pt-5 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">Approved programme{institution.programmes.length > 1 ? 's' : ''}</p>
+                    <p className="mb-3 text-sm font-semibold text-gray-600">Programme{institution.programmes.length > 1 ? 's' : ''}</p>
                     <ul className="space-y-3">
                       {institution.programmes.map((programme) => {
                         const provisional = programme.includes('(Provisional)');
@@ -196,12 +183,8 @@ export default function EducationRegistrationPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Approved clinical sites
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                  Clinical learning environments.
+                  Approved clinical learning sites.
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">

@@ -16,12 +16,9 @@ export default function WhatsAppChannelCard() {
             unoptimized
           />
           <div className="min-w-0">
-            <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#166534]">
-              <WhatsappLogo size={23} weight="fill" aria-hidden="true" />
-              Official Council announcements
-            </p>
-            <h2 id="whatsapp-updates-heading" className="font-heading text-2xl font-bold leading-tight text-[#14532d] md:text-3xl">
-              Follow the Council on WhatsApp
+            <h2 id="whatsapp-updates-heading" className="font-heading flex items-start gap-3 text-2xl font-bold leading-tight text-[#14532d] md:text-3xl">
+              <WhatsappLogo size={28} weight="fill" aria-hidden="true" className="mt-0.5 shrink-0" />
+              <span>Follow the Council on WhatsApp</span>
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-gray-700">
               Stay informed about Council announcements and online services.

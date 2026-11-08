@@ -27,10 +27,6 @@ export default function ComplaintsPage() {
         <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="complaints">
           <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Public complaints
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Submit a complaint or concern.</h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
                 Report a concern about a nurse, midwife, applicant or licensee. It takes about 10 minutes, and you can save your progress and finish later.

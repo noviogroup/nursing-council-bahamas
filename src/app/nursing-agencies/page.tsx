@@ -55,12 +55,8 @@ export default function NursingAgenciesPage() {
           </div>
           <div className="container relative mx-auto flex min-h-[520px] items-center px-4 py-20 lg:min-h-[580px] lg:py-28">
             <div className="max-w-[88%] sm:max-w-2xl lg:max-w-[58%]">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Nursing agencies
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
-                Agency licensing and compliance.
+                Nursing agency licensing and compliance.
               </h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
                 Review licensed nursing agencies, required documents, and the Council&apos;s process for agency licensing and renewal.
@@ -73,10 +69,6 @@ export default function NursingAgenciesPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Public agency information
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                   Current licensed nursing agencies.
                 </h2>
@@ -105,7 +97,6 @@ export default function NursingAgenciesPage() {
                       </div>
                       <span className="font-heading text-2xl font-bold text-council-accent">0{index + 1}</span>
                     </div>
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-council-primary">Current agency</p>
                     <h3 className="font-heading text-2xl font-bold leading-tight text-council-dark">{agency.name}</h3>
                   </div>
                 </article>
@@ -147,7 +138,6 @@ export default function NursingAgenciesPage() {
         <section className="bg-council-primary py-20 text-white">
           <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Agency enquiries</p>
               <h2 className="font-heading text-4xl font-bold">Contact the Council for current agency guidance.</h2>
             </div>
             <Link href={isLinkAvailable('/contact') ? '/contact' : 'mailto:info@nursingcouncilbahamas.com'} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">

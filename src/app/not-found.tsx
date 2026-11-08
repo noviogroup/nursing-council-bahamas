@@ -9,7 +9,6 @@ export default function NotFoundPage() {
       <main className="flex-1 bg-white">
         <section className="bg-council-primary py-24 text-white" data-page-hero="not-found">
           <div className="container mx-auto max-w-3xl px-4 text-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Page not found</p>
             <h1 className="font-heading text-5xl font-bold">We could not find that page.</h1>
             <p className="mx-auto mt-5 max-w-2xl text-xl leading-relaxed text-white/85">Use the main navigation or return to the homepage to continue.</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

@@ -46,10 +46,6 @@ export default function IndexingPage() {
         <section className="bg-council-primary py-20 text-white lg:py-28" data-page-hero="indexing">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Nursing Student Indexing
-              </p>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">
                 Nursing Student Indexing.
               </h1>
@@ -63,12 +59,8 @@ export default function IndexingPage() {
         <section className="bg-white py-20 lg:py-28">
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-px w-9 bg-council-accent" />
-                Process
-              </p>
               <h2 className="font-heading mb-5 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                A clear route into Council records.
+                How student indexing works.
               </h2>
               <p className="max-w-md leading-relaxed text-gray-600">
                 Review the requirements before starting. The portal guides applicants through each section and identifies any missing information.
@@ -91,10 +83,6 @@ export default function IndexingPage() {
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="mb-4 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-9 bg-council-accent" />
-                  Application requirements
-                </p>
                 <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                   Prepare your education details and documents.
                 </h2>
@@ -135,7 +123,6 @@ export default function IndexingPage() {
         <section className="bg-council-primary py-20 text-white">
           <div className="container mx-auto grid gap-8 px-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Online action</p>
               <h2 className="font-heading text-4xl font-bold">Begin Nursing Student Indexing through the Council portal.</h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">

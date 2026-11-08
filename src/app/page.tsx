@@ -150,10 +150,6 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="mb-7 flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <p className="mb-3 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                  <span className="h-px w-10 bg-council-accent" />
-                  Online services
-                </p>
                 <h2 className="font-heading text-3xl font-bold text-council-dark md:text-4xl">Get started online</h2>
               </div>
             </div>
@@ -239,10 +235,6 @@ export default function HomePage() {
             </div>
 
             <div>
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-primary">
-                <span className="h-[2px] w-8 bg-council-accent" />
-                Get to know us
-              </p>
               <h2 className="font-heading mb-6 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                 Guiding the future of nursing in The Bahamas
               </h2>

@@ -31,10 +31,6 @@ export default function NewsPage() {
           </div>
           <div className="container relative mx-auto flex min-h-[520px] items-center px-4 py-20 lg:min-h-[580px] lg:py-28">
             <div className="max-w-[88%] sm:max-w-2xl lg:max-w-[58%]">
-              <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">
-                <span className="h-px w-10 bg-council-accent" />
-                Nursing and midwifery
-              </p>
               <h1 className="font-heading text-5xl font-bold leading-tight md:text-6xl">Nursing and Midwifery News &amp; Updates.</h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
                 Council-relevant updates on nursing, midwifery, education, legislation, regulation, and workforce development in The Bahamas.
