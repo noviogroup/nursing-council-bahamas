@@ -50,7 +50,7 @@ const services = [
     href: portalPath('/start/indexing'),
     image: '/assets/approved/hero-education.png',
     imageAlt: 'Nursing students receiving clinical skills instruction',
-    imagePosition: 'object-center',
+    imagePosition: 'object-top',
   },
   {
     icon: IdentificationCard,
@@ -60,7 +60,7 @@ const services = [
     href: portalPath('/start/registered-nurse'),
     image: '/assets/approved/nurses-bahamas.png',
     imageAlt: 'Nurses gathered at a professional ceremony in The Bahamas',
-    imagePosition: 'object-center',
+    imagePosition: 'object-top',
   },
   {
     icon: GlobeHemisphereWest,
@@ -70,7 +70,7 @@ const services = [
     href: portalPath('/start/international'),
     image: '/assets/approved/tcn-nurses-1.jpg',
     imageAlt: 'Trained Clinical Nurses at a formal nursing ceremony',
-    imagePosition: 'object-center',
+    imagePosition: 'object-top',
   },
 ];
 
@@ -220,7 +220,18 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-council-primary/70 via-council-primary/10 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 rounded-[8px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm md:left-auto md:w-[68%]">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
+                <div className="flex items-center gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white p-1.5">
+                    <Image
+                      src="/nursing-council-logo.png"
+                      alt="Nursing Council of The Bahamas"
+                      width={44}
+                      height={44}
+                      className="h-11 w-11 object-contain"
+                    />
+                  </div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
+                </div>
                 <p className="mt-3 text-lg font-semibold leading-relaxed">
                   Safeguarding the public through nursing regulation, education standards, and professional accountability.
                 </p>
