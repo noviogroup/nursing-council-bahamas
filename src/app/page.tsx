@@ -141,7 +141,7 @@ export default function HomePage() {
                   Nurse 360
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <Nurse360IntroVideo className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-white/70 bg-white/10 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" />
+                <Nurse360IntroVideo className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-[#f23d5c] bg-[#f23d5c] px-6 py-3 font-semibold text-white transition-colors hover:border-[#df2f4d] hover:bg-[#df2f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" />
               </div>
             </div>
           </div>
