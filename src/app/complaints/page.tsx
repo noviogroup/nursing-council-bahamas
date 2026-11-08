@@ -29,7 +29,7 @@ export default function ComplaintsPage() {
             <div>
               <h1 className="font-heading mb-6 text-5xl font-bold leading-tight md:text-6xl">Submit a complaint or concern.</h1>
               <p className="max-w-2xl text-xl leading-relaxed text-white/85">
-                Report a concern about a nurse, midwife, applicant or licensee. It takes about 10 minutes, and you can save your progress and finish later.
+                Report a concern about a nurse, midwife, applicant or licensee. You can save your answers and return later with a private link.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/complaints/new" className="inline-flex min-h-12 items-center gap-2 bg-white px-6 font-semibold text-council-primary transition-colors hover:bg-council-accent hover:text-council-dark">

@@ -21,9 +21,9 @@ export default function Footer() {
 
   const quickLinks = [
     { name: 'Register / Enroll', href: portalPath('/start/registration') },
-    { name: 'Renew Licence', href: portalPath('/start/renewal') },
+    { name: 'Licence renewal', href: '/forms#licence-renewal' },
     { name: 'Education', href: '/education-training' },
-    { name: 'Forms & Documents', href: '/forms' },
+    { name: 'Forms & Applications', href: '/forms' },
     { name: 'Nurse registry', href: '/registry' },
     { name: 'Code of Ethics & the Act', href: '/legal-ethics' },
     { name: 'Submit a Complaint', href: '/complaints/new' },
@@ -33,12 +33,12 @@ export default function Footer() {
   const committeesAvailable = isLinkAvailable('/committees');
 
   const committees = [
-    'Education Committee',
-    'Examination Committee',
-    'Finance Committee',
-    'Registration Committee',
-    'Standards and Practice Committee',
-    'Disciplinary and Penal Cases Committee',
+    { id: 'education', name: 'Education Committee' },
+    { id: 'examination', name: 'Examination Committee' },
+    { id: 'finance', name: 'Finance Committee' },
+    { id: 'registration', name: 'Registration Committee' },
+    { id: 'standards-practice', name: 'Standards and Practice Committee' },
+    { id: 'disciplinary', name: 'Disciplinary and Penal Cases Committee' },
   ];
 
   return (
@@ -99,16 +99,16 @@ export default function Footer() {
             <h4 className="font-heading text-lg font-semibold mb-4">Committees</h4>
             <ul className="space-y-2">
               {committees.map((committee) => (
-                <li key={committee}>
+                <li key={committee.id}>
                   {committeesAvailable ? (
                     <Link
-                      href="/committees"
-                      className="text-gray-300 hover:text-council-accent transition-colors text-sm"
+                      href={`/committees#${committee.id}`}
+                      className="text-gray-300 hover:text-council-accent transition-colors text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                     >
-                      {committee}
+                      {committee.name}
                     </Link>
                   ) : (
-                    <span className="text-gray-300 text-sm">{committee}</span>
+                    <span className="text-gray-300 text-sm">{committee.name}</span>
                   )}
                 </li>
               ))}

@@ -166,3 +166,20 @@ The Nursing Council of the Commonwealth of The Bahamas<br />
 info@nursingcouncilbahamas.com
 
 Copyright 2026 The Nursing Council of the Commonwealth of The Bahamas.
+
+## Website and complaints review — 8 November 2026
+
+The approved local implementation is on `design/current-site-nurse360`; its companion
+portal branch is `design/website-complaints-review`. See
+[release and verification notes](docs/website-review/release-and-verification.md),
+[service routing](docs/website-review/forms-contact-routing.md), and the
+[Graduate Nurse Letter specification](docs/website-review/graduate-nurse-letter-process.md).
+
+Internal Operations owns enquiry routing, complaint triage and letter approval.
+The new complaint submission/reply capabilities remain off by default until their
+backend, recipient configuration and controlled acceptance tests are approved.
+The existing complaint service remains compatible while those changes are reviewed.
+
+Run `npm run test:complaints` for isolated validation/recovery contracts and
+`npm run test:contact` for the catalogue and recorded enquiry HTTP contract. These
+use synthetic data and do not submit live cases or send email.

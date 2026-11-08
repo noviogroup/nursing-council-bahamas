@@ -9,7 +9,9 @@
     "sync:registry": "tsx scripts/sync-airtable-registry.ts",
     "test:registry": "node --import tsx --test src/lib/airtableRegistry.test.ts src/lib/formatName.test.ts",
     "lint": "tsc --noEmit && next lint",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "test:complaints": "node --import tsx --test src/lib/complaint-intake.test.ts src/lib/complaint-followup.test.ts",
+    "test:contact": "node --import tsx --test src/lib/contactInquiry.test.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

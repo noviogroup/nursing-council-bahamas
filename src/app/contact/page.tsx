@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
+import Link from 'next/link';
 import {
   ArrowRight,
   Clock,
+  CheckCircle,
   EnvelopeSimple as Mail,
   MapPin,
   PaperPlaneTilt as Send,
@@ -12,11 +14,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-const inquiryTypes = ['General Information', 'Registration Application', 'Licence Renewal', 'Continuing Education', 'Committee Information', 'Complaint or Disciplinary Matter', 'Nursing Agency Licensing', 'Document Verification', 'Website Technical Support', 'Other'];
+import { emptyInquiry, findInquiryService, inquiryServices, inquiryTopics, isInquiryReference, validateInquiry, type InquiryField, type InquiryInput } from '@/lib/contactInquiry';
 
 const contactMethods = [
   { icon: Phone, title: 'Call us', details: ['(242) 604-6015', '(242) 604-6017'], description: 'Speak with our team during office hours.', available: 'Mon–Fri: 9:00am–5:00pm', href: 'tel:+12426046015' },
@@ -31,23 +31,114 @@ const departmentContacts = [
   { department: 'Nursing Agency Licensing', email: 'agencies@nursingcouncilbahamas.com', phone: '(242) 604-6015 ext. 104', description: 'Agency licensing, compliance, and regulations' },
 ];
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', inquiryType: '', subject: '', message: '' });
-  const handleInputChange = (field: string, value: string) => setFormData((previous) => ({ ...previous, [field]: value }));
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    const subject = encodeURIComponent(formData.subject || 'Nursing Council website inquiry');
-    const body = encodeURIComponent([
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Phone: ${formData.phone || 'Not provided'}`,
-      `Inquiry type: ${formData.inquiryType || 'Not selected'}`,
-      '',
-      formData.message,
-    ].join('\n'));
-    window.location.href = `mailto:info@nursingcouncilbahamas.com?subject=${subject}&body=${body}`;
-  };
+function EnquiryForm() {
+  const [formData, setFormData] = useState<InquiryInput>({ ...emptyInquiry });
+  const [pending, setPending] = useState(false);
+  const [uncertain, setUncertain] = useState(false);
+  const [error, setError] = useState<{ message: string; field?: InquiryField } | null>(null);
+  const [reference, setReference] = useState<string | null>(null);
+  const inFlight = useRef(false);
+  const feedback = useRef<HTMLDivElement>(null);
+  const confirmation = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const service = findInquiryService(new URLSearchParams(window.location.search).get('service') || '');
+    if (service) setFormData((previous) => ({ ...previous, topic: `service:${service.id}` }));
+  }, []);
+
+  useEffect(() => { if (error) feedback.current?.focus(); }, [error]);
+  useEffect(() => { if (reference) confirmation.current?.focus(); }, [reference]);
+
+  const handleInputChange = (field: keyof InquiryInput, value: string) => {
+    setFormData((previous) => ({ ...previous, [field]: value }));
+    if (error?.field === field) setError(null);
+  };
+  const fieldError = (field: InquiryField) => error?.field === field ? 'enquiry-error' : undefined;
+  const selectedService = formData.topic.startsWith('service:') ? findInquiryService(formData.topic.slice(8)) : undefined;
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    if (inFlight.current || uncertain) return;
+    const validation = validateInquiry(formData);
+    if (!validation.ok) {
+      setError({ message: validation.error, field: validation.field });
+      return;
+    }
+    setError(null);
+    setPending(true);
+    inFlight.current = true;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 25000);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData), signal: controller.signal,
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        setUncertain(result.uncertain === true || (response.status >= 500 && typeof result.error !== 'string'));
+        setError({ message: typeof result.error === 'string' ? result.error : 'We could not record your enquiry. Your message is still here. Please try again or contact the Council.', field: result.field });
+        return;
+      }
+      if (result.ok !== true || !isInquiryReference(result.reference)) {
+        setUncertain(true);
+        setError({ message: 'We could not confirm your enquiry reference. Keep a copy of your message and contact the Council before sending it again.' });
+        return;
+      }
+      setReference(result.reference);
+    } catch {
+      setUncertain(true);
+      setError({ message: 'We could not confirm whether your enquiry was recorded. Your message is still here. Keep a copy and contact the Council before sending it again.' });
+    } finally {
+      window.clearTimeout(timeout);
+      inFlight.current = false;
+      setPending(false);
+    }
+  }
+
+  if (reference) return (
+    <div ref={confirmation} tabIndex={-1} className="rounded-[8px] border border-council-primary/20 bg-slate-50 p-6 outline-none focus-visible:ring-2 focus-visible:ring-council-primary md:p-8">
+      <CheckCircle className="h-10 w-10 text-council-primary" aria-hidden="true" />
+      <h3 className="font-heading mt-4 text-2xl font-bold text-council-dark">Your enquiry has been recorded</h3>
+      <p className="mt-3 leading-relaxed text-gray-600">Keep this reference and quote it when contacting the Council about your enquiry.</p>
+      <p className="mt-4 text-sm font-semibold text-council-dark">Enquiry reference</p>
+      <p className="mt-1 break-all rounded-[8px] border border-slate-200 bg-white p-3 font-mono text-sm text-council-primary">{reference}</p>
+      <p className="mt-4 text-sm leading-relaxed text-gray-600">Your message is in the Council’s general-enquiry queue. This confirmation is not an application approval or a complaint tracking number.</p>
+      <p className="mt-3 text-sm leading-relaxed text-gray-600">For follow-up, call <a className="font-semibold text-council-primary underline" href="tel:+12426046015">(242) 604-6015</a> or email <a className="break-all font-semibold text-council-primary underline" href="mailto:info@nursingcouncilbahamas.com">info@nursingcouncilbahamas.com</a>.</p>
+      <button type="button" onClick={() => { setReference(null); setFormData({ ...emptyInquiry }); }} className="mt-6 min-h-11 rounded-[8px] border border-council-primary/20 px-4 py-2 font-semibold text-council-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-council-primary">Start another enquiry</button>
+    </div>
+  );
+
+  return (
+    <form onSubmit={handleSubmit} noValidate aria-busy={pending} className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+      <p className="mb-6 text-sm leading-relaxed text-gray-600">Fields marked * are required. Your message will be recorded for the Council. A reference appears here after it is accepted.</p>
+      {error && <div ref={feedback} tabIndex={-1} role="alert" id="enquiry-error" className="mb-6 rounded-[8px] border border-red-200 bg-red-50 p-4 text-sm leading-relaxed text-red-900 focus:outline focus:outline-2 focus:outline-red-800"><p className="font-semibold">{error.message}</p>{error.field && <a href={`#enquiry-${error.field}`} onClick={(event) => { event.preventDefault(); document.getElementById(`enquiry-${error.field}`)?.focus(); }} className="mt-2 inline-block underline underline-offset-2">Go to this field</a>}</div>}
+      <fieldset disabled={pending} className="min-w-0">
+        <div className="grid gap-5 md:grid-cols-2">
+          <label className="text-sm font-medium text-gray-700" htmlFor="enquiry-name">Full name *<Input id="enquiry-name" name="name" required maxLength={120} autoComplete="name" value={formData.name} onChange={(event) => handleInputChange('name', event.target.value)} aria-invalid={error?.field === 'name'} aria-describedby={fieldError('name')} className="mt-2 min-h-12 rounded-[8px]" /></label>
+          <label className="text-sm font-medium text-gray-700" htmlFor="enquiry-email">Email address *<Input id="enquiry-email" name="email" type="email" required maxLength={254} autoComplete="email" autoCapitalize="none" spellCheck={false} value={formData.email} onChange={(event) => handleInputChange('email', event.target.value)} aria-invalid={error?.field === 'email'} aria-describedby={fieldError('email')} className="mt-2 min-h-12 rounded-[8px]" /></label>
+          <label className="text-sm font-medium text-gray-700" htmlFor="enquiry-phone">Phone number (optional)<Input id="enquiry-phone" name="phone" type="tel" inputMode="tel" maxLength={40} autoComplete="tel" value={formData.phone} onChange={(event) => handleInputChange('phone', event.target.value)} aria-invalid={error?.field === 'phone'} aria-describedby={fieldError('phone')} className="mt-2 min-h-12 rounded-[8px]" /></label>
+        </div>
+        <label className="mt-5 block text-sm font-medium text-gray-700" htmlFor="enquiry-topic">What do you need help with? *
+          <select id="enquiry-topic" name="topic" required value={formData.topic} onChange={(event) => handleInputChange('topic', event.target.value)} aria-invalid={error?.field === 'topic'} aria-describedby={fieldError('topic')} className="mt-2 min-h-12 w-full min-w-0 rounded-[8px] border border-input bg-white px-3 py-2 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-council-primary">
+            <optgroup label="General enquiries">{inquiryTopics.map((topic) => <option key={topic.value} value={topic.value}>{topic.label}</option>)}</optgroup>
+            <optgroup label="Forms and applications">{inquiryServices.map((service) => <option key={service.id} value={`service:${service.id}`}>{service.title}</option>)}</optgroup>
+          </select>
+        </label>
+        {selectedService && <p className="mt-3 text-sm leading-relaxed text-gray-600">{selectedService.availability === 'online' ? <>This service is available in Nurse 360. <Link className="font-semibold text-council-primary underline" href={selectedService.href}>{selectedService.action}</Link>, or use this form if you need help.</> : 'This form asks the Council for guidance. It does not submit an application for this service.'}</p>}
+        <label className="mt-5 block text-sm font-medium text-gray-700" htmlFor="enquiry-subject">Subject *<Input id="enquiry-subject" name="subject" required minLength={3} maxLength={160} autoComplete="off" value={formData.subject} onChange={(event) => handleInputChange('subject', event.target.value)} aria-invalid={error?.field === 'subject'} aria-describedby={fieldError('subject')} className="mt-2 min-h-12 rounded-[8px]" /></label>
+        <label className="mt-5 block text-sm font-medium text-gray-700" htmlFor="enquiry-message">Message *<Textarea id="enquiry-message" name="message" required minLength={10} maxLength={3800} rows={7} value={formData.message} onChange={(event) => handleInputChange('message', event.target.value)} aria-invalid={error?.field === 'message'} aria-describedby={fieldError('message') || 'enquiry-message-help'} className="mt-2 resize-y rounded-[8px]" /></label>
+        <p id="enquiry-message-help" className="mt-2 text-sm leading-relaxed text-gray-500">Up to 3,800 characters. Please do not include passwords, patient records, or identity documents.</p>
+        <div hidden aria-hidden="true"><label>Leave this blank<input name="website" value={formData.website} onChange={(event) => handleInputChange('website', event.target.value)} tabIndex={-1} autoComplete="off" /></label></div>
+        <Button type="submit" disabled={pending || uncertain} className="mt-6 min-h-14 w-full rounded-[8px] bg-council-primary text-base hover:bg-council-secondary"><Send className="h-5 w-5" aria-hidden="true" />{pending ? 'Recording your enquiry…' : uncertain ? 'Contact the Council to confirm receipt' : 'Submit enquiry'}</Button>
+      </fieldset>
+      <p role="status" aria-live="polite" className="mt-4 text-center text-sm text-gray-500">{pending ? 'Please keep this page open while your enquiry is recorded.' : 'For a formal complaint, use the complaints service below.'}</p>
+      <Link href="/complaints" className="mt-3 flex min-h-11 items-center justify-center gap-2 rounded text-sm font-semibold text-council-primary underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-council-primary">Make or track a complaint<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+    </form>
+  );
+}
+
+export default function ContactPage() {
   return (
     <>
       <Header />
@@ -59,14 +150,14 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="relative z-10 -mt-10 pb-20"><div className="container mx-auto px-4"><div className="grid gap-px bg-slate-200 shadow-xl md:grid-cols-3">{contactMethods.map((method) => { const Icon = method.icon; return <a key={method.title} href={method.href} className="group bg-white p-7 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-council-primary"><div className="mb-8 flex items-start justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-full bg-council-primary text-white"><Icon className="h-6 w-6" /></div><ArrowRight className="h-5 w-5 text-council-primary transition-transform group-hover:translate-x-1" /></div><h2 className="font-heading mb-4 text-2xl font-bold text-council-dark">{method.title}</h2><div className="mb-3 space-y-1 font-semibold text-council-primary">{method.details.map((detail) => <p key={detail}>{detail}</p>)}</div><p className="mb-5 text-sm leading-relaxed text-gray-600">{method.description}</p><p className="flex items-center gap-2 text-sm text-gray-500"><Clock className="h-4 w-4" />{method.available}</p></a>; })}</div></div></section>
+        <section className="relative z-10 -mt-10 pb-20"><div className="container mx-auto px-4"><div className="grid gap-px bg-slate-200 shadow-xl md:grid-cols-3">{contactMethods.map((method) => { const Icon = method.icon; return <a key={method.title} href={method.href} className="group bg-white p-7 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-council-primary"><div className="mb-8 flex items-start justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-full bg-council-primary text-white"><Icon className="h-6 w-6" /></div><ArrowRight className="h-5 w-5 text-council-primary transition-transform group-hover:translate-x-1" /></div><h2 className="font-heading mb-4 text-2xl font-bold text-council-dark">{method.title}</h2><div className="mb-3 space-y-1 font-semibold text-council-primary">{method.details.map((detail) => <p key={detail} className="[overflow-wrap:anywhere]">{detail}</p>)}</div><p className="mb-5 text-sm leading-relaxed text-gray-600">{method.description}</p><p className="flex items-center gap-2 text-sm text-gray-500"><Clock className="h-4 w-4" />{method.available}</p></a>; })}</div></div></section>
 
         <section className="bg-white pb-20 lg:pb-28"><div className="container mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-[1.08fr_0.92fr]">
-          <div><h2 className="font-heading mb-7 text-4xl font-bold text-council-dark">Send a message</h2><form onSubmit={handleSubmit} className="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm md:p-8"><div className="grid gap-5 md:grid-cols-2"><label className="text-sm font-medium text-gray-700">Full name *<Input required autoComplete="name" value={formData.name} onChange={(event) => handleInputChange('name', event.target.value)} placeholder="Enter your full name" className="mt-2 min-h-12 rounded-[8px]" /></label><label className="text-sm font-medium text-gray-700">Email address *<Input type="email" required autoComplete="email" autoCapitalize="none" spellCheck={false} value={formData.email} onChange={(event) => handleInputChange('email', event.target.value)} placeholder="Enter your email address" className="mt-2 min-h-12 rounded-[8px]" /></label><label className="text-sm font-medium text-gray-700">Phone number<Input type="tel" inputMode="tel" autoComplete="tel" value={formData.phone} onChange={(event) => handleInputChange('phone', event.target.value)} placeholder="(242) xxx-xxxx" className="mt-2 min-h-12 rounded-[8px]" /></label><label className="text-sm font-medium text-gray-700">Inquiry type *<Select onValueChange={(value) => handleInputChange('inquiryType', value)}><SelectTrigger className="mt-2 min-h-12 rounded-[8px]"><SelectValue placeholder="Select inquiry type" /></SelectTrigger><SelectContent className="rounded-[8px]">{inquiryTypes.map((type) => <SelectItem className="rounded-[8px]" key={type} value={type.toLowerCase().replace(/\s+/g, '-')}>{type}</SelectItem>)}</SelectContent></Select></label></div><label className="mt-5 block text-sm font-medium text-gray-700">Subject *<Input required autoComplete="off" value={formData.subject} onChange={(event) => handleInputChange('subject', event.target.value)} placeholder="Brief description of your enquiry" className="mt-2 min-h-12 rounded-[8px]" /></label><label className="mt-5 block text-sm font-medium text-gray-700">Message *<Textarea required rows={6} value={formData.message} onChange={(event) => handleInputChange('message', event.target.value)} placeholder="Please provide details about your enquiry..." className="mt-2 rounded-[8px] resize-none" /></label><Button type="submit" className="mt-6 min-h-14 w-full rounded-[8px] bg-council-primary text-base hover:bg-council-secondary"><Send className="h-5 w-5" />Send message</Button><p className="mt-4 text-center text-sm text-gray-500">Council staff will review your enquiry.</p></form></div>
+          <div id="enquiry-form" className="min-w-0 scroll-mt-32"><h2 className="font-heading mb-4 text-4xl font-bold text-council-dark">Send an enquiry</h2><p className="mb-6 leading-relaxed text-gray-600">Ask about Council services or get help with an application. For concerns about nursing care or professional conduct, <Link href="/complaints" className="font-semibold text-council-primary underline underline-offset-4">use the complaints service</Link>.</p><EnquiryForm /></div>
           <div id="office-location" className="scroll-mt-8"><h2 className="font-heading mb-7 text-4xl font-bold text-council-dark">Our location</h2><div className="overflow-hidden bg-gray-200" style={{ height: '300px' }}><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.456!2d-77.356!3d25.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x892f7c99b66b7e23%3A0x8e7b8f0c8e7b8f0c!2sVirginia%20St%20%26%20Augusta%20St%2C%20Nassau%2C%20Bahamas!5e0!3m2!1sen!2sus!4v1643723400000" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Nursing Council of the Bahamas Location" /></div><div className="bg-council-primary p-7 text-white md:p-8"><MapPin className="mb-5 h-8 w-8 text-council-accent" /><div className="grid gap-6 sm:grid-cols-2"><div><h3 className="mb-2 font-semibold text-council-accent">Address</h3><p className="leading-relaxed text-white/85">#23 Capitol House<br />Virginia and Augusta Streets<br />Nassau, Bahamas</p></div><div><h3 className="mb-2 font-semibold text-council-accent">Office hours</h3><p className="leading-relaxed text-white/85">Monday–Friday: 9:00am–5:00pm<br />Saturday–Sunday: Closed</p></div><div><h3 className="mb-2 font-semibold text-council-accent">Public holidays</h3><p className="leading-relaxed text-white/85">Closed on all Bahamian public holidays.</p></div><div><h3 className="mb-2 font-semibold text-council-accent">Parking</h3><p className="leading-relaxed text-white/85">Designated parking is available at the rear of the building and along Augusta Street.</p></div></div></div></div>
         </div></section>
 
-        <section className="bg-gray-50 py-20 lg:py-28"><div className="container mx-auto px-4"><div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"><div><h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">Department contacts</h2></div><p className="max-w-2xl text-lg leading-relaxed text-gray-600">Contact a specialist team directly for more focused support and faster service.</p></div><div className="mx-auto grid max-w-6xl gap-px border border-slate-200 bg-slate-200 md:grid-cols-2">{departmentContacts.map((department, index) => <article key={department.department} className="bg-white p-7 md:p-8"><span className="mb-8 block text-sm font-bold text-council-primary">0{index + 1}</span><h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{department.department}</h3><p className="mb-6 leading-relaxed text-gray-600">{department.description}</p><div className="space-y-3 border-l-2 border-council-accent pl-4 text-sm"><a href={`mailto:${department.email}`} className="flex items-start gap-2 text-council-primary hover:underline"><Mail className="mt-0.5 h-4 w-4 shrink-0" />{department.email}</a><a href={`tel:${department.phone.replace(/[^+\d]/g, '')}`} className="flex items-start gap-2 text-gray-700 hover:text-council-primary"><Phone className="mt-0.5 h-4 w-4 shrink-0" />{department.phone}</a></div></article>)}</div></div></section>
+        <section className="bg-gray-50 py-20 lg:py-28"><div className="container mx-auto px-4"><div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"><div><h2 className="font-heading text-4xl font-bold text-council-dark md:text-5xl">Department contacts</h2></div><p className="max-w-2xl text-lg leading-relaxed text-gray-600">Choose the team that matches your enquiry, or use the general enquiry form above.</p></div><div className="mx-auto grid max-w-6xl gap-px border border-slate-200 bg-slate-200 md:grid-cols-2">{departmentContacts.map((department, index) => <article key={department.department} className="bg-white p-7 md:p-8"><span className="mb-8 block text-sm font-bold text-council-primary">0{index + 1}</span><h3 className="font-heading mb-3 text-2xl font-bold text-council-dark">{department.department}</h3><p className="mb-6 leading-relaxed text-gray-600">{department.description}</p><div className="space-y-3 border-l-2 border-council-accent pl-4 text-sm"><a href={`mailto:${department.email}`} className="flex items-start gap-2 break-all text-council-primary hover:underline"><Mail className="mt-0.5 h-4 w-4 shrink-0" />{department.email}</a><a href={`tel:+12426046015;ext=${department.phone.split('ext. ')[1]}`} className="flex items-start gap-2 text-gray-700 hover:text-council-primary"><Phone className="mt-0.5 h-4 w-4 shrink-0" />{department.phone}</a></div></article>)}</div></div></section>
 
       </main>
       <Footer />

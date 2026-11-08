@@ -12,22 +12,37 @@
 }
 
 .contacts {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 44px;
   align-items: center;
-  gap: 20px;
+  justify-items: center;
+  column-gap: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .contacts a {
   display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
   min-height: 44px;
   align-items: center;
   gap: 7px;
 }
 
+.contacts svg { flex-shrink: 0; }
+.address { text-align: center; }
+.email span { overflow-wrap: anywhere; }
+.phones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 12px;
+}
+.phones a { white-space: nowrap; }
 .contacts a:hover { text-decoration: underline; text-underline-offset: 3px; }
-.contacts .email { display: none; }
-.contactLink { margin-left: auto; }
 
 .main {
   display: grid;
@@ -145,7 +160,10 @@
 }
 
 @media (min-width: 640px) {
-  .contacts .email { display: inline-flex; }
+  .contacts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .address { grid-column: 1 / -1; }
+  .phones { justify-self: start; justify-content: flex-start; }
+  .email { justify-self: end; }
   .crest { width: 52px; height: 52px; }
   .wordmark strong { font-size: 1.125rem; }
   .wordmark > span { display: block; }
@@ -153,6 +171,9 @@
 }
 
 @media (min-width: 1024px) {
+  .contacts { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .address { grid-column: auto; justify-self: start; text-align: left; }
+  .phones { justify-self: center; justify-content: center; }
   .main { padding-top: 8px; }
   .brand { min-height: 68px; }
   .menuButton { display: none; }

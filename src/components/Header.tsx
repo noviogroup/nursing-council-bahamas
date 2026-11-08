@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { CaretDown, EnvelopeSimple, List, Phone, X } from '@phosphor-icons/react/dist/ssr';
+import { CaretDown, EnvelopeSimple, List, MapPin, Phone, X } from '@phosphor-icons/react/dist/ssr';
 import Nurse360Link from '@/components/Nurse360Link';
+import { councilContact } from '@/lib/councilContent';
 import { portalPath } from '@/lib/portal';
 import { isLinkAvailable, publicSiteLive } from '@/lib/siteAvailability';
 import { StagedHeader } from '@/components/StagedChrome';
@@ -25,7 +26,7 @@ const navigation: NavigationItem[] = [
       { label: 'Registration & enrollment', href: portalPath('/start/registration') },
       { label: 'Apply for an exam', href: portalPath('/start/exam') },
       { label: 'Verification services', href: '/verification' },
-      { label: 'Forms & documents', href: '/forms' },
+      { label: 'Forms & Applications', href: '/forms' },
       { label: 'Nursing agencies', href: '/nursing-agencies' },
     ],
   },
@@ -115,15 +116,23 @@ export default function Header() {
     >
       <div className={styles.contactBar}>
         <div className={`container mx-auto px-4 ${styles.contacts}`}>
-          <a href="tel:+12426046015" aria-label="Call the Nursing Council at (242) 604-6015">
+          <Link href="/contact#office-location" className={styles.address}>
+            <MapPin size={15} aria-hidden="true" />
+            <span>{councilContact.address}</span>
+          </Link>
+          <div className={styles.phones}>
             <Phone size={15} aria-hidden="true" />
-            (242) 604-6015
-          </a>
-          <a href="mailto:info@nursingcouncilbahamas.com" className={styles.email}>
+            <a href={`tel:${councilContact.phoneLink}`} aria-label="Call the Nursing Council at (242) 604-6015">
+              (242) 604-6015
+            </a>
+            <a href="tel:+12426046017" aria-label="Call the Nursing Council at (242) 604-6017">
+              (242) 604-6017
+            </a>
+          </div>
+          <a href={`mailto:${councilContact.email}`} className={styles.email}>
             <EnvelopeSimple size={15} aria-hidden="true" />
-            info@nursingcouncilbahamas.com
+            <span>{councilContact.email}</span>
           </a>
-          <Link href="/contact" className={styles.contactLink}>Contact the Council</Link>
         </div>
       </div>
 

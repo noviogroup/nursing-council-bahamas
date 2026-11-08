@@ -8,6 +8,7 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { createPageMetadata } from '@/lib/seo';
+import { portalPath } from '@/lib/portal';
 
 export const metadata = createPageMetadata({
   title: 'Registration and Licence Verification',
@@ -27,10 +28,10 @@ const verificationOptions = [
   {
     audience: 'For nurses',
     title: 'Request a Letter of Good Standing',
-    description: 'Request an official Council letter for employment, education, or regulatory purposes.',
+    description: 'Sign in to Nurse 360 and choose Certificate of good standing in Certificates & Letters. Have the purpose and recipient details ready.',
     icon: SealCheck,
-    action: 'Find the application form',
-    href: '/forms',
+    action: 'Open Certificates & Letters',
+    href: portalPath('/nursing/certificates'),
   },
 ];
 
@@ -68,7 +69,7 @@ export default function VerificationPage() {
                 </h2>
               </div>
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
-                Use the public registry for a registration or enrollment check. Official letters are requested through the Council.
+                Use the public registry for a registration or enrollment check. Request official letters in Nurse 360 and follow the Council’s review there.
               </p>
             </div>
 
@@ -118,8 +119,8 @@ export default function VerificationPage() {
             <div>
               <h2 className="font-heading text-4xl font-bold">Nurses can request a Letter of Good Standing through the Council.</h2>
             </div>
-            <Link href="/forms" className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
-              View forms
+            <Link href={portalPath('/nursing/certificates')} className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100">
+              Open Certificates & Letters
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>

@@ -13,6 +13,12 @@ const MAX_CONSECUTIVE_FAILURES = 3;
 
 let consecutiveFailures = 0;
 
+// These routes carry private case references or bearer tokens. Do not create
+// visitor storage, send a page event or start a heartbeat for them.
+function isPrivateComplaintPath(path: string) {
+  return /^\/complaints\/(resume|respond|submitted|track)(\/|$)/.test(path);
+}
+
 function visitorId() {
   try {
     const stored = window.localStorage.getItem(VISITOR_ID_STORAGE_KEY);
@@ -26,6 +32,7 @@ function visitorId() {
 }
 
 async function recordVisit(path: string) {
+  if (isPrivateComplaintPath(path)) return;
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   const id = visitorId();
@@ -48,6 +55,7 @@ export default function VisitTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (isPrivateComplaintPath(pathname)) return;
     void recordVisit(pathname);
     const beat = () => {
       if (document.visibilityState === 'visible') void recordVisit(pathname);

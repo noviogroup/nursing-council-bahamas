@@ -45,7 +45,7 @@ export default async function ComplaintSubmittedPage({ params }: ComplaintSubmit
                 <CopyTrackingNumber value={referenceId} />
               </div>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                We have also emailed it to the address you gave. You need this number and that email address to check on your complaint.
+                Keep this number even if a receipt email does not arrive. You need this number and the email address you gave to check on your complaint.
               </p>
             </div>
 

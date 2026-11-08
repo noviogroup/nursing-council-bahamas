@@ -5,6 +5,7 @@ import PublicComplaintForm from '@/components/complaints/PublicComplaintForm';
 
 export const metadata: Metadata = {
   title: 'Resume Complaint Draft',
+  referrer: 'no-referrer',
   robots: {
     index: false,
     follow: false,

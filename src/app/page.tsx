@@ -202,8 +202,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <Nurse360Videos />
-
         <section className="bg-white py-20 lg:py-28" aria-label="About the Nursing Council">
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
             <div className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm">
@@ -275,6 +273,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <Nurse360Videos />
 
         <section className="bg-slate-50 py-14 lg:py-16" aria-labelledby="latest-news-heading">
           <div className="container mx-auto px-4">
