@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
 import { DEFAULT_DESCRIPTION, DEFAULT_SOCIAL_IMAGE, SITE_NAME, SITE_URL } from '@/lib/seo';
+import VisitTracker from '@/components/VisitTracker';
 import "./globals.css";
 
 const manrope = Manrope({
@@ -106,6 +107,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-background font-body antialiased">
         {children}
+        <VisitTracker />
       </body>
     </html>
   );
