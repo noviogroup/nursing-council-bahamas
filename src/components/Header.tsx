@@ -31,7 +31,7 @@ const navigation: NavigationItem[] = [
     ],
   },
   { label: 'Education', href: '/education-training' },
-  { label: 'Nurse registry', href: '/registry' },
+  { label: 'Nurse Registry', href: '/registry' },
   {
     id: 'about',
     label: 'About',

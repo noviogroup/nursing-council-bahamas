@@ -21,7 +21,6 @@ import WhatsAppChannelCard from '@/components/WhatsAppChannelCard';
 import NewsCard from '@/components/NewsCard';
 import HomeWelcome from '@/components/HomeWelcome';
 import Nurse360Videos from '@/components/Nurse360Videos';
-import Nurse360Link from '@/components/Nurse360Link';
 import { portalPath } from '@/lib/portal';
 import { featuredNewsArticles } from '@/lib/news';
 import { createPageMetadata, organizationStructuredData, SITE_NAME } from '@/lib/seo';
@@ -60,7 +59,7 @@ const services = [
     href: portalPath('/start/registered-nurse'),
     image: '/assets/approved/nurses-bahamas.png',
     imageAlt: 'Nurses gathered at a professional ceremony in The Bahamas',
-    imagePosition: 'object-top',
+    imagePosition: 'object-[center_25%] sm:object-[center_18%] md:object-[center_25%]',
   },
   {
     icon: GlobeHemisphereWest,
@@ -70,7 +69,7 @@ const services = [
     href: portalPath('/start/international'),
     image: '/assets/approved/tcn-nurses-1.jpg',
     imageAlt: 'Trained Clinical Nurses at a formal nursing ceremony',
-    imagePosition: 'object-top',
+    imagePosition: 'object-[center_18%] sm:object-[center_10%] md:object-[center_18%]',
   },
 ];
 
@@ -90,11 +89,6 @@ const councilHighlights = [
     title: 'Education, Registration & Enrollment',
     description: 'Maintain the nurse registry, oversee nursing education standards, and support high-quality nursing care across The Bahamas.',
   },
-];
-
-const councilFacts = [
-  { value: '1972', label: 'Established' },
-  { value: '11', label: 'Council Members' },
 ];
 
 export default function HomePage() {
@@ -139,8 +133,8 @@ export default function HomePage() {
                 of training to your nursing career.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Nurse360Link className="min-h-12 px-6 focus-visible:!outline-white" />
-                <Nurse360IntroVideo className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-[#f23d5c] bg-[#f23d5c] px-6 py-3 font-semibold text-white transition-colors hover:border-[#df2f4d] hover:bg-[#df2f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" />
+                <Nurse360IntroVideo logo className="min-h-12 rounded-[8px] border border-white bg-white px-6 py-3 text-council-primary transition-colors hover:bg-rose-50 focus-visible:!outline-white" />
+                <Link href="/complaints/new" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-[#f23d5c] bg-[#f23d5c] px-6 py-3 font-semibold text-white transition-colors hover:border-[#df2f4d] hover:bg-[#df2f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">File a complaint <ArrowRight size={18} aria-hidden="true" /></Link>
               </div>
             </div>
           </div>
@@ -183,9 +177,9 @@ export default function HomePage() {
                 );
               })}
             </div>
-            <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-              <Link href="/education-training" className="inline-flex min-h-11 items-center gap-2 font-semibold text-council-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary">Approved schools &amp; programmes <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link href="/verification" className="inline-flex min-h-11 items-center gap-2 font-semibold text-council-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary">Verification services <ArrowRight size={16} aria-hidden="true" /></Link>
+            <div className="mt-6 flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap">
+              <Link href="/education-training" className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] border border-council-primary/25 bg-white px-5 py-3 font-semibold text-council-primary transition-colors hover:border-council-primary hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary">Approved schools &amp; programmes <ArrowRight size={16} aria-hidden="true" /></Link>
+              <Link href="/verification" className="inline-flex min-h-12 items-center justify-center gap-3 rounded-[8px] border border-council-primary/25 bg-white px-5 py-3 font-semibold text-council-primary transition-colors hover:border-council-primary hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary">Verification services <ArrowRight size={16} aria-hidden="true" /></Link>
             </div>
           </div>
         </section>
@@ -196,15 +190,14 @@ export default function HomePage() {
             <div>
               <h2 id="nurse360-heading" className="font-heading text-2xl font-bold text-council-dark md:text-3xl">The Council’s online services portal.</h2>
               <p className="mt-3 max-w-2xl leading-relaxed text-gray-700">Review the guidance, start your application and follow Council updates in one place.</p>
-              <a href={portalPath('/')} className="mt-3 inline-flex min-h-11 items-center gap-2 font-semibold text-council-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary">Explore Nurse 360 <ArrowRight size={18} aria-hidden="true" /></a>
             </div>
             <Nurse360IntroVideo className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-council-primary/20 bg-white px-5 py-3 font-semibold text-council-primary transition-colors hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary md:col-start-2 xl:col-start-auto" />
           </div>
         </section>
 
-        <section className="bg-white py-20 lg:py-28" aria-label="About the Nursing Council">
-          <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
-            <div className="relative min-h-[520px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm">
+        <section className="bg-white py-16 lg:py-20" aria-label="About the Nursing Council">
+          <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-12">
+            <div className="relative min-h-[480px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm">
               <Image
                 src="/assets/approved/nurses-bahamas.png"
                 alt="Nurses seated together during a ceremony in The Bahamas"
@@ -240,11 +233,11 @@ export default function HomePage() {
                 The Nursing Council safeguards the public through the regulation of nursing education, registration, enrollment, and practice across the Commonwealth of The Bahamas.
               </p>
 
-              <div className="mt-8 space-y-5">
+              <div className="mt-6 space-y-4">
                 {councilHighlights.map((highlight) => {
                   const Icon = highlight.icon;
                   return (
-                    <article key={highlight.title} className="grid grid-cols-[3.5rem_1fr] gap-5 rounded-[8px] bg-gray-50 p-6 transition-all duration-300 hover:bg-white hover:shadow-lg">
+                    <article key={highlight.title} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[8px] bg-gray-50 p-5 transition-all duration-300 hover:bg-white hover:shadow-lg">
                       <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-council-primary text-white">
                         <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
@@ -257,16 +250,7 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="mt-8 grid overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-sm sm:grid-cols-2">
-                {councilFacts.map((fact) => (
-                  <div key={fact.label} className="border-b border-slate-200 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
-                    <p className="font-heading text-3xl font-bold text-council-primary">{fact.value}</p>
-                    <p className="mt-1 text-sm font-medium text-gray-600">{fact.label}</p>
-                  </div>
-                ))}
-              </div>
-
-              <Link href="/about" className="mt-8 inline-flex items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
+              <Link href="/about" className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-[8px] bg-council-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-4">
                 Learn about the Council
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

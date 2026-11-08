@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
+import Image from 'next/image';
 import { ArrowUpRight, PlayCircle, X } from '@phosphor-icons/react';
 import styles from './Nurse360IntroVideo.module.css';
 
 type Props = {
   className?: string;
   label?: string;
+  logo?: boolean;
 };
 
 const videoSource = '/videos/nurse360/launch.mp4';
@@ -14,6 +16,7 @@ const videoSource = '/videos/nurse360/launch.mp4';
 export default function Nurse360IntroVideo({
   className = '',
   label = 'Play introduction video',
+  logo = false,
 }: Props) {
   const titleId = useId();
   const descriptionId = useId();
@@ -80,9 +83,19 @@ export default function Nurse360IntroVideo({
         disabled={!isReady}
         className={`${styles.trigger} ${className}`}
         aria-haspopup="dialog"
+        aria-label={logo ? 'Play Nurse 360 introduction video' : undefined}
       >
-        <PlayCircle size={22} aria-hidden="true" />
-        {label}
+        {logo ? (
+          <>
+            <Image src="/assets/nurse360/logo.png" alt="" width={1200} height={239} className="h-auto w-36" />
+            <PlayCircle size={22} aria-hidden="true" />
+          </>
+        ) : (
+          <>
+            <PlayCircle size={22} aria-hidden="true" />
+            {label}
+          </>
+        )}
       </button>
       <dialog
         ref={dialogRef}
