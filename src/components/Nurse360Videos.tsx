@@ -10,7 +10,7 @@ const videos = [
     id: 'launch',
     title: 'Meet Nurse 360',
     duration: '0:27',
-    poster: 'nurse360-launch',
+    poster: 'nurse360-launch-10s',
     portrait: false,
     description: 'An introduction to the Council’s online services portal. Explore the guidance and choose the service that fits your next step.',
     guide: '/',
@@ -92,7 +92,7 @@ export default function Nurse360Videos() {
   }
 
   return (
-    <section id="nurse360-videos" className="bg-[#f5f7fb] py-14 lg:py-16" aria-labelledby="nurse360-videos-heading">
+    <section id="nurse360-videos" className="bg-[#fff4f5] py-14 lg:py-16" aria-labelledby="nurse360-videos-heading">
       <div className="container mx-auto px-4">
         <div className="mb-8 max-w-2xl">
           <span className="mb-4 block h-1 w-10 rounded-full bg-[#f23d5c]" aria-hidden="true" />

@@ -112,7 +112,7 @@ export default function Nurse360IntroVideo({
           controls
           playsInline
           preload="none"
-          poster="/assets/nurse360/nurse360-launch.jpg"
+          poster="/assets/nurse360/nurse360-launch-10s.jpg"
           aria-label="Nurse 360 introduction"
           onError={() => setLoadError(true)}
           onCanPlay={() => setLoadError(false)}
