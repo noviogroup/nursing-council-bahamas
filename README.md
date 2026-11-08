@@ -66,6 +66,14 @@ The homepage video gallery contains the six supplied original videos. It uses on
 
 The homepage welcome shows the Council crest and “Nursing is going digital.” before a brief fade and scale into the page. It runs once per tab session, provides Skip and Escape, bypasses deep links and reduced-motion preferences, and leaves the page available without JavaScript. Add `?welcome=1` to replay it for review; reduced-motion preferences still take precedence. This is a welcome animation, not a simulated loading-progress indicator.
 
+The registry keeps one “Not on the registry?” request form above results in every
+search state. Opening or closing it and changing searches preserves its draft;
+search terms are not treated as the visitor’s identity. Search applies the name,
+registration type, and first-registration period together, with draft changes
+distinguished from applied filters. Record counts come from the search response.
+Loading failures offer retry separately from empty results. Pagination/retry focus
+the results heading; clearing filters returns focus to the search field.
+
 ## Environment Variables
 
 The public informational pages can render without database credentials. The nurse registry, complaint submission, tracking, and staff portal features require the values documented in `.env.example`.

@@ -14,50 +14,21 @@ export default function RegistryPage() {
     <>
       <Header />
       <main className="flex-1 bg-slate-50">
-        <section className="relative overflow-hidden bg-council-primary py-16 text-white lg:py-20" data-page-hero="registry">
-          <div
-            className="absolute inset-y-0 right-0 w-1/3 bg-[radial-gradient(circle_at_center,rgba(255,199,44,0.16),transparent_68%)]"
-            aria-hidden="true"
-          />
-          <div className="container relative mx-auto grid gap-10 px-4 lg:grid-cols-[1fr_360px] lg:items-end">
+        <section className="bg-council-primary py-10 text-white lg:py-12" data-page-hero="registry">
+          <div className="container mx-auto max-w-6xl px-4">
             <div className="max-w-3xl">
-              <h1 className="font-heading mb-5 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+              <h1 className="font-heading mb-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
                 Search the nurse registry.
               </h1>
               <p className="max-w-2xl text-lg leading-relaxed text-white/85">
-                Browse the nurse registry using a nurse’s name, registration
-                number, type, or original registration year.
+                Find a nurse by name or registration number. You can also narrow
+                the results by registration type or the year first registered.
               </p>
-            </div>
-
-            <div className="grid w-full grid-cols-3 divide-x divide-white/15 rounded-[8px] border border-white/20 bg-white/10 px-2 py-5 backdrop-blur-sm sm:px-4 lg:px-2">
-              <div className="min-w-0 px-2 text-center sm:px-3">
-                <strong className="block text-lg font-bold text-council-accent sm:text-xl">
-                  4,300+
-                </strong>
-                <span className="mt-1 block text-xs text-white/75">
-                  records
-                </span>
-              </div>
-              <div className="min-w-0 px-2 text-center sm:px-3">
-                <strong className="block text-lg font-bold text-council-accent sm:text-xl">
-                  Combined
-                </strong>
-                <span className="mt-1 block text-xs text-white/75">
-                  register
-                </span>
-              </div>
-              <div className="min-w-0 px-2 text-center sm:px-3">
-                <strong className="block text-lg font-bold text-council-accent sm:text-xl">
-                  3
-                </strong>
-                <span className="mt-1 block text-xs text-white/75">types</span>
-              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-12 lg:py-16">
+        <section className="py-8 lg:py-10">
           <div className="container mx-auto max-w-6xl px-4">
             <RegistrySampleClient />
           </div>

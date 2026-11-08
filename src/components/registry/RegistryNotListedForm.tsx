@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertTriangle, CheckCircle2, LoaderCircle, Send } from "lucide-react";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
 type Props = {
   /** The last registry search, sent so staff can see what the nurse tried. */
@@ -14,6 +14,9 @@ type Props = {
   embedded?: boolean;
   /** Shown under a list of close matches, after the nurse has checked them. */
   afterCloseMatches?: boolean;
+  /** A parent may open the same form from another registry state. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 type Fields = {
@@ -36,18 +39,26 @@ export default function RegistryNotListedForm({
   searchedFor,
   registrationType,
   embedded = false,
-  afterCloseMatches = false,
+  open: controlledOpen,
+  onOpenChange,
 }: Props) {
   const frame = embedded
     ? "text-left text-council-dark"
     : "rounded-[8px] border border-slate-200 bg-white p-5 text-council-dark shadow-sm lg:p-6";
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen ?? internalOpen;
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(false);
   const [fields, setFields] = useState<Fields>(() => ({
-    // A name search is a good starting point; a number search is not.
-    fullName: /\d/.test(searchedFor) ? "" : searchedFor,
+    // A visitor may have searched for someone else; do not infer their identity.
+    fullName: "",
     otherNames: "",
     registrationType,
-    registrationNumber: /\d/.test(searchedFor) ? searchedFor : "",
+    registrationNumber: "",
     yearRegistered: "",
     email: "",
     phone: "",
@@ -58,12 +69,35 @@ export default function RegistryNotListedForm({
   const [error, setError] = useState<{ message: string; field?: string }>();
   const [sent, setSent] = useState(false);
 
+  useEffect(() => {
+    if (open && !sent) headingRef.current?.focus();
+    else if (wasOpen.current && !sent) triggerRef.current?.focus();
+    wasOpen.current = open;
+  }, [open, sent]);
+
+  useEffect(() => {
+    if (!error) return;
+    const field = error.field && formRef.current?.elements.namedItem(error.field);
+    if (field instanceof HTMLElement) field.focus();
+    else errorRef.current?.focus();
+  }, [error]);
+
+  useEffect(() => {
+    if (sent) successRef.current?.focus();
+  }, [sent]);
+
+  function setOpen(nextOpen: boolean) {
+    setInternalOpen(nextOpen);
+    onOpenChange?.(nextOpen);
+  }
+
   function update(key: keyof Fields, value: string) {
     setFields((current) => ({ ...current, [key]: value }));
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting) return;
     setError(undefined);
 
     if (fields.fullName.trim().length < 2) {
@@ -75,6 +109,10 @@ export default function RegistryNotListedForm({
         message: "Enter an email address so the Council can reply.",
         field: "email",
       });
+      return;
+    }
+    if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(fields.email.trim())) {
+      setError({ message: "Enter an email address, like name@example.com.", field: "email" });
       return;
     }
 
@@ -108,8 +146,10 @@ export default function RegistryNotListedForm({
   if (sent) {
     return (
       <div
+        ref={successRef}
         role="status"
-        className={`flex items-start gap-3 ${embedded ? "mx-auto max-w-lg text-left text-council-dark" : frame}`}
+        tabIndex={-1}
+        className={`flex items-start gap-3 outline-none ${embedded ? "text-left text-council-dark" : frame}`}
       >
         <CheckCircle2
           className="mt-0.5 h-5 w-5 shrink-0 text-council-primary"
@@ -129,27 +169,24 @@ export default function RegistryNotListedForm({
   if (!open) {
     return (
       <div
-        className={
-          embedded && !afterCloseMatches
-            ? "mx-auto flex max-w-lg flex-col items-center gap-4 text-center text-council-dark"
-            : `flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${frame}`
-        }
+        className="flex flex-col gap-4 rounded-[8px] border border-rose-100 bg-[#fff4f5] p-5 text-left text-council-dark sm:flex-row sm:items-center sm:justify-between lg:p-6"
       >
         <div>
-          <p className="font-semibold text-council-dark">
-            Can\u2019t find your record?
-          </p>
-          <p className="mt-1 text-sm text-slate-600">
-            {afterCloseMatches
-              ? "If you are a registered nurse or midwife and none of these records is yours, tell the Council and staff will check your record."
-              : "If you are a registered nurse or midwife and you are not in the registry, tell the Council and staff will check your record."}
+          <h2 className="font-heading text-xl font-bold text-council-dark">
+            Not on the registry?
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+            If you are a registered nurse or midwife and cannot find your record,
+            ask the Council to check it. You can send a request at any time.
           </p>
         </div>
         <Button
           type="button"
+          ref={triggerRef}
           variant="outline"
           onClick={() => setOpen(true)}
-          className="h-11 shrink-0 rounded-[8px]"
+          aria-expanded={false}
+          className="min-h-11 shrink-0 rounded-[8px] border-council-primary/30 bg-white text-council-primary hover:border-council-primary hover:bg-white"
         >
           I&rsquo;m not in the registry
         </Button>
@@ -163,14 +200,18 @@ export default function RegistryNotListedForm({
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
       noValidate
       aria-labelledby="not-listed-heading"
+      aria-busy={submitting}
       className={frame}
     >
       <Heading
+        ref={headingRef}
         id="not-listed-heading"
-        className="font-heading text-2xl font-bold text-council-dark"
+        tabIndex={-1}
+        className="font-heading text-2xl font-bold text-council-dark outline-none"
       >
         I&rsquo;m not in the registry
       </Heading>
@@ -179,13 +220,15 @@ export default function RegistryNotListedForm({
         check our records and reply by email.
       </p>
 
-      <div className="mt-6 grid items-start gap-4 sm:grid-cols-2">
+      <fieldset disabled={submitting} className="mt-6 grid min-w-0 items-start gap-4 sm:grid-cols-2" aria-label="Your registration and contact details">
         <div>
           <label htmlFor="not-listed-name" className={labelClass}>
-            Full name
+            Full name <span className="font-normal text-slate-500">(required)</span>
           </label>
           <Input
             id="not-listed-name"
+            name="fullName"
+            required
             autoComplete="name"
             maxLength={120}
             value={fields.fullName}
@@ -202,6 +245,7 @@ export default function RegistryNotListedForm({
           </label>
           <Input
             id="not-listed-other-names"
+            name="otherNames"
             maxLength={120}
             value={fields.otherNames}
             onChange={(event) => update("otherNames", event.target.value)}
@@ -217,6 +261,9 @@ export default function RegistryNotListedForm({
           </label>
           <select
             id="not-listed-type"
+            name="registrationType"
+            aria-invalid={error?.field === "registrationType" || undefined}
+            aria-describedby={describedBy("registrationType")}
             value={fields.registrationType}
             onChange={(event) => update("registrationType", event.target.value)}
             className={`${fieldClass} w-full border border-input px-3 text-sm`}
@@ -234,6 +281,7 @@ export default function RegistryNotListedForm({
           </label>
           <Input
             id="not-listed-number"
+            name="registrationNumber"
             maxLength={30}
             spellCheck={false}
             value={fields.registrationNumber}
@@ -250,6 +298,7 @@ export default function RegistryNotListedForm({
           </label>
           <Input
             id="not-listed-year"
+            name="yearRegistered"
             inputMode="numeric"
             maxLength={4}
             placeholder="e.g. 2014"
@@ -265,10 +314,12 @@ export default function RegistryNotListedForm({
         <div className="hidden sm:block" aria-hidden="true" />
         <div>
           <label htmlFor="not-listed-email" className={labelClass}>
-            Email address
+            Email address <span className="font-normal text-slate-500">(required)</span>
           </label>
           <Input
             id="not-listed-email"
+            name="email"
+            required
             type="email"
             autoComplete="email"
             maxLength={254}
@@ -286,6 +337,7 @@ export default function RegistryNotListedForm({
           </label>
           <Input
             id="not-listed-phone"
+            name="phone"
             type="tel"
             autoComplete="tel"
             maxLength={40}
@@ -303,6 +355,7 @@ export default function RegistryNotListedForm({
           </label>
           <Textarea
             id="not-listed-note"
+            name="note"
             rows={4}
             maxLength={1500}
             placeholder="For example, where you trained or when you last renewed."
@@ -322,13 +375,15 @@ export default function RegistryNotListedForm({
             onChange={(event) => update("website", event.target.value)}
           />
         </div>
-      </div>
+      </fieldset>
 
       {error && (
         <p
+          ref={errorRef}
           id="not-listed-error"
           role="alert"
-          className="mt-5 flex items-start gap-2 text-sm font-semibold text-red-700"
+          tabIndex={-1}
+          className="mt-5 flex items-start gap-2 text-sm font-semibold text-red-700 outline-none"
         >
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           {error.message}
@@ -346,11 +401,12 @@ export default function RegistryNotListedForm({
           ) : (
             <Send className="h-4 w-4" aria-hidden="true" />
           )}
-          Send to the Council
+          {submitting ? "Sending request…" : "Send to the Council"}
         </Button>
         <Button
           type="button"
           variant="outline"
+          disabled={submitting}
           onClick={() => {
             setOpen(false);
             setError(undefined);
