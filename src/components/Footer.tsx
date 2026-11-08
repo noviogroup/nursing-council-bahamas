@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   EnvelopeSimple as Mail,
   FacebookLogo as Facebook,
@@ -70,7 +71,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com/company/nursing-council-bahamas" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council on LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href={councilContact.whatsappChannel} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-council-accent transition-colors" aria-label="Nursing Council WhatsApp channel">
+              <a href={councilContact.whatsappChannel} target="_blank" rel="noreferrer" className="text-[#25d366] hover:text-[#7bedaa] transition-colors focus:outline-none focus:ring-2 focus:ring-[#25d366] focus:ring-offset-4 focus:ring-offset-council-primary" aria-label="Nursing Council WhatsApp channel">
                 <WhatsappLogo className="h-5 w-5" />
               </a>
             </div>
@@ -163,6 +164,19 @@ export default function Footer() {
                 Accessibility
               </Link>
             </div>
+          </div>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 border-t border-white/20 pt-6 text-center sm:flex-row sm:gap-5">
+            <p className="text-sm leading-relaxed text-gray-300">
+              Digital transformation delivered in partnership with
+            </p>
+            <Image
+              src="/assets/brand/novio-logo-reverse.png"
+              alt="Novio Group"
+              width={112}
+              height={36}
+              className="h-auto w-28 shrink-0 object-contain"
+              unoptimized
+            />
           </div>
         </div>
       </div>

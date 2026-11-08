@@ -42,6 +42,22 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Current-site Nurse 360 review
+
+The `design/current-site-nurse360` branch updates the existing full-site homepage while retaining the Council's public information pages. Its three compact blue service cards lead to student indexing, existing-nurse setup, and international applications. Public copy uses “I’m already a nurse” and “Get started with Nurse 360.”
+
+Run this review alongside the separate redesign on port 3010:
+
+```bash
+PUBLIC_SITE_LIVE=true NEXT_PUBLIC_PORTAL_URL=http://localhost:3002 npm run dev -- --port 3012 --hostname 127.0.0.1
+```
+
+Port 3002 must run the local Nurse 360 portal. Without an override, portal links use `https://portal.nursingcouncilbahamas.com`.
+
+The homepage uses the supplied 27-second Nurse 360 introduction, the existing official WhatsApp channel QR code, and the original Novio Group logo. Video playback requires a user action; the dialog includes written introductory guidance, an independent video link, keyboard dismissal, and focus restoration. The WhatsApp destination is an announcements channel, not a support chat. Footer attribution reads “Digital transformation delivered in partnership with” beside the Novio Group logo.
+
+This branch is for local review; publishing requires a separate go-live decision.
+
 ## Environment Variables
 
 The public informational pages can render without database credentials. The nurse registry, complaint submission, tracking, and staff portal features require the values documented in `.env.example`.

@@ -1,4 +1,4 @@
-const fallbackPortalUrl = 'https://nursing-council-portal.netlify.app';
+const fallbackPortalUrl = 'https://portal.nursingcouncilbahamas.com';
 
 export const portalBaseUrl =
   (process.env.NEXT_PUBLIC_PORTAL_URL || fallbackPortalUrl).replace(/\/$/, '');

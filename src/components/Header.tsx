@@ -114,7 +114,7 @@ export default function Header() {
             {publicSiteLive && (
               <div className="ml-auto hidden justify-end xl:flex">
                 <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
-                  <a href={portalPath('/')}>Portal Access</a>
+                  <a href={portalPath('/')}>Nurse 360</a>
                 </Button>
               </div>
             )}
@@ -167,7 +167,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     role="menuitem"
                   >
-                    Portal Access
+                    Nurse 360
                   </a>
                 )}
               </div>

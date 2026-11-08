@@ -1,0 +1,136 @@
+.trigger {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.trigger svg {
+  flex-shrink: 0;
+}
+
+.trigger:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.dialog {
+  width: min(900px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  color: #171b36;
+  box-shadow: 0 24px 80px #0005;
+}
+
+.dialog::backdrop {
+  background: #080b20c9;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #000080;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.header p {
+  margin-top: 8px;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.close {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  color: #171b36;
+}
+
+.close:hover {
+  background: #f3f4f6;
+}
+
+.trigger:focus-visible,
+.close:focus-visible,
+.guidance a:focus-visible {
+  outline: 3px solid #da1228;
+  outline-offset: 3px;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #080b20;
+}
+
+.guidance {
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.guidance h3 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.guidance p {
+  margin-top: 8px;
+  color: #4b5563;
+}
+
+.guidance a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  color: #000080;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guidance .status {
+  margin: 0 0 18px;
+  border-left: 3px solid #da1228;
+  padding: 8px 12px;
+  background: #fff4f5;
+  color: #171b36;
+}
+
+@media (max-width: 480px) {
+  .header,
+  .guidance {
+    padding: 18px;
+  }
+  .header {
+    gap: 10px;
+  }
+  .header h2 {
+    font-size: 22px;
+  }
+}
