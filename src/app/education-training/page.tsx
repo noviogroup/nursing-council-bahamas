@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import {
-  GraduationCap,
   Stethoscope,
 } from '@phosphor-icons/react/dist/ssr';
 import Header from '@/components/Header';
@@ -86,7 +85,7 @@ export default function EducationRegistrationPage() {
           </div>
         </section>
 
-        <section className="bg-white py-20 lg:py-28">
+        <section id="approved-institutions" className="bg-white py-20 lg:py-28" aria-labelledby="approved-institutions-heading">
           <div className="container mx-auto px-4">
             <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
@@ -94,7 +93,7 @@ export default function EducationRegistrationPage() {
                   <span className="h-px w-9 bg-council-accent" />
                   Approved institutions
                 </p>
-                <h2 className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
+                <h2 id="approved-institutions-heading" className="font-heading text-4xl font-bold leading-tight text-council-dark md:text-5xl">
                   Nursing training institutions and programmes.
                 </h2>
               </div>
@@ -118,12 +117,20 @@ export default function EducationRegistrationPage() {
                 </span>
               </div>
               <div className="p-7 sm:p-9 lg:p-11">
-                <div className="flex items-start justify-between gap-5 border-b border-white/20 pb-7">
+                <div className="flex flex-col gap-5 border-b border-white/20 pb-7 sm:flex-row sm:items-center">
+                  <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-[8px] bg-white p-3">
+                    <Image
+                      src={universityOfTheBahamas.logo}
+                      alt={universityOfTheBahamas.logoAlt}
+                      width={88}
+                      height={88}
+                      className="h-[88px] w-[88px] object-contain"
+                    />
+                  </div>
                   <div>
                     <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-council-accent">Approved institution</p>
                     <h3 className="font-heading text-3xl font-bold leading-tight sm:text-4xl">{universityOfTheBahamas.name}</h3>
                   </div>
-                  <span className="font-heading text-3xl font-bold text-council-accent">01</span>
                 </div>
                 <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-white/65">Approved programmes</p>
                 <ul className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -138,14 +145,19 @@ export default function EducationRegistrationPage() {
             </article>
 
             <div className="mt-6 overflow-hidden rounded-[8px] border border-slate-200 bg-white">
-              {otherTrainingInstitutions.map((institution, index) => (
+              {otherTrainingInstitutions.map((institution) => (
                 <article
                   key={institution.name}
-                  className="grid gap-5 border-b border-slate-200 p-6 last:border-b-0 md:grid-cols-[5.5rem_minmax(15rem,0.8fr)_1.2fr] md:items-start md:gap-8 md:p-8"
+                  className="grid gap-5 border-b border-slate-200 p-6 last:border-b-0 md:grid-cols-[7rem_minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start md:gap-8 md:p-8"
                 >
-                  <div className="flex items-center gap-3 md:block">
-                    <span className="font-heading text-3xl font-bold text-council-accent">0{index + 2}</span>
-                    <GraduationCap className="h-6 w-6 text-council-primary md:mt-5" aria-hidden="true" />
+                  <div className="flex h-28 w-28 items-center justify-center rounded-[8px] border border-slate-100 bg-white p-2">
+                    <Image
+                      src={institution.logo}
+                      alt={institution.logoAlt}
+                      width={96}
+                      height={96}
+                      className="h-24 w-24 object-contain"
+                    />
                   </div>
                   <div>
                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-council-primary">Approved institution</p>
