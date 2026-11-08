@@ -19,6 +19,9 @@ import ComingSoon from '@/components/ComingSoon';
 import Nurse360IntroVideo from '@/components/Nurse360IntroVideo';
 import WhatsAppChannelCard from '@/components/WhatsAppChannelCard';
 import NewsCard from '@/components/NewsCard';
+import HomeWelcome from '@/components/HomeWelcome';
+import Nurse360Videos from '@/components/Nurse360Videos';
+import Nurse360Link from '@/components/Nurse360Link';
 import { portalPath } from '@/lib/portal';
 import { featuredNewsArticles } from '@/lib/news';
 import { createPageMetadata, organizationStructuredData, SITE_NAME } from '@/lib/seo';
@@ -105,6 +108,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
       />
+      <HomeWelcome>
       <Header />
       <main className="flex-1">
         <section
@@ -126,7 +130,7 @@ export default function HomePage() {
                 <span className="h-px w-10 bg-council-accent" />
                 Commonwealth of The Bahamas
               </p>
-              <h1 className="font-heading mb-6 text-4xl font-bold leading-tight md:text-6xl">
+              <h1 id="home-title" tabIndex={-1} className="font-heading mb-6 text-4xl font-bold leading-tight outline-none md:text-6xl">
                 The Nursing Council<br />
                 is going digital.
               </h1>
@@ -135,13 +139,7 @@ export default function HomePage() {
                 of training to your nursing career.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href={portalPath('/')}
-                  className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-white px-6 py-3 font-semibold text-council-primary transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-council-primary"
-                >
-                  Nurse 360
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                <Nurse360Link className="min-h-12 px-6 focus-visible:!outline-white" />
                 <Nurse360IntroVideo className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-[#f23d5c] bg-[#f23d5c] px-6 py-3 font-semibold text-white transition-colors hover:border-[#df2f4d] hover:bg-[#df2f4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" />
               </div>
             </div>
@@ -207,6 +205,8 @@ export default function HomePage() {
             <Nurse360IntroVideo className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-council-primary/20 bg-white px-5 py-3 font-semibold text-council-primary transition-colors hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-council-primary md:col-start-2 xl:col-start-auto" />
           </div>
         </section>
+
+        <Nurse360Videos />
 
         <section className="bg-white py-20 lg:py-28" aria-label="About the Nursing Council">
           <div className="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-16">
@@ -313,6 +313,7 @@ export default function HomePage() {
         <WhatsAppChannelCard />
       </main>
       <Footer />
+      </HomeWelcome>
     </>
   );
 }

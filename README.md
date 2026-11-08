@@ -60,6 +60,12 @@ This branch is for local review; publishing requires a separate go-live decision
 
 News cards share `src/components/NewsCard.tsx` across the homepage and `/news`. The homepage gives the latest listed story more space beside three compact stories; narrow screens stack their images and text. Preserve complete headlines, publisher attribution, original dates and source links. Each card has one keyboard-accessible link, a visible focus outline around the card, and an announced external-tab destination.
 
+The header groups navigation into Services, Education, Nurse registry, About, News, and Help. The Nurse 360 logo links to the portal and remains visible on narrow screens. Disclosures open on activation and close on Escape, focus leaving the group, outside clicks, and route changes; the active page has a pink indicator.
+
+The homepage video gallery contains the six supplied original videos. It uses one player with desktop thumbnails and a mobile selector, preserves portrait framing, and does not autoplay when a video is selected. Media uses `preload="none"`; written guide links and a separate video link remain available if playback fails. Original recorded wording is retained in the media.
+
+The homepage welcome shows the Council crest and “Nursing is going digital.” before a brief fade and scale into the page. It runs once per tab session, provides Skip and Escape, bypasses deep links and reduced-motion preferences, and leaves the page available without JavaScript. Add `?welcome=1` to replay it for review; reduced-motion preferences still take precedence. This is a welcome animation, not a simulated loading-progress indicator.
+
 ## Environment Variables
 
 The public informational pages can render without database credentials. The nurse registry, complaint submission, tracking, and staff portal features require the values documented in `.env.example`.

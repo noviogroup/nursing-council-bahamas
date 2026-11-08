@@ -97,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-BS" className={manrope.variable}>
+    <html lang="en-BS" className={manrope.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" sizes="127x127" />
         <link rel="apple-touch-icon" href="/favicon.png" />

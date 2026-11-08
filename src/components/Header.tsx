@@ -1,179 +1,203 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Clock, EnvelopeSimple as Mail, List as Menu, MapPin, Phone, X } from '@phosphor-icons/react/dist/ssr';
-import { Button } from '@/components/ui/button';
+import { usePathname } from 'next/navigation';
+import { CaretDown, EnvelopeSimple, List, Phone, X } from '@phosphor-icons/react/dist/ssr';
+import Nurse360Link from '@/components/Nurse360Link';
 import { portalPath } from '@/lib/portal';
 import { isLinkAvailable, publicSiteLive } from '@/lib/siteAvailability';
 import { StagedHeader } from '@/components/StagedChrome';
+import styles from './Header.module.css';
+
+type NavigationLink = { label: string; href: string };
+type NavigationItem = NavigationLink | { id: string; label: string; links: NavigationLink[] };
+
+const navigation: NavigationItem[] = [
+  {
+    id: 'services',
+    label: 'Services',
+    links: [
+      { label: 'Student indexing', href: portalPath('/start/indexing') },
+      { label: 'I’m already a nurse', href: portalPath('/start/registered-nurse') },
+      { label: 'International application', href: portalPath('/start/international') },
+      { label: 'Registration & enrollment', href: portalPath('/start/registration') },
+      { label: 'Apply for an exam', href: portalPath('/start/exam') },
+      { label: 'Verification services', href: '/verification' },
+      { label: 'Forms & documents', href: '/forms' },
+      { label: 'Nursing agencies', href: '/nursing-agencies' },
+    ],
+  },
+  { label: 'Education', href: '/education-training' },
+  { label: 'Nurse registry', href: '/registry' },
+  {
+    id: 'about',
+    label: 'About',
+    links: [
+      { label: 'About the Council', href: '/about' },
+      { label: 'Council committees', href: '/committees' },
+      { label: 'Legal & ethics', href: '/legal-ethics' },
+    ],
+  },
+  { label: 'News', href: '/news' },
+  {
+    id: 'help',
+    label: 'Help',
+    links: [
+      { label: 'Contact the Council', href: '/contact' },
+      { label: 'Complaints & concerns', href: '/complaints' },
+      { label: 'Track a complaint', href: '/complaints/track' },
+    ],
+  },
+];
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const groupButtons = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  const navigationItems = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/education-training', label: 'Education' },
-    { href: '/nursing-agencies', label: 'Agencies' },
-    { href: '/registry', label: 'Nurse registry' },
-    { href: '/news', label: 'News' },
-    { href: '/legal-ethics', label: 'Legal & Ethics' },
-    { href: '/complaints', label: 'Complaints' },
-  ].filter((item) => isLinkAvailable(item.href));
+  useEffect(() => {
+    setMobileOpen(false);
+    setOpenGroup(null);
+  }, [pathname]);
 
-  if (!publicSiteLive) {
-    return <StagedHeader />;
-  }
+  useEffect(() => {
+    const closeOutside = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) {
+        setMobileOpen(false);
+        setOpenGroup(null);
+      }
+    };
+    const breakpoint = window.matchMedia('(min-width: 1024px)');
+    const closeOnResize = () => {
+      setMobileOpen(false);
+      setOpenGroup(null);
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    breakpoint.addEventListener('change', closeOnResize);
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside);
+      breakpoint.removeEventListener('change', closeOnResize);
+    };
+  }, []);
+
+  if (!publicSiteLive) return <StagedHeader />;
+
+  const isWithin = (href: string) => href.startsWith('/') && (pathname === href || pathname.startsWith(`${href}/`));
+  const closeNavigation = () => {
+    setMobileOpen(false);
+    setOpenGroup(null);
+  };
 
   return (
-    <header className="bg-white shadow-sm" role="banner">
-      {/* Top Contact Bar */}
-      <div className="bg-council-primary py-2 text-xs text-white sm:text-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex min-w-0 items-center gap-4">
-              <div className="hidden items-center gap-2 md:flex">
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                <span>#23 Capitol House, Virginia and Augusta Streets, Nassau</span>
-              </div>
-              <div className="flex min-w-0 items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <a
-                  href="mailto:info@nursingcouncilbahamas.com"
-                  className="truncate hover:underline"
-                  aria-label="Email the Nursing Council at info@nursingcouncilbahamas.com"
-                >
-                  <span className="sm:hidden">Email Council</span>
-                  <span className="hidden sm:inline">info@nursingcouncilbahamas.com</span>
-                </a>
-              </div>
-            </div>
-            <div className="flex shrink-0 items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <a
-                  href="tel:+12426046015"
-                  className="whitespace-nowrap hover:underline"
-                  aria-label="Call the Nursing Council at (242) 604-6015"
-                >
-                  <span className="sm:hidden">604-6015</span>
-                  <span className="hidden sm:inline">(242) 604-6015 / 6017</span>
-                </a>
-              </div>
-              <div className="hidden items-center gap-2 lg:flex">
-                <Clock className="h-4 w-4" aria-hidden="true" />
-                <span>Mon-Fri: 9:00am - 5:00pm</span>
-              </div>
-            </div>
-          </div>
+    <header
+      ref={headerRef}
+      className={styles.header}
+      onKeyDown={(event) => {
+        if (event.key !== 'Escape') return;
+        if (openGroup) {
+          event.preventDefault();
+          groupButtons.current[openGroup]?.focus();
+          setOpenGroup(null);
+        } else if (mobileOpen) {
+          event.preventDefault();
+          setMobileOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) closeNavigation();
+      }}
+    >
+      <div className={styles.contactBar}>
+        <div className={`container mx-auto px-4 ${styles.contacts}`}>
+          <a href="tel:+12426046015" aria-label="Call the Nursing Council at (242) 604-6015">
+            <Phone size={15} aria-hidden="true" />
+            (242) 604-6015
+          </a>
+          <a href="mailto:info@nursingcouncilbahamas.com" className={styles.email}>
+            <EnvelopeSimple size={15} aria-hidden="true" />
+            info@nursingcouncilbahamas.com
+          </a>
+          <Link href="/contact" className={styles.contactLink}>Contact the Council</Link>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="bg-white" role="navigation" aria-label="Main navigation">
-        <div className="container mx-auto px-4">
-          <div className="relative flex h-16 items-center gap-3 sm:h-20">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="flex shrink-0 items-center gap-3 rounded-[8px] focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
-              aria-label="The Nursing Council of the Commonwealth of The Bahamas - Go to homepage"
-            >
-              <Image
-                src="/nursing-council-logo.png"
-                alt="The Nursing Council of the Commonwealth of The Bahamas Official Logo"
-                width={60}
-                height={60}
-                priority
-                className="h-11 w-11 shrink-0 sm:h-14 sm:w-14"
-              />
-              <div className="min-w-0">
-                <div className="whitespace-nowrap font-heading text-base font-bold text-council-dark sm:text-lg md:text-xl">
-                  The Nursing Council
-                </div>
-                <p className="hidden text-sm text-gray-600 sm:block">of the Commonwealth of The Bahamas</p>
-              </div>
-            </Link>
+      <nav aria-label="Main navigation" className={`container mx-auto px-4 ${styles.main}`}>
+        <Link href="/" className={styles.brand} aria-label="The Nursing Council of the Commonwealth of The Bahamas — homepage" onClick={closeNavigation}>
+          <Image src="/nursing-council-logo.png" alt="" width={60} height={60} priority className={styles.crest} />
+          <span className={styles.wordmark}>
+            <strong>The Nursing Council</strong>
+            <span>of the Commonwealth of The Bahamas</span>
+          </span>
+        </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden min-w-0 flex-1 items-center justify-center gap-5 px-4 xl:flex 2xl:gap-8">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="whitespace-nowrap rounded-[8px] px-1 py-1 text-[13px] font-medium text-gray-700 transition-colors duration-200 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2 2xl:px-2 2xl:text-sm"
-                  aria-label={`Navigate to ${item.label} page`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
+        <div className={styles.actions}>
+          <Nurse360Link compact />
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className={styles.menuButton}
+            aria-expanded={mobileOpen}
+            aria-controls="site-navigation"
+            aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+            onClick={() => {
+              setMobileOpen(!mobileOpen);
+              setOpenGroup(null);
+            }}
+          >
+            {mobileOpen ? <X size={24} aria-hidden="true" /> : <List size={24} aria-hidden="true" />}
+          </button>
+        </div>
 
-            {publicSiteLive && (
-              <div className="ml-auto hidden justify-end xl:flex">
-                <Button asChild className="rounded-[8px] bg-council-primary hover:bg-council-secondary">
-                  <a href={portalPath('/')}>Nurse 360</a>
-                </Button>
-              </div>
-            )}
-
-            {/* Mobile Menu Button */}
-            <div className="ml-auto shrink-0 xl:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="mobile-menu"
-                className="rounded-[8px] text-council-dark hover:text-council-primary"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-6 w-6" aria-hidden="true" />
-                ) : (
-                  <Menu className="h-6 w-6" aria-hidden="true" />
-                )}
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          {isMobileMenuOpen && (
-            <div
-              id="mobile-menu"
-              className="border-t border-gray-200 py-2 xl:hidden"
-              role="menu"
-              aria-label="Mobile navigation menu"
-            >
-              <div className="flex flex-col gap-1">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="flex min-h-11 items-center rounded-[8px] px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-slate-50 hover:text-council-primary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    role="menuitem"
-                    aria-label={`Navigate to ${item.label} page`}
-                  >
+        <ul id="site-navigation" className={`${styles.navigation} ${mobileOpen ? styles.navigationOpen : ''}`}>
+          {navigation.map((item) => {
+            if ('href' in item) {
+              if (!isLinkAvailable(item.href)) return null;
+              return (
+                <li key={item.href}>
+                  <Link href={item.href} className={styles.navItem} data-active={isWithin(item.href)} aria-current={pathname === item.href ? 'page' : undefined} onClick={closeNavigation}>
                     {item.label}
                   </Link>
-                ))}
-                {publicSiteLive && (
-                  <a
-                    href={portalPath('/')}
-                    className="flex min-h-11 items-center rounded-[8px] bg-council-primary px-3 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-council-secondary focus:outline-none focus:ring-2 focus:ring-council-primary focus:ring-offset-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    role="menuitem"
-                  >
-                    Nurse 360
-                  </a>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
+                </li>
+              );
+            }
+            const links = item.links.filter((link) => isLinkAvailable(link.href));
+            if (!links.length) return null;
+            const expanded = openGroup === item.id;
+            return (
+              <li key={item.id} className={styles.group} onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) setOpenGroup((current) => current === item.id ? null : current);
+              }}>
+                <button
+                  ref={(node) => { groupButtons.current[item.id] = node; }}
+                  type="button"
+                  className={styles.navItem}
+                  data-active={links.some((link) => isWithin(link.href))}
+                  aria-expanded={expanded}
+                  aria-controls={`navigation-${item.id}`}
+                  onClick={() => setOpenGroup(expanded ? null : item.id)}
+                >
+                  {item.label}
+                  <CaretDown size={15} aria-hidden="true" className={expanded ? styles.expandedCaret : ''} />
+                </button>
+                <ul id={`navigation-${item.id}`} hidden={!expanded} className={`${styles.panel} ${item.id === 'services' ? styles.servicesPanel : ''}`}>
+                  {links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className={styles.panelLink} aria-current={pathname === link.href ? 'page' : undefined} onClick={closeNavigation}>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
     </header>
   );
