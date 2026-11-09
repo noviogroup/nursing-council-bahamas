@@ -46,3 +46,9 @@ Before go-live: test the full submit → receipt → triage/assign → request �
 ## Rollback
 
 Website rollback is a review-branch revert and frontend capability disable. Preserve confirmed references and in-flight opaque request keys. Do not switch an uncertain v2 attempt to legacy submission. Backend rollback disables new routing/notifications/follow-up while retaining all case, reply, evidence and idempotency records. Never delete case data or re-open retired legacy evidence grants as a routine rollback.
+
+## Header continuity follow-up — 9 November 2026
+
+The companion portal review now uses the website's Council header on its public entry, guidance, authentication and recovery pages. The same-tab round trip between website Education and Nurse 360 was verified. For this paired review, the website runs with `NEXT_PUBLIC_PORTAL_URL=http://localhost:3003` and the portal returns to `http://localhost:3012`; the original portal on 3002 remains a separate checkout. Production URLs and deployment remain separate release configuration.
+
+Submenus use the subsequently approved neutral white treatment without coloured top borders. The Committees section and its six links were removed from the footer at the owner's request; the earlier delivery description above records the original review state. Full portal scope, routing and verification are recorded in the companion repository's `docs/implementation/website-header-continuity-2026-11-09.md`.
