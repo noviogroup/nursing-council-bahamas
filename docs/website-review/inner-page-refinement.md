@@ -33,3 +33,9 @@ Privacy wording was compared with the actual enquiry/complaint flows, website vi
 Before publishing, the Council should confirm the supplied current appointments, agency-list currency, programme/status information and departmental addresses/extensions. Historical dates not supplied remain absent. Policy text requires Council acceptance. No new recipients, fees, processing deadlines or eligibility rules have been invented.
 
 The separate operational gates and controlled end-to-end complaint acceptance in [release-and-verification.md](./release-and-verification.md) still apply. No live case/email/storage integration or full Council UAT was performed in this visual refinement pass. Publishing and production activation remain separate decisions.
+
+## Owner refinement: submenu styling
+
+The owner rejected the coloured top border on dropdowns as too generic. The shared Services, About and Help submenus now use white panels with a uniform neutral border, a quieter shadow, neutral hover states and text weight for the current page. Mobile submenu accent rails and the full-width active underline were removed. Keep future submenu styling restrained and avoid decorative coloured edges.
+
+Verified the desktop dropdowns, Enter/Escape operation and mobile navigation at 320px and 390px. Styling only; navigation destinations and interaction logic were preserved. Temporary mobile review files were removed.
