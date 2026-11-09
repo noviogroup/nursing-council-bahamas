@@ -2,6 +2,7 @@ import { councilServices, type CouncilService } from './councilServices';
 
 export const inquiryServices: Pick<CouncilService, 'id' | 'title' | 'inquiryType' | 'availability' | 'action' | 'href'>[] = [
   ...councilServices,
+  { id: 'agency-status', title: 'Nursing agency status', inquiryType: 'agency', availability: 'assisted', action: 'Ask about an agency’s status', href: '/nursing-agencies' },
   { id: 'uap-training', title: 'UAP training', inquiryType: 'education_registration', availability: 'assisted', action: 'Ask about UAP training', href: '/uaps' },
   { id: 'uap-cpd', title: 'UAP continuing professional development', inquiryType: 'education_registration', availability: 'assisted', action: 'Ask about UAP CPD', href: '/uaps' },
 ];

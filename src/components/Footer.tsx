@@ -24,7 +24,7 @@ export default function Footer() {
     { name: 'Licence renewal', href: '/forms#licence-renewal' },
     { name: 'Education', href: '/education-training' },
     { name: 'Forms & Applications', href: '/forms' },
-    { name: 'Nurse registry', href: '/registry' },
+    { name: 'Nurse Registry', href: '/registry' },
     { name: 'Code of Ethics & the Act', href: '/legal-ethics' },
     { name: 'Submit a Complaint', href: '/complaints/new' },
     { name: 'Track Complaint', href: '/complaints/track' },
@@ -135,9 +135,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-council-accent flex-shrink-0" />
-                <div className="text-sm text-gray-300">
+                <a href="mailto:info@nursingcouncilbahamas.com" className="min-w-0 break-words text-sm text-gray-300 hover:text-white">
                   info@nursingcouncilbahamas.com
-                </div>
+                </a>
               </div>
               <div className="text-sm text-gray-300 mt-2">
                 <strong>Office Hours:</strong><br />

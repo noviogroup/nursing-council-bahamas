@@ -1,22 +1,25 @@
-import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { InteriorPageHeader, PageAction } from "@/components/InteriorPage";
 
 export default function NotFoundPage() {
   return (
     <>
       <Header />
       <main className="flex-1 bg-white">
-        <section className="bg-council-primary py-24 text-white" data-page-hero="not-found">
-          <div className="container mx-auto max-w-3xl px-4 text-center">
-            <h1 className="font-heading text-5xl font-bold">We could not find that page.</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-xl leading-relaxed text-white/85">Use the main navigation or return to the homepage to continue.</p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/" className="rounded-[8px] bg-council-accent px-6 py-3 font-semibold text-council-dark transition-colors hover:bg-[#e7b820]">Go home</Link>
-              <Link href="/contact" className="rounded-[8px] border border-white/40 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10">Contact us</Link>
-            </div>
-          </div>
-        </section>
+        <InteriorPageHeader
+          title="We couldn’t find that page"
+          breadcrumb="Page not found"
+          description="The link may have changed. Return to the homepage, find a Council service or contact us for help."
+        >
+          <PageAction href="/">Go to the homepage</PageAction>
+          <PageAction href="/forms" secondary>
+            Find a service
+          </PageAction>
+          <PageAction href="/contact" secondary>
+            Contact the Council
+          </PageAction>
+        </InteriorPageHeader>
       </main>
       <Footer />
     </>
