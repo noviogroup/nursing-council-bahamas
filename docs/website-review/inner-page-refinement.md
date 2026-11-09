@@ -39,3 +39,7 @@ The separate operational gates and controlled end-to-end complaint acceptance in
 The owner rejected the coloured top border on dropdowns as too generic. The shared Services, About and Help submenus now use white panels with a uniform neutral border, a quieter shadow, neutral hover states and text weight for the current page. Mobile submenu accent rails and the full-width active underline were removed. Keep future submenu styling restrained and avoid decorative coloured edges.
 
 Verified the desktop dropdowns, Enter/Escape operation and mobile navigation at 320px and 390px. Styling only; navigation destinations and interaction logic were preserved. Temporary mobile review files were removed.
+
+## Owner refinement: footer committees
+
+Removed the entire Committees column and its six links from the shared public footer at the owner's request. Rebalanced the footer into Council, Quick Links and Contact Info columns; Novio branding remains. Verified the rendered footer contains no committee links. This change concerns footer promotion, not the committee route or its publication settings.

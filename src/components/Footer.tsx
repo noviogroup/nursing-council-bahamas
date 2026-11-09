@@ -30,23 +30,12 @@ export default function Footer() {
     { name: 'Track Complaint', href: '/complaints/track' },
   ].filter((link) => isLinkAvailable(link.href));
 
-  const committeesAvailable = isLinkAvailable('/committees');
-
-  const committees = [
-    { id: 'education', name: 'Education Committee' },
-    { id: 'examination', name: 'Examination Committee' },
-    { id: 'finance', name: 'Finance Committee' },
-    { id: 'registration', name: 'Registration Committee' },
-    { id: 'standards-practice', name: 'Standards and Practice Committee' },
-    { id: 'disciplinary', name: 'Disciplinary and Penal Cases Committee' },
-  ];
-
   return (
     <footer className="bg-council-primary text-white border-t-2 border-council-accent">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
           {/* About Section */}
-          <div>
+          <div className="md:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
               <img
                 src="/nursing-council-logo.png"
@@ -89,27 +78,6 @@ export default function Footer() {
                   >
                     {link.name}
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Committees */}
-          <div>
-            <h4 className="font-heading text-lg font-semibold mb-4">Committees</h4>
-            <ul className="space-y-2">
-              {committees.map((committee) => (
-                <li key={committee.id}>
-                  {committeesAvailable ? (
-                    <Link
-                      href={`/committees#${committee.id}`}
-                      className="text-gray-300 hover:text-council-accent transition-colors text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-                    >
-                      {committee.name}
-                    </Link>
-                  ) : (
-                    <span className="text-gray-300 text-sm">{committee.name}</span>
-                  )}
                 </li>
               ))}
             </ul>
