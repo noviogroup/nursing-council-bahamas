@@ -89,6 +89,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  // Always light, even when the visitor's device is in dark mode.
+  colorScheme: "light",
 };
 
 export default function RootLayout({
