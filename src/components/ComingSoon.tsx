@@ -135,14 +135,20 @@ export default function ComingSoon() {
         <p>© {new Date().getFullYear()} The Nursing Council of the Commonwealth of The Bahamas</p>
         <div className={styles.partner}>
           <span>Digital transformation delivered in partnership with</span>
-          <Image
-            className={styles.partnerLogo}
-            src="/assets/brand/novio-logo-reverse.png"
-            alt="Novio Group"
-            width={94}
-            height={30}
-            unoptimized
-          />
+          <a
+            href="https://noviogroup.com/"
+            className="inline-flex min-h-11 items-center rounded-sm transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            aria-label="Visit Novio Group"
+          >
+            <Image
+              className={styles.partnerLogo}
+              src="/assets/brand/novio-logo-reverse.png"
+              alt="Novio Group"
+              width={94}
+              height={30}
+              unoptimized
+            />
+          </a>
         </div>
       </footer>
     </main>

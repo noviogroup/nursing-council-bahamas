@@ -112,7 +112,7 @@ export default function Nurse360Videos() {
           </select>
         </div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,1fr)]">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,1fr)]">
           <figure className="min-w-0 overflow-hidden rounded-[8px] border border-slate-200 bg-white">
             <video
               key={selected.id}

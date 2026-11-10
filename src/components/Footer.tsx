@@ -42,7 +42,7 @@ export default function Footer() {
                 alt="The Nursing Council of the Commonwealth of The Bahamas Logo"
                 className="h-10 w-auto"
               />
-              <div>
+              <div className="min-w-0 break-words">
                 <h3 className="font-heading text-lg font-bold">The Nursing Council</h3>
                 <p className="text-sm text-gray-300">of the Commonwealth of The Bahamas</p>
               </div>
@@ -121,7 +121,7 @@ export default function Footer() {
             <p className="text-sm text-gray-400 mb-4 md:mb-0">
               © 2026 The Nursing Council of the Commonwealth of The Bahamas. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm text-gray-400">
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-gray-400">
               <Link href="/privacy" className="hover:text-council-accent transition-colors">
                 Privacy Policy
               </Link>
@@ -137,14 +137,20 @@ export default function Footer() {
             <p className="text-sm leading-relaxed text-gray-300">
               Digital transformation delivered in partnership with
             </p>
-            <Image
-              src="/assets/brand/novio-logo-reverse.png"
-              alt="Novio Group"
-              width={112}
-              height={36}
-              className="h-auto w-28 shrink-0 object-contain"
-              unoptimized
-            />
+            <a
+              href="https://noviogroup.com/"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-sm transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              aria-label="Visit Novio Group"
+            >
+              <Image
+                src="/assets/brand/novio-logo-reverse.png"
+                alt="Novio Group"
+                width={112}
+                height={36}
+                className="h-auto w-28 object-contain"
+                unoptimized
+              />
+            </a>
           </div>
         </div>
       </div>

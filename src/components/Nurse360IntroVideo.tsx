@@ -87,7 +87,7 @@ export default function Nurse360IntroVideo({
       >
         {logo ? (
           <>
-            <Image src="/assets/nurse360/logo.png" alt="" width={1200} height={239} className="h-auto w-36" />
+            <Image src="/assets/nurse360/logo.png" alt="" width={1200} height={239} className="h-auto min-w-0 w-36" />
             <PlayCircle size={22} aria-hidden="true" />
           </>
         ) : (

@@ -104,7 +104,7 @@ export default function HomePage() {
       />
       <HomeWelcome>
       <Header />
-      <main className="flex-1">
+      <main className="[overflow-wrap:anywhere] flex-1">
         <section
           className="relative isolate min-h-[530px] overflow-hidden bg-council-primary text-white md:min-h-[565px]"
           aria-label="The Nursing Council of the Commonwealth of The Bahamas"
@@ -119,7 +119,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/45 to-transparent" />
           <div className="relative container mx-auto flex min-h-[530px] items-center px-4 py-20 md:min-h-[565px]">
-            <div className="max-w-3xl">
+            <div className="min-w-0 max-w-3xl break-words">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-council-accent">
                 <span className="h-px w-10 bg-council-accent" />
                 Commonwealth of The Bahamas
@@ -185,7 +185,7 @@ export default function HomePage() {
         </section>
 
         <section className="border-y border-rose-100 bg-[#fff4f5] py-10" aria-labelledby="nurse360-heading">
-          <div className="container mx-auto grid items-center gap-8 px-4 md:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_auto]">
+          <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-4 md:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_auto]">
             <Image src="/assets/nurse360/logo.png" alt="Nurse 360" width={1200} height={239} className="h-auto w-56 max-w-full" />
             <div>
               <h2 id="nurse360-heading" className="font-heading text-2xl font-bold text-council-dark md:text-3xl">The Council’s online services portal.</h2>
@@ -196,19 +196,21 @@ export default function HomePage() {
         </section>
 
         <section className="bg-white py-16 lg:py-20" aria-labelledby="about-council-heading">
-          <div className="container mx-auto grid gap-6 px-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-x-10 lg:gap-y-6 xl:gap-x-12">
+          <div className="container mx-auto grid grid-cols-1 gap-6 px-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-x-10 lg:gap-y-6 xl:gap-x-12">
             <h2 id="about-council-heading" className="font-heading text-3xl font-bold leading-tight text-council-dark sm:text-4xl lg:col-start-2 lg:row-start-1 lg:text-5xl">Guiding the future of nursing in The Bahamas</h2>
-            <div className="relative min-h-[440px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm sm:min-h-[480px] lg:col-start-1 lg:row-span-2 lg:row-start-1">
-              <Image
-                src="/assets/approved/nurses-bahamas.png"
-                alt="Nurses seated together during a ceremony in The Bahamas"
-                fill
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-council-primary/70 via-council-primary/10 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 rounded-[8px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm md:left-auto md:w-[68%]">
-                <div className="flex items-center gap-4">
+            <div className="relative min-w-0 overflow-hidden rounded-[8px] bg-slate-100 shadow-sm lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:min-h-[480px]">
+              <div className="relative h-[320px] sm:h-[420px] lg:absolute lg:inset-0 lg:h-auto">
+                <Image
+                  src="/assets/approved/nurses-bahamas.png"
+                  alt="Nurses seated together during a ceremony in The Bahamas"
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-council-primary/70 via-council-primary/10 to-transparent" />
+              </div>
+              <div className="relative mx-4 -mt-8 mb-4 min-w-0 rounded-[8px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm lg:absolute lg:bottom-6 lg:right-6 lg:m-0 lg:w-[68%]">
+                <div className="flex flex-wrap items-center gap-4">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white p-1.5">
                     <Image
                       src="/nursing-council-logo.png"
@@ -220,7 +222,7 @@ export default function HomePage() {
                   </div>
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
                 </div>
-                <p className="mt-3 text-lg font-semibold leading-relaxed">
+                <p className="mt-3 break-words text-lg font-semibold leading-relaxed">
                   Safeguarding the public through nursing regulation, education standards, and professional accountability.
                 </p>
               </div>
@@ -235,11 +237,11 @@ export default function HomePage() {
                 {councilHighlights.map((highlight) => {
                   const Icon = highlight.icon;
                   return (
-                    <article key={highlight.title} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[8px] bg-gray-50 p-5 transition-all duration-300 hover:bg-white hover:shadow-lg">
+                    <article key={highlight.title} className="grid grid-cols-[3rem_minmax(0,1fr)] gap-4 rounded-[8px] bg-gray-50 p-5 transition-all duration-300 hover:bg-white hover:shadow-lg">
                       <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-council-primary text-white">
                         <Icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <div>
+                      <div className="min-w-0 break-words">
                         <h3 className="font-heading text-xl font-bold text-council-dark">{highlight.title}</h3>
                         <p className="mt-2 leading-relaxed text-gray-600">{highlight.description}</p>
                       </div>
@@ -288,7 +290,7 @@ export default function HomePage() {
             <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-600">Our team is here to help with nursing registration, enrollment, licensing, and professional development needs.</p>
             <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Phone className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Call Us</h3><a href="tel:+12426046015" className="text-gray-600 hover:underline">(242) 604-6015 / 6017</a><p className="mt-1 text-sm text-gray-500">Mon-Fri: 9:00am - 5:00pm</p></div>
-              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Mail className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Email Us</h3><a href="mailto:info@nursingcouncilbahamas.com" className="text-gray-600 hover:underline">info@nursingcouncilbahamas.com</a></div>
+              <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><Mail className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Email Us</h3><a href="mailto:info@nursingcouncilbahamas.com" className="break-words text-gray-600 hover:underline">info@nursingcouncilbahamas.com</a></div>
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-council-primary"><MapPin className="h-8 w-8 text-white" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-council-primary">Visit Us</h3><address className="not-italic text-gray-600">#23 Capitol House<br />Virginia and Augusta Streets<br />Nassau, Bahamas</address></div>
               <div><div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#25d366]"><WhatsappLogo className="h-8 w-8 text-[#063b23]" aria-hidden="true" /></div><h3 className="mb-2 text-lg font-semibold text-[#075e54]">Stay Informed</h3><a href={councilContact.whatsappChannel} target="_blank" rel="noreferrer" className="text-[#075e54] hover:underline">Follow our WhatsApp channel</a><p className="mt-1 text-sm text-gray-500">Official Council announcements</p></div>
             </div>

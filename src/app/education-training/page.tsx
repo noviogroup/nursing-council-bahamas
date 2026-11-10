@@ -59,7 +59,7 @@ export default function EducationRegistrationPage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main className="[overflow-wrap:anywhere] flex-1">
         <InteriorPageHeader
           title="Education & training"
           description="Find Council-approved institutions, nursing programmes and clinical learning sites in The Bahamas."
@@ -85,7 +85,7 @@ export default function EducationRegistrationPage() {
           aria-labelledby="approved-institutions-heading"
         >
           <div className="container mx-auto px-4">
-            <div className="mb-7 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div className="mb-7 grid grid-cols-1 gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
                 <h2
                   id="approved-institutions-heading"
@@ -101,7 +101,7 @@ export default function EducationRegistrationPage() {
               </p>
             </div>
 
-            <article className="grid overflow-hidden rounded-[8px] bg-council-primary text-white lg:grid-cols-[0.78fr_1.22fr]">
+            <article className="grid grid-cols-1 overflow-hidden rounded-[8px] bg-council-primary text-white lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="m-6 mb-0 flex flex-col gap-5 border-b border-white/20 pb-7 sm:m-8 sm:mb-0 sm:flex-row sm:items-center lg:col-start-2 lg:row-start-1">
                   <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[8px] bg-white p-3">
                     <Image
@@ -153,7 +153,7 @@ export default function EducationRegistrationPage() {
               {otherTrainingInstitutions.map((institution) => (
                 <article
                   key={institution.name}
-                  className="grid gap-5 border-b border-slate-200 p-6 last:border-b-0 md:grid-cols-[5rem_minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-start md:gap-6 md:p-6"
+                  className="grid grid-cols-1 gap-5 border-b border-slate-200 p-6 last:border-b-0 md:grid-cols-[5rem_minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-start md:gap-6 md:p-6"
                 >
                   <div className="flex h-20 w-20 items-center justify-center rounded-[8px] border border-slate-100 bg-white p-2">
                     <Image
@@ -214,7 +214,7 @@ export default function EducationRegistrationPage() {
           className="scroll-mt-6 bg-slate-50 py-10 lg:py-12"
         >
           <div className="container mx-auto px-4">
-            <div className="mb-7 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div className="mb-7 grid grid-cols-1 gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
                 <h2 className="font-heading text-xl font-bold leading-tight text-council-dark md:text-3xl">
                   Clinical learning sites
@@ -226,11 +226,11 @@ export default function EducationRegistrationPage() {
               </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {clinicalSites.map((site) => (
                 <article
                   key={site.name}
-                  className="flex items-start gap-5 rounded-lg border border-slate-200 bg-white p-5 sm:p-6"
+                  className="flex flex-col items-start gap-5 rounded-lg sm:flex-row border border-slate-200 bg-white p-5 sm:p-6"
                 >
                   <div className="relative h-20 w-20 shrink-0">
                     <Image
