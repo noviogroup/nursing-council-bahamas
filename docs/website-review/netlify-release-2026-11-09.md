@@ -40,3 +40,11 @@ These are deployment smoke checks, not completed Council UAT or an end-to-end te
 This was a manual production deployment. The Git-connected `main` branch has not been merged or pushed by this release. A later `main` deployment can replace this build; merge the reviewed source before the next routine production deployment, or use Netlify's publishing lock if this exact release must remain pinned. Publishing was not locked automatically.
 
 The existing `.netlify` ignore rules remain in place. No credentials or Netlify local state were committed. A broad environment-variable listing was rejected by automatic approval review; only specific non-secret launch and URL settings were read or changed afterward.
+
+## 10 November: passport page and service-card follow-up
+
+Source `cd73521` is published as Netlify deploy `6af2e7eb1448424a0720c5e0`. The passport requirement is the biographical data page only. Service-card images are untinted at the top with a lower fade, taller image area, tighter blue content and the shorter international description.
+
+The initial isolated deployment retained an absolute node_modules symlink, producing a 502 despite a successful build. The owner approved restoring working deployment `6af27c6755eb6248c9b2badc`; restoration returned 200. The corrected build contains copied dependency files and was verified first at draft `6af2e7732a92a5952f457d0d`. The final homepage, indexing, education and registry pages all return 200; live indexing copy was also checked in the browser.
+
+For future isolated Next.js releases, copy real dependencies into the release directory; do not symlink node_modules outside it. Build with the existing production context, verify a hosted draft before publication, and retain the preceding verified deploy for recovery. No production environment values were exported or changed.
