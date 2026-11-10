@@ -38,9 +38,9 @@ const documents = [
   },
   { title: "Birth certificate", detail: "Your digital birth certificate." },
   {
-    title: "First four pages of your passport",
+    title: "Passport biographical data page",
     detail:
-      "Your passport must be current. Use one PDF or clear photographs of all four pages.",
+      "Only the page with your photo and personal details. Upload one PDF or a clear photo of that page. Your passport must be current.",
   },
   {
     title: "Marriage certificate",

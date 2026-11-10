@@ -64,7 +64,7 @@ const services = [
   {
     icon: GlobeHemisphereWest,
     title: 'International application',
-    description: 'Trained outside The Bahamas? Explore your registration route.',
+    description: 'Trained outside The Bahamas?',
     action: 'Start international application',
     href: portalPath('/start/international'),
     image: '/assets/approved/tcn-nurses-1.jpg',
@@ -152,22 +152,22 @@ export default function HomePage() {
                 const Icon = service.icon;
                 return (
                   <article key={service.title} className="group flex min-w-0 flex-col overflow-hidden rounded-[8px] bg-council-primary text-white">
-                    <div className="relative h-28 overflow-hidden lg:h-32">
+                    <div className="relative h-40 overflow-hidden lg:h-44">
                       <Image
                         src={service.image}
                         alt={service.imageAlt}
                         fill
                         sizes="(min-width: 768px) 33vw, 100vw"
-                        className={`object-cover opacity-60 ${service.imagePosition}`}
+                        className={`object-cover ${service.imagePosition}`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-council-primary via-council-primary/20 to-transparent" />
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-council-primary via-council-primary/65 to-transparent" />
                       <div className="absolute bottom-2 left-6 text-white">
                         <Icon className="h-7 w-7" aria-hidden="true" />
                       </div>
                     </div>
-                    <div className="flex flex-1 flex-col px-6 pb-5 pt-3">
+                    <div className="flex flex-1 flex-col px-6 pb-4 pt-2">
                       <h3 className="font-heading mb-2 text-xl font-bold leading-snug text-white lg:text-2xl">{service.title}</h3>
-                      <p className="mb-3 text-sm leading-relaxed text-white/90">{service.description}</p>
+                      <p className="mb-2 text-sm leading-relaxed text-white/90">{service.description}</p>
                       <Link href={service.href} className="mt-auto inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                         {service.action}
                         <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
