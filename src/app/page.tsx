@@ -119,7 +119,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-council-primary via-council-primary/45 to-transparent" />
           <div className="relative container mx-auto flex min-h-[530px] items-center px-4 py-20 md:min-h-[565px]">
-            <div className="min-w-0 max-w-3xl break-words">
+            <div className="min-w-0 max-w-3xl [overflow-wrap:anywhere]">
               <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-council-accent">
                 <span className="h-px w-10 bg-council-accent" />
                 Commonwealth of The Bahamas
@@ -211,13 +211,13 @@ export default function HomePage() {
               </div>
               <div className="relative mx-4 -mt-8 mb-4 min-w-0 rounded-[8px] bg-council-primary/95 p-6 text-white shadow-xl backdrop-blur-sm lg:absolute lg:bottom-6 lg:right-6 lg:m-0 lg:w-[68%]">
                 <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white p-1.5">
+                  <div className="flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-full bg-white p-[6px]">
                     <Image
                       src="/nursing-council-logo.png"
                       alt="Nursing Council of The Bahamas"
                       width={44}
                       height={44}
-                      className="h-11 w-11 object-contain"
+                      className="h-[44px] w-[44px] object-contain"
                     />
                   </div>
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-council-accent">Since 1972</p>
