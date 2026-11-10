@@ -102,18 +102,7 @@ export default function EducationRegistrationPage() {
             </div>
 
             <article className="grid overflow-hidden rounded-[8px] bg-council-primary text-white lg:grid-cols-[0.78fr_1.22fr]">
-              <div className="relative min-h-[230px] lg:min-h-full">
-                <Image
-                  src="/assets/approved/nurses-graduates-ub.jpg"
-                  alt="Nursing graduates from the University of The Bahamas"
-                  fill
-                  sizes="(min-width: 1024px) 36vw, 100vw"
-                  className="object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-council-primary/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-council-primary/35" />
-              </div>
-              <div className="p-6 sm:p-8">
-                <div className="flex flex-col gap-5 border-b border-white/20 pb-7 sm:flex-row sm:items-center">
+                <div className="m-6 mb-0 flex flex-col gap-5 border-b border-white/20 pb-7 sm:m-8 sm:mb-0 sm:flex-row sm:items-center lg:col-start-2 lg:row-start-1">
                   <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[8px] bg-white p-3">
                     <Image
                       src={universityOfTheBahamas.logo}
@@ -129,6 +118,17 @@ export default function EducationRegistrationPage() {
                     </h3>
                   </div>
                 </div>
+              <div className="relative min-h-[230px] lg:min-h-full lg:col-start-1 lg:row-start-1 lg:row-span-2">
+                <Image
+                  src="/assets/approved/nurses-graduates-ub.jpg"
+                  alt="Nursing graduates from the University of The Bahamas"
+                  fill
+                  sizes="(min-width: 1024px) 36vw, 100vw"
+                  className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-council-primary/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-council-primary/35" />
+              </div>
+              <div className="p-6 pt-0 sm:p-8 sm:pt-0 lg:col-start-2 lg:row-start-2">
                 <p className="mt-6 text-sm font-semibold text-white/80">
                   Programmes
                 </p>

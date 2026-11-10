@@ -195,9 +195,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-white py-16 lg:py-20" aria-label="About the Nursing Council">
-          <div className="container mx-auto grid gap-10 px-4 lg:grid-cols-[0.95fr_1.05fr] xl:gap-12">
-            <div className="relative min-h-[480px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm">
+        <section className="bg-white py-16 lg:py-20" aria-labelledby="about-council-heading">
+          <div className="container mx-auto grid gap-6 px-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-x-10 lg:gap-y-6 xl:gap-x-12">
+            <h2 id="about-council-heading" className="font-heading text-3xl font-bold leading-tight text-council-dark sm:text-4xl lg:col-start-2 lg:row-start-1 lg:text-5xl">Guiding the future of nursing in The Bahamas</h2>
+            <div className="relative min-h-[440px] overflow-hidden rounded-[8px] bg-slate-100 shadow-sm sm:min-h-[480px] lg:col-start-1 lg:row-span-2 lg:row-start-1">
               <Image
                 src="/assets/approved/nurses-bahamas.png"
                 alt="Nurses seated together during a ceremony in The Bahamas"
@@ -225,10 +226,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div>
-              <h2 className="font-heading mb-6 text-4xl font-bold leading-tight text-council-dark md:text-5xl">
-                Guiding the future of nursing in The Bahamas
-              </h2>
+            <div className="lg:col-start-2 lg:row-start-2">
               <p className="max-w-2xl text-lg leading-relaxed text-gray-600">
                 The Nursing Council safeguards the public through the regulation of nursing education, registration, enrollment, and practice across the Commonwealth of The Bahamas.
               </p>
