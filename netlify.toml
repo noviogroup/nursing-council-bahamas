@@ -7,3 +7,16 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Keep the default hosting address on the canonical public domain.
+[[redirects]]
+  from = "https://nursingcouncilbahamas.netlify.app/*"
+  to = "https://nursingcouncilbahamas.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://nursingcouncilbahamas.netlify.app/*"
+  to = "https://nursingcouncilbahamas.com/:splat"
+  status = 301
+  force = true
