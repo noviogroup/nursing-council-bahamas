@@ -112,5 +112,5 @@ export const councilContact = {
   email: 'info@nursingcouncilbahamas.com',
   whatsappChannel: 'https://whatsapp.com/channel/0029VbBoXfn3rZZT6RquoW0J',
   hours: 'Monday-Friday, 9:00am-5:00pm',
-  address: '#23 Capitol House, Virginia and Augusta Streets, Nassau',
+  address: '#23 Capital House, Virginia and Augusta Streets, Nassau',
 };

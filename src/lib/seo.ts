@@ -69,7 +69,7 @@ export const organizationStructuredData = {
   foundingDate: '1972',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '#23 Capitol House, Virginia & Augusta Street',
+    streetAddress: '#23 Capital House, Virginia & Augusta Street',
     addressLocality: 'Nassau',
     addressCountry: 'BS',
     postalCode: 'N-3509',

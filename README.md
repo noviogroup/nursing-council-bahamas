@@ -161,7 +161,7 @@ essential context from a removed eyebrow into the heading or supporting copy.
 ## Contact
 
 The Nursing Council of the Commonwealth of The Bahamas<br />
-#23 Capitol House, Virginia and Augusta Streets, Nassau, The Bahamas<br />
+#23 Capital House, Virginia and Augusta Streets, Nassau, The Bahamas<br />
 (242) 604-6015 / 6017<br />
 info@nursingcouncilbahamas.com
 

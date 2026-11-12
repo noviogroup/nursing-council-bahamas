@@ -12,7 +12,7 @@ The intended result is a clear public website that directs people to a working s
 
 **Build**
 
-- Restore #23 Capitol House, Virginia and Augusta Streets, Nassau; both (242) 604-6015 and (242) 604-6017; and info@nursingcouncilbahamas.com.
+- Restore #23 Capital House, Virginia and Augusta Streets, Nassau; both (242) 604-6015 and (242) 604-6017; and info@nursingcouncilbahamas.com.
 - Balance address left, phones centre and email right within the header container. Give each telephone number its own call link. Wrap all three contact groups into readable rows on mobile. Keep office hours on the Contact page.
 - Replace the duplicated committee presentation with six concise entries and relevant service links.
 - Remove unconfirmed public-meeting schedules, notice periods and minutes-publication promises from the proposed public version.

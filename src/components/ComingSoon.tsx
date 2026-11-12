@@ -95,7 +95,7 @@ export default function ComingSoon() {
             </p>
             <p>
               <MapPinLine size={19} weight="bold" aria-hidden="true" />
-              <span>#23 Capitol House, Virginia and Augusta Streets, Nassau</span>
+              <span>#23 Capital House, Virginia and Augusta Streets, Nassau</span>
             </p>
           </div>
 

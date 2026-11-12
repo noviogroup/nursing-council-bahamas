@@ -90,7 +90,7 @@ export default function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-council-accent mt-1 flex-shrink-0" />
                 <div className="text-sm text-gray-300">
-                  #23 Capitol House<br />
+                  #23 Capital House<br />
                   Virginia and Augusta Streets<br />
                   Nassau, Bahamas
                 </div>

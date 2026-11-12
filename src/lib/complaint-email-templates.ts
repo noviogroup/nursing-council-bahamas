@@ -11,7 +11,7 @@ export type ComplaintEmailTemplate = {
 };
 
 const councilSignature = `The Nursing Council of the Commonwealth of The Bahamas
-#23 Capitol House, Virginia & Augusta Street, Nassau, The Bahamas
+#23 Capital House, Virginia & Augusta Street, Nassau, The Bahamas
 (242) 604-6015 / 6017
 info@nursingcouncilbahamas.com`;
 

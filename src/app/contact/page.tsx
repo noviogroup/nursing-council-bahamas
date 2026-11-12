@@ -526,7 +526,7 @@ export default function ContactPage() {
                 href="#office-location"
                 className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-council-primary underline underline-offset-4 focus-visible:outline focus-visible:outline-2"
               >
-                #23 Capitol House, Nassau
+                #23 Capital House, Nassau
               </a>
               <p className="text-sm text-slate-600">
                 Virginia and Augusta Streets
@@ -576,7 +576,7 @@ export default function ContactPage() {
                 <div>
                   <dt className="font-bold text-council-dark">Address</dt>
                   <dd className="mt-2 text-sm leading-relaxed text-slate-600">
-                    #23 Capitol House
+                    #23 Capital House
                     <br />
                     Virginia and Augusta Streets
                     <br />
